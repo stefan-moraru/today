@@ -37,6 +37,7 @@ class App extends React.Component {
         { this.state.logged ? 'Logged' : 'Not logged' }
         <Link to='/logout'>Log out</Link>
         <Link to='/login'>Login</Link>
+        { this.props.children }
       </div>
     );
   }
