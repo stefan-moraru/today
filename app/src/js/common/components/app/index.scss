@@ -17,16 +17,31 @@ body {
 /* <HOME> */
 .home {
   .jumbotron {
-    height: 400px;
-    margin-bottom: 0px;
+    height: 80vh;
+    min-height: 400px;
     background: linear-gradient(rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.4)), url('/src/assets/images/background.jpg');
     background-size: cover;
     background-position: center center;
     display: flex;
     justify-content: center;
-    align-items: left;
+    align-items: flex-start;
     flex-direction: column;
     color: white;
+    position: relative;
+
+    .arrow {
+      position: absolute;
+      left: 50%;
+      bottom: 0px;
+
+      transform: translate(-50%, -50%);
+
+      text-align: center;
+
+      p {
+        margin-bottom: 0px;
+      }
+    }
   }
 
   .c- {
@@ -62,6 +77,10 @@ body {
 .f- {
   &bold {
     font-weight: 800;
+  }
+
+  &light {
+    font-weight: 300;
   }
 }
 
