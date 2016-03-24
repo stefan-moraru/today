@@ -5,12 +5,66 @@ body {
   font-weight: 400;
 }
 
-.f {
-  &-bold {
+.container-fluid {
+  padding: 0px;
+}
+
+/* <HOME> */
+.home {
+  .jumbotron {
+    height: 400px;
+    margin-bottom: 0px;
+    background-image: url('/dist/assets/images/background.jpg');
+    background-size: cover;
+    display: flex;
+    justify-content: center;
+    align-items: left;
+    flex-direction: column;
+  }
+
+  .c- {
+    &home- {
+      &reviews {
+        * {
+          float: left;
+        }
+      }
+
+      &social {
+        .circle {
+          width: 100px;
+          height: 100px;
+          border-radius: 100px;
+          box-shadow: 1px 1px rgba(0, 0, 0, 0.1);
+          float: left;
+        }
+      }
+    }
+  }
+}
+
+
+/* UTILITIES */
+.u- {
+  &hz-ctr {
+    text-align: center;
+  }
+}
+
+/* FONTS */
+.f- {
+  &bold {
     font-weight: 800;
   }
 }
 
-.container-fluid {
-  padding: 0px;
+/* COMPONENTS */
+.c- {
+  &home- {
+
+  }
+
+  &three-columns {
+    text-align: center;
+  }
 }
