@@ -1,4 +1,6 @@
 import React from 'react';
+import { Link } from 'react-router';
+import Auth from 'common/services/authenticationService';
 
 class App extends React.Component {
 
@@ -28,6 +30,7 @@ class App extends React.Component {
   }
 
   render() {
+
     return (
       <div>
         <h1>Hello, world.</h1>
@@ -37,6 +40,7 @@ class App extends React.Component {
       </div>
     );
   }
+
 }
 
 export default App;

@@ -1,6 +1,8 @@
 import React from 'react';
 import { browserHistory, Router, Route, Link } from 'react-router';
-import App from 'js/common/components/app';
+import App from 'common/components/app';
+import Login from 'login';
+import Logout from 'logout';
 
 const routes = (
   <Router history={browserHistory}>
