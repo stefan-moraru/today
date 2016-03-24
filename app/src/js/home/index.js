@@ -1,16 +1,62 @@
 import React from 'react';
 import { Link } from 'react-router';
 
+class Jumbotron extends React.Component {
+
+  render() {
+
+    const content = this.generateContent();
+
+    return (
+      <div className='jumbotron'>
+        { content }
+      </div>
+    );
+
+  }
+
+}
+
+class HomeJumbotron extends Jumbotron {
+
+  generateContent() {
+
+    return (
+      <div>
+        <h1 className='f-bold'>{ this.props.title }</h1>
+        <p className='lead'>{ this.props.description }</p>
+      </div>
+    );
+
+  }
+
+}
+
+class Title extends React.Component {
+
+  render() {
+
+    return (
+      <div>
+        { this.generateContent() }
+      </div>
+    );
+
+  }
+
+}
+
+class HomeTitle extends Title {
+
+}
+
 class Home extends React.Component {
 
   render() {
 
     return (
       <div className='home'>
-        <div className='jumbotron'>
-          <h1 className='f-bold'>Manageriaza-ti timpul</h1>
-          <p className='lead'>Mai usor ca niciodata</p>
-        </div>
+        <HomeJumbotron title='Manageriaza-ti timpul' description='Mai usor ca niciodata' />
 
         <div className='container'>
           <div className='row'>
