@@ -1,5 +1,5 @@
 import React from 'react';
-import { browserHistory, Router, Route, Link } from 'react-router';
+import { browserHistory, Router, Route, Link, Redirect } from 'react-router';
 import Auth from 'common/services/authenticationService';
 import App from 'common/components/app';
 import Login from 'login';
@@ -28,12 +28,14 @@ const authenticate = (nextState, replace) => {
 
 const routes = (
   <Router history={browserHistory}>
-    <Route path='/' component={App}>
+    <Route component={App}>
       <Route path='home' component={Home} />
       <Route path='login' component={Login} />
-      <Route path='logout' component={Logout} />
-      <Route path='*' component={NotFound} />
+      <Route path='logout' component={Logout} onEnter={authenticate} />
     </Route>
+
+    <Redirect from='/' to='home' />
+    <Route path='*' component={NotFound} />
   </Router>
 );
 
