@@ -95,7 +95,7 @@ class HomeTitle extends Title {
     };
 
     const titleProps = {
-      className: this.props.extraClassesTitle || ''
+      className: this.props.extraClassesTitle
     };
 
     return (
@@ -185,8 +185,8 @@ class ThreeColumns extends React.Component {
 
     if (items) {
 
-      renderedItems = items.splice(0, 3).map((item, index) => (
-        <div className='col-md-4' key={`item-${index}`}>
+      renderedItems = items.splice(0, 4).map((item, index) => (
+        <div className='col-md-3' key={`item-${index}`}>
           <img src={ item.image } />
           <p>{ item.description }</p>
         </div>
@@ -233,6 +233,42 @@ class HomeCreators extends React.Component {
 
 }
 
+class HomeReviews extends React.Component {
+
+  render() {
+
+    const items = this.props.items;
+    let renderedItems = [];
+
+    if (items) {
+
+      renderedItems = items.map((item, index) => (
+        <div className='row' key={`HomeReviews-item-${index}`}>
+          <div className='col-xs-12'>
+            <div className='u-fl u-hz-ctr'>
+              <img src={ item.image } />
+            </div>
+
+            <div className='u-fl'>
+              <h5>{ item.title }</h5>
+              <p>{ item.description }</p>
+            </div>
+          </div>
+        </div>
+      ));
+
+    }
+
+    return (
+      <div className='c-home-reviews'>
+        { renderedItems }
+      </div>
+    );
+
+  }
+
+}
+
 class Home extends React.Component {
 
   render() {
@@ -241,7 +277,16 @@ class Home extends React.Component {
       items: [
         { 'image': 'http://placehold.it/200x200', 'description': 'Lorem ipsum asoindasio oni asdnioasn oiasndioasndoas asiondaiosdnasiod' },
         { 'image': 'http://placehold.it/200x200', 'description': 'Lorem ipsum asoindasio oni asdnioasn oiasndioasndoas asiondaiosdnasiod' },
+        { 'image': 'http://placehold.it/200x200', 'description': 'Lorem ipsum asoindasio oni asdnioasn oiasndioasndoas asiondaiosdnasiod' },
         { 'image': 'http://placehold.it/200x200', 'description': 'Lorem ipsum asoindasio oni asdnioasn oiasndioasndoas asiondaiosdnasiod' }
+      ]
+    };
+
+    const reviewsProps = {
+      items: [
+        { 'image': 'http://placehold.it/200x200', 'description': 'Lorem ipsum asoindasio oni asdnioasn oiasndioasndoas asiondaiosdnasiod', title: 'User 1' },
+        { 'image': 'http://placehold.it/200x200', 'description': 'Lorem ipsum asoindasio oni asdnioasn oiasndioasndoas asiondaiosdnasiod', title: 'User 1' },
+        { 'image': 'http://placehold.it/200x200', 'description': 'Lorem ipsum asoindasio oni asdnioasn oiasndioasndoas asiondaiosdnasiod', title: 'User 1' }
       ]
     };
 
@@ -249,10 +294,21 @@ class Home extends React.Component {
       <div className='home'>
         <HomeJumbotron title='Manageriaza-ti timpul' description='Mai usor ca niciodata' />
 
-        <Container>
           <Section>
-            <HomeTitle title='Te-ai saturat sa iti pierzi timpul fara sa iti dai seama ?' />
+            <HomeTitle title='Trece timpul prea repede ?' extraClassesTitle='display-6' />
             <HomeDescription description='Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla quam velit, vulputate eu pharetra nec, mattis ac neque. Duis vulputate commodo lectus, ac blandit elit tincidunt id. Sed rhoncus, tortor sed eleifend tristique, tortor mauris molestie elit, et lacinia ipsum quam nec dui.' />
+          </Section>
+
+          <Section>
+            <div className='row c-home-semifull'>
+              <div className='col-md-3 hidden-sm-down'>
+                <img src='/src/assets/images/responsive.png' />
+              </div>
+              <div className='col-md-9'>
+                <HomeTitle title='Responsive' extraClassesTitle='display-4' />
+                <HomeDescription description='Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla quam velit, vulputate eu pharetra nec, mattis ac neque. Duis vulputate commodo lectus, ac blandit elit tincidunt id. Sed rhoncus, tortor sed eleifend tristique, tortor mauris molestie elit, et lacinia ipsum quam nec dui.' />
+              </div>
+            </div>
           </Section>
 
           <Section>
@@ -260,94 +316,46 @@ class Home extends React.Component {
           </Section>
 
           <Section>
-            <div className='row c-home-semifull'>
-              <div className='col-md-3'>
-                <img src='/src/assets/images/responsive.png' />
-              </div>
-              <div className='col-md-9'>
-                <HomeTitle title='Responsive' />
-                <HomeDescription description='Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla quam velit, vulputate eu pharetra nec, mattis ac neque. Duis vulputate commodo lectus, ac blandit elit tincidunt id. Sed rhoncus, tortor sed eleifend tristique, tortor mauris molestie elit, et lacinia ipsum quam nec dui.' />
+            <div className='c-home-video'>
+              <HomeTitle title='Demo' extraClasses='u-hz-ctr u-mb-half' extraClassesTitle='display-4' />
+
+              <div className='row'>
+                <div className='col-xs-12 u-hz-ctr'>
+                  <img src='http://placehold.it/600x400' />
+                </div>
               </div>
             </div>
           </Section>
 
-          <div className='c-home-reviews'>
+          <Section>
             <HomeTitle title='Vezi ce spune lumea despre noi' />
-
-            <div className='row'>
-              <div className='col-xs-12'>
-                <img src='http://placehold.it/100x100' />
-                <h5>User</h5>
-                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
-              </div>
-            </div>
-            <div className='row'>
-              <div className='col-xs-12'>
-                <img src='http://placehold.it/100x100' />
-                <h5>User</h5>
-                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
-              </div>
-            </div>
-            <div className='row'>
-              <div className='col-xs-12'>
-                <img src='http://placehold.it/100x100' />
-                <h5>User</h5>
-                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
-              </div>
-            </div>
-          </div>
-
-          <div className='c-home-video'>
-            <HomeTitle title='Demo' extraClasses='u-hz-ctr' />
-
-            <div className='row'>
-              <div className='col-xs-12 u-hz-ctr'>
-                <img src='http://placehold.it/400x300' />
-              </div>
-            </div>
-          </div>
-
-          <div className='row'>
-            <div className='col-md-8'>
-              <HomeTitle title='Responsive' />
-              <HomeDescription description='Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla quam velit, vulputate eu pharetra nec, mattis ac neque. Duis vulputate commodo lectus, ac blandit elit tincidunt id. Sed rhoncus, tortor sed eleifend tristique, tortor mauris molestie elit, et lacinia ipsum quam nec dui.' />
-            </div>
-            <div className='col-md-4'>
-              <img src='http://placehold.it/300x400' />
-            </div>
-          </div>
-
-          <div className='row'>
-            <div className='col-md-4'>
-              <img src='http://placehold.it/300x400' />
-            </div>
-            <div className='col-md-8'>
-              <HomeTitle title='Responsive' />
-              <HomeDescription description='Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla quam velit, vulputate eu pharetra nec, mattis ac neque. Duis vulputate commodo lectus, ac blandit elit tincidunt id. Sed rhoncus, tortor sed eleifend tristique, tortor mauris molestie elit, et lacinia ipsum quam nec dui.' />
-            </div>
-          </div>
+            <HomeReviews {...reviewsProps} />
+          </Section>
 
           <Section>
-            <HomeTitle title='Te-am convins ?' extraClasses='u-hz-ctr' extraClassesTitle='display-4' />
+            <div className='c-home-register'>
+              <HomeTitle title='Te-am convins ?' extraClasses='u-hz-ctr' extraClassesTitle='display-4' />
 
-            <div className='row'>
-              <div className='col-xs-12 u-hz-ctr u-mt-full u-mb-full'>
-                <button className='btn btn-success btn-lg'>Inregistreaza-te !</button>
+              <div className='row'>
+                <div className='col-xs-12 u-hz-ctr u-mt-full u-mb-full'>
+                  <button className='btn btn-success btn-lg'>Inregistreaza-te !</button>
+                </div>
               </div>
             </div>
           </Section>
 
-          <Section>
-            <HomeTitle title='Pentru mai multe detalii poti intra pe:' />
-            <HomeSocial />
-          </Section>
+          <div className=''>
+            <Section>
+              <HomeTitle title='Pentru mai multe detalii ne gasesti pe' />
+              <HomeSocial />
+            </Section>
 
-          <Section>
-            <HomeTitle title='Creatori' />
-            <HomeCreators />
-          </Section>
+            <Section>
+              <HomeTitle title='Creatori' />
+              <HomeCreators />
+            </Section>
+          </div>
 
-        </Container>
         <Link to='/logout'>Log out</Link>
         <Link to='/login'>Login</Link>
       </div>

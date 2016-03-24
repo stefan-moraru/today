@@ -17,7 +17,7 @@ body {
 /* <HOME> */
 .home {
   .jumbotron {
-    height: 80vh;
+    height: 100vh;
     min-height: 400px;
     background: linear-gradient(rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.4)), url('/src/assets/images/background.jpg');
     background-size: cover;
@@ -46,7 +46,28 @@ body {
 
   .c- {
     &home- {
+      &video, &semifull, &contact, &register {
+        margin-left: -100px;
+        margin-right: -100px;
+        padding: 100px;
+        padding-top: 50px;
+        padding-bottom: 50px;
+      }
+
+      &register {
+        background-color: rgb(108, 122, 137);
+        color: white;
+      }
+
+      &video {
+        background-color: rgb(52, 152, 219);
+        color: white;
+      }
+
       &semifull {
+        background-color: rgba(30, 30, 30, 1);
+        background-color: rgba(27, 188, 155, 1);
+        color: white;
         display: flex;
         justify-content: center;
         .col-md-3 {
@@ -62,6 +83,11 @@ body {
         }
       }
 
+      &contact {
+        background-color: rgb(108, 122, 137);
+        color: white;
+      }
+
       &creators {
         img {
           height: 200px;
@@ -75,14 +101,31 @@ body {
 
       }
       &reviews {
-        * {
-          float: left;
+        .row {
+          margin-bottom: 10px;
+        }
+
+        h5 {
+          margin-bottom: 0px;
+          padding-top: 15px;
+        }
+
+        .col-xs-12 {
+          display: flex;
+          align-items: center;
+        }
+
+        img {
+          width: 60px;
+          height: 60px;
+          border-radius: 100%;
+          margin-right: 15px;
         }
       }
 
       &social {
         a {
-          color: black;
+          color: white;
         }
 
         .circle {
@@ -90,11 +133,12 @@ body {
           height: 50px;
           border-radius: 100px;
           border: 1px solid rgba(0, 0, 0, 0.1);
+          background-color: rgb(88, 102, 117);
           float: left;
           display: flex;
           justify-content: center;
           align-items: center;
-          margin-right: 5px;
+          margin-right: 10px;
         }
       }
     }
@@ -104,6 +148,10 @@ body {
 
 /* UTILITIES */
 .u- {
+  &fl {
+    float: left;
+  }
+
   &hz-ctr {
     text-align: center;
 
@@ -120,6 +168,10 @@ body {
 
   &mb-full {
     margin-bottom: 30px;
+  }
+
+  &mb-half {
+    margin-bottom: 15px;
   }
 }
 
@@ -146,6 +198,18 @@ body {
 }
 
 .section {
+  padding: 100px;
+  padding-top: 0px;
+  padding-bottom: 0px;
   margin-top: 50px;
   margin-bottom: 50px;
+}
+
+.section-padding {
+  padding: 50px;
+}
+
+.display-6 {
+  font-size: 2.5rem;
+  font-weight: 300;
 }
