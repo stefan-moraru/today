@@ -17,6 +17,37 @@ class Jumbotron extends React.Component {
 
 }
 
+class HomeSocial extends React.Component {
+
+  render() {
+
+    const networks = [
+      { title: 'Facebook', icon: 'fa fa-facebook', href: '#' },
+      { title: 'Instagram', icon: 'fa fa-instagram', href: '#' }
+    ];
+
+    const networksRendered = networks.map((item, key) => (
+      <a href={ item.href } target='_new' key={`HomeSocial-item-${key}`}>
+        <div className='circle'>
+          <i className={ item.icon }></i>
+        </div>
+      </a>
+    ));
+
+    return (
+      <div className='c-home-social'>
+        <div className='row'>
+          <div className='col-xs-12'>
+           { networksRendered }
+          </div>
+        </div>
+      </div>
+    );
+
+  }
+
+}
+
 class HomeJumbotron extends Jumbotron {
 
   generateContent() {
@@ -63,10 +94,14 @@ class HomeTitle extends Title {
       className: 'row ' + this.props.extraClasses || ''
     };
 
+    const titleProps = {
+      className: this.props.extraClassesTitle || ''
+    };
+
     return (
       <div {...props}>
         <div className='col-xs-12'>
-          <h3>{ this.props.title }</h3>
+          <h3 {...titleProps}>{ this.props.title }</h3>
         </div>
       </div>
     );
@@ -141,42 +176,100 @@ class Section extends React.Component {
 
 }
 
+class ThreeColumns extends React.Component {
+
+  render() {
+
+    const items = this.props.items;
+    let renderedItems = [];
+
+    if (items) {
+
+      renderedItems = items.splice(0, 3).map((item, index) => (
+        <div className='col-md-4' key={`item-${index}`}>
+          <img src={ item.image } />
+          <p>{ item.description }</p>
+        </div>
+      ));
+
+    }
+
+    return (
+      <div className='row c-three-columns'>
+        { renderedItems }
+      </div>
+    );
+
+  }
+
+}
+
+class HomeCreators extends React.Component {
+
+  render() {
+
+    return (
+      <div className='c-home-creators'>
+        <div className='row'>
+          <div className='col-xs-12'>
+            <HomeDescription description='Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla quam velit, vulputate eu pharetra nec, mattis ac neque. Duis vulputate commodo lectus, ac blandit elit tincidunt id. Sed rhoncus, tortor sed eleifend tristique, tortor mauris molestie elit, et lacinia ipsum quam nec dui.' />
+          </div>
+        </div>
+
+        <div className='row u-hz-ctr'>
+          <div className='col-md-6'>
+            <img src='https://media.licdn.com/mpr/mpr/shrinknp_400_400/AAEAAQAAAAAAAAatAAAAJDI5NDdiMTUyLTJjODUtNDg1ZC05YmNmLTcxMWIwZDkzYzgyMg.jpg' />
+            <h5>Stefan Moraru</h5>
+          </div>
+          <div className='col-md-6'>
+            <img src='https://media.licdn.com/mpr/mpr/shrinknp_400_400/AAEAAQAAAAAAAAT0AAAAJDcyMWNmMmEzLTBmNzUtNGNmOC1iMjUzLWU1NjI2ZDUxZDUzZg.jpg' />
+            <h5>Gabriel Stiufliuc</h5>
+          </div>
+        </div>
+      </div>
+    );
+
+  }
+
+}
+
 class Home extends React.Component {
 
   render() {
+
+    const threeColumnsProps = {
+      items: [
+        { 'image': 'http://placehold.it/200x200', 'description': 'Lorem ipsum asoindasio oni asdnioasn oiasndioasndoas asiondaiosdnasiod' },
+        { 'image': 'http://placehold.it/200x200', 'description': 'Lorem ipsum asoindasio oni asdnioasn oiasndioasndoas asiondaiosdnasiod' },
+        { 'image': 'http://placehold.it/200x200', 'description': 'Lorem ipsum asoindasio oni asdnioasn oiasndioasndoas asiondaiosdnasiod' }
+      ]
+    };
 
     return (
       <div className='home'>
         <HomeJumbotron title='Manageriaza-ti timpul' description='Mai usor ca niciodata' />
 
         <Container>
-          <HomeTitle title='Te-ai saturat sa iti pierzi timpul fara sa iti dai seama ?' />
-          <HomeDescription description='Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla quam velit, vulputate eu pharetra nec, mattis ac neque. Duis vulputate commodo lectus, ac blandit elit tincidunt id. Sed rhoncus, tortor sed eleifend tristique, tortor mauris molestie elit, et lacinia ipsum quam nec dui.' />
+          <Section>
+            <HomeTitle title='Te-ai saturat sa iti pierzi timpul fara sa iti dai seama ?' />
+            <HomeDescription description='Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla quam velit, vulputate eu pharetra nec, mattis ac neque. Duis vulputate commodo lectus, ac blandit elit tincidunt id. Sed rhoncus, tortor sed eleifend tristique, tortor mauris molestie elit, et lacinia ipsum quam nec dui.' />
+          </Section>
 
-          <div className='row c-three-columns'>
-            <div className='col-md-4'>
-              <img src='http://placehold.it/200x200' />
-              <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla quam velit, vulputate eu pharetra nec</p>
-            </div>
-            <div className='col-md-4'>
-              <img src='http://placehold.it/200x200' />
-              <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla quam velit, vulputate eu pharetra nec</p>
-            </div>
-            <div className='col-md-4'>
-              <img src='http://placehold.it/200x200' />
-              <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla quam velit, vulputate eu pharetra nec</p>
-            </div>
-          </div>
+          <Section>
+            <ThreeColumns {...threeColumnsProps} />
+          </Section>
 
-          <div className='row'>
-            <div className='col-md-4'>
-              <img src='http://placehold.it/300x400' />
+          <Section>
+            <div className='row c-home-semifull'>
+              <div className='col-md-3'>
+                <img src='/src/assets/images/responsive.png' />
+              </div>
+              <div className='col-md-9'>
+                <HomeTitle title='Responsive' />
+                <HomeDescription description='Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla quam velit, vulputate eu pharetra nec, mattis ac neque. Duis vulputate commodo lectus, ac blandit elit tincidunt id. Sed rhoncus, tortor sed eleifend tristique, tortor mauris molestie elit, et lacinia ipsum quam nec dui.' />
+              </div>
             </div>
-            <div className='col-md-8'>
-              <HomeTitle title='Responsive' />
-              <HomeDescription description='Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla quam velit, vulputate eu pharetra nec, mattis ac neque. Duis vulputate commodo lectus, ac blandit elit tincidunt id. Sed rhoncus, tortor sed eleifend tristique, tortor mauris molestie elit, et lacinia ipsum quam nec dui.' />
-            </div>
-          </div>
+          </Section>
 
           <div className='c-home-reviews'>
             <HomeTitle title='Vezi ce spune lumea despre noi' />
@@ -234,45 +327,26 @@ class Home extends React.Component {
             </div>
           </div>
 
-          <HomeTitle title='Te-am convins ?' extraClasses='u-hz-ctr' />
+          <Section>
+            <HomeTitle title='Te-am convins ?' extraClasses='u-hz-ctr' extraClassesTitle='display-4' />
 
-          <div className='row'>
-            <div className='col-xs-12 u-hz-ctr'>
-              <button className='btn btn-success btn-lg'>Inregistreaza-te !</button>
+            <div className='row'>
+              <div className='col-xs-12 u-hz-ctr u-mt-full u-mb-full'>
+                <button className='btn btn-success btn-lg'>Inregistreaza-te !</button>
+              </div>
             </div>
-          </div>
+          </Section>
 
-          <div className='c-home-social'>
+          <Section>
             <HomeTitle title='Pentru mai multe detalii poti intra pe:' />
+            <HomeSocial />
+          </Section>
 
-            <div className='row'>
-              <div className='col-xs-12'>
-                <div className='circle'></div>
-                <div className='circle'></div>
-                <div className='circle'></div>
-              </div>
-            </div>
-          </div>
+          <Section>
+            <HomeTitle title='Creatori' />
+            <HomeCreators />
+          </Section>
 
-          <div className='c-home-creators'>
-            <div className='row'>
-              <div className='col-xs-12'>
-                <HomeTitle title='Creatori' />
-                <HomeDescription description='Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla quam velit, vulputate eu pharetra nec, mattis ac neque. Duis vulputate commodo lectus, ac blandit elit tincidunt id. Sed rhoncus, tortor sed eleifend tristique, tortor mauris molestie elit, et lacinia ipsum quam nec dui.' />
-              </div>
-            </div>
-
-            <div className='row'>
-              <div className='col-md-6'>
-                <img src='http://placehold.it/300x400' />
-                <p>Lorem ipsum</p>
-              </div>
-              <div className='col-md-6'>
-                <img src='http://placehold.it/300x400' />
-                <p>Lorem ipsum</p>
-              </div>
-            </div>
-          </div>
         </Container>
         <Link to='/logout'>Log out</Link>
         <Link to='/login'>Login</Link>

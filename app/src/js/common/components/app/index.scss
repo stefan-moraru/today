@@ -46,6 +46,34 @@ body {
 
   .c- {
     &home- {
+      &semifull {
+        display: flex;
+        justify-content: center;
+        .col-md-3 {
+          flex: 1;
+
+          img {
+            width: 100%;
+          }
+        }
+
+        .col-md-9 {
+          flex: 1;
+        }
+      }
+
+      &creators {
+        img {
+          height: 200px;
+          border-radius: 100%;
+          border: 1px solid rgba(0, 0, 0, 0.1);
+        }
+
+        h5 {
+          margin-top: 10px;
+        }
+
+      }
       &reviews {
         * {
           float: left;
@@ -53,12 +81,20 @@ body {
       }
 
       &social {
+        a {
+          color: black;
+        }
+
         .circle {
-          width: 100px;
-          height: 100px;
+          width: 50px;
+          height: 50px;
           border-radius: 100px;
-          box-shadow: 1px 1px rgba(0, 0, 0, 0.1);
+          border: 1px solid rgba(0, 0, 0, 0.1);
           float: left;
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          margin-right: 5px;
         }
       }
     }
@@ -70,6 +106,20 @@ body {
 .u- {
   &hz-ctr {
     text-align: center;
+
+    &:after {
+      display: '';
+      content: '';
+      clear: both;
+    }
+  }
+
+  &mt-full {
+    margin-top: 30px;
+  }
+
+  &mb-full {
+    margin-bottom: 30px;
   }
 }
 
@@ -93,4 +143,9 @@ body {
   &three-columns {
     text-align: center;
   }
+}
+
+.section {
+  margin-top: 50px;
+  margin-bottom: 50px;
 }
