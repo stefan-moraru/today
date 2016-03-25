@@ -33,9 +33,9 @@ class Login extends React.Component {
         </div>
 
         <div className='login__form'>
-          <div className='col-md-4'>
+          <div className='col-xl-6'>
             <div className='row'>
-              <div className='col-md-7'>
+              <div className='col-xl-7'>
                 <h4 className='u-mb-half'>Logheaza-te</h4>
                 <div className='input-group'>
                   <span className="input-group-addon"><i className='fa fa-envelope'></i></span>
@@ -53,13 +53,13 @@ class Login extends React.Component {
               </div>
             </div>
             <div className='row u-mt-full'>
-              <div className='col-md-7'>
+              <div className='col-xl-7'>
                 <h4>Nu ai cont ?</h4>
               </div>
             </div>
 
             <div className='row'>
-              <div className='col-md-7'>
+              <div className='col-xl-7'>
                 <div className='input-group'>
                   <span className="input-group-addon"><i className='fa fa-envelope'></i></span>
                   <input type='text' className='form-control' placeholder='Email' />

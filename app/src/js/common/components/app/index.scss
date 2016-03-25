@@ -21,6 +21,7 @@ body {
 
 /* <LOGIN> */
 .login {
+  padding: 50px;
   height: 100vh;
   background: linear-gradient(rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.4)), url('/src/assets/images/background1.jpg');
   background-size: cover;
@@ -51,6 +52,8 @@ body {
 
 /* <HOME> */
 .home {
+  margin-top: -65px;
+
   .jumbotron {
     height: 100vh;
     min-height: 400px;
@@ -239,7 +242,7 @@ body {
   }
 
   &timeline {
-    position: relative;
+    height: 20px;
 
     .description {
       width: 200px;
@@ -311,9 +314,26 @@ body {
 
 .navbar {
   padding: 1rem 2rem;
-  background-color: white;
+  a {
+    color: white;
+  }
 }
 
 .today {
+  padding-top: 65px;
+}
+
+.card-block {
+  padding: 0px;
+  //padding: 1.25rem;
+}
+
+iframe {
+  width: 100%;
+  height: 100%;
+  max-height: 400px;
+}
+
+.pad-top {
   padding-top: 65px;
 }
