@@ -20,6 +20,10 @@ const AuthenticationService = {
 
   logged() {
 
+    //TODO
+
+    return true;
+
     return localStorage.getItem('token') !== null;
 
   },

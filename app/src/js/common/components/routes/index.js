@@ -5,6 +5,7 @@ import App from 'common/components/app';
 import Login from 'login';
 import Logout from 'logout';
 import Home from 'home';
+import Today from 'today';
 import NotFound from 'notfound';
 
 const authenticate = (nextState, replace) => {
@@ -31,6 +32,7 @@ const routes = (
     <Route component={App}>
       <Route path='home' component={Home} />
       <Route path='login' component={Login} />
+      <Route path='today' component={Today} onEnter={authenticate} />
       <Route path='logout' component={Logout} onEnter={authenticate} />
     </Route>
 
