@@ -19,6 +19,19 @@ body {
   height: 100vh;
   background: linear-gradient(rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.4)), url('/src/assets/images/background1.jpg');
   background-size: cover;
+  color: white;
+
+  .jumbotron {
+    background-color: transparent;
+    color: white;
+    box-shadow: none;
+  }
+
+  &__form {
+    .social {
+      font-size: 30px;
+    }
+  }
 }
 
 /* <HOME> */
@@ -159,6 +172,10 @@ body {
     float: left;
   }
 
+  &fr {
+    float: right;
+  }
+
   &hz-ctr {
     text-align: center;
 
@@ -208,8 +225,8 @@ body {
   padding: 100px;
   padding-top: 0px;
   padding-bottom: 0px;
-  margin-top: 50px;
-  margin-bottom: 50px;
+  margin-top: 120px;
+  margin-bottom: 120px;
 }
 
 .section-padding {

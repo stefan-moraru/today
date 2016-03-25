@@ -292,11 +292,15 @@ class Home extends React.Component {
 
     return (
       <div className='home'>
-        <HomeJumbotron title='Manageriaza-ti timpul' description='Mai usor ca niciodata' />
+        <HomeJumbotron title='Organizează-ţi timpul' description='Mai uşor ca niciodată' />
 
           <Section>
-            <HomeTitle title='Trece timpul prea repede ?' extraClassesTitle='display-6' />
-            <HomeDescription description='Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla quam velit, vulputate eu pharetra nec, mattis ac neque. Duis vulputate commodo lectus, ac blandit elit tincidunt id. Sed rhoncus, tortor sed eleifend tristique, tortor mauris molestie elit, et lacinia ipsum quam nec dui.' />
+            <div className='row'>
+            <div className='col-md-8 col-md-push-2'>
+              <HomeTitle title='Trece timpul prea repede ?' extraClassesTitle='display-6' />
+              <HomeDescription description='Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla quam velit, vulputate eu pharetra nec, mattis ac neque. Duis vulputate commodo lectus, ac blandit elit tincidunt id. Sed rhoncus, tortor sed eleifend tristique, tortor mauris molestie elit, et lacinia ipsum quam nec dui.' />
+            </div>
+            </div>
           </Section>
 
           <Section>
@@ -338,26 +342,32 @@ class Home extends React.Component {
 
               <div className='row'>
                 <div className='col-xs-12 u-hz-ctr u-mt-full u-mb-full'>
-                  <button className='btn btn-success btn-lg'>Inregistreaza-te !</button>
+                  <Link to='/login'>
+                    <button className='btn btn-success btn-lg'>Inregistreaza-te !</button>
+                  </Link>
                 </div>
               </div>
             </div>
           </Section>
 
-          <div className=''>
-            <Section>
-              <HomeTitle title='Pentru mai multe detalii ne gasesti pe' />
-              <HomeSocial />
-            </Section>
+          <Section>
+            <div className='row'>
+              <div className='col-md-4'>
+                <HomeTitle title='Pentru mai multe detalii ne gasesti pe' />
+                <HomeSocial />
+              </div>
 
-            <Section>
-              <HomeTitle title='Creatori' />
-              <HomeCreators />
-            </Section>
-          </div>
+              <div className='col-md-4'>
+                <HomeTitle title='Creatori' />
+                <HomeCreators />
+              </div>
 
-        <Link to='/logout'>Log out</Link>
-        <Link to='/login'>Login</Link>
+              <div className='col-md-4'>
+                <HomeTitle title='FIICode' />
+                <HomeDescription description='Aplicatie realizata pentru concursul FIICode' />
+              </div>
+            </div>
+          </Section>
       </div>
     );
 
