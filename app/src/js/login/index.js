@@ -25,53 +25,62 @@ class Login extends React.Component {
 
     return (
       <div className='login'>
-        <div className='jumbotron'>
-          <h1 className='f-bold display-4'>Fii seful timpului tau</h1>
-          <h3 className='f-light'>Lorem ipsum sundasondoa oindasoinda</h3>
+        <div className='jumbotron jumbotron-fluid'>
+          <div className='col-xs-12'>
+            <h1 className='f-bold display-4'>Fii seful timpului tau</h1>
+            <h3 className='f-light'>Lorem ipsum sundasondoa oindasoinda</h3>
+          </div>
         </div>
 
         <div className='login__form'>
           <div className='col-md-4'>
             <div className='row'>
-              <div className='col-md-2 social'>
-                <div>
-                  <i className='fa fa-facebook-square'></i>
-                </div>
-                <div>
-                  <i className='fa fa-twitter-square'></i>
-                </div>
-              </div>
-              <div className='col-md-10'>
+              <div className='col-md-7'>
+                <h4 className='u-mb-half'>Logheaza-te</h4>
                 <div className='input-group'>
-                  <span className="input-group-addon"><i className='fa fa-user'></i></span>
-                  <input type='text' className='form-control' placeholder='Username' />
+                  <span className="input-group-addon"><i className='fa fa-envelope'></i></span>
+                  <input type='text' className='form-control' placeholder='Email' />
                 </div>
                 <div className='input-group'>
                   <span className="input-group-addon"><i className='fa fa-asterisk'></i></span>
                   <input type='password' className='form-control' placeholder='Parola' />
                 </div>
-                <button className='btn btn-info u-fr'>Inregistreaza-te !</button>
+                <button className='btn btn-info u-fr'>Log in</button>
+                <div className='social u-fr'>
+                  <i className='fa fa-facebook-square'></i>
+                  <i className='fa fa-twitter-square'></i>
+                </div>
               </div>
             </div>
-            <div className='row'>
-              <div className='col-xs-12'>
+            <div className='row u-mt-full'>
+              <div className='col-md-7'>
                 <h4>Nu ai cont ?</h4>
-                <p>Lorem asiondosian dsanio dnoasi ndoasnoidoasniodpnaspiodn pasind ioas ndoasndo nasoi dnsaoi ndoasn odasnio dnasoidnosaidnoiasndosa noiasn oidasnio dnsaoi ndoiasn odnasoi dnasoi dnoaisndoasindsaoidnasoida</p>
               </div>
             </div>
 
             <div className='row'>
-              <div className='col-md-6'>
-                <input className='form-control' />
-                <input className='form-control' />
-                <input className='form-control' />
+              <div className='col-md-7'>
+                <div className='input-group'>
+                  <span className="input-group-addon"><i className='fa fa-envelope'></i></span>
+                  <input type='text' className='form-control' placeholder='Email' />
+                </div>
+                <div className='input-group'>
+                  <span className="input-group-addon"><i className='fa fa-asterisk'></i></span>
+                  <input type='password' className='form-control' placeholder='Parola' />
+                </div>
+                <div className='input-group'>
+                  <span className="input-group-addon"><i className='fa fa-asterisk'></i></span>
+                  <input type='password' className='form-control' placeholder='Repeta parola' />
+                </div>
                 <button className='btn btn-info u-fr'>Inregistreaza-te !</button>
                 <div className='clearfix'></div>
-                <progress className='progress' value='25' max='100'></progress>
+                <progress className='progress u-mt-half' value='25' max='100'></progress>
               </div>
             </div>
           </div>
         </div>
+
+        <div className='clearfix'></div>
       </div>
     );
 
