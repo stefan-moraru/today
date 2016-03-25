@@ -242,9 +242,11 @@ body {
     position: relative;
 
     .description {
-      position: absolute;
-      top: -80px;
+      width: 200px;
+      margin-left: -100px;
+      margin-top: 30px;
       text-align: center;
+      color: black;
       visibility: hidden;
     }
 
@@ -258,13 +260,14 @@ body {
       position: relative;
       margin-top: -$dotHeight / 2 - $dotHeight / 3;
 
+      .dot:hover > .description {
+        visibility: visible;
+      }
+
       .dot {
+        cursor: pointer;
         width: $dotHeight;
         height: $dotHeight;
-        border-radius: 10px;
-        outline: 4px solid white;
-
-        background-color: red;
         position: absolute;
         top: 0px;
 
@@ -272,31 +275,19 @@ body {
           left: calc(100%/24 * #{$hour});
         }
 
-        &-1 { @include dot-left(1); }
-        &-2 { @include dot-left(2); }
-        &-3 { @include dot-left(3); }
-        &-4 { @include dot-left(4); }
-        &-5 { @include dot-left(5); }
-        &-6 { @include dot-left(6); }
-        &-7 { @include dot-left(7); }
-        &-8 { @include dot-left(8); }
-        &-9 { @include dot-left(9); }
-        &-10 { @include dot-left(10); }
-        &-11 { @include dot-left(11); }
-        &-12 { @include dot-left(12); }
-        &-13 { @include dot-left(13); }
-        &-14 { @include dot-left(14); }
-        &-15 { @include dot-left(15); }
-        &-16 { @include dot-left(16); }
-        &-17 { @include dot-left(17); }
-        &-18 { @include dot-left(18); }
-        &-19 { @include dot-left(19); }
-        &-20 { @include dot-left(20); }
-        &-21 { @include dot-left(21); }
-        &-22 { @include dot-left(22); }
-        &-23 { @include dot-left(23); }
-        &-24 { @include dot-left(24); }
+        &-1 { @include dot-left(1); } &-2 { @include dot-left(2); } &-3 { @include dot-left(3); } &-4 { @include dot-left(4); } &-5 { @include dot-left(5); } &-6 { @include dot-left(6); } &-7 { @include dot-left(7); } &-8 { @include dot-left(8); } &-9 { @include dot-left(9); } &-10 { @include dot-left(10); } &-11 { @include dot-left(11); } &-12 { @include dot-left(12); } &-13 { @include dot-left(13); } &-14 { @include dot-left(14); } &-15 { @include dot-left(15); } &-16 { @include dot-left(16); } &-17 { @include dot-left(17); } &-18 { @include dot-left(18); } &-19 { @include dot-left(19); } &-20 { @include dot-left(20); } &-21 { @include dot-left(21); } &-22 { @include dot-left(22); } &-23 { @include dot-left(23); } &-24 { @include dot-left(24); }
       }
+
+      .circle {
+        box-shadow: 0 0 0 4px white;
+        position: absolute;
+        top: 0px;
+        background-color: #5bc0de;
+        width: $dotHeight;
+        height: $dotHeight;
+        border-radius: $dotHeight;
+      }
+
     }
   }
 }
