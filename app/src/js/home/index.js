@@ -364,7 +364,7 @@ class Home extends React.Component {
 
               <div className='col-md-4'>
                 <HomeTitle title='FIICode' />
-                <HomeDescription description='Aplicatie realizata pentru concursul FIICode' />
+                <HomeDescription description='Aplicatie realizata pentru concursul FIICode. FIICode dorește ca participanții să valorifice abilitățile (și să dezvolte competențe), prin intermediul competiției: gândirea algoritmică și analitică, modelarea și implementarea, dezvoltarea de noi tehnologii, creativitatea, adaptabilitatea, precum  și capacitatea de a susține în public a unei lucrări proprii.' />
               </div>
             </div>
           </Section>

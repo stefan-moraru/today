@@ -52,7 +52,7 @@ class Header extends React.Component {
 
     return (
       <div className='container-fluid'>
-        <nav className="navbar navbar-fixed-top navbar-dark">
+        <nav className="navbar navbar-fixed-top navbar-dark bg-inverse">
           <a className="navbar-brand" href="/home">
           Rise
           </a>

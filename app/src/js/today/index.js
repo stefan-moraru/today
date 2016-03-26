@@ -30,7 +30,6 @@ class Timeline extends React.Component {
 
           <div className='description'>
             <h4>{ event.title }</h4>
-            <p>{ event.description }..</p>
           </div>
         </div>
       );
@@ -155,27 +154,30 @@ class Today extends React.Component {
 
         <div className='row u-mt-full'>
           <div className='col-md-10 col-md-push-1'>
-            <h5>Ziua de astazi..</h5>
+            <h5>Ziua de astazi</h5>
+            <p>Ai multa treaba astazi, dar ai pauze intre majoritatea evenimentelor.</p>
           </div>
         </div>
 
-        <Section>
-          <div className='card-columns'>
-            <div className="card card-block">
-              <PieChart />
-            </div>
-            <div className="card card-block">
-              <iframe src="https://www.google.com/maps/embed/v1/place?key=AIzaSyAEypkJ8m2C1aDAzG_VhOiKn7sMIE0n5Wk&q=Space+Needle,Seattle+WA"></iframe>
-            </div>
-            <div className="card card-block">
-              <BarChart />
-            </div>
-            <div className="card card-block">
-            </div>
-            <div className="card card-block">
+        <div className='row u-mt-full'>
+          <div className='col-md-10 col-md-push-1 u-mt-half'>
+            <div className='card-columns'>
+              <div className="card card-block">
+                <PieChart />
+              </div>
+              <div className="card card-block">
+                <iframe src="https://www.google.com/maps/embed/v1/place?key=AIzaSyAEypkJ8m2C1aDAzG_VhOiKn7sMIE0n5Wk&q=Space+Needle,Seattle+WA"></iframe>
+              </div>
+              <div className="card card-block">
+                <BarChart />
+              </div>
+              <div className="card card-block">
+              </div>
+              <div className="card card-block">
+              </div>
             </div>
           </div>
-        </Section>
+        </div>
       </div>
     );
 
