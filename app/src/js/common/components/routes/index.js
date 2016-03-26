@@ -12,8 +12,6 @@ import NotFound from 'notfound';
 
 const authenticate = (nextState, replace) => {
 
-  console.log(Auth);
-
   if (!Auth.logged()) {
 
     replace({

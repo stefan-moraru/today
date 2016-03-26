@@ -15,8 +15,6 @@ class Login extends React.Component {
 
   onSubmit(ev) {
 
-    console.log('suibmit');
-
     //Auth.login();
 
   }

@@ -1,8 +1,6 @@
 import React from 'react';
 import Description from 'common/components/description';
 
-console.log('HOEMHOEMSHOMEOHMSOHESOH');
-
 class HomeDescription extends Description {
 
   generateContent() {
