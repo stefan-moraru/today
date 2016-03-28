@@ -8,8 +8,14 @@ class Today extends React.Component {
 
   render() {
 
+    const profileCardProps = {
+      image: 'https://media.licdn.com/mpr/mpr/shrinknp_400_400/AAEAAQAAAAAAAAatAAAAJDI5NDdiMTUyLTJjODUtNDg1ZC05YmNmLTcxMWIwZDkzYzgyMg.jpg',
+      name: 'Stefan Moraru',
+      xp: 1020
+    };
+
     const cards = [
-      (<ProfileCard />),
+      (<ProfileCard {...profileCardProps} />),
       (<EventsCard />),
       (<GoalsCard />),
       (<FriendsCard />),
@@ -39,8 +45,7 @@ class Today extends React.Component {
 
         <div className='row u-mt-full'>
           <div className='col-md-10 col-md-push-1'>
-            <h5>Ziua de astazi</h5>
-            <p>Ai multa treaba astazi, dar ai pauze intre majoritatea evenimentelor.</p>
+            <h4 className='f-light'>Ai multa treaba astazi, dar ai pauze intre majoritatea evenimentelor.</h4>
           </div>
         </div>
 
