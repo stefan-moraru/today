@@ -444,7 +444,7 @@ iframe {
   }
 
   .friend {
-    margin-bottom: 10px;
+    margin-bottom: 15px;
 
     .title {
       display: flex;
@@ -469,4 +469,60 @@ iframe {
   .level {
     color: rgba(0, 0, 0, 0.3);
   }
+}
+
+.GoalsCard {
+  border: 0px;
+}
+
+.c-card-goals {
+  .goal-container {
+    &:nth-child(odd) {
+      padding-left: 0px;
+    }
+
+    &:nth-child(even) {
+      padding-right: 0px;
+    }
+  }
+
+  .goal {
+    height: 50px;
+    padding-left: 10px;
+    padding-right: 10px;
+    margin-bottom: 10px;
+    display: flex;
+    align-items: center;
+
+    .title {
+      margin: 0px;
+      flex-shrink: 0;
+    }
+
+    .icon {
+      width: 100%;
+      text-align: right;
+      font-size: 1.5rem;
+    }
+
+    &--not-done {
+      border: 1px dashed #e5e5e5;
+
+      .icon {
+        color: rgba(0, 0, 0, 0.1);
+      }
+    }
+
+    &--done {
+      border: 1px solid #2ecc71;
+
+      .icon {
+        color: #2eec71;
+      }
+    }
+  }
+}
+
+.no-padding {
+  padding: 0px;
 }
