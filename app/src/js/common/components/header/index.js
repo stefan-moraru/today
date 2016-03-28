@@ -14,11 +14,11 @@ class Header extends React.Component {
         title: 'Astăzi'
       },
       {
-        href: '/today',
+        href: '/calendar',
         title: 'Calendar'
       },
       {
-        href: '/today',
+        href: '/goals',
         title: 'Goals'
       },
       {
@@ -32,6 +32,12 @@ class Header extends React.Component {
       {
         href: '/settings',
         title: 'Setări'
+      },
+      {
+        href: '/profile',
+        title: (
+          <img src='http://placehold.it/30x30' />
+        )
       }
     ];
 

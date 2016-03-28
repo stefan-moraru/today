@@ -7,6 +7,7 @@ import Login from 'login';
 import Logout from 'logout';
 import Home from 'home';
 import Today from 'today';
+import Calendar from 'calendar';
 import Settings from 'settings';
 import NotFound from 'notfound';
 
@@ -25,8 +26,6 @@ const authenticate = (nextState, replace) => {
 
 }
 
-//TODO: 404 page
-
 const routes = (
   <Router history={browserHistory}>
     <Route component={App}>
@@ -34,6 +33,7 @@ const routes = (
         <Route path='home' component={Home} />
         <Route path='login' component={Login} />
         <Route path='today' component={Today} onEnter={authenticate} />
+        <Route path='calendar' component={Calendar} onEnter={authenticate} />
         <Route path='settings' component={Settings} onEnter={authenticate} />
         <Route path='logout' component={Logout} onEnter={authenticate} />
       </Route>
