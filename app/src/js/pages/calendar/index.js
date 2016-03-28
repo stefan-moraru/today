@@ -1,5 +1,6 @@
 import React from 'react';
 import moment from 'moment';
+import SecondHeader from 'common/components/secondheader';
 
 class Calendar extends React.Component {
 
@@ -179,26 +180,23 @@ class Calendar extends React.Component {
     ];
 
     const table = this.getTable(events);
+    const secondHeaderProps = {
+      items: [
+        {
+          icon: 'calendar'
+        },
+        {
+          icon: 'list'
+        },
+        {
+          icon: 'plus'
+        }
+      ]
+    };
 
     return (
       <div className='calendar'>
-        <nav className="navbar navbar-light bg-faded">
-          <ul className="nav navbar-nav">
-            <li className="nav-item">
-              <a className="nav-link" href="#"><i className='fa fa-calendar'></i></a>
-            </li>
-            <li className="nav-item">
-              <a className="nav-link" href="#"><i className='fa fa-list'></i></a>
-            </li>
-            <li className="nav-item">
-              <a className="nav-link" href="#"><i className='fa fa-plus'></i></a>
-            </li>
-          </ul>
-
-          <div className='pull-right'>
-            <a className="nav-link" href="#">Today</a>
-          </div>
-        </nav>
+        <SecondHeader {...secondHeaderProps} />
 
         <div className='col-xs-12'>
           { table }

@@ -60,7 +60,7 @@ class Header extends React.Component {
       <div className='container-fluid'>
         <nav className="navbar navbar-fixed-top navbar-dark bg-inverse">
           <a className="navbar-brand" href="/home">
-          Rise
+          Today
           </a>
           <ul className="nav navbar-nav pull-right">
             { routesRendered }

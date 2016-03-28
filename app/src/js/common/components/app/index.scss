@@ -409,7 +409,7 @@ iframe {
           border-bottom: 0px;
           border-top: 0px;
         &.now {
-          border-top: 1px solid pink;
+          border-top: 3px solid pink;
         }
         }
       }
@@ -419,7 +419,7 @@ iframe {
           border-bottom: 1px solid rgba(30, 30, 30, 0.1);
           border-top: 1px dotted rgba(30, 30, 30, 0.1);
         &.now {
-          border-top: 2px solid pink;
+          border-bottom: 3px solid pink;
         }
         }
       }
