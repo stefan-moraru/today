@@ -9,6 +9,8 @@ import Home from 'pages/home';
 import Today from 'pages/today';
 import Calendar from 'pages/calendar';
 import Goals from 'pages/goals';
+import Profile from 'pages/profile';
+import ProfileUser from 'pages/profileuser';
 import Settings from 'pages/settings';
 import NotFound from 'pages/notfound';
 
@@ -29,7 +31,7 @@ const authenticate = (nextState, replace) => {
 
 const routes = (
   <Router history={browserHistory}>
-    <Route component={App}>
+    <Route path='/' component={App}>
       <Route component={Header}>
         <Route path='home' component={Home} />
         <Route path='login' component={Login} />
@@ -37,6 +39,7 @@ const routes = (
         <Route path='calendar' component={Calendar} onEnter={authenticate} />
         <Route path='goals' component={Goals} onEnter={authenticate} />
         <Route path='settings' component={Settings} onEnter={authenticate} />
+        <Route path='profile/:username' component={Profile} />
         <Route path='logout' component={Logout} onEnter={authenticate} />
       </Route>
     </Route>
