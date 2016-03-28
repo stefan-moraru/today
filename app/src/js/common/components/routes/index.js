@@ -3,13 +3,14 @@ import { browserHistory, Router, Route, Link, Redirect } from 'react-router';
 import Auth from 'common/services/authenticationService';
 import App from 'common/components/app';
 import Header from 'common/components/header';
-import Login from 'login';
-import Logout from 'logout';
-import Home from 'home';
-import Today from 'today';
-import Calendar from 'calendar';
-import Settings from 'settings';
-import NotFound from 'notfound';
+import Login from 'pages/login';
+import Logout from 'pages/logout';
+import Home from 'pages/home';
+import Today from 'pages/today';
+import Calendar from 'pages/calendar';
+import Goals from 'pages/goals';
+import Settings from 'pages/settings';
+import NotFound from 'pages/notfound';
 
 const authenticate = (nextState, replace) => {
 
@@ -34,6 +35,7 @@ const routes = (
         <Route path='login' component={Login} />
         <Route path='today' component={Today} onEnter={authenticate} />
         <Route path='calendar' component={Calendar} onEnter={authenticate} />
+        <Route path='goals' component={Goals} onEnter={authenticate} />
         <Route path='settings' component={Settings} onEnter={authenticate} />
         <Route path='logout' component={Logout} onEnter={authenticate} />
       </Route>
