@@ -5,7 +5,11 @@ class PanelInfo extends React.Component {
   render() {
 
     return (
-      <h1>Hi</h1>
+      <div>
+        <h1>Despre Today</h1>
+
+        <h4>Today..lista articole cu TimeManagement</h4>
+      </div>
     );
 
   }

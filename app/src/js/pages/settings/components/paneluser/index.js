@@ -5,7 +5,9 @@ class PanelUser extends React.Component {
   render() {
 
     return (
-      <h1>Hi</h1>
+      <div>
+        <h1>Cont</h1>
+      </div>
     );
 
   }
