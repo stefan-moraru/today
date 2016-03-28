@@ -2,7 +2,23 @@ import React from 'react';
 
 class Header extends React.Component {
 
+  setPadTopHeight() {
+
+    const navbar = document.querySelector('.navbar-fixed-top');
+    const padTop = document.querySelector('.pad-top');
+
+    if (navbar) {
+
+      padTop.style.paddingTop = navbar.offsetHeight;
+
+    }
+
+  }
+
   render() {
+
+    window.onresize = this.setPadTopHeight;
+    window.onload = this.setPadTopHeight;
 
     const routes = [
       {
