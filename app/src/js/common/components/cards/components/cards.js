@@ -8,8 +8,6 @@ class Cards extends React.Component {
 
     const cardsRendered = cards.map((item, index) => {
 
-      console.log(item.type.name);
-
       return (
         <div className={"card card-block " + item.type.name} key={'today-c-cards-item-' + index}>
           { item }

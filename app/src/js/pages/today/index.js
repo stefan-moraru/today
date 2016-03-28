@@ -2,7 +2,7 @@ import React from 'react';
 import Header from 'common/components/header';
 import { BarChart, PieChart } from 'common/components/chart';
 import Timeline from 'common/components/timeline';
-import { Cards, ProfileCard, EventsCard, GoalsCard, FriendsCard, TimeTrackerCard } from 'common/components/cards';
+import { Cards, ProfileCard, EventsCard, GoalsCard, FriendsCard, TimeTrackerCard, MapCard } from 'common/components/cards';
 
 class Today extends React.Component {
 
@@ -20,7 +20,7 @@ class Today extends React.Component {
       (<GoalsCard />),
       (<FriendsCard />),
       (<TimeTrackerCard />),
-      (<iframe src="https://www.google.com/maps/embed/v1/place?key=AIzaSyAEypkJ8m2C1aDAzG_VhOiKn7sMIE0n5Wk&q=Space+Needle,Seattle+WA"></iframe>),
+      (<MapCard />),
       (<PieChart />),
       (<BarChart />)
     ];

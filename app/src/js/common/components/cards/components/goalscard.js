@@ -40,7 +40,7 @@ class GoalsCard extends React.Component {
       }
 
       return (
-        <div className='col-xl-6 goal-container' key={'c-card-goals-goal-item-' + index}>
+        <div className='goal-container' key={'c-card-goals-goal-item-' + index}>
           <div {...goalProps}>
             <h6 className='title'>{ item.title }</h6>
 
@@ -57,6 +57,8 @@ class GoalsCard extends React.Component {
 
     return (
       <div className='c-card-goals'>
+        <h5 className='c-card-title'>Goals</h5>
+
         { goalsRendered }
       </div>
     );

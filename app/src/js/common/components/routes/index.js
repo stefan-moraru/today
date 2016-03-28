@@ -10,7 +10,6 @@ import Today from 'pages/today';
 import Calendar from 'pages/calendar';
 import Goals from 'pages/goals';
 import Profile from 'pages/profile';
-import ProfileUser from 'pages/profileuser';
 import Settings from 'pages/settings';
 import NotFound from 'pages/notfound';
 

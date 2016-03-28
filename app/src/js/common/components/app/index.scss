@@ -340,8 +340,8 @@ body {
 
 iframe {
   width: 100%;
-  height: 100%;
-  max-height: 400px;
+  height: 500px;
+  border: 0px;
 }
 
 .pad-top {
@@ -472,20 +472,10 @@ iframe {
 }
 
 .GoalsCard {
-  border: 0px;
+  padding: 10px;
 }
 
 .c-card-goals {
-  .goal-container {
-    &:nth-child(odd) {
-      padding-left: 0px;
-    }
-
-    &:nth-child(even) {
-      padding-right: 0px;
-    }
-  }
-
   .goal {
     height: 50px;
     padding-left: 10px;
@@ -525,4 +515,8 @@ iframe {
 
 .no-padding {
   padding: 0px;
+}
+
+.c-card-title {
+  padding: 5px 0px;
 }
