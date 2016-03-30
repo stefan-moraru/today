@@ -4,12 +4,9 @@ class MapCard extends React.Component {
 
   render() {
 
-    const locations = [
-      "Iasi Str Carpati nr 7",
-      "Iulius Mall Iasi",
-      "Palas Mall Iasi",
-      "Universitatea Alexandru Ioan Cuza Iasi"
-    ].map(item => item.replace(/\ /g, '+'));
+    const locations = this.props.locations
+    .filter(item => item !== undefined && item !== null)
+    .map(item => item.replace(/\ /g, '+'));
 
     const first = locations[0];
     const last = locations[locations.length - 1];

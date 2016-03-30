@@ -21,7 +21,7 @@ class Today extends React.Component {
         time: { h: 7, m: 30 },
         date: '2016-03-31',
         duration: 30,
-        location: 'Palas Iasi',
+        location: 'CUG Iasi',
         categories: [{ id: 0, title: 'food' }],
         title: 'Meeting with Anca'
       },
@@ -76,13 +76,17 @@ class Today extends React.Component {
       events: events
     };
 
+    const mapCardProps = {
+      locations: events.map(ev => ev.location)
+    };
+
     const cards = [
       (<ProfileCard {...profileCardProps} />),
       (<EventsCard {...eventsCardProps} />),
       (<GoalsCard />),
       (<FriendsCard />),
       //(<TimeTrackerCard />),
-      (<MapCard />),
+      (<MapCard {...mapCardProps} />),
       //(<PieChart />),
       //(<BarChart />)
     ];
