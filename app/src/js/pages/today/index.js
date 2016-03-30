@@ -3,6 +3,7 @@ import Header from 'common/components/header';
 import { BarChart, PieChart } from 'common/components/chart';
 import Timeline from 'common/components/timeline';
 import { Cards, ProfileCard, EventsCard, GoalsCard, FriendsCard, TimeTrackerCard, MapCard } from 'common/components/cards';
+import Utils from 'common/utils';
 
 class Today extends React.Component {
 
@@ -18,7 +19,7 @@ class Today extends React.Component {
       {
         id: 0,
         time: { h: 7, m: 30 },
-        date: '2016-03-10',
+        date: '2016-03-31',
         duration: 30,
         location: 'Palas Iasi',
         categories: [{ id: 0, title: 'food' }],
@@ -28,7 +29,7 @@ class Today extends React.Component {
         id: 1,
         title: 'Breakdance practice',
         time: { h: 9, m: 30 },
-        date: '2016-03-10',
+        date: '2016-03-31',
         duration: 60,
         location: 'Podu Ros',
         categories: [{ id: 0, title: 'sports' }]
@@ -36,7 +37,7 @@ class Today extends React.Component {
       {
         id: 3,
         time: { h: 10, m: 30 },
-        date: '2016-03-10',
+        date: '2016-03-31',
         duration: 90,
         location: 'Universitatea Alexandru Ioan Cuza Iasi',
         categories: [{ id: 0, title: 'education' }],
@@ -45,7 +46,7 @@ class Today extends React.Component {
       {
         id: 4,
         time: { h: 12, m: 0 },
-        date: '2016-03-10',
+        date: '2016-03-30',
         duration: 30,
         location: 'Parcul Copou',
         categories: [{ id: 0, title: 'education' }],
@@ -54,7 +55,7 @@ class Today extends React.Component {
       {
         id: 5,
         time: { h: 16, m: 30 },
-        date: '2016-03-10',
+        date: '2016-03-30',
         duration: 90,
         location: 'Podu Ros',
         categories: [{ id: 0, title: 'sports' }],
@@ -63,7 +64,7 @@ class Today extends React.Component {
       {
         id: 6,
         time: { h: 20, m: 0 },
-        date: '2016-03-10',
+        date: '2016-03-30',
         duration: 90,
         location: 'Palas Mall Iasi',
         categories: [{ id: 0, title: 'meditation' }],
@@ -90,6 +91,12 @@ class Today extends React.Component {
       cards: cards
     };
 
+    const timelineProps = {
+      events: Utils.todayEvents(events)
+    };
+
+    const resume = Utils.dayResume(events);
+
     return (
       <div className='today col-xs-12'>
         <div className='row'>
@@ -100,13 +107,13 @@ class Today extends React.Component {
 
         <div className='row u-mt-full'>
           <div className='col-md-10 col-md-push-1'>
-            <Timeline />
+            <Timeline {...timelineProps} />
           </div>
         </div>
 
         <div className='row u-mt-full'>
           <div className='col-md-10 col-md-push-1'>
-            <h4 className='f-light'>Ai multa treaba astazi, dar ai pauze intre majoritatea evenimentelor.</h4>
+            <h4 className='f-light'>{ resume }</h4>
           </div>
         </div>
 

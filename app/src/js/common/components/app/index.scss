@@ -279,6 +279,11 @@ body {
         position: absolute;
         top: 0px;
 
+        &.faded > .circle {
+          box-shadow: inset 0 0 0 $dotHeight rgba(30, 30, 30, 0.2), 0 0 0 4px white;
+          background-color: white;
+        }
+
         @mixin dot-left($hour) {
           left: calc(100%/24 * #{$hour});
         }

@@ -1,20 +1,21 @@
 import React from 'react';
+import moment from 'moment';
 
 class Timeline extends React.Component {
 
   render() {
 
-    const events = [
-      { title: 'Hello', description: 'Lorem pisum asimda diasnmda', time: { h: '4', m: '0', s: '0' } },
-      { title: 'Hello', description: 'Lorem pisum asimda diasnmda', time: { h: '8', m: '0', s: '0' } },
-      { title: 'Hello', description: 'Lorem pisum asimda diasnmda', time: { h: '10', m: '0', s: '0' } },
-      { title: 'Hello', description: 'Lorem pisum asimda diasnmda', time: { h: '16', m: '0', s: '0' } },
-      { title: 'Hello', description: 'Lorem pisum asimda diasnmda', time: { h: '23', m: '0', s: '0' } }
-    ];
+    const currentHour = moment().hour();
+
+    const events = this.props.events;
 
     const eventsRendered = events.map((event, index) => {
 
-      const extraClasses = `dot dot-${event.time.h}`;
+      let extraClasses = `dot dot-${event.time.h} `;
+
+      if (event.time.h > currentHour) {
+        extraClasses += 'faded';
+      }
 
       const dotProps = {
         'className': extraClasses,
@@ -37,7 +38,7 @@ class Timeline extends React.Component {
 
     return (
       <div className='c-timeline'>
-        <progress className='progress progress-info' value='5' max='24'></progress>
+        <progress className='progress progress-info' value={ currentHour } max='24'></progress>
 
         <div className='dots'>
           { eventsRendered }

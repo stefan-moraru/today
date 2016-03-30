@@ -38,15 +38,12 @@ class EventsCard extends React.Component {
       return images[category][rand];
     }
 
-    //TODO
     let image = getRandomImageFromCategory(images, 'noimage');
     let category = null;
 
     if (event.categories) {
       category = event.categories[0].title;
     }
-
-    console.log(image);
 
     if (images[category]) {
       image = getRandomImageFromCategory(images, category);
