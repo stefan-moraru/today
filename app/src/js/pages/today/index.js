@@ -14,9 +14,70 @@ class Today extends React.Component {
       xp: 1020
     };
 
+    const events = [
+      {
+        id: 0,
+        time: { h: 7, m: 30 },
+        date: '2016-03-10',
+        duration: 30,
+        location: 'Palas Iasi',
+        categories: [{ id: 0, title: 'food' }],
+        title: 'Meeting with Anca'
+      },
+      {
+        id: 1,
+        title: 'Breakdance practice',
+        time: { h: 9, m: 30 },
+        date: '2016-03-10',
+        duration: 60,
+        location: 'Podu Ros',
+        categories: [{ id: 0, title: 'sports' }]
+      },
+      {
+        id: 3,
+        time: { h: 10, m: 30 },
+        date: '2016-03-10',
+        duration: 90,
+        location: 'Universitatea Alexandru Ioan Cuza Iasi',
+        categories: [{ id: 0, title: 'education' }],
+        title: 'Curs Sisteme de Operare'
+      },
+      {
+        id: 4,
+        time: { h: 12, m: 0 },
+        date: '2016-03-10',
+        duration: 30,
+        location: 'Parcul Copou',
+        categories: [{ id: 0, title: 'education' }],
+        title: 'Voluntariat'
+      },
+      {
+        id: 5,
+        time: { h: 16, m: 30 },
+        date: '2016-03-10',
+        duration: 90,
+        location: 'Podu Ros',
+        categories: [{ id: 0, title: 'sports' }],
+        title: 'Running'
+      },
+      {
+        id: 6,
+        time: { h: 20, m: 0 },
+        date: '2016-03-10',
+        duration: 90,
+        location: 'Palas Mall Iasi',
+        categories: [{ id: 0, title: 'meditation' }],
+        title: 'Meditating'
+      },
+    ];
+
+    const eventsCardProps = {
+      events: events
+    };
+
     const cards = [
       (<ProfileCard {...profileCardProps} />),
-      (<EventsCard />),
+      (<EventsCard {...eventsCardProps} />),
       (<GoalsCard />),
       (<FriendsCard />),
       //(<TimeTrackerCard />),

@@ -27,25 +27,29 @@ class EventsCard extends React.Component {
     const imagePaths = paths => paths.map(path => imagePath(path));
 
     const images = {
-      'sports': imagePaths(['sports1.jpg', 'sports2.jpg']),
+      'sports': imagePaths(['sports1.jpg', 'sports0.jpg']),
       'food': imagePaths(['food0.jpg', 'food1.jpg', 'food2.jpg']),
-      'noimage': imagePaths(['noimage.jpg'])
+      'noimage': imagePaths(['noimage.jpg', 'noimage1.jpg', 'noimage2.jpg', 'noimage3.jpg'])
     };
 
-    let image = images['noimage'][0]
+    const getRandomImageFromCategory = (images, category) => {
+      const rand = Math.floor(Math.random() * images[category].length);
+
+      return images[category][rand];
+    }
+
+    //TODO
+    let image = getRandomImageFromCategory(images, 'noimage');
     let category = null;
 
     if (event.categories) {
       category = event.categories[0].title;
     }
 
+    console.log(image);
+
     if (images[category]) {
-      //TODO: RANDOM
-      const rand = 0;
-
-      console.log(images[category][0]);
-
-      image = images[category][rand];
+      image = getRandomImageFromCategory(images, category);
     }
 
     return image;
@@ -96,37 +100,7 @@ class EventsCard extends React.Component {
 
   render() {
 
-    const events = [
-      {
-        id: 0,
-        time: { h: 7, m: 30 },
-        date: '2016-03-10',
-        duration: 30,
-        location: 'Palas Iasi',
-        categories: [{ id: 0, title: 'food' }],
-        title: 'Meeting with Anca'
-      },
-      {
-        id: 1,
-        title: 'Breakdance practice',
-        time: { h: 9, m: 30 },
-        date: '2016-03-10',
-        duration: 60,
-        location: 'Podu Ros',
-        categories: [{ id: 0, title: 'sports' }]
-      },
-      {
-        id: 3,
-        time: { h: 10, m: 30 },
-        date: '2016-03-10',
-        duration: 90,
-        location: 'Universitatea Alexandru Ioan Cuza Iasi',
-        categories: [{ id: 0, title: 'education' }],
-        title: 'Curs Sisteme de Operare'
-      },
-    ];
-
-    const eventsRendered = this.generateEvents(events);
+    const eventsRendered = this.generateEvents(this.props.events);
 
     return (
       <div className='c-card-events'>
