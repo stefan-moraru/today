@@ -475,7 +475,34 @@ iframe {
   padding: 10px;
 }
 
+.EventsCard {
+  padding: 10px;
+}
+
+.c-card-events {
+  .event {
+    height: 150px;
+    background-size: cover;
+    background-position: center center;
+    border: 1px solid black;
+    margin-bottom: 10px;
+    display: flex;
+    align-items: flex-end;
+    color: white;
+
+    .description {
+      margin-bottom: 5px;
+
+      .title, .small {
+        margin-bottom: 5px;
+      }
+    }
+  }
+}
+
 .c-card-goals {
+  $colors_green: rgba(63, 195, 128, 0.6);
+
   .goal {
     height: 50px;
     padding-left: 10px;
@@ -504,10 +531,10 @@ iframe {
     }
 
     &--done {
-      border: 1px solid #2ecc71;
+      border: 1px solid $colors_green;
 
       .icon {
-        color: #2eec71;
+        color: $colors_green;
       }
     }
   }

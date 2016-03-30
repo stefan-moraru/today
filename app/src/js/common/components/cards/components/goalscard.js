@@ -27,7 +27,7 @@ class GoalsCard extends React.Component {
       }
     ];
 
-    const goalsRendered = goals.map((item, index) => {
+    const goalsRendered = goals.sort((a, b) => a.done > b.done).map((item, index) => {
 
       const goalProps = {
         className: 'goal ' + (item.done ? 'goal--done' : 'goal--not-done')

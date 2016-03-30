@@ -19,10 +19,10 @@ class Today extends React.Component {
       (<EventsCard />),
       (<GoalsCard />),
       (<FriendsCard />),
-      (<TimeTrackerCard />),
+      //(<TimeTrackerCard />),
       (<MapCard />),
-      (<PieChart />),
-      (<BarChart />)
+      //(<PieChart />),
+      //(<BarChart />)
     ];
 
     const cardsProps = {
