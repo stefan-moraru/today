@@ -28,7 +28,7 @@ class Today extends React.Component {
       {
         id: 1,
         title: 'Breakdance practice',
-        time: { h: 9, m: 30 },
+        time: { h: 8, m: 0 },
         date: '2016-03-31',
         duration: 60,
         location: 'Podu Ros',
@@ -36,7 +36,7 @@ class Today extends React.Component {
       },
       {
         id: 3,
-        time: { h: 10, m: 30 },
+        time: { h: 9, m: 0 },
         date: '2016-03-31',
         duration: 90,
         location: 'Universitatea Alexandru Ioan Cuza Iasi',
@@ -80,6 +80,27 @@ class Today extends React.Component {
       locations: events.map(ev => ev.location)
     };
 
+    const _total = Utils.activityMinutes(Utils.todayEvents(events));
+
+    console.log(_total);
+
+    const pieChartProps = {
+      data: [
+        {
+          value: 100 * Utils.eventsDuration(events) / _total,
+          color:"#F7464A",
+          highlight: "#FF5A5E",
+          label: "Activitati"
+        },
+        {
+          value: 100 * Utils.breakMinutes(events) / _total,
+          color: "#46BFBD",
+          highlight: "#5AD3D1",
+          label: "Pauza"
+        }
+      ]
+    };
+
     const cards = [
       (<ProfileCard {...profileCardProps} />),
       (<EventsCard {...eventsCardProps} />),
@@ -87,7 +108,7 @@ class Today extends React.Component {
       (<FriendsCard />),
       //(<TimeTrackerCard />),
       (<MapCard {...mapCardProps} />),
-      //(<PieChart />),
+      (<PieChart {...pieChartProps} />),
       //(<BarChart />)
     ];
 
