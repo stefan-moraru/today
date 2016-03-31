@@ -1,8 +1,30 @@
 import React from 'react';
 import moment from 'moment';
+import momentRange from 'moment-range';
 import SecondHeader from 'common/components/secondheader';
+import EventService from 'common/services/eventservice';
 
 class Calendar extends React.Component {
+
+  constructor(props) {
+
+    super(props);
+
+    this.state = {
+      events: []
+    };
+
+  }
+
+  componentDidMount() {
+    EventService.getTodayEvents().then(this.saveEvents.bind(this));
+  }
+
+  saveEvents(response) {
+    this.setState({
+      events: response
+    });
+  }
 
   padTime(time) {
 
@@ -48,7 +70,7 @@ class Calendar extends React.Component {
     const headers = [ <i className='fa fa-clock-o' />, 'Lun', 'Mar', 'Mie', 'Joi', 'Vin', 'Sam', 'Dum' ];
     const headerRendered = headers.map((item, index) => {
 
-      const date = index > 0 ? ` (${moment(dates[index - 1], 'DD-MM-YYYY').format('DD/MM')})` : '';
+      const date = index > 0 ? ` (${moment(dates[index - 1], 'YYYY-MM-DD').format('DD/MM')})` : '';
       const today = this.isToday(dates[index - 1]) ? 'today' : '';
 
       return (
@@ -115,16 +137,12 @@ class Calendar extends React.Component {
 
   getTable(events) {
 
-    //Saptamana in care se afla ziua de astazi TODO
-    const dates = [
-      '2016-03-28',
-      '2016-03-29',
-      '2016-03-30',
-      '2016-03-31',
-      '2016-04-01',
-      '2016-04-02',
-      '2016-04-03'
-    ];
+    const start = moment().startOf('isoweek');
+    const end = moment().endOf('isoweek');
+
+    let dates = [];
+
+    moment().range(start, end).by('days', item => { dates.push(item.format('YYYY-MM-DD')) });
 
     const header = this.getTableHeader(dates);
     const body = this.getTableBody(dates, events);
@@ -146,38 +164,7 @@ class Calendar extends React.Component {
 
   render() {
 
-    const events = [
-      {
-        time: {
-          h: 5,
-          m: 30,
-          s: 0
-        },
-        duration: 60,
-        date: '2016-03-28',
-        title: 'Nu'
-      },
-      {
-        time: {
-          h: 4,
-          m: 30,
-          s: 0
-        },
-        duration: 60,
-        date: '2016-03-28',
-        title: 'Da'
-      },
-      {
-        time: {
-          h: 6,
-          m: 30,
-          s: 0
-        },
-        duration: 30,
-        date: '2016-03-29',
-        title: 'Hi'
-      }
-    ];
+    const events = this.state.events;
 
     const table = this.getTable(events);
     const secondHeaderProps = {
