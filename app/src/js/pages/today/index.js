@@ -40,7 +40,7 @@ class Today extends React.Component {
         date: '2016-03-31',
         duration: 90,
         location: 'Universitatea Alexandru Ioan Cuza Iasi',
-        categories: [{ id: 0, title: 'education' }],
+        categories: [{ id: 0, title: 'education' }, { id: 1, title: 'sports' }],
         title: 'Curs Sisteme de Operare'
       },
       {
@@ -49,7 +49,7 @@ class Today extends React.Component {
         date: '2016-03-30',
         duration: 30,
         location: 'Parcul Copou',
-        categories: [{ id: 0, title: 'education' }],
+        categories: [{ id: 0, title: 'education' }, { id: 1, title: 'sports' }],
         title: 'Voluntariat'
       },
       {
@@ -80,35 +80,63 @@ class Today extends React.Component {
       locations: events.map(ev => ev.location)
     };
 
-    const _total = Utils.activityMinutes(Utils.todayEvents(events));
+    const ev_props = Utils.todayEvents(events);
 
-    console.log(_total);
+    const _breaks = Utils.breakMinutes(ev_props);
+    const _cat = ev_props.map(item => item.categories);
+    let _categories = [];
 
-    const pieChartProps = {
-      data: [
-        {
-          value: 100 * Utils.eventsDuration(events) / _total,
-          color:"#F7464A",
-          highlight: "#FF5A5E",
-          label: "Activitati"
-        },
-        {
-          value: 100 * Utils.breakMinutes(events) / _total,
-          color: "#46BFBD",
-          highlight: "#5AD3D1",
-          label: "Pauza"
-        }
-      ]
+    _cat.forEach(a => {
+      a.forEach(b => {
+        const title = b.title;
+
+        _categories.push(title);
+      });
+    });
+
+    let _categoriesValues = {};
+
+    _categories = _categories
+    .filter((item, index) => {
+      return _categories.indexOf(item) === index;
+    })
+    .forEach(item => {
+      _categoriesValues[item] = 0;
+    });
+
+    let _total = 0;
+
+    ev_props.forEach(ev => {
+      ev.categories.forEach(cat => {
+        _categoriesValues[cat.title] += 1;
+        _total += 1;
+      });
+    });
+
+    let pieChartProps = {
+      data: []
     };
+
+    Object.keys(_categoriesValues).forEach(cat => {
+      pieChartProps.data = pieChartProps.data.concat({
+        value: _categoriesValues[cat] / _total * 100,
+        color: "#46BFBD",
+        highlight: "#5AD3D1",
+        label: cat[0].toUpperCase().concat(cat.slice(1))
+      });
+    });
 
     const cards = [
       (<ProfileCard {...profileCardProps} />),
       (<EventsCard {...eventsCardProps} />),
       (<GoalsCard />),
       (<FriendsCard />),
-      //(<TimeTrackerCard />),
+      (<TimeTrackerCard />),
       (<MapCard {...mapCardProps} />),
-      (<PieChart {...pieChartProps} />),
+      (<div className='c-card-chart'>
+        <h5 className='title'>Categorii</h5>
+        <PieChart {...pieChartProps} />
+      </div>),
       //(<BarChart />)
     ];
 

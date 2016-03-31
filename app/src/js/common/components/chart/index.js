@@ -30,7 +30,11 @@ class BarChart extends React.Component {
       responsive: true
     };
 
-    return <Bar data={data} options={chartOptions} />
+    return (
+      <div className='c-chart'>
+        <Bar data={data} options={chartOptions} />
+      </div>
+    );
 
   }
 
@@ -46,7 +50,11 @@ class PieChart extends React.Component {
       responsive: true
     };
 
-    return <Pie data={data} options={chartOptions} />
+    return (
+      <div className='c-chart'>
+        <Pie data={data} options={chartOptions} />
+      </div>
+    );
 
   }
 

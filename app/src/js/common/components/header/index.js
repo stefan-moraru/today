@@ -1,6 +1,26 @@
 import React from 'react';
+import UserService from 'common/services/userservice';
+
+console.log(UserService);
 
 class Header extends React.Component {
+  constructor(props) {
+    super(props);
+
+    this.state = {
+      profile: {}
+    };
+  }
+
+  componentDidMount() {
+    UserService.profile().then(this.saveProfile.bind(this));
+  }
+
+  saveProfile(profile) {
+    this.setState({
+      profile: profile
+    });
+  }
 
   setPadTopHeight() {
 
@@ -52,7 +72,7 @@ class Header extends React.Component {
       {
         href: '/profile',
         title: (
-          <img src='http://placehold.it/30x30' />
+          <div className='image' style={{ backgroundImage: `url(${this.state.profile.image})` }}></div>
         )
       }
     ];

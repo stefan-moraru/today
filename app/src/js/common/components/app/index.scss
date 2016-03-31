@@ -332,6 +332,12 @@ body {
   a {
     color: white;
   }
+  .image {
+    width: 25px;
+    height: 25px;
+    background-size: cover;
+    border-radius: 100%;
+  }
 }
 
 .today {
@@ -551,4 +557,21 @@ iframe {
 
 .c-card-title {
   padding: 5px 0px;
+}
+
+.c-card-chart {
+  .title {
+    padding-left: 15px;
+  }
+
+  padding: 15px;
+  padding-left: 0px;
+}
+
+.c-chart {
+  padding-left: 0px;
+}
+
+.c-card-timetrackercard {
+  padding: 15px;
 }

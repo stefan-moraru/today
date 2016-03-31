@@ -1,13 +1,7 @@
 import moment from 'moment';
 
 const eventsDuration = (vec) => {
-	let totalDuration = 0;
-
-	vec.forEach(function(item) {
-		totalDuration += item.duration;
-	});
-
-	return totalDuration;
+	return vec.reduce((prev, current) => prev + current.duration, 0);
 };
 
 const activityMinutes = (vec) => {
