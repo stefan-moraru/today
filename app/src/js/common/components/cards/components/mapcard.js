@@ -12,8 +12,10 @@ class MapCard extends React.Component {
     const last = locations[locations.length - 1];
     let waypoints;
 
-    if (locations.length > 2) {
+    let urlParams = [
+    ];
 
+    if (locations.length > 2) {
       waypoints = locations;
 
       waypoints.shift();
@@ -21,17 +23,19 @@ class MapCard extends React.Component {
 
       waypoints = waypoints.join('|');
 
+      urlParams = [
+        `mode=walking`,
+        `origin=${first}`,
+        `destination=${last}`,
+        `waypoints=${waypoints}`
+      ];
+    } else if (locations.length === 1) {
+      urlParams = [ `q=${first}` ];
     }
 
-    const urlParams = [
-      `origin=${first}`,
-      `waypoints=${waypoints}`,
-      `destination=${last}`,
-      `mode=walking`
-    ];
 
     const iframeProps = {
-      src: "https://www.google.com/maps/embed/v1/directions?key=AIzaSyAEypkJ8m2C1aDAzG_VhOiKn7sMIE0n5Wk&" + urlParams.join('&')
+      src: `https://www.google.com/maps/embed/v1/${locations.length > 2 ? 'directions' : 'place'}?key=AIzaSyAEypkJ8m2C1aDAzG_VhOiKn7sMIE0n5Wk&` + urlParams.join('&')
     };
 
     return (

@@ -11,7 +11,13 @@ class Logout extends React.Component {
 
   render() {
 
-    return <span>Logged out</span>;
+    return (
+      <div className='p-logout'>
+        <h2>Multumim ca ai folosit aplicatia</h2>
+
+        Feedback
+      </div>
+    );
 
   }
 

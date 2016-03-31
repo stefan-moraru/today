@@ -22,7 +22,7 @@ body {
 /* <LOGIN> */
 .login {
   padding: 50px;
-  height: 100vh;
+  min-height: 100vh;
   background: linear-gradient(rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.4)), url('/src/assets/images/background1.jpg');
   background-size: cover;
   color: white;
@@ -490,7 +490,7 @@ iframe {
   padding: 10px;
 }
 
-.c-card-events {
+.c-card-events, .c-card-event {
   .event {
     height: 150px;
     background-size: cover;
@@ -508,6 +508,16 @@ iframe {
         margin-bottom: 5px;
       }
     }
+  }
+}
+
+.c-card-event {
+  .event {
+    height: 300px;
+    margin-bottom: 0px;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
   }
 }
 
@@ -574,4 +584,8 @@ iframe {
 
 .c-card-timetrackercard {
   padding: 15px;
+}
+
+.c-card-event {
+  padding: 0px;
 }

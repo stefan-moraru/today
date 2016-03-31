@@ -1,8 +1,6 @@
 import React from 'react';
 import UserService from 'common/services/userservice';
 
-console.log(UserService);
-
 class Header extends React.Component {
   constructor(props) {
     super(props);

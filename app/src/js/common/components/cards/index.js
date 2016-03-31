@@ -5,6 +5,7 @@ import GoalsCard from './components/goalscard';
 import ProfileCard from './components/profilecard';
 import TimeTrackerCard from './components/timetrackercard';
 import MapCard from './components/mapcard';
+import EventCard from './components/eventcard';
 
 export {
   Cards,
@@ -13,5 +14,6 @@ export {
   GoalsCard,
   ProfileCard,
   TimeTrackerCard,
-  MapCard
+  MapCard,
+  EventCard
 };

@@ -8,7 +8,7 @@ class ProfileCard extends React.Component {
     const image = this.props.image;
     const name = this.props.name;
     const level = Math.floor(this.props.xp / 100);
-    const progress = this.props.xp % 100;
+    const progress = this.props.xp % 100 || 0;
 
     const circleImageProps = {
       image: image

@@ -1,6 +1,6 @@
 import React from 'react';
 
-class EventsCard extends React.Component {
+class EventCard extends React.Component {
 
   padTime(time) {
 
@@ -17,10 +17,6 @@ class EventsCard extends React.Component {
 
     return `${hour}:${minutes}`;
 
-  }
-
-  onClick(item) {
-    this.props.onClick(item);
   }
 
   backgroundImageFromCategories(event) {
@@ -86,7 +82,7 @@ class EventsCard extends React.Component {
       const time = `${start} - ${ending}`;
 
       return (
-        <div className='event col-xs-12' onClick={this.onClick.bind(this, item)} style={style} key={'c-card-events-event-' + index}>
+        <div className='event col-xs-12' style={style} key={'c-card-events-event-' + index}>
           <div className='description'>
             <h5 className='title'>{ item.title }</h5>
             <h6 className='small'>{ time }</h6>
@@ -101,17 +97,11 @@ class EventsCard extends React.Component {
 
   render() {
 
-    const eventsRendered = this.generateEvents(this.props.events);
+    const eventsRendered = this.generateEvents([this.props.event]);
 
     return (
-      <div className='c-card-events'>
-        <div className='col-xs-12'>
-          <h5>Events</h5>
-        </div>
-
-        <div className='col-xs-12'>
-          { eventsRendered }
-        </div>
+      <div className='c-card-event'>
+        { eventsRendered }
       </div>
     );
 
@@ -119,4 +109,4 @@ class EventsCard extends React.Component {
 
 }
 
-export default EventsCard;
+export default EventCard;
