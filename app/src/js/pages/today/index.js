@@ -127,7 +127,8 @@ class Today extends React.Component {
 
     const cards = [
       (<EventCard {...eventCardProps} />),
-      (<MapCard {...mapCardProps} />)
+      (<MapCard {...mapCardProps} />),
+      (<FriendsCard />)
     ];
 
     const cardsProps = {
@@ -138,19 +139,27 @@ class Today extends React.Component {
 
   }
 
+  resetEvent() {
+    this.setState({
+      event: null
+    });
+  }
+
   render() {
 
     const timelineProps = {
-      events: this.state.events
+      events: this.state.events,
+      event: this.state.event
     };
 
-    const resume = Utils.dayResume(this.state.events);
-
+    let resume = null;
     let cards = null;
 
     if (this.state.event) {
+      resume = <i className='fa fa-arrow-left' onClick={this.resetEvent.bind(this)}></i>;
       cards = this.getCardsForEvent(this.state.event);
     } else {
+      resume = Utils.dayResume(this.state.events);
       cards = this.getCardsForEvents(this.state.events);
     }
 

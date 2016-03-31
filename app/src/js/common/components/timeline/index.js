@@ -17,6 +17,10 @@ class Timeline extends React.Component {
         extraClasses += 'faded';
       }
 
+      if (this.props.event && this.props.event.id === event.id) {
+        extraClasses += 'current';
+      }
+
       const dotProps = {
         'className': extraClasses,
         'data-title': event.title,

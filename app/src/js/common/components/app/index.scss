@@ -284,6 +284,10 @@ body {
           background-color: white;
         }
 
+        &.current > .circle {
+          background-color: $colors_flat_3;
+        }
+
         @mixin dot-left($hour) {
           left: calc(100%/24 * #{$hour});
         }
