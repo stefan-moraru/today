@@ -15,9 +15,15 @@ class EventCancelCard extends Card {
 
   }
 
+  getExtraClassNames() {
+
+    return 'immune';
+
+  }
+
   getCards() {
 
-    return document.querySelectorAll('.c-card');
+    return document.querySelectorAll('.c-card:not(.immune)');
 
   }
 
