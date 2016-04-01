@@ -1,8 +1,7 @@
 import React from 'react';
 import Header from 'common/components/header';
-import { BarChart, PieChart } from 'common/components/chart';
 import Timeline from 'common/components/timeline';
-import { Cards, ProfileCard, EventsCard, GoalsCard, FriendsCard, TimeTrackerCard, MapCard, EventCard, EventCancelCard } from 'common/components/cards';
+import { Cards, ProfileCard, EventsCard, GoalsCard, FriendsCard, TimeTrackerCard, MapCard, EventCard, EventCancelCard, ChartCard } from 'common/components/cards';
 import Utils from 'common/utils';
 import EventService from 'common/services/eventservice';
 import UserService from 'common/services/userservice';
@@ -93,6 +92,11 @@ class Today extends React.Component {
       });
     });
 
+    const chartCardProps = {
+      type: 'pie',
+      data: pieChartProps.data
+    };
+
     const cards = [
       (<ProfileCard {...profileCardProps} />),
       (<EventsCard {...eventsCardProps} />),
@@ -100,10 +104,7 @@ class Today extends React.Component {
       (<FriendsCard />),
       (<TimeTrackerCard />),
       (<MapCard {...mapCardProps} />),
-      (<div className='c-card-chart'>
-        <h5 className='title'>Categorii</h5>
-        <PieChart {...pieChartProps} />
-      </div>),
+      (<ChartCard {...chartCardProps} />)
       //(<BarChart />)
     ];
 
@@ -155,8 +156,10 @@ class Today extends React.Component {
 
     let resume = null;
     let cards = null;
+    let title = 'Astăzi ';
 
     if (this.state.event) {
+      title += ` - ${this.state.event.title}`;
       resume = (
       <div className='u-c-pointer' onClick={this.resetEvent.bind(this)}>
         <i className='fa fa-arrow-left'></i>
@@ -173,7 +176,7 @@ class Today extends React.Component {
       <div className='today col-xs-12'>
         <div className='row'>
           <div className='col-xs-12 u-hz-ctr'>
-            <h1 className='display-4'>Astăzi</h1>
+            <h1 className='display-4'>{ title }</h1>
           </div>
         </div>
 

@@ -1,58 +1,39 @@
 import React from 'react';
-import { Pie, Bar } from 'react-chartjs';
-
-class BarChart extends React.Component {
-
-  render() {
-    var data = {
-    labels: ["January", "February", "March", "April", "May", "June", "July"],
-    datasets: [
-        {
-            label: "My First dataset",
-            fillColor: "rgba(220,220,220,0.5)",
-            strokeColor: "rgba(220,220,220,0.8)",
-            highlightFill: "rgba(220,220,220,0.75)",
-            highlightStroke: "rgba(220,220,220,1)",
-            data: [65, 59, 80, 81, 56, 55, 40]
-        },
-        {
-            label: "My Second dataset",
-            fillColor: "rgba(151,187,205,0.5)",
-            strokeColor: "rgba(151,187,205,0.8)",
-            highlightFill: "rgba(151,187,205,0.75)",
-            highlightStroke: "rgba(151,187,205,1)",
-            data: [28, 48, 40, 19, 86, 27, 90]
-        }
-    ]
-};
-
-    var chartOptions = {
-      responsive: true
-    };
-
-    return (
-      <div className='c-chart'>
-        <Bar data={data} options={chartOptions} />
-      </div>
-    );
-
-  }
-
-}
+import { Pie } from 'react-chartjs';
 
 class PieChart extends React.Component {
 
-  render() {
+  constructor(props) {
 
-    const data = this.props.data;
+    super(props);
 
-    var chartOptions = {
+    this.chart = null;
+
+  }
+
+  componentWillReceiveProps(props) {
+
+    const chartDefaultOptions = {
       responsive: true
     };
 
+    const data = props.data;
+    const options = Object.assign({}, props.options, chartDefaultOptions)
+
+    const chartProps = {
+      data: data,
+      options: options
+    };
+
+    this.chart = <Pie {...chartProps} />;
+
+  }
+
+  render() {
+
     return (
       <div className='c-chart'>
-        <Pie data={data} options={chartOptions} />
+        { this.chart }
       </div>
     );
 
@@ -61,6 +42,5 @@ class PieChart extends React.Component {
 }
 
 export {
-  BarChart,
   PieChart
 };
