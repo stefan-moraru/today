@@ -1,9 +1,28 @@
 import React from 'react';
+import Card from 'common/components/card';
 import CircleImage from 'common/components/circleimage';
 
-class FriendsCard extends React.Component {
+class FriendsCard extends Card {
 
-  render() {
+  getType() {
+
+    return 'friends';
+
+  }
+
+  getTitle() {
+
+    return this.props.title;
+
+  }
+
+  getDescription() {
+
+    return this.props.description;
+
+  }
+
+  getContent() {
 
     const friends = [
       { name: 'Carmen', 'image': 'http://static.tumblr.com/402de64fa71db5f91f427d18092129bb/b4ieo2z/0fHn58aid/tumblr_static_63q57z78gpcss40sg4g0wc004.png' },
@@ -26,10 +45,8 @@ class FriendsCard extends React.Component {
     });
 
     return (
-      <div className='c-card c-card-friends'>
-        <div className='col-xs-12'>
-          <h5>Te vei intalni cu:</h5>
-        </div>
+      <div>
+        <h5>Te vei intalni cu:</h5>
 
         { friendsRendered }
       </div>
