@@ -2,7 +2,7 @@ import React from 'react';
 import Header from 'common/components/header';
 import { BarChart, PieChart } from 'common/components/chart';
 import Timeline from 'common/components/timeline';
-import { Cards, ProfileCard, EventsCard, GoalsCard, FriendsCard, TimeTrackerCard, MapCard, EventCard } from 'common/components/cards';
+import { Cards, ProfileCard, EventsCard, GoalsCard, FriendsCard, TimeTrackerCard, MapCard, EventCard, EventCancelCard } from 'common/components/cards';
 import Utils from 'common/utils';
 import EventService from 'common/services/eventservice';
 import UserService from 'common/services/userservice';
@@ -127,6 +127,7 @@ class Today extends React.Component {
 
     const cards = [
       (<EventCard {...eventCardProps} />),
+      (<EventCancelCard />),
       (<MapCard {...mapCardProps} />),
       (<FriendsCard />)
     ];
@@ -156,7 +157,12 @@ class Today extends React.Component {
     let cards = null;
 
     if (this.state.event) {
-      resume = <i className='fa fa-arrow-left' onClick={this.resetEvent.bind(this)}></i>;
+      resume = (
+      <div className='u-c-pointer' onClick={this.resetEvent.bind(this)}>
+        <i className='fa fa-arrow-left'></i>
+        <span className='u-pl-half'>Inapoi acasa</span>
+      </div>
+      );
       cards = this.getCardsForEvent(this.state.event);
     } else {
       resume = Utils.dayResume(this.state.events);

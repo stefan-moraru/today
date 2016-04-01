@@ -39,7 +39,7 @@ class MapCard extends React.Component {
     };
 
     return (
-      <div className='c-card-map'>
+      <div className='c-card c-card-map'>
         <iframe {...iframeProps} />
       </div>
     );

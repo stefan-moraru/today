@@ -41,8 +41,6 @@ const breakMinutes = (vec) => {
 };
 
 const dayResume = (vec) => {
-	vec = todayEvents(vec);
-
 	if (vec.length < 1) {
 		return "Zi libera!";
 	} else if (vec.length === 1) {

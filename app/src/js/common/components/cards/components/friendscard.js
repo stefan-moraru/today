@@ -26,7 +26,7 @@ class FriendsCard extends React.Component {
     });
 
     return (
-      <div className='c-card-friends'>
+      <div className='c-card c-card-friends'>
         <div className='col-xs-12'>
           <h5>Te vei intalni cu:</h5>
         </div>

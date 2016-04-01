@@ -82,7 +82,7 @@ class EventCard extends React.Component {
       const time = `${start} - ${ending}`;
 
       return (
-        <div className='event col-xs-12' style={style} key={'c-card-events-event-' + index}>
+        <div className='c-card event col-xs-12' style={style} key={'c-card-events-event-' + index}>
           <div className='description'>
             <h5 className='title'>{ item.title }</h5>
             <h6 className='small'>{ time }</h6>

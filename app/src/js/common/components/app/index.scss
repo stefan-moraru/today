@@ -204,6 +204,14 @@ body {
     }
   }
 
+  &c-pointer {
+    cursor: pointer;
+  }
+
+  &pl-half {
+    padding-left: 15px;
+  }
+
   &m-0 {
     margin: 0px;
   }
@@ -588,6 +596,16 @@ iframe {
 
 .c-card-timetrackercard {
   padding: 15px;
+}
+
+.c-card-eventcancel {
+  padding: 15px;
+
+  .btnCancel:hover {
+    body {
+      background-color: pink;
+    }
+  }
 }
 
 .c-card-event {
