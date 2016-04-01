@@ -47,6 +47,7 @@ class EventCard extends Card {
   getContent() {
 
     const event = this.props.event;
+    const onClick = this.props.onClick.bind(this, event);
 
     let image = event.image;
 
@@ -58,15 +59,20 @@ class EventCard extends Card {
       backgroundImage: `linear-gradient(rgba(0, 0, 0, 0.1), rgba(0, 0, 0, 0.8)), url(${image})`
     };
 
+
     const start = Utils.padTime(event.time);
     const ending_h = Math.floor(event.value / 60);
     const ending_m = event.value % 60;
     const ending = Utils.padTime({ h: ending_h, m: ending_m });
-
     const time = `${start} - ${ending}`;
 
+    const containerProps = {
+      style: style,
+      onClick: onClick
+    };
+
     return (
-      <div style={style}>
+      <div {...containerProps}>
         <div className='description'>
           <h5 className='title'>{ event.title }</h5>
           <h6 className='small'>{ time }</h6>
@@ -78,5 +84,9 @@ class EventCard extends Card {
   }
 
 }
+
+EventCard.defaultProps = {
+  onClick: () => {}
+};
 
 export default EventCard;

@@ -145,6 +145,10 @@ const todayEvents = (events, today = moment().format('YYYY-MM-DD')) => {
 
 const padTime = (time) => {
 
+	if (!time) {
+		return '--:--';
+	}
+
   let hour = time.h;
   let minutes = time.m;
 

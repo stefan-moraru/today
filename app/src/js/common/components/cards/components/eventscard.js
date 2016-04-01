@@ -16,12 +16,6 @@ class EventsCard extends Card {
 
   }
 
-  onClick(item) {
-
-    this.props.onClick(item);
-
-  }
-
   generateEvents(events) {
 
     return events
@@ -34,7 +28,8 @@ class EventsCard extends Card {
     .map((item, index) => {
 
       const cardEventProps = {
-        event: item
+        event: item,
+        onClick: this.props.onClick.bind(this)
       };
 
       return <EventCard {...cardEventProps} />;
@@ -56,5 +51,9 @@ class EventsCard extends Card {
   }
 
 }
+
+EventsCard.defaultProps = {
+  onClick: () => {}
+};
 
 export default EventsCard;

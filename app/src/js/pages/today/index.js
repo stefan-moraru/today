@@ -7,35 +7,90 @@ import EventService from 'common/services/eventservice';
 import UserService from 'common/services/userservice';
 
 class Today extends React.Component {
+
   constructor(props) {
+
     super(props);
 
     this.state = {
       events: []
     };
+
   }
 
   componentDidMount() {
+
     EventService.getTodayEvents().then(this.saveEvents.bind(this));
+
     UserService.profile().then(this.saveProfile.bind(this));
+
   }
 
   saveEvents(response) {
+
     this.setState({
       events: response
     });
+
   }
 
   saveProfile(profile) {
+
     this.setState({
       profile: profile
     });
+
   }
 
   selectEvent(event) {
+
     this.setState({
       event: event
     });
+
+  }
+
+  getPieChartCategoriesData(events) {
+
+    let _categoriesValues = {};
+    let _total = 0;
+
+    events.forEach(ev => {
+      ev.categories.forEach(cat => {
+        if (!_categoriesValues[cat.title]) {
+          _categoriesValues[cat.title] = 0;
+        }
+
+        _categoriesValues[cat.title] += 1;
+        _total += 1;
+      });
+    });
+
+    let data = [];
+
+  	const colors = [
+  		'#EC644B', '#674172', '#1BBC9B', '#4B77BE', '#F89406'
+  	];
+
+    let colorInd = Math.floor(Math.random() * colors.length);
+
+    Object.keys(_categoriesValues).forEach(cat => {
+      colorInd++;
+
+      if (colorInd == colors.length) {
+        colorInd = 0;
+      }
+
+      data = data.concat({
+        value: _categoriesValues[cat] / _total * 100,
+        color: colors[colorInd],
+        highlight: "#5AD3D1",
+        label: cat[0].toUpperCase().concat(cat.slice(1))
+      });
+    });
+
+    return data;
+
   }
 
   getCardsForEvents(events) {
@@ -54,48 +109,9 @@ class Today extends React.Component {
       locations: this.state.events.map(ev => ev.location)
     };
 
-    let _categoriesValues = {};
-    let _total = 0;
-
-    this.state.events.forEach(ev => {
-      ev.categories.forEach(cat => {
-        if (!_categoriesValues[cat.title]) {
-          _categoriesValues[cat.title] = 0;
-        }
-
-        _categoriesValues[cat.title] += 1;
-        _total += 1;
-      });
-    });
-
-    let pieChartProps = {
-      data: []
-    };
-
-  	const colors = [
-  		'#EC644B', '#674172', '#1BBC9B', '#4B77BE', '#F89406'
-  	];
-
-    let colorInd = Math.floor(Math.random() * colors.length);
-
-    Object.keys(_categoriesValues).forEach(cat => {
-      colorInd++;
-
-      if (colorInd == colors.length) {
-        colorInd = 0;
-      }
-
-      pieChartProps.data = pieChartProps.data.concat({
-        value: _categoriesValues[cat] / _total * 100,
-        color: colors[colorInd],
-        highlight: "#5AD3D1",
-        label: cat[0].toUpperCase().concat(cat.slice(1))
-      });
-    });
-
     const cardChartProps = {
       type: 'pie',
-      data: pieChartProps.data,
+      data: this.getPieChartCategoriesData(this.state.events),
       title: 'Categorii',
       description: 'Cat iti vor ocupa diferite categorii'
     };
@@ -112,18 +128,16 @@ class Today extends React.Component {
       title: 'Goals'
     };
 
-    const cards = [
-      (<ProfileCard {...cardProfileProps} />),
-      (<EventsCard {...cardEventsProps} />),
-      (<GoalsCard {...cardGoalsProps} />),
-      (<FriendsCard {...cardFriendsProps} />),
-      (<TimeTrackerCard {...cardTimeTrackerProps} />),
-      (<MapCard {...cardMapProps} />),
-      (<ChartCard {...cardChartProps} />)
-    ];
-
     const cardsProps = {
-      cards: cards
+      cards: [
+        (<ProfileCard {...cardProfileProps} />),
+        (<EventsCard {...cardEventsProps} />),
+        (<GoalsCard {...cardGoalsProps} />),
+        (<FriendsCard {...cardFriendsProps} />),
+        (<TimeTrackerCard {...cardTimeTrackerProps} />),
+        (<MapCard {...cardMapProps} />),
+        (<ChartCard {...cardChartProps} />)
+      ]
     };
 
     return <Cards {...cardsProps} />
