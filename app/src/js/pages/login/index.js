@@ -8,7 +8,12 @@ class Login extends React.Component {
     super(props);
 
     this.state = {
-      err: false
+      err: false,
+      login_email: null,
+      login_password: null,
+      register_email: null,
+      register_password: null,
+      register_passwordRepeat: null
     };
 
   }
@@ -19,7 +24,31 @@ class Login extends React.Component {
 
   }
 
+  onChange(field, ev) {
+
+    let newState = {};
+
+    newState[field] = ev.target.value;
+
+    this.setState(newState);
+
+  }
+
   render() {
+
+    let register_progress = 0;
+
+    if (this.state.register_email) {
+      register_progress++;
+    }
+
+    if (this.state.register_password) {
+      register_progress++;
+    }
+
+    if (this.state.register_passwordRepeat) {
+      register_progress++;
+    }
 
     return (
       <div className='login'>
@@ -36,12 +65,12 @@ class Login extends React.Component {
               <div className='col-xl-7'>
                 <h4 className='u-mb-half'>Logheaza-te</h4>
                 <div className='input-group'>
-                  <span className="input-group-addon"><i className='fa fa-envelope'></i></span>
-                  <input type='text' className='form-control' placeholder='Email' />
+                  <span className='input-group-addon'><i className='fa fa-envelope'></i></span>
+                  <input type='text' className='form-control' placeholder='Email' value={this.state.login_email} onChange={this.onChange.bind(this, 'login_email')} />
                 </div>
                 <div className='input-group'>
-                  <span className="input-group-addon"><i className='fa fa-asterisk'></i></span>
-                  <input type='password' className='form-control' placeholder='Parola' />
+                  <span className='input-group-addon'><i className='fa fa-asterisk'></i></span>
+                  <input type='password' className='form-control' placeholder='Parola' onChange={this.onChange.bind(this, 'login_password')} />
                 </div>
                 <button className='btn btn-info u-fr'>Log in</button>
                 <div className='social u-fr'>
@@ -59,20 +88,20 @@ class Login extends React.Component {
             <div className='row'>
               <div className='col-xl-7'>
                 <div className='input-group'>
-                  <span className="input-group-addon"><i className='fa fa-envelope'></i></span>
-                  <input type='text' className='form-control' placeholder='Email' />
+                  <span className='input-group-addon'><i className='fa fa-envelope'></i></span>
+                  <input type='email' className='form-control' placeholder='Email' onChange={this.onChange.bind(this, 'register_email')} />
+                </div>
+                <div className='input-group'>
+                  <span className='input-group-addon'><i className='fa fa-asterisk'></i></span>
+                  <input type='password' className='form-control' placeholder='Parola' onChange={this.onChange.bind(this, 'register_password')} />
                 </div>
                 <div className='input-group'>
                   <span className="input-group-addon"><i className='fa fa-asterisk'></i></span>
-                  <input type='password' className='form-control' placeholder='Parola' />
+                  <input type='password' className='form-control' placeholder='Repeta parola' onChange={this.onChange.bind(this, 'register_passwordRepeat')}/>
                 </div>
-                <div className='input-group'>
-                  <span className="input-group-addon"><i className='fa fa-asterisk'></i></span>
-                  <input type='password' className='form-control' placeholder='Repeta parola' />
-                </div>
-                <button className='btn btn-info u-fr'>Inregistreaza-te !</button>
+                <button className='btn btn-info u-fr' disabled={register_progress !== 3}>Inregistreaza-te !</button>
                 <div className='clearfix'></div>
-                <progress className='progress u-mt-half' value='25' max='100'></progress>
+                <progress className='progress u-mt-half' value={register_progress} max='3'></progress>
               </div>
             </div>
           </div>
