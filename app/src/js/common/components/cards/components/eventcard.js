@@ -4,6 +4,12 @@ import Utils from 'common/utils';
 
 class EventCard extends Card {
 
+  getExtraClassNames() {
+
+    return 'u-p-0 ' + this.props.extraClasses;
+
+  }
+
   getType() {
 
     return 'event';

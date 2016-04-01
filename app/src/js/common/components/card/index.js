@@ -1,6 +1,13 @@
 import React from 'react';
+require('./index.scss');
 
 class Card extends React.Component {
+
+  getExtraClassNames() {
+
+    return '';
+
+  }
 
   getType() {
 
@@ -32,8 +39,10 @@ class Card extends React.Component {
     const title = this.getTitle();
     const description = this.getDescription();
     const content = this.getContent();
+    const extraClassNames = this.getExtraClassNames();
+
     const containerProps = {
-      className: `c-card c-card-${type}`
+      className: `${extraClassNames} c-card c-card-${type}`
     };
 
     const titleProps = {
