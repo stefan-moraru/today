@@ -29,7 +29,7 @@ class Card extends React.Component {
 
   getContent() {
 
-    console.log(`[${this.getType()}]: getContent not implemented`);
+    console.warn(`[${this.getType()}]: getContent not implemented`);
 
   }
 
