@@ -10,7 +10,7 @@ class Card extends React.Component {
 
   getTitle() {
 
-    console.warn(`[${this.getType()}]: getTitle not implemented`);
+    return '';
 
   }
 
@@ -36,9 +36,13 @@ class Card extends React.Component {
       className: `c-card c-card-${type}`
     };
 
+    const titleProps = {
+      className: 'title u-mb-half ' + ((this.getTitle() || '').length < 2 ? 'u-hidden' : '')
+    };
+
     return (
       <div {...containerProps}>
-        <div className='title u-mb-half'>
+        <div {...titleProps}>
           <h5 className='title--title u-m-0'>{ title }</h5>
           <span className='title--description f-light'>{ description }</span>
         </div>

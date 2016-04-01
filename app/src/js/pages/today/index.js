@@ -99,11 +99,15 @@ class Today extends React.Component {
       description: 'Cat iti vor ocupa diferite categorii'
     };
 
+    const cardFriendsProps = {
+      title: 'Astazi te vei intalni cu'
+    };
+
     const cards = [
       (<ProfileCard {...profileCardProps} />),
       (<EventsCard {...eventsCardProps} />),
       (<GoalsCard />),
-      (<FriendsCard />),
+      (<FriendsCard {...cardFriendsProps} />),
       (<TimeTrackerCard />),
       (<MapCard {...mapCardProps} />),
       (<ChartCard {...chartCardProps} />)

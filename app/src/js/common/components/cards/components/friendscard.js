@@ -46,8 +46,6 @@ class FriendsCard extends Card {
 
     return (
       <div>
-        <h5>Te vei intalni cu:</h5>
-
         { friendsRendered }
       </div>
     );

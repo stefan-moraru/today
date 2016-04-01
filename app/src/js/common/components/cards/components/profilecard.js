@@ -1,9 +1,16 @@
 import React from 'react';
+import Card from 'common/components/card';
 import CircleImage from 'common/components/circleimage';
 
-class ProfileCard extends React.Component {
+class ProfileCard extends Card {
 
-  render() {
+  getType() {
+
+    return 'profile';
+
+  }
+
+  getContent() {
 
     const image = this.props.image;
     const name = this.props.name;
@@ -15,9 +22,9 @@ class ProfileCard extends React.Component {
     };
 
     return (
-      <div className='c-card-profile'>
+      <div>
         <CircleImage {...circleImageProps} />
-        <div className='title'>
+        <div className='name'>
           <h5>{ name }</h5>
         </div>
         <div className='clearfix'></div>

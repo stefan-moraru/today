@@ -482,7 +482,7 @@ iframe {
   padding: 15px;
   position: relative;
 
-  .title {
+  .name {
     display: flex;
     align-items: center;
     height: 50px;
@@ -614,4 +614,8 @@ iframe {
 
 .c-card-event {
   padding: 0px;
+}
+
+.u-hidden {
+  display: none;
 }
