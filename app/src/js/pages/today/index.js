@@ -40,11 +40,12 @@ class Today extends React.Component {
 
   getCardsForEvents(events) {
 
-    const profileCardProps = {
+    const cardProfileProps = {
       ...this.state.profile
     };
 
-    const eventsCardProps = {
+    const cardEventsProps = {
+      title: 'Evenimente',
       events: this.state.events,
       onClick: this.selectEvent.bind(this)
     };
@@ -92,7 +93,7 @@ class Today extends React.Component {
       });
     });
 
-    const chartCardProps = {
+    const cardChartProps = {
       type: 'pie',
       data: pieChartProps.data,
       title: 'Categorii',
@@ -112,14 +113,13 @@ class Today extends React.Component {
     };
 
     const cards = [
-      (<ProfileCard {...profileCardProps} />),
-      (<EventsCard {...eventsCardProps} />),
+      (<ProfileCard {...cardProfileProps} />),
+      (<EventsCard {...cardEventsProps} />),
       (<GoalsCard {...cardGoalsProps} />),
       (<FriendsCard {...cardFriendsProps} />),
       (<TimeTrackerCard {...cardTimeTrackerProps} />),
       (<MapCard {...cardMapProps} />),
-      (<ChartCard {...chartCardProps} />)
-      //(<BarChart />)
+      (<ChartCard {...cardChartProps} />)
     ];
 
     const cardsProps = {

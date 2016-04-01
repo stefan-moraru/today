@@ -1,21 +1,12 @@
 import React from 'react';
+import Card from 'common/components/card';
+import Utils from 'common/utils';
 
-class EventCard extends React.Component {
+class EventCard extends Card {
 
-  padTime(time) {
+  getType() {
 
-    let hour = time.h;
-    let minutes = time.m;
-
-    if (hour < 10) {
-      hour = `0${hour}`
-    }
-
-    if (minutes == 0) {
-      minutes = `00`;
-    }
-
-    return `${hour}:${minutes}`;
+    return 'event';
 
   }
 
@@ -53,55 +44,34 @@ class EventCard extends React.Component {
 
   }
 
-  generateEvents(events) {
+  getContent() {
 
-    return events
-    .map(item => {
-      item.value = item.time.h * 60 + item.time.m + item.duration
+    const event = this.props.event;
 
-      return item;
-    })
-    .sort((a, b) => a.value > b.value)
-    .map((item, index) => {
+    let image = event.image;
 
-      let image = item.image;
+    if (!image) {
+      image = this.backgroundImageFromCategories(event);
+    }
 
-      if (!image) {
-        image = this.backgroundImageFromCategories(item);
-      }
+    const style = {
+      backgroundImage: `linear-gradient(rgba(0, 0, 0, 0.1), rgba(0, 0, 0, 0.8)), url(${image})`
+    };
 
-      const style = {
-        backgroundImage: `linear-gradient(rgba(0, 0, 0, 0.1), rgba(0, 0, 0, 0.8)), url(${image})`
-      };
+    const start = Utils.padTime(event.time);
+    const ending_h = Math.floor(event.value / 60);
+    const ending_m = event.value % 60;
+    const ending = Utils.padTime({ h: ending_h, m: ending_m });
 
-      const start = this.padTime(item.time);
-      const ending_h = Math.floor(item.value / 60);
-      const ending_m = item.value % 60;
-      const ending = this.padTime({ h: ending_h, m: ending_m });
-
-      const time = `${start} - ${ending}`;
-
-      return (
-        <div className='c-card event col-xs-12' style={style} key={'c-card-events-event-' + index}>
-          <div className='description'>
-            <h5 className='title'>{ item.title }</h5>
-            <h6 className='small'>{ time }</h6>
-            <h6 className='small'>{ item.location }</h6>
-          </div>
-        </div>
-      );
-
-    });
-
-  }
-
-  render() {
-
-    const eventsRendered = this.generateEvents([this.props.event]);
+    const time = `${start} - ${ending}`;
 
     return (
-      <div className='c-card-event'>
-        { eventsRendered }
+      <div style={style}>
+        <div className='description'>
+          <h5 className='title'>{ event.title }</h5>
+          <h6 className='small'>{ time }</h6>
+          <h6 className='small'>{ event.location }</h6>
+        </div>
       </div>
     );
 

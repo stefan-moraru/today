@@ -143,10 +143,29 @@ const todayEvents = (events, today = moment().format('YYYY-MM-DD')) => {
 
 };
 
+const padTime = (time) => {
+
+  let hour = time.h;
+  let minutes = time.m;
+
+  if (hour < 10) {
+    hour = `0${hour}`
+  }
+
+  if (minutes == 0) {
+    minutes = `00`;
+  }
+
+  return `${hour}:${minutes}`;
+
+}
+
+
 export default {
   dayResume,
 	todayEvents,
 	breakMinutes,
 	eventsDuration,
-	activityMinutes
+	activityMinutes,
+	padTime
 };
