@@ -103,12 +103,16 @@ class Today extends React.Component {
       title: 'Astazi te vei intalni cu'
     };
 
+    const cardTimeTrackerProps = {
+      title: 'Timer activitate'
+    };
+
     const cards = [
       (<ProfileCard {...profileCardProps} />),
       (<EventsCard {...eventsCardProps} />),
       (<GoalsCard />),
       (<FriendsCard {...cardFriendsProps} />),
-      (<TimeTrackerCard />),
+      (<TimeTrackerCard {...cardTimeTrackerProps} />),
       (<MapCard {...mapCardProps} />),
       (<ChartCard {...chartCardProps} />)
       //(<BarChart />)

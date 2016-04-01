@@ -1,12 +1,24 @@
 import React from 'react';
+import Card from 'common/components/card';
 
-class TimeTrackerCard extends React.Component {
+class TimeTrackerCard extends Card {
 
-  render() {
+  getType() {
+
+    return 'timetracker';
+
+  }
+
+  getTitle() {
+
+    return this.props.title;
+
+  }
+
+  getContent() {
 
     return (
-      <div className='c-card-timetrackercard'>
-        <h5>Time tracker</h5>
+      <div>
         <button className='btn btn-info'>Track</button>
       </div>
     );
