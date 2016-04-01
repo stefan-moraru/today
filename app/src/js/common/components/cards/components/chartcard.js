@@ -1,5 +1,5 @@
 import React from 'react';
-import Card from './card';
+import Card from 'common/components/card';
 import { PieChart } from 'common/components/chart';
 
 class ChartCard extends Card {
@@ -13,6 +13,12 @@ class ChartCard extends Card {
   getTitle() {
 
     return this.props.title;
+
+  }
+
+  getDescription() {
+
+    return this.props.description;
 
   }
 

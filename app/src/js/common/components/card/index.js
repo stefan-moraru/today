@@ -32,13 +32,11 @@ class Card extends React.Component {
     const description = this.getDescription();
     const content = this.getContent();
 
-    console.log(content);
-
     return (
       <div className='c-card c-card-chart'>
-        <div className='title'>
-          <h5 className='title--title'>{ title }</h5>
-          <span className='title--description'>{ description }</span>
+        <div className='title u-mb-half'>
+          <h5 className='title--title u-m-0'>{ title }</h5>
+          <span className='title--description f-light'>{ description }</span>
         </div>
 
         <div className='content'>

@@ -94,7 +94,9 @@ class Today extends React.Component {
 
     const chartCardProps = {
       type: 'pie',
-      data: pieChartProps.data
+      data: pieChartProps.data,
+      title: 'Categorii',
+      description: 'Cat iti vor ocupa diferite categorii'
     };
 
     const cards = [
