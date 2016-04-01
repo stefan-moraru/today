@@ -8,6 +8,7 @@ import MapCard from './components/mapcard';
 import EventCard from './components/eventcard';
 import EventCancelCard from './components/eventcancelcard';
 import ChartCard from './components/chartcard';
+require('./index.scss');
 
 export {
   Cards,

@@ -1,5 +1,6 @@
 import React from 'react';
 import UserService from 'common/services/userservice';
+require('./index.scss');
 
 class Header extends React.Component {
   constructor(props) {

@@ -1,5 +1,6 @@
 import React from 'react';
 import Auth from 'common/services/authenticationService';
+require('./index.scss');
 
 class Login extends React.Component {
 

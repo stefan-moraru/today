@@ -59,7 +59,6 @@ class EventCard extends Card {
       backgroundImage: `linear-gradient(rgba(0, 0, 0, 0.1), rgba(0, 0, 0, 0.8)), url(${image})`
     };
 
-
     const start = Utils.padTime(event.time);
     const ending_h = Math.floor(event.value / 60);
     const ending_m = event.value % 60;
@@ -68,7 +67,8 @@ class EventCard extends Card {
 
     const containerProps = {
       style: style,
-      onClick: onClick
+      onClick: onClick,
+      className: 'event-inner-content'
     };
 
     return (

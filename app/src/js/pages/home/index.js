@@ -10,6 +10,7 @@ import Section from 'common/components/section';
 import ThreeColumns from 'common/components/threecolumns';
 import HomeCreators from './components/creators';
 import HomeReviews from './components/reviews';
+require('./index.scss');
 
 class Home extends React.Component {
 
@@ -39,7 +40,7 @@ class Home extends React.Component {
           <Section>
             <div className='row'>
             <div className='col-md-8 col-md-push-2'>
-              <HomeTitle title='Trece timpul prea repede ?' extraClassesTitle='display-6' />
+              <HomeTitle title='Trece timpul prea repede ?' />
               <HomeDescription description='Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla quam velit, vulputate eu pharetra nec, mattis ac neque. Duis vulputate commodo lectus, ac blandit elit tincidunt id. Sed rhoncus, tortor sed eleifend tristique, tortor mauris molestie elit, et lacinia ipsum quam nec dui.' />
             </div>
             </div>

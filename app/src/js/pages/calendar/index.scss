@@ -1,0 +1,80 @@
+$colors_flat_3: pink;
+
+.calendar {
+  .table {
+    .event {
+      padding: 10px;
+      width: 100%;
+      background-color: $colors_flat_3;
+      color: white;
+      height: 60px;
+      position: absolute;
+      top: 0px;
+      left: 0px;
+      box-shadow: 0px 0px 1px 1px rgba(0, 0, 0, 0.1);
+      z-index: 2;
+    }
+
+    thead {
+      tr {
+        th:first-child {
+          padding-bottom: 0.9rem;
+        }
+
+        th {
+          text-align: center;
+          border-top: 0px;
+
+          &.today {
+            font-weight: bold;
+          }
+        }
+      }
+    }
+
+    tbody {
+      tr {
+        height: 20px;
+      }
+
+      td {
+        border-right: 1px solid rgba(30, 30, 30, 0.1);
+        font-size: 10px;
+        padding: 2px 12px;
+        position: relative;
+
+        &.today {
+          background-color: rgba(107, 185, 240, 0.3);
+        }
+
+        &.now {
+          border-top: 2px solid pink;
+        }
+      }
+
+      td:first-child {
+        width: 30px;
+      }
+
+      tr:nth-child(odd) {
+        td {
+          border-bottom: 0px;
+          border-top: 0px;
+        &.now {
+          border-top: 3px solid pink;
+        }
+        }
+      }
+
+      tr:nth-child(even) {
+        td {
+          border-bottom: 1px solid rgba(30, 30, 30, 0.1);
+          border-top: 1px dotted rgba(30, 30, 30, 0.1);
+        &.now {
+          border-bottom: 3px solid pink;
+        }
+        }
+      }
+    }
+  }
+}

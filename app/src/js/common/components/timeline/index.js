@@ -1,5 +1,6 @@
 import React from 'react';
 import moment from 'moment';
+require('./index.scss');
 
 class Timeline extends React.Component {
 

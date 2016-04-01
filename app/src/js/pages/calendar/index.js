@@ -3,6 +3,7 @@ import moment from 'moment';
 import momentRange from 'moment-range';
 import SecondHeader from 'common/components/secondheader';
 import EventService from 'common/services/eventservice';
+require('./index.scss');
 
 class Calendar extends React.Component {
 

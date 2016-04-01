@@ -1,4 +1,5 @@
 import React from 'react';
+require('./index.scss');
 
 class ThreeColumns extends React.Component {
 

@@ -1,0 +1,136 @@
+.home {
+  margin-top: -65px;
+
+  .section {
+    padding: 0px 100px;
+    margin: 120px 0px;
+  }
+
+  .jumbotron {
+    height: 100vh;
+    min-height: 400px;
+    background: linear-gradient(rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.4)), url('/src/assets/images/background.jpg');
+    background-size: cover;
+    background-position: center center;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    flex-direction: column;
+    color: white;
+    position: relative;
+
+    .arrow {
+      position: absolute;
+      left: 50%;
+      bottom: 0px;
+
+      transform: translate(-50%, -50%);
+
+      text-align: center;
+
+      p {
+        margin-bottom: 0px;
+      }
+    }
+  }
+
+  .c- {
+    &home- {
+      &video, &semifull, &contact, &register {
+        margin-left: -100px;
+        margin-right: -100px;
+        padding: 100px;
+        padding-top: 50px;
+        padding-bottom: 50px;
+      }
+
+      &register {
+        background-color: rgb(108, 122, 137);
+        color: white;
+      }
+
+      &video {
+        background-color: rgb(52, 152, 219);
+        color: white;
+      }
+
+      &semifull {
+        background-color: rgba(27, 188, 155, 1);
+        color: white;
+        display: flex;
+        justify-content: center;
+        .col-md-3 {
+          flex: 1;
+
+          img {
+            width: 100%;
+          }
+        }
+
+        .col-md-9 {
+          flex: 1;
+        }
+      }
+
+      &contact {
+        background-color: rgb(108, 122, 137);
+        color: white;
+      }
+
+      &creators {
+        img {
+          width: 100%;
+          max-width: 150px;
+          border-radius: 100%;
+          border: 1px solid rgba(0, 0, 0, 0.1);
+        }
+
+        h5 {
+          margin-top: 10px;
+        }
+
+      }
+      &reviews {
+        .row {
+          margin-bottom: 10px;
+        }
+
+        h5 {
+          margin-bottom: 0px;
+          padding-top: 15px;
+        }
+
+        .col-xs-12 {
+          display: flex;
+          align-items: center;
+        }
+
+        img {
+          width: 60px;
+          height: 60px;
+          border-radius: 100%;
+          margin-right: 15px;
+        }
+      }
+
+      &social {
+        a {
+          color: white;
+        }
+
+        .circle {
+          width: 50px;
+          height: 50px;
+          border-radius: 100px;
+          border: 1px solid rgba(0, 0, 0, 0.1);
+          background-color: rgb(88, 102, 117);
+          float: left;
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          margin-right: 10px;
+        }
+      }
+    }
+  }
+}
