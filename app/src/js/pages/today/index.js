@@ -5,6 +5,7 @@ import { Cards, ProfileCard, EventsCard, GoalsCard, FriendsCard, TimeTrackerCard
 import Utils from 'common/utils';
 import EventService from 'common/services/eventservice';
 import UserService from 'common/services/userservice';
+require('./index.scss');
 
 class Today extends React.Component {
 
@@ -205,7 +206,7 @@ class Today extends React.Component {
     }
 
     return (
-      <div className='today col-xs-12'>
+      <div className='p-today col-xs-12'>
         <div className='row'>
           <div className='col-xs-12 u-hz-ctr'>
             <h1 className='display-4'>{ title }</h1>
