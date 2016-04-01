@@ -49,7 +49,7 @@ class Today extends React.Component {
       onClick: this.selectEvent.bind(this)
     };
 
-    const mapCardProps = {
+    const cardMapProps = {
       locations: this.state.events.map(ev => ev.location)
     };
 
@@ -107,13 +107,17 @@ class Today extends React.Component {
       title: 'Timer activitate'
     };
 
+    const cardGoalsProps = {
+      title: 'Goals'
+    };
+
     const cards = [
       (<ProfileCard {...profileCardProps} />),
       (<EventsCard {...eventsCardProps} />),
-      (<GoalsCard />),
+      (<GoalsCard {...cardGoalsProps} />),
       (<FriendsCard {...cardFriendsProps} />),
       (<TimeTrackerCard {...cardTimeTrackerProps} />),
-      (<MapCard {...mapCardProps} />),
+      (<MapCard {...cardMapProps} />),
       (<ChartCard {...chartCardProps} />)
       //(<BarChart />)
     ];

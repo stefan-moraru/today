@@ -1,8 +1,21 @@
 import React from 'react';
+import Card from 'common/components/card';
 
-class GoalsCard extends React.Component {
+class GoalsCard extends Card {
 
-  render() {
+  getType() {
+
+    return 'goals';
+
+  }
+
+  getTitle() {
+
+    return this.props.title;
+
+  }
+
+  getContent() {
 
     const goals = [
       {
@@ -56,9 +69,7 @@ class GoalsCard extends React.Component {
     });
 
     return (
-      <div className='c-card-goals'>
-        <h5 className='c-card-title'>Goals</h5>
-
+      <div>
         { goalsRendered }
       </div>
     );
