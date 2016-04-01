@@ -1,11 +1,29 @@
 import React from 'react';
+import Card from 'common/components/card';
 
-class EventCancelCard extends React.Component {
+class EventCancelCard extends Card {
+
+  getType() {
+
+    return 'eventcancel';
+
+  }
+
+  getTitle() {
+
+    return this.props.title;
+
+  }
+
+  getCards() {
+
+    return document.querySelectorAll('.c-card');
+
+  }
 
   onMouseLeave() {
 
-    console.log('lv');
-    const cards = document.querySelectorAll('.c-card');
+    const cards = this.getCards();
 
     for (let i = 0; i < cards.length; i++) {
       let item = cards[i];
@@ -18,8 +36,7 @@ class EventCancelCard extends React.Component {
 
   onMouseEnter() {
 
-    console.log('en');
-    const cards = document.querySelectorAll('.c-card');
+    const cards = this.getCards();
 
     for (let i = 0; i < cards.length; i++) {
       let item = cards[i];
@@ -30,12 +47,21 @@ class EventCancelCard extends React.Component {
 
   }
 
-  render() {
+  getContent() {
+
+    const btnCancelProps = {
+      className: 'btn btn-danger btnCancel',
+      onMouseEnter: this.onMouseEnter.bind(this),
+      onMouseLeave: this.onMouseLeave.bind(this)
+    };
+
+    const btnCancelText = 'Anuleaza';
 
     return (
-      <div className='c-card-eventcancel'>
-        <h5>Anuleaza participarea</h5>
-        <button className='btn btn-danger btnCancel' onMouseEnter={this.onMouseEnter.bind(this)} onMouseLeave={this.onMouseLeave.bind(this)}>Anuleaza</button>
+      <div>
+        <button {...btnCancelProps}>
+          { btnCancelText }
+        </button>
       </div>
     );
 

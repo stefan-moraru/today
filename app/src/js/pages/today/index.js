@@ -128,9 +128,13 @@ class Today extends React.Component {
       event: event
     };
 
+    const cardEventCancelProps = {
+      title: 'Anuleaza eveniment'
+    };
+
     const cards = [
       (<EventCard {...eventCardProps} />),
-      (<EventCancelCard />),
+      (<EventCancelCard {...cardEventCancelProps} />),
       (<MapCard {...mapCardProps} />),
       (<FriendsCard />)
     ];

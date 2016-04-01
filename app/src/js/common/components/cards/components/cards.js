@@ -6,11 +6,7 @@ class Cards extends React.Component {
 
     const cards = this.props.cards;
 
-    console.log(this.props.cards);
-
     const cardsRendered = cards.map((item, index) => {
-
-      console.log(item.type.name);
 
       return (
         <div className={"card card-block " + item.type.name} key={'today-c-cards-item-' + index}>
