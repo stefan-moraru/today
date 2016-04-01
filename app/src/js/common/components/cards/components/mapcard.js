@@ -1,8 +1,15 @@
 import React from 'react';
+import Card from 'common/components/card';
 
-class MapCard extends React.Component {
+class MapCard extends Card {
 
-  render() {
+  getType() {
+
+    return 'map';
+
+  }
+
+  getContent() {
 
     const locations = this.props.locations
     .filter(item => item !== undefined && item !== null)
@@ -39,7 +46,7 @@ class MapCard extends React.Component {
     };
 
     return (
-      <div className='c-card c-card-map'>
+      <div>
         <iframe {...iframeProps} />
       </div>
     );
