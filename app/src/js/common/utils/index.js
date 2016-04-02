@@ -185,6 +185,28 @@ const colorForCategory = (category) => {
 
 };
 
+const isToday = (date) => {
+
+  return date === moment().format('YYYY-MM-DD');
+
+};
+
+const isNow = (date, time) => {
+
+  const now = new Date();
+  const nowH = now.getHours();
+  let nowM = now.getMinutes();
+
+  if (nowM > 30) {
+    nowM = 30;
+  } else {
+    nowM = 0;
+  }
+
+  return isToday(date) && time.h === nowH && time.m === nowM;
+
+};
+
 export default {
   dayResume,
   todayEvents,
@@ -192,5 +214,7 @@ export default {
   eventsDuration,
   activityMinutes,
   padTime,
-  colorForCategory
+  colorForCategory,
+  isToday,
+  isNow
 };

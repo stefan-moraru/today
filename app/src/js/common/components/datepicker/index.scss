@@ -1,0 +1,36 @@
+.c-datepicker {
+  .u-hz-ctr {
+    margin-top: 20px;
+  }
+
+  .title {
+    i {
+      color: rgba(0, 0, 0, 0.3);
+    }
+
+    &--text {
+      padding: 0px 10px;
+    }
+  }
+
+  .table {
+    td, th {
+      border: 0px;
+      text-align: center;
+    }
+
+    tbody {
+      td {
+        &.today {
+            background-color: green;
+            color: white;
+        }
+
+        &:hover {
+          background-color: green;
+          color: white;
+        }
+      }
+    }
+  }
+}

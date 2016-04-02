@@ -3,6 +3,7 @@ import moment from 'moment';
 import momentRange from 'moment-range';
 import SecondHeader from 'common/components/secondheader';
 import EventService from 'common/services/eventservice';
+import DatePicker from 'common/components/datepicker';
 import Utils from 'common/utils';
 require('./index.scss');
 
@@ -13,58 +14,24 @@ class Calendar extends React.Component {
     super(props);
 
     this.state = {
-      events: []
+      events: [],
+      startOfWeek: moment().startOf('isoweek'),
+      endOfWeek: moment().endOf('isoweek')
     };
 
   }
 
   componentDidMount() {
+
     EventService.getTodayEvents().then(this.saveEvents.bind(this));
+
   }
 
   saveEvents(response) {
+
     this.setState({
       events: response
     });
-  }
-
-  isToday(date) {
-
-    return date === moment().format('YYYY-MM-DD');
-
-  }
-
-  isNow(date, time) {
-
-    const now = new Date();
-    const nowH = now.getHours();
-    let nowM = now.getMinutes();
-
-    if (nowM > 30) {
-      nowM = 30;
-    } else {
-      nowM = 0;
-    }
-
-    return this.isToday(date) && time.h === nowH && time.m === nowM;
-
-  }
-
-  getTableHeader(dates) {
-
-    const headers = [ <i className='fa fa-clock-o' />, 'Lun', 'Mar', 'Mie', 'Joi', 'Vin', 'Sam', 'Dum' ];
-    const headerRendered = headers.map((item, index) => {
-
-      const date = index > 0 ? ` (${moment(dates[index - 1], 'YYYY-MM-DD').format('DD/MM')})` : '';
-      const today = this.isToday(dates[index - 1]) ? 'today' : '';
-
-      return (
-        <th className={'f-light ' + today} key={'calendar-table-th-' + index}>{ item }{ date }</th>
-      );
-
-    });
-
-    return headerRendered;
 
   }
 
@@ -88,6 +55,28 @@ class Calendar extends React.Component {
         { images }
       </div>
     );
+
+  }
+
+  getTableHeader(dates) {
+
+    const headers = [ <i className='fa fa-clock-o' />, 'Lun', 'Mar', 'Mie', 'Joi', 'Vin', 'Sam', 'Dum' ];
+    const headerRendered = headers.map((item, index) => {
+
+      const date = index > 0 ? ` (${moment(dates[index - 1], 'YYYY-MM-DD').format('DD/MM')})` : '';
+      const today = Utils.isToday(dates[index - 1]) ? 'today' : '';
+      const thProps = {
+        className: 'f-light ' + today,
+        key: 'calendar-table-th-' + index
+      };
+
+      return (
+        <th {...thProps}>{ item }{ date }</th>
+      );
+
+    });
+
+    return headerRendered;
 
   }
 
@@ -149,8 +138,8 @@ class Calendar extends React.Component {
 
         });
 
-        const today = this.isToday(date) ? 'today' : '';
-        const now = this.isNow(date, item) ? 'now' : '';
+        const today = Utils.isToday(date) ? 'today' : '';
+        const now = Utils.isNow(date, item) ? 'now' : '';
 
         return (
           <td className={today + ' ' + now} key={'calendar-table-body-td-' + index + ' ' + index2}>
@@ -174,10 +163,7 @@ class Calendar extends React.Component {
 
   }
 
-  getTable(events) {
-
-    const start = moment().startOf('isoweek');
-    const end = moment().endOf('isoweek');
+  getTable(events, start, end) {
 
     let dates = [];
 
@@ -189,7 +175,7 @@ class Calendar extends React.Component {
     const body = this.getTableBody(dates, events);
 
     return (
-      <table className='table'>
+      <table className='table table-events'>
         <thead>
           <tr>
             { header }
@@ -203,21 +189,71 @@ class Calendar extends React.Component {
 
   }
 
+  switchToCurrentWeek() {
+
+    this.setState({
+      startOfWeek: moment().startOf('isoweek'),
+      endOfWeek: moment().endOf('isoweek')
+    });
+
+  }
+
+  switchToLastWeek() {
+
+    this.setState({
+      startOfWeek: moment(this.state.startOfWeek).subtract(1, 'weeks').startOf('isoweek'),
+      endOfWeek: moment(this.state.endOfWeek).subtract(1, 'weeks').endOf('isoweek')
+    });
+
+  }
+
+  switchToNextWeek() {
+
+    this.setState({
+      startOfWeek: moment(this.state.startOfWeek).add(1, 'weeks').startOf('isoweek'),
+      endOfWeek: moment(this.state.endOfWeek).add(1, 'weeks').endOf('isoweek')
+    });
+
+  }
+
   render() {
 
     const events = this.state.events;
+    const start = this.state.startOfWeek;
+    const end = this.state.endOfWeek;
+    const table = this.getTable(events, start, end);
 
-    const table = this.getTable(events);
     const secondHeaderProps = {
       items: [
         {
-          icon: 'calendar'
+          icon: 'calendar',
+          extra: (
+            <div>
+              <h5>Alege o data</h5>
+
+              <DatePicker />
+            </div>
+          )
         },
         {
           icon: 'list'
         },
         {
           icon: 'plus'
+        }
+      ],
+      itemsRight: [
+        {
+          icon: 'chevron-left',
+          onClick: this.switchToLastWeek.bind(this)
+        },
+        {
+          icon: 'calendar-times-o',
+          onClick: this.switchToCurrentWeek.bind(this)
+        },
+        {
+          icon: 'chevron-right',
+          onClick: this.switchToNextWeek.bind(this)
         }
       ]
     };

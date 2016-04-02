@@ -3,7 +3,7 @@ $color_today_indicator: rgba(46, 204, 113, 1);
 $cell_height: 25px;
 
 .calendar {
-  .table {
+  .table-events {
     .event {
       overflow: hidden;
 
@@ -22,7 +22,7 @@ $cell_height: 25px;
 
       border-left: 4px solid rgba(0, 0, 0, 0.3);
       width: 100%;
-      padding: 2px 5px;
+      padding: 3px 5px;
       color: white;
       height: 60px;
       position: absolute;
