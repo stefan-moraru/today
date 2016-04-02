@@ -11,34 +11,26 @@ class DatePicker extends React.Component {
     super(props);
 
     this.state = {
-
+      startOfMonth: moment().startOf('month'),
+      endOfMonth: moment().endOf('month')
     };
 
   }
 
   getTbody() {
 
-    //const month = moment().
+    const day = moment().startOf('month').day();
+    let rows, rowInd, ind;
 
-    let rows = [
-      [ ],
-      [ ],
-      [ ],
-      [ ],
-      [ ],
-      [ ]
-    ];
-
-    const day = moment().startOf('month').day(); //pad left
+    rows = [ [ ], [ ], [ ], [ ], [ ], [ ] ];
+    rowInd = 0;
+    ind = day - 1;
 
     for (let i = 1; i < day; i++) {
       rows[0].unshift(null);
     }
 
-    let ind = day - 1;
-    let rowInd = 0;
-
-    moment().range(moment().startOf('month'), moment().endOf('month')).by('days', item => {
+    moment().range(this.state.startOfMonth, this.state.endOfMonth).by('days', item => {
 
       rows[rowInd][ind] = item;
 
@@ -66,7 +58,8 @@ class DatePicker extends React.Component {
         }
 
         let tdProps = {
-          className: 'u-c-pointer'
+          className: 'u-c-pointer',
+          onClick: this.props.onClick.bind(this, column)
         };
 
         if (column && Utils.isToday(column.format('YYYY-MM-DD'))) {
@@ -97,17 +90,40 @@ class DatePicker extends React.Component {
 
   }
 
+  switchToLastMonth() {
+
+    this.setState({
+      startOfMonth: moment(this.state.startOfMonth).subtract(1, 'months').startOf('month'),
+      endOfMonth: moment(this.state.endOfMonth).subtract(1, 'months').endOf('month')
+    });
+
+  }
+
+  switchToNextMonth() {
+
+    this.setState({
+      startOfMonth: moment(this.state.startOfMonth).add(1, 'months').startOf('month'),
+      endOfMonth: moment(this.state.endOfMonth).add(1, 'months').endOf('month')
+    });
+
+  }
+
   render() {
 
     const tbody = this.getTbody();
+    const months = [
+      'Ianuarie', 'Februarie', 'Martie', 'Aprilie', 'Mai', 'Iunie', 'Iulie', 'August', 'Septembrie', 'Octombrie', 'Noiembrie', 'Decembrie'
+    ];
+
+    const month = months[this.state.startOfMonth.month()];
 
     return (
       <div className='c-datepicker'>
         <div className='u-hz-ctr'>
           <h6 className='title'>
-            <i className='fa fa-chevron-left'></i>
-            <span className='title--text'>Februarie 2016</span>
-            <i className='fa fa-chevron-right'></i>
+            <i className='fa fa-chevron-left' onClick={this.switchToLastMonth.bind(this)}></i>
+            <span className='title--text'>{ month }</span>
+            <i className='fa fa-chevron-right' onClick={this.switchToNextMonth.bind(this)}></i>
           </h6>
         </div>
 

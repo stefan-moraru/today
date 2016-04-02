@@ -99,7 +99,7 @@ class Calendar extends React.Component {
 
         const eventsRendered = eventsMatched.map((ev, index3) => {
 
-          const height = document.querySelector('tbody tr').clientHeight;
+          const height = document.querySelector('.table-events tbody tr').clientHeight;
 
           const style = {
             backgroundColor: Utils.colorForCategory(ev.category),
@@ -216,6 +216,15 @@ class Calendar extends React.Component {
 
   }
 
+  switchToDate(date) {
+
+    this.setState({
+      startOfWeek: moment(date.format('YYYY-MM-DD'), 'YYYY-MM-DD').startOf('isoweek'),
+      endOfWeek: moment(date.format('YYYY-MM-DD'), 'YYYY-MM-DD').endOf('isoweek')
+    });
+
+  }
+
   render() {
 
     const events = this.state.events;
@@ -231,7 +240,7 @@ class Calendar extends React.Component {
             <div>
               <h5>Alege o data</h5>
 
-              <DatePicker />
+              <DatePicker onClick={this.switchToDate.bind(this)} />
             </div>
           )
         },

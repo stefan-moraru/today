@@ -3,6 +3,28 @@ require('./index.scss');
 
 class SecondHeader extends React.Component {
 
+  constructor(props) {
+
+    super(props);
+
+    this.state = {
+      extraVisible: {}
+    };
+
+  }
+
+  toggleExtra(name) {
+
+    let extraVisible = this.state.extraVisible;
+
+    extraVisible[name] = !extraVisible[name];
+
+    this.setState({
+      extraVisible: extraVisible
+    });
+
+  }
+
   generateItems(items, extraClass = '') {
 
     return items.map((item, index) => {
@@ -25,8 +47,16 @@ class SecondHeader extends React.Component {
       }
 
       if (item.extra) {
+        let extraProps = {
+          className: 'extra '
+        };
+
+        if (!this.state.extraVisible[item.icon]) {
+          extraProps.className += 'u-hidden';
+        }
+
         extra = (
-          <div className='extra'>
+          <div {...extraProps}>
             { item.extra }
           </div>
         );
@@ -34,7 +64,7 @@ class SecondHeader extends React.Component {
 
       return (
         <li {...liProps}>
-          <a className="nav-link" href="#">
+          <a className="nav-link" href="#" onClick={this.toggleExtra.bind(this, item.icon)}>
             { icon }
           </a>
 
