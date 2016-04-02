@@ -1,0 +1,29 @@
+$color_green: rgba(38, 166, 91, 1);
+$color_green_faded: rgba(38, 166, 91, 0.2);
+$color_done: $color_green;
+$color_notdone: rgba(0, 0, 0, 0.1);
+
+.p-goals {
+  .chains {
+    .chain {
+      border-left: 4px solid $color_green_faded;
+
+      i {
+        padding-right: 5px;
+      }
+
+      .cell {
+        width: 15px;
+        height: 10px;
+        background-color: $color_notdone;
+        float: left;
+        margin-top: 1px;
+        margin-left: 1px;
+
+        &.done {
+          background-color: $color_done;
+        }
+      }
+    }
+  }
+}

@@ -7,33 +7,25 @@ class PieChart extends React.Component {
 
     super(props);
 
-    this.chart = null;
-
   }
 
-  componentWillReceiveProps(props) {
+  render() {
 
     const chartDefaultOptions = {
       responsive: true
     };
 
-    const data = props.data;
-    const options = Object.assign({}, props.options, chartDefaultOptions)
+    const data = this.props.data;
+    const options = Object.assign({}, this.props.options, chartDefaultOptions)
 
     const chartProps = {
       data: data,
       options: options
     };
 
-    this.chart = <Pie {...chartProps} />;
-
-  }
-
-  render() {
-
     return (
       <div className='c-chart'>
-        { this.chart }
+        <Pie {...chartProps} />
       </div>
     );
 
