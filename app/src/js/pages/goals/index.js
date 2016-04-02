@@ -169,13 +169,12 @@ class Goals extends React.Component {
       <div className='p-goals'>
         { secondHeader }
 
-        <div className='row u-mt-full chains'>
-          <div className='col-md-10 col-md-push-1'>
-            { chains }
+        <div className='col-xs-12'>
+          <div className='row u-mt-full chains'>
+            <div className='col-md-10 col-md-push-1'>
+              { chains }
+            </div>
           </div>
-        </div>
-
-        <div className='row u-mt-full'>
         </div>
       </div>
     );
