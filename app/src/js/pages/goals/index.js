@@ -78,19 +78,45 @@ class Goals extends React.Component {
 
   }
 
+  daysAsSentence(days) {
+
+    const dayNames = [
+      'Luni',
+      'Marti',
+      'Miercuri',
+      'Joi',
+      'Vineri',
+      'Sambata',
+      'Duminica'
+    ];
+
+    let sen = '';
+
+    if (days.length === 7) {
+      sen = 'Zilnic';
+    } else {
+      sen = days.map((day, index) => {
+        return dayNames[day] + (index !== days.length - 1 ? ', ' : '');
+      });
+    }
+
+    return sen;
+
+  }
+
   generateChains() {
 
     const goals = [
       {
         id: 1,
-        days: [ 1, 2, 3 ],
+        days: [ 3, 6 ],
         doneOn: [ '2016-03-02', '2016-03-05' ],
         title: 'Mancat sanatos',
         description: 'Fara fast-food sau dulciuri. Cel mult 2000 de calorii.'
       },
       {
         id: 2,
-        days: [ 1, 2, 3, 4, 5, 6, 7 ],
+        days: [ 0, 1, 2, 3, 4, 5, 6 ],
         doneOn: [ '2016-03-02', '2016-03-05', '2016-04-01' ],
         title: 'Exercitii fizice',
         description: 'Alergat cel putin 2km sau mers la sala timp de o ora.',
@@ -144,6 +170,11 @@ class Goals extends React.Component {
           <h6 className='f-light chain--description'>
             <i className='fa fa-check-square-o'></i>
             { item.description }
+          </h6>
+
+          <h6 className='f-light chain--description'>
+            <i className='fa fa-calendar'></i>
+            { this.daysAsSentence(item.days) }
           </h6>
 
           { duration }

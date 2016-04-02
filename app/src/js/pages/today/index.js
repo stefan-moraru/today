@@ -150,11 +150,11 @@ class Today extends React.Component {
 
   getCardsForEvent(event) {
 
-    const mapCardProps = {
+    const cardMapProps = {
       locations: [event.location]
     };
 
-    const eventCardProps = {
+    const cardEventProps = {
       event: event
     };
 
@@ -162,11 +162,15 @@ class Today extends React.Component {
       title: 'Anuleaza eveniment'
     };
 
+    const cardFriendsProps = {
+      title: 'Cine mai participa'
+    };
+
     const cards = [
-      (<EventCard {...eventCardProps} />),
+      (<EventCard {...cardEventProps} />),
       (<EventCancelCard {...cardEventCancelProps} />),
-      (<MapCard {...mapCardProps} />),
-      (<FriendsCard />)
+      (<MapCard {...cardMapProps} />),
+      (<FriendsCard {...cardFriendsProps} />)
     ];
 
     const cardsProps = {
