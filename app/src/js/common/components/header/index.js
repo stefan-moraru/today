@@ -1,5 +1,6 @@
 import React from 'react';
 import UserService from 'common/services/userservice';
+import introJs from 'intro.js';
 require('./index.scss');
 
 class Header extends React.Component {
@@ -69,6 +70,14 @@ class Header extends React.Component {
         title: 'Setări'
       },
       {
+        title: 'Help',
+        onClick: () => {
+
+          introJs.introJs().setOption('showProgress', true).setOption('showStepNumbers', false).start();
+
+        }
+      },
+      {
         href: '/profile',
         title: (
           <div className='image' style={{ backgroundImage: `url(${this.state.profile.image})` }}></div>
@@ -84,8 +93,14 @@ class Header extends React.Component {
         extraClasses = 'active';
       }
 
+      const containerProps = {
+        className: `nav-item ${extraClasses}`,
+        key: `c-header-item-${index}`,
+        onClick: item.onClick
+      };
+
       return (
-        <li className={`nav-item ${extraClasses}`} key={`c-header-item-${index}`}>
+        <li {...containerProps}>
           <a className="nav-link" href={item.href}>{ item.title }</a>
         </li>
       );

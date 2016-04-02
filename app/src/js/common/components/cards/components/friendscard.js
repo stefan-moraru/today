@@ -22,6 +22,12 @@ class FriendsCard extends Card {
 
   }
 
+  getIntroContent() {
+
+    return 'O lista cu prietenii tai pe care-i vei intalni. Acestia participa la cel putin unul din evenimentele la care participi si tu.';
+
+  }
+
   getContent() {
 
     const friends = [
@@ -47,6 +53,8 @@ class FriendsCard extends Card {
     return (
       <div>
         { friendsRendered }
+
+        <div className='u-clearfix'></div>
       </div>
     );
 

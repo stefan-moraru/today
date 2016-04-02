@@ -33,6 +33,12 @@ class Card extends React.Component {
 
   }
 
+  getIntroContent() {
+
+    return '';
+
+  }
+
   render() {
 
     const type = this.getType();
@@ -40,10 +46,16 @@ class Card extends React.Component {
     const description = this.getDescription();
     const content = this.getContent();
     const extraClassNames = this.getExtraClassNames();
+    const introContent = this.getIntroContent();
 
-    const containerProps = {
+    let containerProps = {
       className: `${extraClassNames} c-card c-card-${type}`
     };
+
+    if (introContent) {
+      containerProps['data-intro'] = introContent;
+      containerProps['data-position'] = 'right';
+    }
 
     const titleProps = {
       className: 'title u-mb-half ' + ((this.getTitle() || '').length < 2 ? 'u-hidden' : '')

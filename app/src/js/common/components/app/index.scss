@@ -27,6 +27,10 @@ body {
 
 /* UTILITIES */
 .u- {
+  &clearfix {
+    clear:both;
+  }
+
   &hidden {
     display: none;
   }

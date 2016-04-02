@@ -30,7 +30,8 @@ class EventsCard extends Card {
       const cardEventProps = {
         event: item,
         onClick: this.props.onClick.bind(this),
-        extraClasses: 'u-mt-half'
+        extraClasses: 'u-mt-half',
+        key: `eventscard-event-item-${index}`
       };
 
       return <EventCard {...cardEventProps} />;
