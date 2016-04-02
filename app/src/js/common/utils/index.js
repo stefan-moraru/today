@@ -166,6 +166,24 @@ const padTime = (time) => {
 
 }
 
+const colorForCategory = (category) => {
+
+  const colors = {
+    'food': '#e74c3c',
+    'sports': '#27ae60',
+    'education': '#2980b9',
+    'default': '#34495e'
+  };
+
+  let color = colors[category.title];
+
+  if (!color) {
+    color = colors['default']
+  }
+
+  return color;
+
+};
 
 export default {
   dayResume,
@@ -173,5 +191,6 @@ export default {
   breakMinutes,
   eventsDuration,
   activityMinutes,
-  padTime
+  padTime,
+  colorForCategory
 };

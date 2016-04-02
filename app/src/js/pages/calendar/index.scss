@@ -1,11 +1,28 @@
-$colors_flat_3: pink;
+$color_today: rgba(46, 204, 113, 0.1);
+$color_today_indicator: rgba(46, 204, 113, 1);
+$cell_height: 25px;
 
 .calendar {
   .table {
     .event {
-      padding: 10px;
+      overflow: hidden;
+
+      &--title {
+        font-size: 11px;
+      }
+
+      .attendees {
+        img {
+          width: 25px;
+          height: 25px;
+          margin-right: 5px;
+          margin-top: 5px;
+        }
+      }
+
+      border-left: 4px solid rgba(0, 0, 0, 0.3);
       width: 100%;
-      background-color: $colors_flat_3;
+      padding: 2px 5px;
       color: white;
       height: 60px;
       position: absolute;
@@ -34,7 +51,7 @@ $colors_flat_3: pink;
 
     tbody {
       tr {
-        height: 20px;
+        height: $cell_height;
       }
 
       td {
@@ -44,11 +61,11 @@ $colors_flat_3: pink;
         position: relative;
 
         &.today {
-          background-color: rgba(107, 185, 240, 0.3);
+          background-color: $color_today;
         }
 
         &.now {
-          border-top: 2px solid pink;
+          border-top: 2px solid $color_today_indicator;
         }
       }
 
@@ -60,9 +77,10 @@ $colors_flat_3: pink;
         td {
           border-bottom: 0px;
           border-top: 0px;
-        &.now {
-          border-top: 3px solid pink;
-        }
+
+          &.now {
+            border-top: 2px solid $color_today_indicator;
+          }
         }
       }
 
@@ -70,9 +88,10 @@ $colors_flat_3: pink;
         td {
           border-bottom: 1px solid rgba(30, 30, 30, 0.1);
           border-top: 1px dotted rgba(30, 30, 30, 0.1);
-        &.now {
-          border-bottom: 3px solid pink;
-        }
+
+          &.now {
+            border-bottom: 2px solid $color_today_indicator;
+          }
         }
       }
     }

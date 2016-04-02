@@ -57,14 +57,16 @@ class Today extends React.Component {
     let _total = 0;
 
     events.forEach(ev => {
-      ev.categories.forEach(cat => {
-        if (!_categoriesValues[cat.title]) {
-          _categoriesValues[cat.title] = 0;
-        }
 
-        _categoriesValues[cat.title] += 1;
-        _total += 1;
-      });
+      const cat = ev.category;
+
+      if (!_categoriesValues[cat.title]) {
+        _categoriesValues[cat.title] = 0;
+      }
+
+      _categoriesValues[cat.title] += 1;
+      _total += 1;
+
     });
 
     let data = [];

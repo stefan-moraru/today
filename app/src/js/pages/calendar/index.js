@@ -3,6 +3,7 @@ import moment from 'moment';
 import momentRange from 'moment-range';
 import SecondHeader from 'common/components/secondheader';
 import EventService from 'common/services/eventservice';
+import Utils from 'common/utils';
 require('./index.scss');
 
 class Calendar extends React.Component {
@@ -25,23 +26,6 @@ class Calendar extends React.Component {
     this.setState({
       events: response
     });
-  }
-
-  padTime(time) {
-
-    let hour = time.h;
-    let minutes = time.m;
-
-    if (hour < 10) {
-      hour = `0${hour}`
-    }
-
-    if (minutes == 0) {
-      minutes = `00`;
-    }
-
-    return `${hour}:${minutes}`;
-
   }
 
   isToday(date) {
@@ -84,6 +68,29 @@ class Calendar extends React.Component {
 
   }
 
+  attendeesPictures(event) {
+
+    const images = (event.attendees || []).map(item => {
+
+      const imgProps = {
+        src: item.image || 'http://placehold.it/25x25',
+        className: 'img-circle'
+      };
+
+      return (
+        <img {...imgProps} />
+      );
+
+    })
+
+    return (
+      <div className='attendees'>
+        { images }
+      </div>
+    );
+
+  }
+
   getTableBody(dates, events) {
 
     let time = [];
@@ -103,9 +110,40 @@ class Calendar extends React.Component {
 
         const eventsRendered = eventsMatched.map((ev, index3) => {
 
+          const height = document.querySelector('tbody tr').clientHeight;
+
+          const style = {
+            backgroundColor: Utils.colorForCategory(ev.category),
+            height: `${Math.floor(ev.duration / 30) * height}px`
+          };
+
+          let showDescription = null;
+          let showTime = null;
+          let showLocation = null;
+          let showFriends = null;
+
+          if (ev.duration > 30) {
+            showTime = <span>{ Utils.padTime(ev.time) } @</span>;
+            showLocation = <span>{ev.location}</span>;
+          }
+
+          if (ev.duration > 60) {
+            //
+          }
+
+          if (ev.duration > 90) {
+            showDescription = <div><span>{ ev.description }</span></div>;
+            showFriends = this.attendeesPictures(ev);
+          }
+
           return (
-            <div className='event' key={'calendar-table-body-td-' + index3 + '-' + index2}>
-              { ev.title }
+            <div className='event' style={style} key={'calendar-table-body-td-' + index3 + '-' + index2}>
+              <span className='event--title f-bold'>{ ev.title }</span> <br />
+              <div>
+                { showTime } { showLocation }
+              </div>
+              { showDescription }
+              { showFriends }
             </div>
           );
 
@@ -115,14 +153,14 @@ class Calendar extends React.Component {
         const now = this.isNow(date, item) ? 'now' : '';
 
         return (
-          <td className={today + ' ' + now}>
+          <td className={today + ' ' + now} key={'calendar-table-body-td-' + index + ' ' + index2}>
             { eventsRendered }
           </td>
         );
 
       });
 
-      tds.unshift(<td>{ this.padTime(item) }</td>);
+      tds.unshift(<td>{ Utils.padTime(item) }</td>);
 
       return (
         <tr key={'calendar-table-body-tr-' + index}>
@@ -151,16 +189,16 @@ class Calendar extends React.Component {
     const body = this.getTableBody(dates, events);
 
     return (
-        <table className='table'>
-          <thead>
-            <tr>
-              { header }
-            </tr>
-          </thead>
-          <tbody>
-            { body }
-          </tbody>
-        </table>
+      <table className='table'>
+        <thead>
+          <tr>
+            { header }
+          </tr>
+        </thead>
+        <tbody>
+          { body }
+        </tbody>
+      </table>
     );
 
   }
