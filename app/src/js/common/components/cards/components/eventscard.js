@@ -16,6 +16,12 @@ class EventsCard extends Card {
 
   }
 
+  getIntroContent() {
+
+    return this.props.introContent;
+
+  }
+
   generateEvents(events) {
 
     return events

@@ -54,7 +54,7 @@ class Card extends React.Component {
 
     if (introContent) {
       containerProps['data-intro'] = introContent;
-      containerProps['data-position'] = 'right';
+      containerProps['data-position'] = 'bottom';
     }
 
     const titleProps = {

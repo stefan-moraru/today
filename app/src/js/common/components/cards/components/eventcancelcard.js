@@ -27,6 +27,12 @@ class EventCancelCard extends Card {
 
   }
 
+  getIntroContent() {
+
+    return 'Daca nu mai vrei sa participi la acest eveniment, confirma apasand butonul';
+
+  }
+
   onMouseLeave() {
 
     const cards = this.getCards();

@@ -10,6 +10,12 @@ class ProfileCard extends Card {
 
   }
 
+  getIntroContent() {
+
+    return this.props.introContent;
+
+  }
+
   getContent() {
 
     const image = this.props.image;

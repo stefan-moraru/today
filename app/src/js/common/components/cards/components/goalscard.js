@@ -15,6 +15,12 @@ class GoalsCard extends Card {
 
   }
 
+  getIntroContent() {
+
+    return 'O lista cu telurile pe care vrei sa le atingi. Poti adauga / bifa elemente mergand pe pagina \'Goals\'';
+
+  }
+
   getContent() {
 
     const goals = [

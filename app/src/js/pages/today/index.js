@@ -97,17 +97,20 @@ class Today extends React.Component {
   getCardsForEvents(events) {
 
     const cardProfileProps = {
-      ...this.state.profile
+      ...this.state.profile,
+      introContent: 'Statistici despre profilul tau. Sfat: Foloseste cat mai mult aplicatia pentru a iti mari nivelul.'
     };
 
     const cardEventsProps = {
       title: 'Evenimente',
       events: this.state.events,
-      onClick: this.selectEvent.bind(this)
+      onClick: this.selectEvent.bind(this),
+      introContent: 'Evenimentele la care participi astazi. Click pe oricare din ele pentru a vedea mai multe detalii.'
     };
 
     const cardMapProps = {
-      locations: this.state.events.map(ev => ev.location)
+      locations: this.state.events.map(ev => ev.location),
+      introContent: 'Drumul pe care il vei parcurge astazi. Locatiile evenimentelor sunt adaugate ca waypoints.'
     };
 
     const cardChartProps = {
