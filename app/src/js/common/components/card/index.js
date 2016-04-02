@@ -11,7 +11,7 @@ class Card extends React.Component {
 
   getType() {
 
-    console.warn('[Card]: getType not implemented');
+    return '';
 
   }
 
@@ -29,7 +29,7 @@ class Card extends React.Component {
 
   getContent() {
 
-    console.warn(`[${this.getType()}]: getContent not implemented`);
+    return '';
 
   }
 
