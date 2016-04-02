@@ -149,4 +149,10 @@ class DatePicker extends React.Component {
 
 }
 
+DatePicker.defaultProps = {
+  onClick: () => {
+    //
+  }
+};
+
 export default DatePicker;

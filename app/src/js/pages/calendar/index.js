@@ -4,6 +4,7 @@ import momentRange from 'moment-range';
 import SecondHeader from 'common/components/secondheader';
 import EventService from 'common/services/eventservice';
 import DatePicker from 'common/components/datepicker';
+import CreateEvent from './components/createevent';
 import Utils from 'common/utils';
 require('./index.scss');
 
@@ -248,7 +249,14 @@ class Calendar extends React.Component {
           icon: 'list'
         },
         {
-          icon: 'plus'
+          icon: 'plus',
+          extra: (
+            <div>
+              <h5>Creaza un eveniment</h5>
+
+              <CreateEvent />
+            </div>
+          )
         }
       ],
       itemsRight: [
