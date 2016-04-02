@@ -1,6 +1,6 @@
 const getTodayEvents = () => {
-    return new Promise((resolve, reject) => {
-      resolve([
+  return new Promise((resolve, reject) => {
+    resolve([
       {
         id: 0,
         time: { h: 7, m: 30 },
@@ -56,7 +56,7 @@ const getTodayEvents = () => {
         title: 'Meditating'
       }
     ]);
-    });
+  });
 };
 
 export default {

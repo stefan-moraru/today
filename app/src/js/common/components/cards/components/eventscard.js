@@ -54,7 +54,9 @@ class EventsCard extends Card {
 }
 
 EventsCard.defaultProps = {
-  onClick: () => {}
+  onClick: () => {
+    return;
+  }
 };
 
 export default EventsCard;

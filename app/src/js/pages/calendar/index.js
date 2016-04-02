@@ -53,16 +53,16 @@ class Calendar extends React.Component {
   isNow(date, time) {
 
     const now = new Date();
-    const now_h = now.getHours();
-    let now_m = now.getMinutes();
+    const nowH = now.getHours();
+    let nowM = now.getMinutes();
 
-    if (now_m > 30) {
-      now_m = 30;
+    if (nowM > 30) {
+      nowM = 30;
     } else {
-      now_m = 0;
+      nowM = 0;
     }
 
-    return this.isToday(date) && time.h === now_h && time.m === now_m;
+    return this.isToday(date) && time.h === nowH && time.m === nowM;
 
   }
 
@@ -101,10 +101,10 @@ class Calendar extends React.Component {
 
         const eventsMatched = eventList.filter(ev => ev.date === date && ev.time.h === item.h && ev.time.m === item.m);
 
-        const events = eventsMatched.map((ev, index) => {
+        const eventsRendered = eventsMatched.map((ev, index3) => {
 
           return (
-            <div className='event' key={'calendar-table-body-td-' + index + '-' + index2}>
+            <div className='event' key={'calendar-table-body-td-' + index3 + '-' + index2}>
               { ev.title }
             </div>
           );
@@ -116,7 +116,7 @@ class Calendar extends React.Component {
 
         return (
           <td className={today + ' ' + now}>
-            { events }
+            { eventsRendered }
           </td>
         );
 
@@ -143,7 +143,9 @@ class Calendar extends React.Component {
 
     let dates = [];
 
-    moment().range(start, end).by('days', item => { dates.push(item.format('YYYY-MM-DD')) });
+    moment().range(start, end).by('days', item => {
+      dates.push(item.format('YYYY-MM-DD'))
+    });
 
     const header = this.getTableHeader(dates);
     const body = this.getTableBody(dates, events);

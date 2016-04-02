@@ -69,9 +69,9 @@ class Today extends React.Component {
 
     let data = [];
 
-  	const colors = [
-  		'#EC644B', '#674172', '#1BBC9B', '#4B77BE', '#F89406'
-  	];
+    const colors = [
+      '#EC644B', '#674172', '#1BBC9B', '#4B77BE', '#F89406'
+    ];
 
     let colorInd = Math.floor(Math.random() * colors.length);
 

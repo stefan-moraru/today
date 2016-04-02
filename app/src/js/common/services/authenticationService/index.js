@@ -2,6 +2,8 @@ const AuthenticationService = {
 
   login() {
 
+    return;
+
   },
 
   logout(callback) {
@@ -22,9 +24,7 @@ const AuthenticationService = {
 
     //TODO
 
-    return true;
-
-    return localStorage.getItem('token') !== null;
+    return true || localStorage.getItem('token') !== null;
 
   },
 
@@ -35,6 +35,8 @@ const AuthenticationService = {
   },
 
   onChange() {
+
+    return;
 
   }
 

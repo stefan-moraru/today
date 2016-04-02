@@ -21,7 +21,7 @@ class EventCard extends Card {
     const path = '/src/assets/images/';
     const prefix = `category_`;
     const imagePath = name => `${path}${prefix}${name}`;
-    const imagePaths = paths => paths.map(path => imagePath(path));
+    const imagePaths = paths => paths.map(item => imagePath(item));
 
     const images = {
       'sports': imagePaths(['sports1.jpg', 'sports0.jpg']),
@@ -29,11 +29,11 @@ class EventCard extends Card {
       'noimage': imagePaths(['noimage.jpg', 'noimage1.jpg', 'noimage2.jpg', 'noimage3.jpg'])
     };
 
-    const getRandomImageFromCategory = (images, category) => {
-      const rand = Math.floor(Math.random() * images[category].length);
+    const getRandomImageFromCategory = (imagesList, category) => {
+      const rand = Math.floor(Math.random() * imagesList[category].length);
 
-      return images[category][rand];
-    }
+      return imagesList[category][rand];
+    };
 
     let image = getRandomImageFromCategory(images, 'noimage');
     let category = null;
@@ -66,9 +66,9 @@ class EventCard extends Card {
     };
 
     const start = Utils.padTime(event.time);
-    const ending_h = Math.floor(event.value / 60);
-    const ending_m = event.value % 60;
-    const ending = Utils.padTime({ h: ending_h, m: ending_m });
+    const endingH = Math.floor(event.value / 60);
+    const endingM = event.value % 60;
+    const ending = Utils.padTime({ h: endingH, m: endingM });
     const time = `${start} - ${ending}`;
 
     const containerProps = {
@@ -92,7 +92,9 @@ class EventCard extends Card {
 }
 
 EventCard.defaultProps = {
-  onClick: () => {}
+  onClick: () => {
+    return;
+  }
 };
 
 export default EventCard;

@@ -12,7 +12,7 @@ class MapCard extends Card {
   getContent() {
 
     const locations = this.props.locations
-    .filter(item => item !== undefined && item !== null)
+    .filter(item => typeof item !== 'undefined' && item !== null)
     .map(item => item.replace(/\ /g, '+'));
 
     const first = locations[0];
