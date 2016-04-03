@@ -8,6 +8,7 @@ import MapCard from './components/mapcard';
 import EventCard from './components/eventcard';
 import EventCancelCard from './components/eventcancelcard';
 import ChartCard from './components/chartcard';
+import DirectionsCard from './components/directionscard';
 require('./index.scss');
 
 export {
@@ -20,5 +21,6 @@ export {
   MapCard,
   EventCard,
   EventCancelCard,
-  ChartCard
+  ChartCard,
+  DirectionsCard
 };

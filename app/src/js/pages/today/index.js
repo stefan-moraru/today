@@ -1,7 +1,7 @@
 import React from 'react';
 import Header from 'common/components/header';
 import Timeline from 'common/components/timeline';
-import { Cards, ProfileCard, EventsCard, GoalsCard, FriendsCard, TimeTrackerCard, MapCard, EventCard, EventCancelCard, ChartCard } from 'common/components/cards';
+import { Cards, ProfileCard, EventsCard, GoalsCard, FriendsCard, TimeTrackerCard, MapCard, EventCard, EventCancelCard, ChartCard, DirectionsCard } from 'common/components/cards';
 import Utils from 'common/utils';
 import EventService from 'common/services/eventservice';
 import UserService from 'common/services/userservice';
@@ -142,7 +142,8 @@ class Today extends React.Component {
         (<FriendsCard {...cardFriendsProps} />),
         (<TimeTrackerCard {...cardTimeTrackerProps} />),
         (<MapCard {...cardMapProps} />),
-        (<ChartCard {...cardChartProps} />)
+        (<ChartCard {...cardChartProps} />),
+        (<DirectionsCard />)
       ]
     };
 
