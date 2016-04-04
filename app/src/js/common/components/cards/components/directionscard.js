@@ -21,6 +21,12 @@ class DirectionsCard extends Card {
 
   }
 
+  getIntroContent() {
+
+    return this.props.introContent;
+
+  }
+
   hideMap() {
 
     this.setState({

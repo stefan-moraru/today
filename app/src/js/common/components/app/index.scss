@@ -5,6 +5,14 @@ $colors_flat_2: rgb(52, 152, 219);
 $colors_flat_3: rgba(27, 188, 155, 1);
 $colors_flat_4: rgb(108, 122, 137);
 
+$color_nero: rgb(30, 30, 30);
+$color_nero_inverse: white;
+
+$color_eucalyptus: rgb(38, 166, 91);
+$color_eucalyptus_inverse: white;
+
+$border_radius_bottom_left: 0px 0px 0px .25rem;
+
 body {
   font-family: 'Open Sans', sans-serif;
   font-weight: 400;
@@ -120,10 +128,13 @@ body {
   .close-top {
     z-index: 5;
     position: absolute;
-    top: 20px;
-    right: 20px;
-    background-color: pink;
+    top: 0;
+    right: 0;
+    background-color: $color_eucalyptus;
+    color: $color_eucalyptus_inverse;
     font-size: 30px;
     padding: 20px;
+    border-radius: $border_radius_bottom_left;
+    box-shadow: 0px 0px 0px 1px rgba(0, 0, 0, 0.1);
   }
 }

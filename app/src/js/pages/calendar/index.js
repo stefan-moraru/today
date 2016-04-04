@@ -24,7 +24,13 @@ class Calendar extends React.Component {
 
   componentDidMount() {
 
-    EventService.getTodayEvents().then(this.saveEvents.bind(this));
+    this.getEvents();
+
+  }
+
+  getEvents() {
+
+    EventService.getEvents(this.state.startOfWeek.format('YYYY-MM-DD'), this.state.endOfWeek.format('YYYY-MM-DD')).then(this.saveEvents.bind(this));
 
   }
 

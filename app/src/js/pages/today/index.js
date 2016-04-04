@@ -134,6 +134,11 @@ class Today extends React.Component {
       title: 'Goals'
     };
 
+    const cardDirectionsProps = {
+      title: 'Urmatorul eveniment',
+      introContent: 'Apasand butonul vei primi o harta pentru urmatorul eveniment'
+    };
+
     const cardsProps = {
       cards: [
         (<ProfileCard {...cardProfileProps} />),
@@ -143,7 +148,7 @@ class Today extends React.Component {
         (<TimeTrackerCard {...cardTimeTrackerProps} />),
         (<MapCard {...cardMapProps} />),
         (<ChartCard {...cardChartProps} />),
-        (<DirectionsCard />)
+        (<DirectionsCard {...cardDirectionsProps} />)
       ]
     };
 
