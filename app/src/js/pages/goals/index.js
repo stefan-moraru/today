@@ -157,7 +157,7 @@ class Goals extends React.Component {
 
       if (item.duration) {
         duration = (
-          <h6 className='f-light chain--time'>
+          <h6 className='f-light'>
             <i className='fa fa-clock-o'></i>
             { this.durationAsSentence(item.duration) }
           </h6>
@@ -165,22 +165,24 @@ class Goals extends React.Component {
       }
 
       return (
-        <div className='col-xs-12 u-mb-full-2 chain'>
-          <h4 className='f-light'>{ item.title }</h4>
-          <h6 className='f-light chain--description'>
-            <i className='fa fa-check-square-o'></i>
-            { item.description }
-          </h6>
+        <div className='col-xs-12'>
+          <div className='col-md-6 u-mb-full-2 chain'>
+            <h2 className='f-light'>{ item.title }</h2>
+            <h6 className='f-light'>
+              <i className='fa fa-check-square-o'></i>
+              { item.description }
+            </h6>
 
-          <h6 className='f-light chain--description'>
-            <i className='fa fa-calendar'></i>
-            { this.daysAsSentence(item.days) }
-          </h6>
+            <h6 className='f-light'>
+              <i className='fa fa-calendar'></i>
+              { this.daysAsSentence(item.days) }
+            </h6>
 
-          { duration }
+            { duration }
 
-          <div className='cells'>
-            { cellsRendered }
+            <div className='cells'>
+              { cellsRendered }
+            </div>
           </div>
         </div>
       );
