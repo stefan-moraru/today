@@ -12,8 +12,25 @@ class DatePicker extends React.Component {
 
     this.state = {
       startOfMonth: moment().startOf('month'),
-      endOfMonth: moment().endOf('month')
+      endOfMonth: moment().endOf('month'),
+      selected: this.props.selected
     };
+
+  }
+
+  isSelected(date) {
+
+    return date.format('YYYY-MM-DD') === this.state.selected.format('YYYY-MM-DD');
+
+  }
+
+  onClick(column) {
+
+    this.setState({
+      selected: column
+    });
+
+    return this.props.onClick.bind(this, column);
 
   }
 
@@ -59,10 +76,10 @@ class DatePicker extends React.Component {
 
         let tdProps = {
           className: 'u-c-pointer',
-          onClick: this.props.onClick.bind(this, column)
+          onClick: this.onClick.bind(this, column)
         };
 
-        if (column && Utils.isToday(column.format('YYYY-MM-DD'))) {
+        if (column && this.isSelected(column)) {
           tdProps.className += ' today';
         }
 
@@ -152,7 +169,8 @@ class DatePicker extends React.Component {
 DatePicker.defaultProps = {
   onClick: () => {
     //
-  }
+  },
+  selected: moment()
 };
 
 export default DatePicker;

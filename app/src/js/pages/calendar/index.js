@@ -267,14 +267,17 @@ class Calendar extends React.Component {
       ],
       itemsRight: [
         {
+          index: 0,
           icon: 'chevron-left',
           onClick: this.switchToLastWeek.bind(this)
         },
         {
+          index: 1,
           icon: 'calendar-times-o',
           onClick: this.switchToCurrentWeek.bind(this)
         },
         {
+          index: 2,
           icon: 'chevron-right',
           onClick: this.switchToNextWeek.bind(this)
         }

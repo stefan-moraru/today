@@ -13,11 +13,55 @@ class SecondHeader extends React.Component {
 
   }
 
-  toggleExtra(name) {
+  componentDidMount() {
+
+    document.addEventListener('click', this.closeExtra.bind(this));
+
+  }
+
+  componentWillUnmount() {
+
+    document.removeEventListener('click', this.closeExtra.bind(this));
+
+  }
+
+  hasParent(element, parent) {
+
+    if (!element) {
+
+      return false;
+
+    }
+
+    if (element === parent || element.parentNode === parent) {
+
+      return true;
+
+    }
+
+    return this.hasParent(element.parentNode, parent);
+
+  }
+
+  closeExtra(ev) {
+
+    if (!this.hasParent(ev.target, this.refs.extra) && ev.target.className.indexOf('secondheader') == -1) {
+
+      this.setState({
+        extraVisible: {}
+      });
+
+    }
+
+  }
+
+  toggleExtra(name, ev) {
 
     let extraVisible = this.state.extraVisible;
+    let aux = extraVisible[name];
 
-    extraVisible[name] = !extraVisible[name];
+    extraVisible = {};
+    extraVisible[name] = !aux;
 
     this.setState({
       extraVisible: extraVisible
@@ -34,7 +78,7 @@ class SecondHeader extends React.Component {
       let extra = null;
 
       if (item.icon) {
-        icon = <i className={'fa fa-' + item.icon}></i>;
+        icon = <i className={'secondheader-icon fa fa-' + item.icon}></i>;
       }
 
       let liProps = {
@@ -52,11 +96,11 @@ class SecondHeader extends React.Component {
         };
 
         if (!this.state.extraVisible[item.icon]) {
-          extraProps.className += 'u-hidden';
+          extraProps.className += ' u-hidden';
         }
 
         extra = (
-          <div {...extraProps}>
+          <div {...extraProps} ref='extra'>
             { item.extra }
           </div>
         );
@@ -79,7 +123,7 @@ class SecondHeader extends React.Component {
   render() {
 
     const items = this.generateItems(this.props.items);
-    const itemsRight = this.generateItems(this.props.itemsRight.reverse(), 'u-fr');
+    const itemsRight = this.generateItems(this.props.itemsRight.sort((a, b) => a.index > b.index).reverse(), 'u-fr');
 
     return (
       <nav className="navbar navbar-light bg-faded navbar-second">
