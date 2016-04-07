@@ -27,6 +27,33 @@ const breakCount = (vec) => {
   return countBreaks;
 };
 
+const breakIntervals = (vec) => {
+
+  // [ { start: { h, m }, end: { h, m }, duration }]
+  let intervals = [], startValue, endValue;
+
+  for (let i = 0; i < vec.length - 1; i++) {
+    endValue = vec[i].time.h * 60 + vec[i].time.m + vec[i].duration;
+    startValue = vec[i + 1].time.h * 60 + vec[i + 1].time.m;
+
+    if (startValue - endValue > 0) {
+      intervals.push({
+        start: {
+          h: Math.floor(endValue / 60),
+          m: endValue % 60
+        },
+        end: {
+          h: Math.floor(startValue / 60),
+          m: startValue % 60
+        },
+        duration: startValue - endValue
+      });
+    }
+  }
+
+  return intervals;
+};
+
 const breakMinutes = (vec) => {
   let breakDuration = 0, endValue, startValue;
 
@@ -207,14 +234,46 @@ const isNow = (date, time) => {
 
 };
 
+const durationAsSentence = (duration) => {
+
+  const h = Math.floor(duration / 60);
+  const m = Math.floor(duration % 60);
+  let sen = '';
+
+  if (h) {
+    if (h === 1) {
+      sen += 'O ora';
+    } else {
+      sen += `${h} ore`;
+    }
+  }
+
+  if (m) {
+    if (h) {
+      sen += ' si ';
+    }
+
+    if (m < 20) {
+      sen += `${m} minute`;
+    } else {
+      sen += `${m} de minute`;
+    }
+  }
+
+  return sen;
+
+};
+
 export default {
   dayResume,
   todayEvents,
   breakMinutes,
+  breakIntervals,
   eventsDuration,
   activityMinutes,
   padTime,
   colorForCategory,
   isToday,
-  isNow
+  isNow,
+  durationAsSentence
 };

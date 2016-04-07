@@ -1,10 +1,24 @@
 import React from 'react';
 import Header from 'common/components/header';
 import Timeline from 'common/components/timeline';
-import { Cards, ProfileCard, EventsCard, GoalsCard, FriendsCard, TimeTrackerCard, MapCard, EventCard, EventCancelCard, ChartCard, DirectionsCard } from 'common/components/cards';
+import {
+  Cards,
+  ProfileCard,
+  EventsCard,
+  GoalsCard,
+  FriendsCard,
+  TimeTrackerCard,
+  MapCard,
+  EventCard,
+  EventCancelCard,
+  ChartCard,
+  DirectionsCard,
+  SuggestionCard
+} from 'common/components/cards';
 import Utils from 'common/utils';
 import EventService from 'common/services/eventservice';
 import UserService from 'common/services/userservice';
+import GoalsService from 'common/services/goalsservice';
 require('./index.scss');
 
 class Today extends React.Component {
@@ -25,6 +39,8 @@ class Today extends React.Component {
 
     UserService.profile().then(this.saveProfile.bind(this));
 
+    GoalsService.getGoals().then(this.saveGoals.bind(this));
+
   }
 
   saveEvents(response) {
@@ -39,6 +55,14 @@ class Today extends React.Component {
 
     this.setState({
       profile: profile
+    });
+
+  }
+
+  saveGoals(goals) {
+
+    this.setState({
+      goals: goals
     });
 
   }
@@ -139,9 +163,16 @@ class Today extends React.Component {
       introContent: 'Apasand butonul vei primi o harta pentru urmatorul eveniment'
     };
 
+    const cardSuggestionProps = {
+      title: 'Sugestie',
+      introContent: 'Vei primi o sugestie',
+      events: this.state.events
+    };
+
     const cardsProps = {
       cards: [
         (<ProfileCard {...cardProfileProps} />),
+        (<SuggestionCard {...cardSuggestionProps} />),
         (<EventsCard {...cardEventsProps} />),
         (<GoalsCard {...cardGoalsProps} />),
         (<DirectionsCard {...cardDirectionsProps} />),

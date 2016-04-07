@@ -3,9 +3,43 @@ import SecondHeader from 'common/components/secondheader';
 import moment from 'moment';
 import momentRange from 'moment-range';
 import CreateGoal from './components/creategoal';
+import Utils from 'common/utils';
+import GoalsService from 'common/services/goalsservice';
 require('./index.scss');
 
+console.log(GoalsService);
+
 class Goals extends React.Component {
+
+  constructor(props) {
+
+    super(props);
+
+    this.state = {
+      goals: []
+    };
+
+  }
+
+  componentDidMount() {
+
+    this.getGoals();
+
+  }
+
+  getGoals() {
+
+    GoalsService.getGoals().then(this.saveGoals.bind(this));
+
+  }
+
+  saveGoals(goals) {
+
+    this.setState({
+      goals: goals
+    });
+
+  }
 
   generateSecondHeader() {
 
@@ -19,36 +53,6 @@ class Goals extends React.Component {
     };
 
     return <SecondHeader {...secondHeaderProps} />;
-
-  }
-
-  durationAsSentence(duration) {
-
-    const h = Math.floor(duration / 60);
-    const m = Math.floor(duration % 60);
-    let sen = '';
-
-    if (h) {
-      if (h === 1) {
-        sen += 'O ora';
-      } else {
-        sen += `${h} ore`;
-      }
-    }
-
-    if (m) {
-      if (h) {
-        sen += ' si ';
-      }
-
-      if (m < 20) {
-        sen += `${m} minute`;
-      } else {
-        sen += `${m} de minute`;
-      }
-    }
-
-    return sen;
 
   }
 
@@ -108,41 +112,6 @@ class Goals extends React.Component {
 
   generateChains() {
 
-    const goals = [
-      {
-        id: 1,
-        days: [ 3, 6 ],
-        doneOn: [ '2016-03-02', '2016-03-05' ],
-        title: 'Mancat sanatos',
-        description: 'Fara fast-food sau dulciuri. Cel mult 2000 de calorii.'
-      },
-      {
-        id: 2,
-        days: [ 0, 1, 2, 3, 4, 5, 6 ],
-        doneOn: [ '2016-03-02', '2016-03-05', '2016-04-01' ],
-        title: 'Exercitii fizice',
-        description: 'Alergat cel putin 2km sau mers la sala timp de o ora.',
-        duration: 30
-      },
-      {
-        id: 3,
-        days: [ 1, 2, 3, 4, 5 ],
-        doneOn: [ '2016-03-02', '2016-03-05', '2016-04-01' ],
-        title: 'Invatat pentru facultate',
-        description: 'Alergat cel putin 2km sau mers la sala timp de o ora.',
-        duration: 90
-      },
-      {
-        id: 4,
-        days: [ 1 ],
-        doneOn: [ '2016-03-14', '2016-03-15', '2016-04-01' ],
-        title: 'Dansat',
-        description: 'Mers la sala de dans',
-        location: 'Quasar Dance Iasi',
-        duration: 250
-      }
-    ];
-
     const profile = {
       createdAt: new Date('2016-01-01')
     };
@@ -150,7 +119,7 @@ class Goals extends React.Component {
     const startDate = moment(profile.createdAt);
     const endDate = moment(new Date());
 
-    const goalsRendered = goals
+    const goalsRendered = this.state.goals
     .map(item => {
 
       const cellsRendered = this.getCells(startDate, endDate, item);
@@ -161,7 +130,7 @@ class Goals extends React.Component {
         duration = (
           <h6 className='f-light'>
             <i className='fa fa-clock-o'></i>
-            { this.durationAsSentence(item.duration) }
+            { Utils.durationAsSentence(item.duration) }
           </h6>
         );
       }
