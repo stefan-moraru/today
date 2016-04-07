@@ -184,7 +184,24 @@ const getTodayEvents = () => {
   });
 };
 
+const createEvent = (event) => {
+  return new Promise((resolve, reject) => {
+
+    resolve('ok');
+/*
+id: 6,
+time: { h: 20, m: 0 },
+date: '2016-03-30',
+duration: 90,
+location: 'Palas Mall Iasi',
+category: { id: 0, title: 'meditation' },
+title: 'Meditating'
+*/
+  });
+};
+
 export default {
   getTodayEvents: getTodayEvents,
-  getEvents: getEvents
+  getEvents: getEvents,
+  createEvent: createEvent
 };

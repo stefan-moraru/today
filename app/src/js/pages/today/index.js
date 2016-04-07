@@ -28,7 +28,8 @@ class Today extends React.Component {
     super(props);
 
     this.state = {
-      events: []
+      events: [],
+      goals: []
     };
 
   }
@@ -109,7 +110,7 @@ class Today extends React.Component {
       }
 
       data = data.concat({
-        value: _categoriesValues[cat] / _total * 100,
+        value: Math.round(_categoriesValues[cat] / _total * 100),
         color: colors[colorInd],
         highlight: "#5AD3D1",
         label: cat[0].toUpperCase().concat(cat.slice(1))
@@ -166,14 +167,15 @@ class Today extends React.Component {
     const cardSuggestionProps = {
       title: 'Sugestie',
       introContent: 'Vei primi o sugestie',
-      events: this.state.events
+      events: this.state.events,
+      goals: this.state.goals
     };
 
     const cardsProps = {
       cards: [
         (<ProfileCard {...cardProfileProps} />),
-        (<SuggestionCard {...cardSuggestionProps} />),
         (<EventsCard {...cardEventsProps} />),
+        (<SuggestionCard {...cardSuggestionProps} />),
         (<GoalsCard {...cardGoalsProps} />),
         (<DirectionsCard {...cardDirectionsProps} />),
         (<FriendsCard {...cardFriendsProps} />),

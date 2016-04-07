@@ -1,9 +1,28 @@
-$colors_green: rgba(63, 195, 128, 0.6);
-$colors_grey: #e5e5e5;
+$color_green: rgba(63, 195, 128, 0.6);
+$color_grey: #e5e5e5;
+$color_done: $color_green;
+$color_notdone: rgba(0, 0, 0, 0.1);
 
 .c-card {
   transition-duration: 0.3s;
   padding: 15px;
+}
+
+.c-card-suggestion {
+  .suggestion {
+    .goals {
+      .goal {
+        background-color: $color_notdone;
+        color: white;
+        padding: 5px;
+        margin-bottom: 2px;
+
+        &:hover {
+          background-color: $color_green;
+        }
+      }
+    }
+  }
 }
 
 .c-card-event {
@@ -84,7 +103,7 @@ $colors_grey: #e5e5e5;
     }
 
     &--not-done {
-      border: 1px dashed $colors_grey;
+      border: 1px dashed $color_grey;
 
       .icon {
         color: rgba(0, 0, 0, 0.1);
@@ -92,10 +111,10 @@ $colors_grey: #e5e5e5;
     }
 
     &--done {
-      border: 1px solid $colors_green;
+      border: 1px solid $color_green;
 
       .icon {
-        color: $colors_green;
+        color: $color_green;
       }
     }
   }
