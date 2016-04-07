@@ -2,6 +2,7 @@ import React from 'react';
 import SecondHeader from 'common/components/secondheader';
 import moment from 'moment';
 import momentRange from 'moment-range';
+import CreateGoal from './components/creategoal';
 require('./index.scss');
 
 class Goals extends React.Component {
@@ -11,7 +12,8 @@ class Goals extends React.Component {
     const secondHeaderProps = {
       items: [
         {
-          'icon': 'plus'
+          'icon': 'plus',
+          'extra': <CreateGoal />
         }
       ]
     };
@@ -180,8 +182,22 @@ class Goals extends React.Component {
 
             { duration }
 
-            <div className='cells'>
-              { cellsRendered }
+            <div className='row'>
+              <div className='cells col-xs-12'>
+                { cellsRendered }
+              </div>
+            </div>
+
+            <div className='row u-mt-half'>
+              <div className='col-xs-12'>
+                <button className='btn btn-success'>
+                  <i className='fa fa-check'></i>
+                </button>
+
+                <button className='btn btn-danger u-ml-quarter'>
+                  <i className='fa fa-times'></i>
+                </button>
+              </div>
             </div>
           </div>
         </div>

@@ -144,11 +144,11 @@ class Today extends React.Component {
         (<ProfileCard {...cardProfileProps} />),
         (<EventsCard {...cardEventsProps} />),
         (<GoalsCard {...cardGoalsProps} />),
+        (<DirectionsCard {...cardDirectionsProps} />),
         (<FriendsCard {...cardFriendsProps} />),
         (<TimeTrackerCard {...cardTimeTrackerProps} />),
         (<MapCard {...cardMapProps} />),
-        (<ChartCard {...cardChartProps} />),
-        (<DirectionsCard {...cardDirectionsProps} />)
+        (<ChartCard {...cardChartProps} />)
       ]
     };
 

@@ -17,7 +17,8 @@ class Calendar extends React.Component {
     this.state = {
       events: [],
       startOfWeek: moment().startOf('isoweek'),
-      endOfWeek: moment().endOf('isoweek')
+      endOfWeek: moment().endOf('isoweek'),
+      selectedEvent: {}
     };
 
   }
@@ -25,6 +26,24 @@ class Calendar extends React.Component {
   componentDidMount() {
 
     this.getEvents();
+
+  }
+
+  selectEvent(event) {
+
+    this.setState({
+      selectedEvent: event
+    }, () => {
+      const icon = document.querySelector('.secondheader-icon.fa.fa-plus');
+
+      icon.click();
+
+      console.log(icon);
+
+      if (icon) {
+        icon.click();
+      }
+    });
 
   }
 
@@ -133,7 +152,7 @@ class Calendar extends React.Component {
           }
 
           return (
-            <div className='event' style={style} key={'calendar-table-body-td-' + index3 + '-' + index2}>
+            <div className='event u-c-pointer' style={style} key={'calendar-table-body-td-' + index3 + '-' + index2} onClick={this.selectEvent.bind(this, ev)}>
               <span className='event--title f-bold'>{ ev.title }</span> <br />
               <div>
                 { showTime } { showLocation }
@@ -256,13 +275,7 @@ class Calendar extends React.Component {
         },
         {
           icon: 'plus',
-          extra: (
-            <div>
-              <h5>Creaza un eveniment</h5>
-
-              <CreateEvent />
-            </div>
-          )
+          extra: <CreateEvent event={this.state.selectedEvent} />
         }
       ],
       itemsRight: [

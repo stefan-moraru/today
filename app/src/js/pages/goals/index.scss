@@ -8,8 +8,8 @@ $color_notdone: rgba(0, 0, 0, 0.1);
     .chain {
       border-left: 4px solid $color_green_faded;
 
-      i {
-        padding-right: 15px;
+      h6 i {
+        padding-right: 10px;
       }
 
       .cell {
@@ -22,6 +22,29 @@ $color_notdone: rgba(0, 0, 0, 0.1);
 
         &.done {
           background-color: $color_done;
+        }
+      }
+    }
+  }
+
+  .create-goal {
+    .form-control {
+      margin-bottom: 10px;
+    }
+
+    .days {
+      .day {
+        width: 14%;
+        padding: 5px 0px;
+        box-shadow: inset 0px 0px 0px 1px rgba(236, 240, 241, 1);
+        color: white;
+
+        text-align: center;
+
+        background-color: $color_notdone;
+
+        &--selected {
+          background-color: $color_green;
         }
       }
     }
