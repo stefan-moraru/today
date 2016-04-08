@@ -165,7 +165,7 @@ class Today extends React.Component {
     };
 
     const cardSuggestionProps = {
-      title: 'Sugestie',
+      title: 'Sugestii',
       introContent: 'Vei primi o sugestie',
       events: this.state.events,
       goals: this.state.goals
@@ -173,15 +173,15 @@ class Today extends React.Component {
 
     const cardsProps = {
       cards: [
-        (<ProfileCard {...cardProfileProps} />),
+        //(<ProfileCard {...cardProfileProps} />),
         (<EventsCard {...cardEventsProps} />),
-        (<SuggestionCard {...cardSuggestionProps} />),
-        (<GoalsCard {...cardGoalsProps} />),
-        (<DirectionsCard {...cardDirectionsProps} />),
-        (<FriendsCard {...cardFriendsProps} />),
-        (<TimeTrackerCard {...cardTimeTrackerProps} />),
-        (<MapCard {...cardMapProps} />),
-        (<ChartCard {...cardChartProps} />)
+        (<SuggestionCard {...cardSuggestionProps} />)//,
+        //(<GoalsCard {...cardGoalsProps} />),
+        //(<DirectionsCard {...cardDirectionsProps} />),
+        //(<FriendsCard {...cardFriendsProps} />),
+        //(<TimeTrackerCard {...cardTimeTrackerProps} />),
+        //(<MapCard {...cardMapProps} />),
+        //(<ChartCard {...cardChartProps} />)
       ]
     };
 

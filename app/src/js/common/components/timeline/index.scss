@@ -1,15 +1,36 @@
 $colors_flat_3: rgb(25, 181, 254);
+$color_notdone: rgba(0, 0, 0, 0.1);
+$color_notdone_darker: rgba(0, 0, 0, 0.4);
+$color_blue: $color_notdone;
+
+$description_text_color: $color_notdone_darker;
+$description_border_color: $color_notdone;
 
 .c-timeline {
   height: 20px;
 
   .description {
-    width: 200px;
-    margin-left: -100px;
-    margin-top: 25px;
-    text-align: center;
-    color: black;
+    width: 400px;
+    text-align: left;
+    white-space: nowrap;
+    margin-left: 5px;
+    padding-top: 20px;
+    border-left: 3px dashed $description_border_color;
+    color: $description_text_color;
     visibility: hidden;
+
+    h5 {
+      margin-bottom: 0px;
+    }
+
+    .title {
+      float: left;
+      margin-left: 5px;
+      padding-top: 0px;
+      padding-left: 0px;
+      padding-bottom: 5px;
+      border-bottom: 3px dashed $description_border_color;
+    }
   }
 
   .progress {

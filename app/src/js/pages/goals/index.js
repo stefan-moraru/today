@@ -7,8 +7,6 @@ import Utils from 'common/utils';
 import GoalsService from 'common/services/goalsservice';
 require('./index.scss');
 
-console.log(GoalsService);
-
 class Goals extends React.Component {
 
   constructor(props) {

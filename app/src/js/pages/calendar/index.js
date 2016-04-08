@@ -38,8 +38,6 @@ class Calendar extends React.Component {
 
       icon.click();
 
-      console.log(icon);
-
       if (icon) {
         icon.click();
       }

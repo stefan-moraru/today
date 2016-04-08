@@ -33,9 +33,11 @@ class Timeline extends React.Component {
         <div {...dotProps}>
           <div className='circle'></div>
 
-          <div className='description'>
-            <h5>{ event.title }</h5>
+          <div className='description f-light'>
+            <h5 className='title'> { event.title }</h5>
+            <div className='clearfix'></div>
           </div>
+
         </div>
       );
 

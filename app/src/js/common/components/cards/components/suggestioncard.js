@@ -2,6 +2,7 @@ import React from 'react';
 import Card from 'common/components/card';
 import Utils from 'common/utils'
 import EventService from 'common/services/eventservice';
+import moment from 'moment';
 
 class SuggestionCard extends Card {
 
@@ -27,7 +28,17 @@ class SuggestionCard extends Card {
 
   goalsForBreak(breakItem) {
 
-    const goalsRendered = this.props.goals.map((item, index) => {
+    const today = moment().day();
+
+    const goals = this.props.goals
+    .filter(goal => {
+      return goal.days.indexOf(today) !== -1;
+    })
+    .filter(goal => {
+      return goal.duration <= breakItem.duration;
+    });
+
+    const goalsRendered = goals.map((item, index) => {
 
       return (
         <div className='goal u-c-pointer' onClick={this.createEvent.bind(this, item)}>
@@ -45,6 +56,7 @@ class SuggestionCard extends Card {
 
     const events = this.props.events;
     const breaks = Utils.breakIntervals(events);
+    let rendered = null;
 
     const breaksRendered = breaks.map((item, index) => {
 
@@ -66,11 +78,21 @@ class SuggestionCard extends Card {
 
     });
 
-    return (
+    rendered = (
       <div>
         { breaksRendered }
       </div>
     );
+
+    if (breaksRendered.length === 0) {
+
+      rendered = (
+        <span>Poti face unul sau mai multe din goaluri la inceputul sau sfarsitul zilei.</span>
+      );
+
+    }
+
+    return rendered;
 
   }
 

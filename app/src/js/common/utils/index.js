@@ -12,59 +12,97 @@ const activityHours = (vec) => {
   return vec[vec.length - 1].time.h - vec[0].time.h;
 };
 
-const breakCount = (vec) => {
-  let countBreaks = 0, endValue, startValue;
+const eventValue = (event) => {
+  return event.time.h * 60 + event.time.m + event.duration;
+};
 
-  for (let i = 0; i < vec.length - 1; i++) {
-    endValue = vec[i].time.h * 60 + vec[i].time.m + vec[i].duration;
-    startValue = vec[i + 1].time.h * 60 + vec[i + 1].time.m;
-
-    if (endValue < startValue) {
-      countBreaks++;
-    }
-  }
-
-  return countBreaks;
+const eventStartMinutes = (event) => {
+  return event.time.h * 60 + event.time.m;
 };
 
 const breakIntervals = (vec) => {
 
-  // [ { start: { h, m }, end: { h, m }, duration }]
-  let intervals = [], startValue, endValue;
+  // There are no events, so no breaks.
+  if (!vec.length) {
+    return [];
+  }
 
-  for (let i = 0; i < vec.length - 1; i++) {
-    endValue = vec[i].time.h * 60 + vec[i].time.m + vec[i].duration;
-    startValue = vec[i + 1].time.h * 60 + vec[i + 1].time.m;
+  // We will use this to store events based on their duration
+  // time[i] indicates if the minute i in the day is occupied
+  const time = Array.apply(null, Array(1440)).map(() => 0);
 
-    if (startValue - endValue > 0) {
+  vec = sortEvents(vec);
+
+  // Remove time before first event and after last event
+  // It's not break time, it's free time
+  const _start = eventValue(vec[0]);
+  const _end = Math.max.apply(null, vec.map(eventValue));
+
+  for (let i = 0; i < _start; i++) {
+    time[i] = 1;
+  }
+
+  for (let i = _end; i < 1440; i++) {
+    time[i] = 1;
+  }
+
+  vec.forEach((event) => {
+    for (let i = eventStartMinutes(event); i < eventValue(event); i++) {
+      time[i] = 1;
+    }
+  });
+
+  let start = null, end, duration;
+  let intervals = [];
+
+  for (let i = 0; i < 1440; i++) {
+    if (time[i] === 0 && start === null) {
+      start = i;
+    }
+
+    if (time[i] === 1 && start !== null) {
+      end = i;
+      duration = end - start;
+
       intervals.push({
         start: {
-          h: Math.floor(endValue / 60),
-          m: endValue % 60
+          h: Math.floor(start / 60),
+          m: start % 60
         },
         end: {
-          h: Math.floor(startValue / 60),
-          m: startValue % 60
+          h: Math.floor(end / 60),
+          m: end % 60
         },
-        duration: startValue - endValue
+        duration: duration
       });
+
+      start = null;
     }
   }
 
   return intervals;
+
+};
+
+const breakCount = (vec) => {
+
+  return breakIntervals(vec).length;
+
 };
 
 const breakMinutes = (vec) => {
-  let breakDuration = 0, endValue, startValue;
 
-  for (let i = 0; i < vec.length - 1; i++) {
-    endValue = vec[i].time.h * 60 + vec[i].time.m + vec[i].duration;
-    startValue = vec[i + 1].time.h * 60 + vec[i + 1].time.m;
+  return vec.reduce((prev, current) => prev + current.duration, 0);
 
-    breakDuration += startValue - endValue;
-  }
+};
 
-  return breakDuration;
+const sortEvents = (vec) => {
+
+  return vec
+  .sort(function(a, b) {
+    return eventStartMinutes(a) > eventStartMinutes(b);
+  });
+
 };
 
 const dayResume = (vec) => {
@@ -74,15 +112,7 @@ const dayResume = (vec) => {
     return "Astazi va fi o zi placuta, vei avea un eveniment de la ora " + vec[0].time.h;
   }
 
-  vec = vec
-  .map(function(item) {
-    item.value = item.time.h * 60 + item.time.m;
-
-    return item;
-  })
-  .sort(function(a, b) {
-    return a.value > b.value;
-  });
+  vec = sortEvents(vec);
 
   const totalDuration = eventsDuration(vec);
   const hours = activityHours(vec);
