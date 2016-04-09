@@ -3,8 +3,21 @@ import Card from 'common/components/card';
 import Utils from 'common/utils'
 import EventService from 'common/services/eventservice';
 import moment from 'moment';
+import { EventModal } from 'common/components/modals';
+
+const CONST_MODAL_ID = 'suggestion-card-event-modal';
 
 class SuggestionCard extends Card {
+
+  constructor(props) {
+
+    super(props);
+
+    this.state = {
+      event: null
+    };
+
+  }
 
   getType() {
 
@@ -18,17 +31,33 @@ class SuggestionCard extends Card {
 
   }
 
-  createEvent(goal) {
+  createEvent(goal, breakItem) {
 
-    EventService.createEvent({
-      title: goal.title
+    this.setState({
+      event: {
+        title: goal.title,
+        time: {
+          h: breakItem.start.h,
+          m: breakItem.start.m
+        },
+        duration: breakItem.duration,
+        description: goal.description,
+        category: 'Goal'
+      }
     });
+
+    /* EventService.createEvent({
+      title: goal.title
+    }); */
 
   }
 
   goalsForBreak(breakItem) {
 
     const today = moment().day();
+    const food = {
+      title: 'Food'
+    };
 
     const goals = this.props.goals
     .filter(goal => {
@@ -36,12 +65,14 @@ class SuggestionCard extends Card {
     })
     .filter(goal => {
       return goal.duration <= breakItem.duration;
-    });
+    })
+    .concat(food);
+
 
     const goalsRendered = goals.map((item, index) => {
 
       return (
-        <div className='goal u-c-pointer' onClick={this.createEvent.bind(this, item)}>
+        <div className='goal u-c-pointer' onClick={this.createEvent.bind(this, item, breakItem)} data-toggle='modal' data-target={`#${CONST_MODAL_ID}`}>
           { item.title }
         </div>
       );
@@ -52,13 +83,9 @@ class SuggestionCard extends Card {
 
   }
 
-  getContent() {
+  getBreaksRendered(breaks) {
 
-    const events = this.props.events;
-    const breaks = Utils.breakIntervals(events);
-    let rendered = null;
-
-    const breaksRendered = breaks.map((item, index) => {
+    return breaks.map((item, index) => {
 
       const startTime = Utils.padTime(item.start);
       const endTime = Utils.padTime(item.end);
@@ -78,16 +105,31 @@ class SuggestionCard extends Card {
 
     });
 
-    rendered = (
-      <div>
-        { breaksRendered }
-      </div>
-    );
+  }
+
+  getContent() {
+
+    const events = this.props.events;
+    const breaks = Utils.breakIntervals(events);
+    const breaksRendered = this.getBreaksRendered(breaks);
+    let rendered = null;
+
+    console.log('here');
+    console.log(this.state.event);
 
     if (breaksRendered.length === 0) {
 
       rendered = (
         <span>Poti face unul sau mai multe din goaluri la inceputul sau sfarsitul zilei.</span>
+      );
+
+    } else {
+
+      rendered = (
+        <div>
+          { breaksRendered }
+          <EventModal id='suggestion-card-event-modal' event={this.state.event} />
+        </div>
       );
 
     }

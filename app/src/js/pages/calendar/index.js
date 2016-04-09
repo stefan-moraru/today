@@ -4,7 +4,7 @@ import momentRange from 'moment-range';
 import SecondHeader from 'common/components/secondheader';
 import EventService from 'common/services/eventservice';
 import DatePicker from 'common/components/datepicker';
-import CreateEvent from './components/createevent';
+import { EventModal } from 'common/components/modals';
 import Utils from 'common/utils';
 require('./index.scss');
 
