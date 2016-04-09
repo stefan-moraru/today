@@ -4,6 +4,7 @@ import PanelDefault from './components/paneldefault';
 import PanelInfo from './components/panelinfo';
 import PanelSettings from './components/panelsettings';
 import PanelUser from './components/paneluser';
+import './index.scss';
 
 class Settings extends React.Component {
 
@@ -27,7 +28,7 @@ class Settings extends React.Component {
     };
 
     this.state = {
-      panel: null
+      panel: this.panels['settings'].content
     };
 
   }
@@ -48,10 +49,12 @@ class Settings extends React.Component {
     const panel = this.state.panel || <PanelDefault />
 
     return (
-      <div className='settings'>
+      <div className='p-settings'>
         <SecondHeader {...secondHeaderProps} />
 
-        { panel }
+        <div className='col-xs-12'>
+          { panel }
+        </div>
       </div>
     );
 

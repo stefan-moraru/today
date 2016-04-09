@@ -9,7 +9,7 @@ class CircleImage extends React.Component {
     const size = this.props.size;
 
     const circleImageProps = {
-      className: `c-circle-image c-circle-image--${size} pull-left`,
+      className: `c-circle-image c-circle-image--${size}`,
       style: {
         backgroundImage: `url('${image}')`
       }

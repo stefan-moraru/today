@@ -65,6 +65,10 @@ $color_notdone: rgba(0, 0, 0, 0.1);
 }
 
 .c-card-profile {
+  .c-circle-image {
+    float: left;
+  }
+
   .name {
     display: flex;
     align-items: center;

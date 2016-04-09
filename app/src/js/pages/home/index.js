@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router';
 import Jumbotron from 'common/components/jumbotron';
-import HomeSocial from './components/social';
+import HomeSocial from 'common/components/social';
 import HomeJumbotron from './components/jumbotron';
 import HomeTitle from './components/title';
 import HomeDescription from './components/description';

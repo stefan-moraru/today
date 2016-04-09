@@ -1,0 +1,18 @@
+.p-settings {
+  .panel {
+    padding: 20px;
+
+    &__user {
+      .input-group {
+        margin-bottom: 5px;
+      }
+    }
+  }
+
+  .c-card-friends {
+    .friend {
+      margin-bottom: 0px;
+      margin-right: 10px;
+    }
+  }
+}

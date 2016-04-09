@@ -1,16 +1,18 @@
 import React from 'react';
+import './index.scss';
 
-class HomeSocial extends React.Component {
+class Social extends React.Component {
 
   render() {
 
     const networks = [
       { title: 'Facebook', icon: 'fa fa-facebook', href: '#' },
-      { title: 'Instagram', icon: 'fa fa-instagram', href: '#' }
+      { title: 'Instagram', icon: 'fa fa-instagram', href: '#' },
+      { title: 'Twitter', icon: 'fa fa-twitter', href: '#' }
     ];
 
     const networksRendered = networks.map((item, key) => (
-      <a href={ item.href } target='_new' key={`HomeSocial-item-${key}`}>
+      <a href={ item.href } target='_new' key={`Social-item-${key}`}>
         <div className='circle'>
           <i className={ item.icon }></i>
         </div>
@@ -18,7 +20,7 @@ class HomeSocial extends React.Component {
     ));
 
     return (
-      <div className='c-home-social'>
+      <div className='c-social'>
         <div className='row'>
           <div className='col-xs-12'>
            { networksRendered }
@@ -31,4 +33,4 @@ class HomeSocial extends React.Component {
 
 }
 
-export default HomeSocial;
+export default Social;
