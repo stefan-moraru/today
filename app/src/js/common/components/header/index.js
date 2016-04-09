@@ -1,6 +1,7 @@
 import React from 'react';
 import UserService from 'common/services/userservice';
 import introJs from 'intro.js';
+import l from 'common/utils/localisation';
 require('./index.scss');
 
 class Header extends React.Component {
@@ -43,34 +44,34 @@ class Header extends React.Component {
     const routes = [
       {
         href: '/home',
-        title: 'Acasă'
+        title: l('Home')
       },
       {
         href: '/today',
-        title: 'Astăzi'
+        title: l('Today')
       },
       {
         href: '/calendar',
-        title: 'Calendar'
+        title: l('Calendar')
       },
       {
         href: '/goals',
-        title: 'Goals'
+        title: l('Goals')
       },
       {
         href: '/login',
-        title: 'Login'
+        title: l('Login')
       },
       {
         href: '/logout',
-        title: 'Logout'
+        title: l('Logout')
       },
       {
         href: '/settings',
-        title: 'Setări'
+        title: l('Settings')
       },
       {
-        title: 'Help',
+        title: <i className='fa fa-question-circle'></i>,
         onClick: () => {
 
           introJs.introJs().setOption('showProgress', true).setOption('showStepNumbers', false).start();

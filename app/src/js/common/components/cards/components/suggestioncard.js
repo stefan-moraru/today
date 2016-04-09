@@ -111,9 +111,6 @@ class SuggestionCard extends Card {
     const breaksRendered = this.getBreaksRendered(breaks);
     let rendered = null;
 
-    console.log('here');
-    console.log(this.state.event);
-
     if (breaksRendered.length === 0) {
 
       rendered = (
