@@ -83,7 +83,7 @@ class EventModal extends Modal {
 }
 
 EventModal.defaultProps = {
-  title: 'Creaza eveniment'
+  title: 'Eveniment'
 };
 
 export default EventModal;

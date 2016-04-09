@@ -69,7 +69,7 @@ class SuggestionCard extends Card {
     const goalsRendered = goals.map((item, index) => {
 
       return (
-        <div className='goal u-c-pointer' onClick={this.createEvent.bind(this, item, breakItem)} data-toggle='modal' data-target={`#${CONST_MODAL_ID}`}>
+        <div className='goal goal--not-done u-c-pointer' onClick={this.createEvent.bind(this, item, breakItem)} data-toggle='modal' data-target={`#${CONST_MODAL_ID}`}>
           { item.title }
         </div>
       );

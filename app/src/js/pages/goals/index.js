@@ -2,10 +2,12 @@ import React from 'react';
 import SecondHeader from 'common/components/secondheader';
 import moment from 'moment';
 import momentRange from 'moment-range';
-import CreateGoal from './components/creategoal';
+import { GoalModal } from 'common/components/modals';
 import Utils from 'common/utils';
 import GoalsService from 'common/services/goalsservice';
 require('./index.scss');
+
+const CONST_CREATE_GOAL_MODAL_ID = 'goals-page-modal-goal';
 
 class Goals extends React.Component {
 
@@ -45,7 +47,8 @@ class Goals extends React.Component {
       items: [
         {
           'icon': 'plus',
-          'extra': <CreateGoal />
+          'toggle': 'modal',
+          'target': `#${CONST_CREATE_GOAL_MODAL_ID}`
         }
       ]
     };
@@ -183,6 +186,7 @@ class Goals extends React.Component {
 
     return (
       <div className='p-goals'>
+        <GoalModal id={CONST_CREATE_GOAL_MODAL_ID} />
         { secondHeader }
 
         <div className='col-xs-12'>

@@ -1,6 +1,7 @@
 import React from 'react';
+import Modal from 'common/components/modal';
 
-class CreateGoal extends React.Component {
+class GoalModal extends Modal {
 
   constructor(props) {
 
@@ -82,14 +83,12 @@ class CreateGoal extends React.Component {
 
   }
 
-  render() {
+  getModalBody() {
 
     const goal = this.state.goal;
 
     return (
       <div className='create-goal'>
-        <h5>Creaza un goal</h5>
-
         <form>
           <input type='text' className='form-control' placeholder='Title' value={goal.title} onChange={this.updateGoalField.bind(this, 'title')} />
           <textarea className='form-control' placeholder='Description' value={goal.description} onChange={this.updateGoalField.bind(this, 'description')}></textarea>
@@ -108,4 +107,8 @@ class CreateGoal extends React.Component {
 
 }
 
-export default CreateGoal;
+GoalModal.defaultProps = {
+  title: 'Goal'
+};
+
+export default GoalModal;
