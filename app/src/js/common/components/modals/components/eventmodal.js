@@ -52,7 +52,7 @@ class EventModal extends Modal {
       <div className='create-event'>
         <form>
           <input type='text' className='form-control' placeholder='Title' value={event.title} onChange={this.updateEventField.bind(this, 'title')} />
-          <textarea className='form-control' placeholder='Description' value={event.description} onChange={this.updateEventField.bind(this, 'description')}></textarea>
+          <input className='form-control' placeholder='Description' value={event.description} onChange={this.updateEventField.bind(this, 'description')}></input>
           <input type='text' className='form-control' placeholder='Location' value={event.location} onChange={this.updateEventField.bind(this, 'location')} />
 
           <DatePicker />

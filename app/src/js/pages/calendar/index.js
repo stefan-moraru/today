@@ -8,6 +8,8 @@ import { EventModal } from 'common/components/modals';
 import Utils from 'common/utils';
 require('./index.scss');
 
+const CONST_EVENT_MODAL_ID = 'calendar-page-modal-event';
+
 class Calendar extends React.Component {
 
   constructor(props) {
@@ -33,14 +35,6 @@ class Calendar extends React.Component {
 
     this.setState({
       selectedEvent: event
-    }, () => {
-      const icon = document.querySelector('.secondheader-icon.fa.fa-plus');
-
-      icon.click();
-
-      if (icon) {
-        icon.click();
-      }
     });
 
   }
@@ -119,6 +113,7 @@ class Calendar extends React.Component {
 
       let tds = dates.map((date, index2) => {
 
+        //TODO
         const eventsMatched = eventList.filter(ev => ev.date === date && ev.time.h === item.h && ev.time.m === item.m);
 
         const eventsRendered = eventsMatched.map((ev, index3) => {
@@ -150,7 +145,8 @@ class Calendar extends React.Component {
           }
 
           return (
-            <div className='event u-c-pointer' style={style} key={'calendar-table-body-td-' + index3 + '-' + index2} onClick={this.selectEvent.bind(this, ev)}>
+            <div className='event u-c-pointer' style={style} key={'calendar-table-body-td-' + index3 + '-' + index2} onClick={this.selectEvent.bind(this, ev)}
+              data-toggle='modal' data-target={`#${CONST_EVENT_MODAL_ID}`}>
               <span className='event--title f-bold'>{ ev.title }</span> <br />
               <div>
                 { showTime } { showLocation }
@@ -273,7 +269,13 @@ class Calendar extends React.Component {
         },
         {
           icon: 'plus',
-          extra: <CreateEvent event={this.state.selectedEvent} />
+          toggle: 'modal',
+          target: `#${CONST_EVENT_MODAL_ID}`,
+          onClick: () => {
+            this.setState({
+              selectedEvent: {}
+            });
+          }
         }
       ],
       itemsRight: [
@@ -297,6 +299,7 @@ class Calendar extends React.Component {
 
     return (
       <div className='calendar'>
+        <EventModal id={CONST_EVENT_MODAL_ID} event={this.state.selectedEvent}/>
         <SecondHeader {...secondHeaderProps} />
 
         <div className='col-xs-12'>

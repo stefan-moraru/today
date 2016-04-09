@@ -46,17 +46,14 @@ class SuggestionCard extends Card {
       }
     });
 
-    /* EventService.createEvent({
-      title: goal.title
-    }); */
-
   }
 
   goalsForBreak(breakItem) {
 
     const today = moment().day();
     const food = {
-      title: 'Food'
+      title: 'Food',
+      description: 'Eat something'
     };
 
     const goals = this.props.goals

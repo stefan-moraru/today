@@ -90,6 +90,11 @@ class SecondHeader extends React.Component {
         liProps['onClick'] = item.onClick;
       }
 
+      if (item.toggle) {
+        liProps['data-toggle'] = item.toggle;
+        liProps['data-target'] = item.target;
+      }
+
       if (item.extra) {
         let extraProps = {
           className: 'extra '
