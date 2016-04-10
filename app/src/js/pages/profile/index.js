@@ -226,11 +226,14 @@ class Profile extends React.Component {
     return (
       <div className='p-profile col-xs-12'>
         <div className='row u-mb-full'>
-          <div className='col-xs-12'>
+          <div className='col-xs-12 u-flex-ctr'>
             <CircleImage {...circleImageProps} />
-            <div className='name'>
-              <h1 className='f-light'>Stefan Moraru</h1>
-            </div>
+          </div>
+        </div>
+
+        <div className='row u-mb-full u-hz-ctr'>
+          <div className='col-xs-12'>
+            <h1 className='display-4 f-light'>Stefan Moraru</h1>
           </div>
         </div>
 

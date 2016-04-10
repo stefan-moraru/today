@@ -66,8 +66,9 @@ class EventCard extends Card {
     };
 
     const start = Utils.padTime(event.time);
-    const endingH = Math.floor(event.value / 60);
-    const endingM = event.value % 60;
+    const value = Utils.eventValue(event);
+    const endingH = Math.floor(value / 60);
+    const endingM = value % 60;
     const ending = Utils.padTime({ h: endingH, m: endingM });
     const time = `${start} - ${ending}`;
 

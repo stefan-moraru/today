@@ -41,7 +41,7 @@ class FriendsCard extends Card {
 
       return (
         <div className='friend col-xl-6' key={'c-card-friends-item-' + index}>
-          <CircleImage image={ item.image } />
+          <CircleImage className={ 'u-fl' } image={ item.image } />
           <div className='title'>
             <h6>{ item.name.split(' ')[0] }</h6>
           </div>
