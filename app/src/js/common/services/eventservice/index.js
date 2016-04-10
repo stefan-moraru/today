@@ -87,9 +87,15 @@ let events = [
   }
 ];
 
-events = [ events[0], events[1], events[2] ];
+let eventsA = [ events[0], events[1], events[2] ];
 
 const getEvents = () => {
+  return new Promise((resolve, reject) => {
+    resolve(eventsA);
+  });
+};
+
+const getEventsForCurrentUser = () => {
   return new Promise((resolve, reject) => {
     resolve(events);
   });
@@ -120,5 +126,6 @@ title: 'Meditating'
 export default {
   getTodayEvents: getTodayEvents,
   getEvents: getEvents,
-  createEvent: createEvent
+  createEvent: createEvent,
+  getEventsForCurrentUser: getEventsForCurrentUser
 };
