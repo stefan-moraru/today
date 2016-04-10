@@ -169,7 +169,7 @@ class Goals extends React.Component {
 
             <div className='row u-mt-half'>
               <div className='col-xs-12'>
-                <button className='btn' onClick={this.selectGoal.bind(this, item)}>
+                <button className='btn' onClick={this.selectGoal.bind(this, item)} data-toggle='modal' data-target={`#${CONST_CREATE_GOAL_MODAL_ID}`}>
                   <i className='fa fa-edit'></i>
                 </button>
 
