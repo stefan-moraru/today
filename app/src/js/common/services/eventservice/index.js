@@ -6,13 +6,13 @@ let events = [
     duration: 30,
     location: 'CUG Iasi',
     category: { id: 0, title: 'food' },
-    title: 'Meeting with Anca',
+    title: 'Lunch',
     description: 'Buna ziua sunt un dinozaur'
   },
   {
     id: 0,
     time: { h: 8, m: 30 },
-    date: '2016-04-11',
+    date: '2016-04-09',
     duration: 30,
     location: 'CUG Iasi',
     category: { id: 0, title: 'food' },
@@ -24,7 +24,7 @@ let events = [
     title: 'Breakdance practice',
     time: { h: 15, m: 0 },
     date: '2016-04-04',
-    duration: 580,
+    duration: 30,
     location: 'Podu Ros',
     category: { id: 0, title: 'sports' },
     description: 'Buna ziua sunt un dinozaur',
@@ -56,7 +56,7 @@ let events = [
   {
     id: 4,
     time: { h: 1, m: 0 },
-    date: '2016-04-24',
+    date: '2016-04-10',
     duration: 240,
     location: 'Parcul Copou',
     category: { id: 0, title: 'education' },
@@ -89,9 +89,41 @@ let events = [
 
 let eventsA = [ events[0], events[1], events[2] ];
 
+//Events with the 'locations' prop
+let hikes = [
+  {
+    id: 5,
+    time: { h: 6, m: 30 },
+    date: '2016-03-30',
+    duration: 120,
+    locations: [
+      'Podu Ros',
+      'Palas Mall Iasi',
+      'Quasar Dance Iasi'
+    ],
+    category: { id: 0, title: 'sports' },
+    title: 'Running',
+    description: 'Run, Forest, run !'
+  },
+  {
+    id: 5,
+    time: { h: 9, m: 30 },
+    date: '2016-03-30',
+    duration: 320,
+    locations: [
+      'Podu Ros',
+      'Palas Mall Iasi',
+      'Quasar Dance Iasi'
+    ],
+    category: { id: 0, title: 'sports' },
+    title: 'Mers la munte',
+    description: 'Hai la munte'
+  }
+];
+
 const getEvents = () => {
   return new Promise((resolve, reject) => {
-    resolve(eventsA);
+    resolve(events);
   });
 };
 
@@ -104,6 +136,12 @@ const getEventsForCurrentUser = () => {
 const getTodayEvents = () => {
   return new Promise((resolve, reject) => {
     resolve(events);
+  });
+};
+
+const getHikes = () => {
+  return new Promise((resolve, reject) => {
+    resolve(hikes);
   });
 };
 
@@ -127,5 +165,6 @@ export default {
   getTodayEvents: getTodayEvents,
   getEvents: getEvents,
   createEvent: createEvent,
-  getEventsForCurrentUser: getEventsForCurrentUser
+  getEventsForCurrentUser: getEventsForCurrentUser,
+  getHikes: getHikes
 };

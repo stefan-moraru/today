@@ -59,6 +59,10 @@ class Header extends React.Component {
         title: l('Goals')
       },
       {
+        href: '/hikes',
+        title: l('Hikes')
+      },
+      {
         href: '/login',
         title: l('Login')
       },

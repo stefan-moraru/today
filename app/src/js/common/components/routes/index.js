@@ -11,6 +11,7 @@ import Calendar from 'pages/calendar';
 import Goals from 'pages/goals';
 import Profile from 'pages/profile';
 import Settings from 'pages/settings';
+import Hikes from 'pages/hikes';
 import NotFound from 'pages/notfound';
 
 const authenticate = (nextState, replace) => {
@@ -38,6 +39,7 @@ const routes = (
         <Route path='calendar' component={Calendar} onEnter={authenticate} />
         <Route path='goals' component={Goals} onEnter={authenticate} />
         <Route path='settings' component={Settings} onEnter={authenticate} />
+        <Route path='hikes' component={Hikes} onEnter={authenticate} />
         <Route path='profile/:username' component={Profile} />
         <Route path='logout' component={Logout} onEnter={authenticate} />
       </Route>

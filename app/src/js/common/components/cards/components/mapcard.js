@@ -24,9 +24,9 @@ class MapCard extends Card {
     const first = locations[0];
     const last = locations[locations.length - 1];
     let waypoints;
+    let rendered = null;
 
-    let urlParams = [
-    ];
+    let urlParams = [];
 
     if (locations.length > 2) {
       waypoints = locations;
@@ -42,20 +42,26 @@ class MapCard extends Card {
         `destination=${last}`,
         `waypoints=${waypoints}`
       ];
+
+      const iframeProps = {
+        src: `https://www.google.com/maps/embed/v1/directions?key=AIzaSyAEypkJ8m2C1aDAzG_VhOiKn7sMIE0n5Wk&` + urlParams.join('&')
+      };
+
+      rendered = <iframe {...iframeProps} />;
+
     } else if (locations.length === 1) {
+
       urlParams = [ `q=${first}` ];
+
+      const iframeProps = {
+        src: `https://www.google.com/maps/embed/v1/place?key=AIzaSyAEypkJ8m2C1aDAzG_VhOiKn7sMIE0n5Wk&` + urlParams.join('&')
+      };
+
+      rendered = <iframe {...iframeProps} />;
+
     }
 
-
-    const iframeProps = {
-      src: `https://www.google.com/maps/embed/v1/${locations.length > 2 ? 'directions' : 'place'}?key=AIzaSyAEypkJ8m2C1aDAzG_VhOiKn7sMIE0n5Wk&` + urlParams.join('&')
-    };
-
-    return (
-      <div>
-        <iframe {...iframeProps} />
-      </div>
-    );
+    return rendered;
 
   }
 
