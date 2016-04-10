@@ -111,6 +111,10 @@ class Home extends React.Component {
               </div>
             </div>
           </Section>
+
+            <footer>
+              <h6>Developed under the MIT lincese. Source code available on <a href="https://github.com/stefan-moraru/today" target="_blank">GitHub</a>.</h6>
+            </footer>
       </div>
     );
 

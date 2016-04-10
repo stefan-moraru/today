@@ -16,7 +16,8 @@ class Goals extends React.Component {
     super(props);
 
     this.state = {
-      goals: []
+      goals: [],
+      selectedGoal: {}
     };
 
   }
@@ -24,6 +25,14 @@ class Goals extends React.Component {
   componentDidMount() {
 
     this.getGoals();
+
+  }
+
+  selectGoal(goal) {
+
+    this.setState({
+      selectedGoal: goal
+    });
 
   }
 
@@ -160,7 +169,11 @@ class Goals extends React.Component {
 
             <div className='row u-mt-half'>
               <div className='col-xs-12'>
-                <button className='btn btn-success'>
+                <button className='btn' onClick={this.selectGoal.bind(this, item)}>
+                  <i className='fa fa-edit'></i>
+                </button>
+
+                <button className='btn btn-success u-ml-quarter'>
                   <i className='fa fa-check'></i>
                 </button>
 
@@ -186,7 +199,7 @@ class Goals extends React.Component {
 
     return (
       <div className='p-goals'>
-        <GoalModal id={CONST_CREATE_GOAL_MODAL_ID} />
+        <GoalModal id={CONST_CREATE_GOAL_MODAL_ID} goal={this.state.selectedGoal} />
         { secondHeader }
 
         <div className='col-xs-12'>

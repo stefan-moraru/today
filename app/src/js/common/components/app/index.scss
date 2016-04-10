@@ -19,6 +19,15 @@ body {
 }
 
 /* VARIOUS BOOTSTRAP RESETS */
+a {
+  color: white;
+
+  &:hover {
+    color: $colors_flat_2;
+    text-decoration: none;
+  }
+}
+
 .container-fluid {
   padding: 0px;
 }

@@ -7,9 +7,10 @@ class CircleImage extends React.Component {
 
     const image = this.props.image;
     const size = this.props.size;
+    const className = this.props.className;
 
     const circleImageProps = {
-      className: `c-circle-image c-circle-image--${size}`,
+      className: `c-circle-image c-circle-image--${size} ${className}`,
       style: {
         backgroundImage: `url('${image}')`
       }
@@ -25,7 +26,8 @@ class CircleImage extends React.Component {
 
 CircleImage.defaultProps = {
   image: '',
-  size: 'small'
+  size: 'small',
+  className: ''
 };
 
 export default CircleImage;

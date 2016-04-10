@@ -24,7 +24,8 @@ class ProfileCard extends Card {
     const progress = this.props.xp % 100 || 0;
 
     const circleImageProps = {
-      image: image
+      image: image,
+      className: 'u-fl'
     };
 
     return (
