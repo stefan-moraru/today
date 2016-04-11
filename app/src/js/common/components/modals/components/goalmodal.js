@@ -25,18 +25,6 @@ class GoalModal extends Modal {
 
   }
 
-  updateGoalField(field, ev) {
-
-    let goal = this.state.goal;
-
-    goal[field] = ev.target.value;
-
-    this.setState({
-      goal: goal
-    });
-
-  }
-
   selectDay(day) {
 
     let goal = this.state.goal;
@@ -83,22 +71,48 @@ class GoalModal extends Modal {
 
   }
 
+  updateGoalField(goal, field, ev) {
+
+    goal[field] = ev.target.value;
+
+    this.setState({
+      goal: goal
+    });
+
+  }
+
+
+  getFields() {
+
+    const fields = [
+      { title: 'Title', field: 'title', type: 'text' },
+      { title: 'Description', field: 'description', type: 'text' },
+      { title: 'Duration', field: 'duration', type: 'number' }
+    ];
+
+    return this.getInputFields(this.state.goal, fields, this.updateGoalField);
+
+  }
+
   getModalBody() {
 
     const goal = this.state.goal;
+    const fields = this.getFields();
 
     return (
       <div className='create-goal'>
         <form>
-          <input type='text' className='form-control' placeholder='Title' value={goal.title} onChange={this.updateGoalField.bind(this, 'title')} />
-          <textarea className='form-control' placeholder='Description' value={goal.description} onChange={this.updateGoalField.bind(this, 'description')}></textarea>
-          <input type='number' className='form-control' placeholder='Duration' value={goal.duration} onChange={this.updateGoalField.bind(this, 'duration')} />
-          <div className='days'>
+          { fields }
+          <div className='days col-xs-12'>
+            <h6>Days</h6>
             { this.getDays(goal) }
           </div>
-          <button className='btn btn-success col-xs-12 u-mt-half'>
-            Creaza goal
-          </button>
+
+          <div className='col-xs-12 u-mt-half'>
+            <button className='btn btn-success col-xs-12 u-mt-half'>
+              Save
+            </button>
+          </div>
         </form>
       </div>
     );

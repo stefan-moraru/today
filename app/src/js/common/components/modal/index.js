@@ -24,6 +24,33 @@ class Modal extends React.Component {
 
   }
 
+  getInputFields(event, fields, cb) {
+
+    const fieldsRendered = fields.map(item => {
+
+      let colClass = item.small ? 'col-md-4' : 'col-md-12';
+
+      colClass = item.medium ? 'col-md-6': colClass;
+
+      return (
+        <div className={`form-group ${colClass}`}>
+          <h6>{ item.title }</h6>
+          <input type={ item.type } className='form-control' value={event[item.field]} onMouseEnter={cb.bind(this, event, item.field)} />
+        </div>
+      );
+
+    });
+
+    return (
+      <div>
+        { fieldsRendered }
+
+        <div className='clearfix'></div>
+      </div>
+    );
+
+  }
+
   getModalBody() {
 
     return null;

@@ -28,14 +28,18 @@ class EventModal extends Modal {
 
   }
 
-  updateEventField(fields, ev) {
+  updateEventField(event, field, ev) {
 
-    let event = this.state.event;
+    const value = ev.target.value;
 
-    const field1 = fields.split('.')[0];
-
-    if (field1) {
-      event[field1] = ev.target.value;
+    if (field === 'timeH') {
+      event.time = event.time || {};
+      event.time.h = value;
+    } else if (field === 'timeM') {
+      event.time = event.time || {};
+      event.time.m = value;
+    } else {
+      event[field] = value;
     }
 
     this.setState({
@@ -44,36 +48,41 @@ class EventModal extends Modal {
 
   }
 
+  getFields() {
+
+    const fields = [
+      { title: 'Title', field: 'title', type: 'text' },
+      { title: 'Description', field: 'description', type: 'text' },
+      { title: 'Location', field: 'location', type: 'text' },
+      { title: 'Category', field: 'category', type: 'text' },
+      { title: 'Hours', field: 'hours', type: 'number', small: true },
+      { title: 'Minutes', field: 'minutes', type: 'number', small: true },
+      { title: 'Duration', field: 'duration', type: 'number', small: true }
+    ];
+
+    return this.getInputFields(this.state.event, fields, this.updateEventField);
+
+  }
+
   getModalBody() {
 
     const event = this.state.event;
+    const fields = this.getFields();
 
     return (
       <div className='create-event'>
         <form>
-          <input type='text' className='form-control' placeholder='Title' value={event.title} onChange={this.updateEventField.bind(this, 'title')} />
-          <input className='form-control' placeholder='Description' value={event.description} onChange={this.updateEventField.bind(this, 'description')}></input>
-          <input type='text' className='form-control' placeholder='Location' value={event.location} onChange={this.updateEventField.bind(this, 'location')} />
+          { fields }
 
-          <DatePicker />
-
-          <div className='row'>
-            <div className='col-xs-4'>
-              <input type='number' className='form-control' placeholder='H' min='0' max='24' value={(event.time || {}).h} onChange={this.updateEventField.bind(this, 'time.h')} />
-            </div>
-            <div className='col-xs-4'>
-              <input type='number' className='form-control' placeholder='M' min='0' max='60' step='30' value={(event.time || {}).m} onChange={this.updateEventField.bind(this, 'time.m')} />
-            </div>
-            <div className='col-xs-4'>
-              <input type='number' className='form-control' placeholder='D' value={event.duration} onChange={this.updateEventField.bind(this, 'duration')} />
-            </div>
+          <div className='col-xs-12 col-md-8 col-md-push-2'>
+            <DatePicker />
           </div>
 
-          <input type='text' className='form-control' value={event.category} onChange={this.updateEventField.bind(this, 'category')} placeholder='Category' />
-
-          <button className='btn btn-success col-xs-12 u-mt-half'>
-            Creaza eveniment
-          </button>
+          <div className='col-xs-12'>
+            <button className='btn btn-success col-xs-12 u-mt-half'>
+              Save
+            </button>
+          </div>
         </form>
       </div>
     );
