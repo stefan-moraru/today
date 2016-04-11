@@ -1,11 +1,13 @@
 .c-datepicker {
+  -webkit-user-select: none;
+
   i {
     color: rgba(0, 0, 0, 0.3);
   }
 
   .title {
     display: inline-block;
-    width: 150px;
+    width: 120px;
 
   }
 

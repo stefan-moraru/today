@@ -36,27 +36,32 @@ class DatePicker extends React.Component {
 
   getTbody() {
 
-    const day = moment().startOf('month').day();
-    let rows, rowInd, ind;
+    let day = this.state.startOfMonth.day();
 
+    if (day === 0) {
+      day = 7;
+    }
+
+    let rows, rowInd, ind;
     rows = [ [ ], [ ], [ ], [ ], [ ], [ ] ];
     rowInd = 0;
-    ind = day - 1;
 
     for (let i = 1; i < day; i++) {
       rows[0].unshift(null);
     }
 
+    ind = day;
+
     moment().range(this.state.startOfMonth, this.state.endOfMonth).by('days', item => {
 
       rows[rowInd][ind] = item;
-
-      ind++;
 
       if (ind > 6) {
         ind = 0;
         rowInd++;
       }
+
+      ind++;
 
     });
 
@@ -140,7 +145,7 @@ class DatePicker extends React.Component {
 
     return (
       <div className='c-datepicker'>
-        <div className='u-mt-full u-mb-half'>
+        <div className='u-hz-ctr u-mt-full u-mb-half'>
           <i className='fa fa-chevron-left u-c-pointer' onClick={this.switchToLastMonth.bind(this)}></i>
           <span className='title'>{ month }</span>
           <i className='fa fa-chevron-right u-c-pointer' onClick={this.switchToNextMonth.bind(this)}></i>
