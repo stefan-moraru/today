@@ -75,12 +75,16 @@ class DatePicker extends React.Component {
         }
 
         let tdProps = {
-          className: 'u-c-pointer',
+          className: '',
           onClick: this.onClick.bind(this, column)
         };
 
         if (column && this.isSelected(column)) {
           tdProps.className += ' today';
+        }
+
+        if (column) {
+          tdProps.className += ' hover u-c-pointer';
         }
 
         return (
@@ -136,12 +140,10 @@ class DatePicker extends React.Component {
 
     return (
       <div className='c-datepicker'>
-        <div className='u-hz-ctr'>
-          <h6 className='title'>
-            <i className='fa fa-chevron-left' onClick={this.switchToLastMonth.bind(this)}></i>
-            <span className='title--text'>{ month }</span>
-            <i className='fa fa-chevron-right' onClick={this.switchToNextMonth.bind(this)}></i>
-          </h6>
+        <div className='u-mt-full u-mb-half'>
+          <i className='fa fa-chevron-left u-c-pointer' onClick={this.switchToLastMonth.bind(this)}></i>
+          <span className='title'>{ month }</span>
+          <i className='fa fa-chevron-right u-c-pointer' onClick={this.switchToNextMonth.bind(this)}></i>
         </div>
 
         <table className='table table-responsive'>

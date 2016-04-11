@@ -1,16 +1,12 @@
 .c-datepicker {
-  .u-hz-ctr {
-    margin-top: 20px;
+  i {
+    color: rgba(0, 0, 0, 0.3);
   }
 
   .title {
-    i {
-      color: rgba(0, 0, 0, 0.3);
-    }
+    display: inline-block;
+    width: 150px;
 
-    &--text {
-      padding: 0px 10px;
-    }
   }
 
   .table {
@@ -26,7 +22,7 @@
             color: white;
         }
 
-        &:hover {
+        &.hover:hover {
           background-color: green;
           color: white;
         }
