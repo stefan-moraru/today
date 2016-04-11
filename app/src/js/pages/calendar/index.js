@@ -238,6 +238,9 @@ class Calendar extends React.Component {
 
   switchToDate(date) {
 
+    console.log('switchToDate');
+    console.log(date.format('YYYY-MM-DD'));
+
     this.setState({
       startOfWeek: moment(date.format('YYYY-MM-DD'), 'YYYY-MM-DD').startOf('isoweek'),
       endOfWeek: moment(date.format('YYYY-MM-DD'), 'YYYY-MM-DD').endOf('isoweek')

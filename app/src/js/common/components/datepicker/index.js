@@ -30,7 +30,7 @@ class DatePicker extends React.Component {
       selected: column
     });
 
-    return this.props.onClick.bind(this, column);
+    return this.props.onClick.call(this, column);
 
   }
 
