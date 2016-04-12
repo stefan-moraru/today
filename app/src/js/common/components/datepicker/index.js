@@ -20,7 +20,15 @@ class DatePicker extends React.Component {
 
   isSelected(date) {
 
-    return date.format('YYYY-MM-DD') === this.state.selected.format('YYYY-MM-DD');
+    let selected = false;
+
+    if (!this.state.selected) {
+      selected = false;
+    } else {
+      selected = date.format('YYYY-MM-DD') === this.state.selected.format('YYYY-MM-DD');
+    }
+
+    return selected;
 
   }
 
@@ -67,9 +75,9 @@ class DatePicker extends React.Component {
 
     let index = 1;
 
-    const rowsRendered = rows.map(columns => {
+    const rowsRendered = rows.map((columns, ind) => {
 
-      const columnsRendered = columns.map(column => {
+      const columnsRendered = columns.map((column, index2) => {
 
         let dayRendered = null;
 
@@ -81,7 +89,8 @@ class DatePicker extends React.Component {
 
         let tdProps = {
           className: '',
-          onClick: this.onClick.bind(this, column)
+          onClick: this.onClick.bind(this, column),
+          key: `datepicker-column-${index2}`
         };
 
         if (column && this.isSelected(column)) {
@@ -101,7 +110,7 @@ class DatePicker extends React.Component {
       });
 
       return (
-        <tr>
+        <tr key={`datepicker-row-${ind}`}>
           { columnsRendered }
         </tr>
       );
@@ -177,7 +186,7 @@ DatePicker.defaultProps = {
   onClick: () => {
     //
   },
-  selected: moment()
+  selected: null
 };
 
 export default DatePicker;

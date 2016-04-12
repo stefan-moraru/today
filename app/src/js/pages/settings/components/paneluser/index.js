@@ -72,7 +72,7 @@ class PanelUser extends React.Component {
 
     }).concat(
       (
-        <div className='friend'>
+        <div className='friend' key='c-card-friends-item--0'>
           <div className='title'>
             {friends.length > 4 ? <h6>..and {friends.length - 4} more</h6> : null }
           </div>
@@ -95,7 +95,7 @@ class PanelUser extends React.Component {
                   <span className='input-group-addon'><i className='fa fa-envelope'></i></span>
                   <input type='text' className='form-control' placeholder='Email' disabled value={this.state.email} />
                 </div>
-  
+
                 <div className='input-group'>
                   <span className='input-group-addon'><i className='fa fa-user'></i></span>
                   <input type='text' className='form-control' placeholder='Username' value={this.state.username} onChange={this.onChange.bind(this, 'username')} />

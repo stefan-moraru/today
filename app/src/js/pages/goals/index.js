@@ -79,7 +79,8 @@ class Goals extends React.Component {
       if (goal.days.indexOf(day) !== -1) {
 
         const cellProps = {
-          className: 'cell ' + (done ? 'done' : '')
+          className: 'cell ' + (done ? 'done' : ''),
+          key: `page-goals-cells-cell-${date}`
         };
 
         cellsRendered.push((
@@ -130,7 +131,7 @@ class Goals extends React.Component {
     const endDate = moment(new Date());
 
     const goalsRendered = this.state.goals
-    .map(item => {
+    .map((item, index) => {
 
       const cellsRendered = this.getCells(startDate, endDate, item);
 
@@ -146,7 +147,7 @@ class Goals extends React.Component {
       }
 
       return (
-        <div className='col-xs-12'>
+        <div className='col-xs-12' key={`page-goals-chains-chain-${index}`}>
           <div className='col-md-6 u-mb-full-2 chain'>
             <h2 className='f-light'>{ item.title }</h2>
             <h6 className='f-light'>

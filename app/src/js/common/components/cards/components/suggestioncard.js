@@ -68,8 +68,16 @@ class SuggestionCard extends Card {
 
     const goalsRendered = goals.map((item, index) => {
 
+      const goalProps = {
+        className: 'goal goal--not-done u-c-pointer',
+        onClick: this.createEvent.bind(this, item, breakItem),
+        'data-toggle': 'modal',
+        'data-target': `#${CONST_MODAL_ID}`,
+        key: `suggestion-card-goal-item-${index}`
+      };
+
       return (
-        <div className='goal goal--not-done u-c-pointer' onClick={this.createEvent.bind(this, item, breakItem)} data-toggle='modal' data-target={`#${CONST_MODAL_ID}`}>
+        <div {...goalProps}>
           { item.title }
         </div>
       );
@@ -89,7 +97,7 @@ class SuggestionCard extends Card {
       const goals = this.goalsForBreak(item);
 
       return (
-        <div className='suggestion row u-mt-half'>
+        <div className='suggestion row u-mt-half' key={`suggestion-card-breaks-${index}`}>
           <div className='col-xs-12'>
             <h6>{ `${startTime} - ${endTime}` }</h6>
 

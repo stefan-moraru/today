@@ -62,7 +62,7 @@ class GoalModal extends Modal {
       }
 
       return (
-        <div className={ classNames } onClick={this.selectDay.bind(this, index)}>
+        <div className={ classNames } onClick={this.selectDay.bind(this, index)} key={`modal-goal-days-day-${index}`}>
           { item }
         </div>
       );

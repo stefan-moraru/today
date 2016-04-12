@@ -26,14 +26,14 @@ class Modal extends React.Component {
 
   getInputFields(event, fields, cb) {
 
-    const fieldsRendered = fields.map(item => {
+    const fieldsRendered = fields.map((item, index) => {
 
       let colClass = item.small ? 'col-md-4' : 'col-md-12';
 
       colClass = item.medium ? 'col-md-6': colClass;
 
       return (
-        <div className={`form-group ${colClass}`}>
+        <div className={`form-group ${colClass}`} key={`modal-inputfields-${event.id}-${index}`}>
           <h6>{ item.title }</h6>
           <input type={ item.type } className='form-control' value={event[item.field]} onMouseEnter={cb.bind(this, event, item.field)} />
         </div>

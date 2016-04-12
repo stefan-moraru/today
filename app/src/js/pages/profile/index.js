@@ -56,7 +56,7 @@ class Profile extends React.Component {
       }
 
       return (
-        <div className='col-md-3'>
+        <div className='col-md-3' key={`page-profile-item-${index}`}>
           <div className={`goal ${doneClassName} u-c-pointer`}>
             <h5 className='title'>{ item.title }</h5>
             <span className='f-light'>{ item.description }</span>
@@ -113,7 +113,7 @@ class Profile extends React.Component {
       }
 
       return (
-        <div className='row event-row'>
+        <div className='row event-row' key={`page-profile-event-${index}`}>
           <div className='col-md-5 left u-p-0'>
             { left }
           </div>

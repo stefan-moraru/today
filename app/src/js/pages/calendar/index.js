@@ -55,11 +55,12 @@ class Calendar extends React.Component {
 
   attendeesPictures(event) {
 
-    const images = (event.attendees || []).map(item => {
+    const images = (event.attendees || []).map((item, index) => {
 
       const imgProps = {
         src: item.image || 'http://placehold.it/25x25',
-        className: 'img-circle'
+        className: 'img-circle',
+        key: `page-calendar-attendees-${(event || {}).id}-${index}`
       };
 
       return (
@@ -145,7 +146,7 @@ class Calendar extends React.Component {
           }
 
           return (
-            <div className='event u-c-pointer' style={style} key={'calendar-table-body-td-' + index3 + '-' + index2} onClick={this.selectEvent.bind(this, ev)}
+            <div className='event u-c-pointer' style={style} key={'calendar-table-body-td-' + (event || {}).id + index3 + '-' + index2} onClick={this.selectEvent.bind(this, ev)}
               data-toggle='modal' data-target={`#${CONST_EVENT_MODAL_ID}`}>
               <span className='event--title f-bold'>{ ev.title }</span> <br />
               <div>
@@ -172,7 +173,7 @@ class Calendar extends React.Component {
       tds.unshift(<td>{ Utils.padTime(item) }</td>);
 
       return (
-        <tr key={'calendar-table-body-tr-' + index}>
+        <tr key={'calendar-table-body-tr-' + index + '-' + item.h + '-' + item.m}>
           { tds }
         </tr>
       );
@@ -238,9 +239,6 @@ class Calendar extends React.Component {
 
   switchToDate(date) {
 
-    console.log('switchToDate');
-    console.log(date.format('YYYY-MM-DD'));
-
     this.setState({
       startOfWeek: moment(date.format('YYYY-MM-DD'), 'YYYY-MM-DD').startOf('isoweek'),
       endOfWeek: moment(date.format('YYYY-MM-DD'), 'YYYY-MM-DD').endOf('isoweek')
@@ -263,7 +261,7 @@ class Calendar extends React.Component {
             <div>
               <h5>Alege o data</h5>
 
-              <DatePicker onClick={this.switchToDate.bind(this)} />
+              <DatePicker onClick={this.switchToDate.bind(this)} selected={this.state.startOfWeek} />
             </div>
           )
         },

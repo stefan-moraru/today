@@ -61,16 +61,16 @@ class Hikes extends React.Component {
 
   generateHikes(hikes) {
 
-    return hikes.map((item) => {
+    return hikes.map((item, index) => {
 
       const mapProps = {
         locations: item.locations
       };
 
-      const locations = item.locations.map(location => {
+      const locations = item.locations.map((location, ind2) => {
 
         return (
-          <div className='item'>
+          <div className='item' key={`page-hikes-hike-item-${ind2}`}>
             <i className='fa fa-map-marker'></i>
             <span> { location }</span>
           </div>
@@ -81,7 +81,7 @@ class Hikes extends React.Component {
       const duration = Utils.durationAsSentence(item.duration);
 
       return (
-        <div className='row'>
+        <div className='row' key={`page-hikes-hike-${index}`}>
           <div className='col-xs-12 hike'>
             <div className='col-md-6'>
               <MapCard {...mapProps} />

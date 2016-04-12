@@ -13,11 +13,25 @@ class DirectionsCard extends Card {
       positionLong: null
     };
 
+    this.mounted = false;
+
     this.getPosition();
 
     setInterval(() => {
       this.getPosition();
     }, 3000);
+
+  }
+
+  componentDidMount() {
+
+    this.mounted = true;
+
+  }
+
+  componentWillUnmount() {
+
+    this.mounted = false;
 
   }
 
@@ -53,10 +67,15 @@ class DirectionsCard extends Card {
 
   savePosition(pos) {
 
-    this.setState({
-      positionLat: pos.coords.latitude,
-      positionLong: pos.coords.longitude
-    });
+    if (this.mounted) {
+
+      this.setState({
+        positionLat: pos.coords.latitude,
+        positionLong: pos.coords.longitude
+      });
+
+    }
+
 
   }
 
