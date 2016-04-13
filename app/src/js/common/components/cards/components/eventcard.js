@@ -75,7 +75,7 @@ class EventCard extends Card {
     const containerProps = {
       style: style,
       onClick: onClick,
-      className: 'event-inner-content'
+      className: `event-inner-content event--priority-${event.priority}`
     };
 
     return (

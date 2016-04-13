@@ -103,9 +103,7 @@ class Calendar extends React.Component {
 
     const height = document.querySelector('.table-events tbody tr').clientHeight;
 
-    //TODO: Only colour border
     const style = {
-      backgroundColor: Utils.colorForCategory(ev.category),
       height: `${Math.floor(ev.duration / 30) * height}px`
     };
 
@@ -123,12 +121,12 @@ class Calendar extends React.Component {
     }
 
     const eventProps = {
-      className: 'event u-c-pointer',
+      className: `u-c-pointer event event--priority-${ev.priority}`,
       style: style,
       onClick: this.selectEvent.bind(this, ev),
       'data-toggle': 'modal',
       'data-target': `#${CONST_EVENT_MODAL_ID}`,
-      key: `p-calendar-event-${(event || {}).id}-${(event || {}).title}`
+      key: `p-calendar-event-${ev.id}-${ev.title}`
     };
 
     return (
@@ -147,7 +145,6 @@ class Calendar extends React.Component {
   renderTd(events, time, date) {
 
     //TODO: Match >= and <=
-
     const eventsMatched = events.filter(ev => ev.date === date && ev.time.h === time.h && ev.time.m === time.m);
 
     const eventsRendered = eventsMatched.map(this.renderEvent.bind(this));

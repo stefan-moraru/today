@@ -1,0 +1,24 @@
+//Include variables & all
+@import 'variables';
+
+.event {
+  $border-width: 5px;
+  $border-style: solid;
+
+  &--priority {
+    &-1 {
+      border-left: $border-width $border-style $c_priority_0;
+      background-color: $c_priority_0;
+    }
+
+    &-2 {
+      border-left: $border-width $border-style $c_priority_1;
+      background-color: $c_priority_1;
+    }
+
+    &-3 {
+      border-left: $border-width $border-style $c_priority_2;
+      background-color: $c_priority_2;
+    }
+  }
+}
