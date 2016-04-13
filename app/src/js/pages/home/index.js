@@ -1,15 +1,14 @@
 import React from 'react';
 import { Link } from 'react-router';
 import Jumbotron from 'common/components/jumbotron';
-import HomeSocial from 'common/components/social';
-import HomeJumbotron from './components/jumbotron';
-import HomeTitle from './components/title';
-import HomeDescription from './components/description';
 import Container from 'common/components/container';
 import Section from 'common/components/section';
 import ThreeColumns from 'common/components/threecolumns';
-import HomeCreators from './components/creators';
-import HomeReviews from './components/reviews';
+import HomeSocial from 'common/components/social';
+import HomeTitle from './components/hometitle';
+import HomeDescription from './components/homedescription';
+import HomeCreators from './components/homecreators';
+import HomeReviews from './components/homereviews';
 require('./index.scss');
 
 class Home extends React.Component {
@@ -35,7 +34,7 @@ class Home extends React.Component {
 
     return (
       <div className='home'>
-        <HomeJumbotron title='Organizează-ţi timpul' description='Mai uşor ca niciodată' />
+        <Jumbotron title='Organize your time' description='Easier then ever' more='Find out more' image='/src/assets/images/background.jpg' />
 
           <Section>
             <div className='row'>

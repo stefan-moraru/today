@@ -1,5 +1,5 @@
 .home {
-  margin-top: -65px;
+  margin-top: -70px;
 
   .section, footer {
     padding: 0px 100px;
@@ -12,34 +12,6 @@
     margin-bottom: 0px;
     padding-top: 20px;
     padding-bottom: 10px;
-  }
-
-  .jumbotron {
-    height: 100vh;
-    min-height: 400px;
-    background: linear-gradient(rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.4)), url('/src/assets/images/background.jpg');
-    background-size: cover;
-    background-position: center center;
-    display: flex;
-    justify-content: center;
-    align-items: flex-start;
-    flex-direction: column;
-    color: white;
-    position: relative;
-
-    .arrow {
-      position: absolute;
-      left: 50%;
-      bottom: 0px;
-
-      transform: translate(-50%, -50%);
-
-      text-align: center;
-
-      p {
-        margin-bottom: 0px;
-      }
-    }
   }
 
   .c- {

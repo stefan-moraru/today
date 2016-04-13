@@ -1,0 +1,30 @@
+.jumbotron {
+  height: 100vh;
+  min-height: 400px;
+  background-size: cover !important;
+  background-position: center center !important;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  flex-direction: column;
+  color: white;
+  position: relative;
+
+  .arrow {
+    position: absolute;
+    left: 50%;
+    bottom: 20px;
+
+    transform: translate(-50%, -50%);
+
+    text-align: center;
+
+    p {
+      margin-bottom: 0px;
+    }
+  }
+
+  &--center-text {
+    align-items: center;
+  }
+}

@@ -1,5 +1,7 @@
 import React from 'react';
 import Auth from 'common/services/authenticationService';
+import Jumbotron from 'common/components/jumbotron';
+import './index.scss';
 
 class Logout extends React.Component {
 
@@ -11,11 +13,16 @@ class Logout extends React.Component {
 
   render() {
 
+    const jumbotronProps = {
+      title: 'Thank you for using the application',
+      description: 'Hope that your plans are in place now',
+      className: 'jumbotron--center-text',
+      image: '/src/assets/images/background_logout.jpg'
+    };
+
     return (
       <div className='p-logout'>
-        <h2>Multumim ca ai folosit aplicatia</h2>
-
-        Feedback
+        <Jumbotron {...jumbotronProps} />
       </div>
     );
 

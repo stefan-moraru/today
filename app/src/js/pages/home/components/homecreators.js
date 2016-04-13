@@ -1,5 +1,5 @@
 import React from 'react';
-import HomeDescription from '../description';
+import HomeDescription from './homedescription';
 
 class HomeCreators extends React.Component {
 
