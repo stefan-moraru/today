@@ -99,6 +99,101 @@ class Calendar extends React.Component {
 
   }
 
+  renderEvent(ev) {
+
+    const height = document.querySelector('.table-events tbody tr').clientHeight;
+
+    //TODO: Only colour border
+    const style = {
+      backgroundColor: Utils.colorForCategory(ev.category),
+      height: `${Math.floor(ev.duration / 30) * height}px`
+    };
+
+    let showDescription = null;
+    let showTime = null;
+    let showLocation = null;
+    let showFriends = null;
+
+    if (ev.duration > 30) {
+      showTime = <span>{ Utils.padTime(ev.time) } @</span>;
+      showLocation = <span>{ev.location}</span>;
+    } else if (ev.duration > 90) {
+      showDescription = <div><span>{ ev.description }</span></div>;
+      showFriends = this.attendeesPictures(ev);
+    }
+
+    const eventProps = {
+      className: 'event u-c-pointer',
+      style: style,
+      onClick: this.selectEvent.bind(this, ev),
+      'data-toggle': 'modal',
+      'data-target': `#${CONST_EVENT_MODAL_ID}`,
+      key: `p-calendar-event-${(event || {}).id}-${(event || {}).title}`
+    };
+
+    return (
+      <div {...eventProps}>
+        <span className='event--title f-bold'>{ ev.title }</span> <br />
+        <div>
+          { showTime } { showLocation }
+        </div>
+        { showDescription }
+        { showFriends }
+      </div>
+    );
+
+  }
+
+  renderTd(events, time, date) {
+
+    //TODO: Match >= and <=
+
+    const eventsMatched = events.filter(ev => ev.date === date && ev.time.h === time.h && ev.time.m === time.m);
+
+    const eventsRendered = eventsMatched.map(this.renderEvent.bind(this));
+
+    const today = Utils.isToday(date) ? 'today' : '';
+    const now = Utils.isNow(date, time) ? 'now' : '';
+
+    const tdProps = {
+      className: `${today} ${now}`,
+      key: `p-calendar-tr-${time.h}-${time.m}-${date}`
+    };
+
+    return (
+      <td {...tdProps}>
+        { eventsRendered }
+      </td>
+    );
+
+  }
+
+  renderTr(events, dates, time) {
+
+    const timeTdProps = {
+      key: `p-calendar-tr-${time.h}-${time.m}-time`
+    };
+
+    const timeTd = (
+      <td {...timeTdProps}>{ Utils.padTime(time) }</td>
+    );
+
+    let tds = dates.map(this.renderTd.bind(this, events, time));
+
+    tds.unshift(timeTd);
+
+    const trProps = {
+      key: `p-calendar-tr-${time.h}-${time.m}`
+    };
+
+    return (
+      <tr {...trProps}>
+        { tds }
+      </tr>
+    );
+
+  }
+
   getTableBody(dates, events) {
 
     let time = [];
@@ -108,77 +203,7 @@ class Calendar extends React.Component {
       time.push({ h: i, m: 30 });
     }
 
-    const bodyRendered = time.map((item, index) => {
-
-      const eventList = events;
-
-      let tds = dates.map((date, index2) => {
-
-        //TODO
-        const eventsMatched = eventList.filter(ev => ev.date === date && ev.time.h === item.h && ev.time.m === item.m);
-
-        const eventsRendered = eventsMatched.map((ev, index3) => {
-
-          const height = document.querySelector('.table-events tbody tr').clientHeight;
-
-          const style = {
-            backgroundColor: Utils.colorForCategory(ev.category),
-            height: `${Math.floor(ev.duration / 30) * height}px`
-          };
-
-          let showDescription = null;
-          let showTime = null;
-          let showLocation = null;
-          let showFriends = null;
-
-          if (ev.duration > 30) {
-            showTime = <span>{ Utils.padTime(ev.time) } @</span>;
-            showLocation = <span>{ev.location}</span>;
-          }
-
-          if (ev.duration > 60) {
-            //
-          }
-
-          if (ev.duration > 90) {
-            showDescription = <div><span>{ ev.description }</span></div>;
-            showFriends = this.attendeesPictures(ev);
-          }
-
-          return (
-            <div className='event u-c-pointer' style={style} key={'calendar-table-body-td-' + (event || {}).id + index3 + '-' + index2} onClick={this.selectEvent.bind(this, ev)}
-              data-toggle='modal' data-target={`#${CONST_EVENT_MODAL_ID}`}>
-              <span className='event--title f-bold'>{ ev.title }</span> <br />
-              <div>
-                { showTime } { showLocation }
-              </div>
-              { showDescription }
-              { showFriends }
-            </div>
-          );
-
-        });
-
-        const today = Utils.isToday(date) ? 'today' : '';
-        const now = Utils.isNow(date, item) ? 'now' : '';
-
-        return (
-          <td className={today + ' ' + now} key={'calendar-table-body-td-' + index + ' ' + index2}>
-            { eventsRendered }
-          </td>
-        );
-
-      });
-
-      tds.unshift(<td>{ Utils.padTime(item) }</td>);
-
-      return (
-        <tr key={'calendar-table-body-tr-' + index + '-' + item.h + '-' + item.m}>
-          { tds }
-        </tr>
-      );
-
-    });
+    const bodyRendered = time.map(this.renderTr.bind(this, events, dates));
 
     return bodyRendered;
 
