@@ -31,12 +31,14 @@ class Calendar extends React.Component {
     this.getEvents();
 
     document.addEventListener('keydown', this.keyDown.bind(this), false);
+    document.addEventListener('scroll', this.onScroll.bind(this));
 
   }
 
   componentWillUnmount() {
 
     document.removeEventListener('keydown', this.keyDown.bind(this), false);
+    document.removeEventListener('scroll', this.onScroll.bind(this));
 
   }
 
@@ -51,6 +53,34 @@ class Calendar extends React.Component {
       this.switchToNextWeek();
 
     }
+
+  }
+
+  getClassWithSticky(scrollY, element, sticky = 'sticky') {
+
+    const className = element.className;
+    const stickyIndex = className.indexOf(sticky);
+    let classes = className.split(' ');
+
+    if (scrollY > 55 && stickyIndex === -1) {
+      classes.push(sticky);
+    } else if (scrollY <= 55 && stickyIndex !== -1) {
+      classes.splice(classes.indexOf(sticky), 1);
+    }
+
+    return classes.join(' ');
+
+  }
+
+  onScroll(ev) {
+
+    const header = document.querySelector('.table-header');
+    const body = document.querySelector('.table-body');
+
+    const scrollY = window.scrollY;
+
+    header.className = this.getClassWithSticky(scrollY, header);
+    body.className = this.getClassWithSticky(scrollY, body, 'sticky-body');
 
   }
 
@@ -83,8 +113,6 @@ class Calendar extends React.Component {
         value = value - event.duration;
 
         let days = Math.floor(value / 1440);
-
-        console.log(days);
 
         for (let i = 0; i < days; i++) {
 
@@ -298,16 +326,21 @@ class Calendar extends React.Component {
     const body = this.getTableBody(dates, events);
 
     return (
-      <table className='table table-events'>
-        <thead>
-          <tr>
-            { header }
-          </tr>
-        </thead>
-        <tbody>
-          { body }
-        </tbody>
-      </table>
+      <div>
+        <table className='table table-events table-header'>
+          <thead>
+            <tr>
+              { header }
+            </tr>
+          </thead>
+        </table>
+
+        <table className='table table-events table-body'>
+          <tbody>
+            { body }
+          </tbody>
+        </table>
+      </div>
     );
 
   }

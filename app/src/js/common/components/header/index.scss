@@ -1,5 +1,11 @@
 $c_theme_1: #2eec71;
 
+.table-header.sticky {
+  background-color: white;
+  z-index: 10;
+  width: calc(100% - 200px);
+}
+
 .content-container {
   width: calc(100% - 200px);
   margin-left: 200px;
