@@ -1,4 +1,5 @@
 import React from 'react';
+import moment from 'moment';
 import Header from 'common/components/header';
 import Timeline from 'common/components/timeline';
 import {
@@ -19,7 +20,7 @@ import Utils from 'common/utils';
 import EventService from 'common/services/eventservice';
 import UserService from 'common/services/userservice';
 import GoalsService from 'common/services/goalsservice';
-require('./index.scss');
+import './index.scss';
 
 class Today extends React.Component {
 
@@ -238,7 +239,7 @@ class Today extends React.Component {
 
     let resume = null;
     let cards = null;
-    let title = 'Today';
+    let title = moment().format('MMMM Do');
 
     if (this.state.event) {
       title += ` - ${this.state.event.title}`;
@@ -252,30 +253,25 @@ class Today extends React.Component {
     } else {
       resume = Utils.dayResume(this.state.events);
       cards = this.getCardsForEvents(this.state.events);
+      title += ` - ${resume}`;
     }
 
     return (
       <div className='p-today col-xs-12'>
         <div className='row'>
-          <div className='col-xs-12 u-hz-ctr'>
+          <div className='col-xs-12'>
             <h1 className='display-4 p-today__title'>{ title }</h1>
           </div>
         </div>
 
         <div className='row u-mt-full'>
-          <div className='col-md-10 col-md-push-1'>
+          <div className='col-xs-12'>
             <Timeline {...timelineProps} />
           </div>
         </div>
 
         <div className='row u-mt-full'>
-          <div className='col-md-10 col-md-push-1'>
-            <h4 className='f-light'>{ resume }</h4>
-          </div>
-        </div>
-
-        <div className='row u-mt-full'>
-          <div className='col-md-10 col-md-push-1 u-mt-half'>
+          <div className='col-md-12'>
             { cards }
           </div>
         </div>

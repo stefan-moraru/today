@@ -23,24 +23,7 @@ class Header extends React.Component {
     });
   }
 
-  setPadTopHeight() {
-
-    /* const navbar = document.querySelector('.navbar-fixed-top');
-    const padTop = document.querySelector('.pad-top');
-
-    if (navbar) {
-
-      padTop.style.paddingTop = navbar.offsetHeight;
-
-    } */
-
-  }
-
   render() {
-
-    //window.onresize = this.setPadTopHeight;
-    //window.onload = this.setPadTopHeight;
-    //window.onScr
 
     const routes = [
       {
@@ -128,15 +111,6 @@ class Header extends React.Component {
         </div>
       );
     });
-
-        /* <nav className="navbar navbar-dark bg-inverse navbar-fixed-top">
-          <a className="navbar-brand" href="/home">
-            Today
-          </a>
-          <ul className="nav navbar-nav pull-right">
-            { routesRendered }
-          </ul>
-        </nav>*/
 
     return (
       <div className='container-fluid'>

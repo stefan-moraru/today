@@ -148,7 +148,7 @@ class Goals extends React.Component {
 
       return (
         <div className='col-xs-12' key={`page-goals-chains-chain-${index}`}>
-          <div className='col-md-6 u-mb-full-2 chain'>
+          <div className='col-md-12 u-mb-full-2 chain'>
             <h2 className='f-light'>{ item.title }</h2>
             <h6 className='f-light'>
               <i className='fa fa-check-square-o'></i>

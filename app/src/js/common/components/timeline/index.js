@@ -50,6 +50,8 @@ class Timeline extends React.Component {
         <div className='dots'>
           { eventsRendered }
         </div>
+
+        <div className='clearfix'></div>
       </div>
     );
 

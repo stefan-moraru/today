@@ -29,6 +29,28 @@ class Calendar extends React.Component {
 
     this.getEvents();
 
+    document.addEventListener('keydown', this.keyDown.bind(this), false);
+
+  }
+
+  componentWillUnmount() {
+
+    document.removeEventListener('keydown', this.keyDown.bind(this), false);
+
+  }
+
+  keyDown(e) {
+
+    if (e.keyCode === 37) {
+
+      this.switchToLastWeek();
+
+    } else if (e.keyCode === 39) {
+
+      this.switchToNextWeek();
+
+    }
+
   }
 
   selectEvent(event) {
@@ -325,7 +347,7 @@ class Calendar extends React.Component {
         <EventModal id={CONST_EVENT_MODAL_ID} event={this.state.selectedEvent}/>
         <SecondHeader {...secondHeaderProps} />
 
-        <div className='col-xs-12'>
+        <div>
           { table }
         </div>
       </div>
