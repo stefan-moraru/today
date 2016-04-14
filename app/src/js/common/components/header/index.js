@@ -1,8 +1,8 @@
 import React from 'react';
 import UserService from 'common/services/userservice';
 import introJs from 'intro.js';
-import l from 'common/utils/localisation';
-require('./index.scss');
+import CircleImage from 'common/components/circleimage';
+import './index.scss';
 
 class Header extends React.Component {
   constructor(props) {
@@ -25,57 +25,67 @@ class Header extends React.Component {
 
   setPadTopHeight() {
 
-    const navbar = document.querySelector('.navbar-fixed-top');
+    /* const navbar = document.querySelector('.navbar-fixed-top');
     const padTop = document.querySelector('.pad-top');
 
     if (navbar) {
 
       padTop.style.paddingTop = navbar.offsetHeight;
 
-    }
+    } */
 
   }
 
   render() {
 
-    window.onresize = this.setPadTopHeight;
-    window.onload = this.setPadTopHeight;
+    //window.onresize = this.setPadTopHeight;
+    //window.onload = this.setPadTopHeight;
+    //window.onScr
 
     const routes = [
       {
         href: '/home',
-        title: l('Home')
+        icon: 'fa fa-home',
+        title: 'Home'
       },
       {
         href: '/today',
-        title: l('Today')
+        title: 'Today',
+        icon: 'fa fa-home'
       },
       {
         href: '/calendar',
-        title: l('Calendar')
+        title: 'Calendar',
+        icon: 'fa fa-calendar'
       },
       {
         href: '/goals',
-        title: l('Goals')
+        title: 'Goals',
+        icon: 'fa fa-calendar-check-o'
       },
       {
         href: '/hikes',
-        title: l('Hikes')
+        title: 'Hikes',
+        icon: 'fa fa-road'
       },
       {
         href: '/login',
-        title: l('Login')
+        title: 'Log in',
+        icon: 'fa fa-sign-in'
       },
       {
         href: '/logout',
-        title: l('Logout')
+        title: 'Log out',
+        icon: 'fa fa-sign-out'
       },
       {
         href: '/settings',
-        title: l('Settings')
+        title: 'Settings',
+        icon: 'fa fa-cog'
       },
       {
-        title: <i className='fa fa-question-circle'></i>,
+        title: 'Help',
+        icon: 'fa fa-question-circle',
         onClick: () => {
 
           introJs.introJs().setOption('showProgress', true).setOption('showStepNumbers', false).start();
@@ -84,45 +94,61 @@ class Header extends React.Component {
       },
       {
         href: '/profile',
-        title: (
-          <div className='image' style={{ backgroundImage: `url(${this.state.profile.image})` }}></div>
-        )
+        /* icon: (
+          <CircleImage image={this.state.profile.image} />
+        ), */
+        icon: 'fa fa-user',
+        title: 'Profile'
       }
     ];
 
     const routesRendered = routes.map((item, index) => {
 
       let extraClasses = '';
+      let icon = null;
 
       if (window.location.pathname == item.href) {
         extraClasses = 'active';
       }
 
+      if (item.icon) {
+        icon = <i className={`${item.icon} u-fl`}></i>;
+      }
+
       const containerProps = {
-        className: `nav-item ${extraClasses}`,
+        className: `u-c-pointer item ${extraClasses}`,
         key: `c-header-item-${index}`,
         onClick: item.onClick
       };
 
       return (
-        <li {...containerProps}>
-          <a className="nav-link" href={item.href}>{ item.title }</a>
-        </li>
+        <div {...containerProps}>
+          { icon }
+          <a href={item.href}>{ item.title }</a>
+        </div>
       );
     });
 
-    return (
-      <div className='container-fluid'>
-        <nav className="navbar navbar-fixed-top navbar-dark bg-inverse">
+        /* <nav className="navbar navbar-dark bg-inverse navbar-fixed-top">
           <a className="navbar-brand" href="/home">
-          Today
+            Today
           </a>
           <ul className="nav navbar-nav pull-right">
             { routesRendered }
           </ul>
-        </nav>
+        </nav>*/
 
-        <div className='pad-top'>
+    return (
+      <div className='container-fluid'>
+        <div className='menu-container'>
+          <div className='menu'>
+            <h3 className='title'>Today</h3>
+
+            { routesRendered }
+          </div>
+        </div>
+
+        <div className='content-container'>
           { this.props.children }
         </div>
       </div>

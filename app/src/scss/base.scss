@@ -1,6 +1,21 @@
 //Include variables & all
 @import 'variables';
 
+@font-face {
+  font-family: 'Debby';
+  src: url('./fonts/Debby.otf');
+}
+
+@font-face {
+  font-family: 'CaviarDreams';
+  src: url('./fonts/CaviarDreams.ttf');
+}
+
+@font-face {
+  font-family: 'GrandHotel';
+  src: url('./fonts/GrandHotel-Regular.otf');
+}
+
 .event {
   $border-width: 5px;
   $border-style: solid;

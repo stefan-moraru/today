@@ -238,14 +238,14 @@ class Today extends React.Component {
 
     let resume = null;
     let cards = null;
-    let title = 'Astăzi ';
+    let title = 'Today';
 
     if (this.state.event) {
       title += ` - ${this.state.event.title}`;
       resume = (
       <div className='u-c-pointer' onClick={this.resetEvent.bind(this)}>
         <i className='fa fa-arrow-left'></i>
-        <span className='u-pl-half'>Inapoi acasa</span>
+        <span className='u-pl-half'>Back home</span>
       </div>
       );
       cards = this.getCardsForEvent(this.state.event);
@@ -258,7 +258,7 @@ class Today extends React.Component {
       <div className='p-today col-xs-12'>
         <div className='row'>
           <div className='col-xs-12 u-hz-ctr'>
-            <h1 className='display-4'>{ title }</h1>
+            <h1 className='display-4 p-today__title'>{ title }</h1>
           </div>
         </div>
 
