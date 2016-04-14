@@ -168,10 +168,17 @@ title: 'Meditating'
   });
 };
 
+const deleteEvent = (event) => {
+  return new Promise((resolve, reject) => {
+    resolve('ok');
+  });
+};
+
 export default {
   getTodayEvents: getTodayEvents,
   getEvents: getEvents,
   createEvent: createEvent,
+  deleteEvent: deleteEvent,
   getEventsForCurrentUser: getEventsForCurrentUser,
   getHikes: getHikes
 };

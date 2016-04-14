@@ -129,7 +129,8 @@ class Today extends React.Component {
     };
 
     const cardEventsProps = {
-      title: 'Evenimente',
+      title: 'Events',
+      description: 'Your events for today are:',
       events: this.state.events,
       onClick: this.selectEvent.bind(this),
       introContent: 'Evenimentele la care participi astazi. Click pe oricare din ele pentru a vedea mai multe detalii.'
@@ -160,12 +161,12 @@ class Today extends React.Component {
     };
 
     const cardDirectionsProps = {
-      title: 'Urmatorul eveniment',
+      title: 'Guide to next event',
       introContent: 'Apasand butonul vei primi o harta pentru urmatorul eveniment'
     };
 
     const cardSuggestionProps = {
-      title: 'Sugestii',
+      title: 'Sugestions',
       introContent: 'Vei primi o sugestie',
       events: this.state.events,
       goals: this.state.goals

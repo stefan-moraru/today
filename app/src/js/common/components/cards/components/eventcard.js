@@ -1,8 +1,15 @@
 import React from 'react';
 import Card from 'common/components/card';
 import Utils from 'common/utils';
+import EventService from 'common/services/eventservice';
 
 class EventCard extends Card {
+
+  getDescription() {
+
+    return this.props.description;
+
+  }
 
   getExtraClassNames() {
 
@@ -50,19 +57,41 @@ class EventCard extends Card {
 
   }
 
+  removeEvent(event, ev) {
+
+    ev.stopPropagation();
+
+    if (confirm('Are you sure you want to delete event ?')) { // eslint-disable-line
+
+      EventService.deleteEvent(event);
+
+    }
+
+  }
+
   getContent() {
 
     const event = this.props.event;
     const onClick = this.props.onClick.bind(this, event);
-
+    let remove = null;
     let image = event.image;
 
     if (!image) {
       image = this.backgroundImageFromCategories(event);
     }
 
+    if (this.props.remove) {
+
+      remove = (
+        <div className='remove' onClick={this.removeEvent.bind(this, event)}>
+          <i className='fa fa-remove'></i>
+        </div>
+      );
+
+    }
+
     const style = {
-      backgroundImage: `linear-gradient(rgba(0, 0, 0, 0.1), rgba(0, 0, 0, 0.8)), url(${image})`
+      backgroundImage: `linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.9)), url(${image})`
     };
 
     const start = Utils.padTime(event.time);
@@ -81,9 +110,11 @@ class EventCard extends Card {
     return (
       <div {...containerProps}>
         <div className='description'>
-          <h5 className='title'>{ event.title }</h5>
-          <h6 className='small'>{ time }</h6>
-          <h6 className='small'>{ event.location }</h6>
+          <h5>{ event.title }</h5>
+          <h6>{ time }</h6>
+          <h6>{ event.location }</h6>
+
+          { remove }
         </div>
       </div>
     );
@@ -95,7 +126,8 @@ class EventCard extends Card {
 EventCard.defaultProps = {
   onClick: () => {
     return;
-  }
+  },
+  remove: false
 };
 
 export default EventCard;
