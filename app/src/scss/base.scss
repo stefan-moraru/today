@@ -20,6 +20,12 @@
   $border-width: 5px;
   $border-style: solid;
 
+  &--overlap {
+    &-1 {
+      width: 50% !important;
+    }
+  }
+
   &--priority {
     &-1 {
       border-left: $border-width $border-style $c_priority_0;

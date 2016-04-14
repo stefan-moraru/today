@@ -6,6 +6,7 @@ import EventService from 'common/services/eventservice';
 import DatePicker from 'common/components/datepicker';
 import { EventModal } from 'common/components/modals';
 import Utils from 'common/utils';
+import _ from 'lodash';
 require('./index.scss');
 
 const CONST_EVENT_MODAL_ID = 'calendar-page-modal-event';
@@ -69,8 +70,51 @@ class Calendar extends React.Component {
 
   saveEvents(response) {
 
+    let newEvents = [];
+
+    response.forEach((event, index) => {
+
+      let value = Utils.eventValue(event);
+
+      if (value > 1440) {
+
+        event.duration = 1440 - Utils.eventStartMinutes(event);
+
+        value = value - event.duration;
+
+        let days = Math.floor(value / 1440);
+
+        console.log(days);
+
+        for (let i = 0; i < days; i++) {
+
+          let newEvent = _.cloneDeep(event);
+
+          newEvent.duration = 1440;
+
+          if (i === days - 1) {
+            newEvent.duration = value % 1440;
+          } //Last
+
+          newEvent.date = moment(newEvent.date, 'YYYY-MM-DD').add(i + 1, 'days').format('YYYY-MM-DD');
+          newEvent.time.h = 0;
+          newEvent.time.m = 0;
+          newEvent.displayContent = false;
+
+          newEvents.push(newEvent);
+
+        }
+
+      }
+
+      return event;
+
+    });
+
+    const events = response.concat(newEvents);
+
     this.setState({
-      events: response
+      events: events
     });
 
   }
@@ -121,12 +165,14 @@ class Calendar extends React.Component {
 
   }
 
-  renderEvent(ev) {
+  renderEvent(eventCount, ev, index) {
 
     const height = document.querySelector('.table-events tbody tr').clientHeight;
 
     const style = {
-      height: `${Math.floor(ev.duration / 30) * height}px`
+      height: `${Math.floor(ev.duration / 30) * height}px`,
+      width: `${Math.floor(100 / eventCount)}%`,
+      marginLeft: `${Math.floor(100 / eventCount) * index}%`
     };
 
     let showDescription = null;
@@ -148,17 +194,29 @@ class Calendar extends React.Component {
       onClick: this.selectEvent.bind(this, ev),
       'data-toggle': 'modal',
       'data-target': `#${CONST_EVENT_MODAL_ID}`,
-      key: `p-calendar-event-${ev.id}-${ev.title}`
+      key: `p-calendar-event-${ev.id}-${ev.title}-${ev.date}`
     };
+
+    let content = null;
+
+    if (ev.displayContent !== false) {
+
+      content = (
+        <div>
+          <span className='event--title f-bold'>{ ev.title }</span> <br />
+          <div>
+            { showTime } { showLocation }
+          </div>
+          { showDescription }
+          { showFriends }
+        </div>
+      );
+
+    }
 
     return (
       <div {...eventProps}>
-        <span className='event--title f-bold'>{ ev.title }</span> <br />
-        <div>
-          { showTime } { showLocation }
-        </div>
-        { showDescription }
-        { showFriends }
+        { content }
       </div>
     );
 
@@ -167,9 +225,9 @@ class Calendar extends React.Component {
   renderTd(events, time, date) {
 
     //TODO: Match >= and <=
-    const eventsMatched = events.filter(ev => ev.date === date && ev.time.h === time.h && ev.time.m === time.m);
+    let eventsMatched = events.filter(ev => ev.date === date && ev.time.h === time.h && ev.time.m === time.m);
 
-    const eventsRendered = eventsMatched.map(this.renderEvent.bind(this));
+    const eventsRendered = eventsMatched.map(this.renderEvent.bind(this, eventsMatched.length));
 
     const today = Utils.isToday(date) ? 'today' : '';
     const now = Utils.isNow(date, time) ? 'now' : '';

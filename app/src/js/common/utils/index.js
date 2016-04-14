@@ -231,6 +231,7 @@ export default {
   breakIntervals,
   eventsDuration,
   eventValue,
+  eventStartMinutes,
   activityMinutes,
   padTime,
   colorForCategory,

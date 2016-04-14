@@ -3,7 +3,7 @@ let events = [
     id: 10,
     time: { h: 7, m: 0 },
     date: '2016-04-11',
-    duration: 30,
+    duration: 90,
     location: 'CUG Iasi',
     category: { id: 0, title: 'food' },
     title: 'Lunch',
@@ -12,10 +12,10 @@ let events = [
   },
   {
     id: 0,
-    time: { h: 8, m: 30 },
-    date: '2016-04-12',
-    duration: 30,
-    location: 'CUG Iasi',
+    time: { h: 7, m: 0 },
+    date: '2016-04-11',
+    duration: 120,
+    location: 'Pacurari Iasi',
     category: { id: 0, title: 'food' },
     title: 'Meeting with Anca',
     description: 'Buna ziua sunt un dinozaur',
@@ -24,8 +24,8 @@ let events = [
   {
     id: 1,
     title: 'Breakdance practice',
-    time: { h: 15, m: 0 },
-    date: '2016-04-13',
+    time: { h: 9, m: 0 },
+    date: '2016-04-11',
     duration: 30,
     location: 'Podu Ros',
     category: { id: 0, title: 'sports' },
@@ -48,14 +48,14 @@ let events = [
   },
   {
     id: 3,
-    time: { h: 9, m: 0 },
+    time: { h: 22, m: 0 },
     date: '2016-04-14',
-    duration: 90,
+    duration: 360,
     location: 'Universitatea Alexandru Ioan Cuza Iasi',
     category: { id: 0, title: 'education' },
     title: 'Curs Sisteme de Operare',
     description: 'Buna ziua sunt un dinozaur',
-    priority: 2
+    priority: 1
   },
   {
     id: 4,
