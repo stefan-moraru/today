@@ -6,7 +6,7 @@ $color_notdone: rgba(0, 0, 0, 0.1);
 .p-goals {
   .chains {
     .chain {
-      border-left: 4px solid $color_green_faded;
+      text-align: center;
 
       h6 i {
         padding-right: 10px;
@@ -14,7 +14,9 @@ $color_notdone: rgba(0, 0, 0, 0.1);
 
       .cell {
         width: 15px;
+        min-width: 15px;
         height: 10px;
+        min-height: 10px;
         background-color: $color_notdone;
         float: left;
         margin-top: 1px;

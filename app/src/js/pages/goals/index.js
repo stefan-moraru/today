@@ -98,19 +98,19 @@ class Goals extends React.Component {
   daysAsSentence(days) {
 
     const dayNames = [
-      'Luni',
-      'Marti',
-      'Miercuri',
-      'Joi',
-      'Vineri',
-      'Sambata',
-      'Duminica'
+      'Monday',
+      'Tuesday',
+      'Wednesday',
+      'Thursday',
+      'Friday',
+      'Saturday',
+      'Sunday'
     ];
 
     let sen = '';
 
     if (days.length === 7) {
-      sen = 'Zilnic';
+      sen = 'Daily';
     } else {
       sen = days.map((day, index) => {
         return dayNames[day] + (index !== days.length - 1 ? ', ' : '');
@@ -123,8 +123,9 @@ class Goals extends React.Component {
 
   generateChains() {
 
+    //TODO
     const profile = {
-      createdAt: new Date('2016-01-01')
+      createdAt: new Date('2015-01-01')
     };
 
     const startDate = moment(profile.createdAt);
@@ -163,7 +164,7 @@ class Goals extends React.Component {
             { duration }
 
             <div className='row'>
-              <div className='cells col-xs-12'>
+              <div className='cells col-md-8 push-md-2 col-xs-10 push-xs-1'>
                 { cellsRendered }
               </div>
             </div>
@@ -205,7 +206,7 @@ class Goals extends React.Component {
 
         <div className='col-xs-12'>
           <div className='row u-mt-full chains'>
-            <div className='col-md-10 col-md-push-1'>
+            <div className='col-md-10 push-md-1'>
               { chains }
             </div>
           </div>

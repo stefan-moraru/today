@@ -73,7 +73,7 @@ class Profile extends React.Component {
           <h6>What you have achieved so far</h6>
         </div>
 
-        <div className='col-md-10 col-md-push-1'>
+        <div className='col-md-10 push-md-1'>
           { achievementsRendered }
         </div>
       </div>
@@ -136,7 +136,7 @@ class Profile extends React.Component {
           <h6>History of events</h6>
         </div>
 
-        <div className='col-md-10 col-md-push-1'>
+        <div className='col-md-10 push-md-1'>
           { timelineRendered }
         </div>
       </div>
@@ -203,7 +203,7 @@ class Profile extends React.Component {
           <h6>See how much time you spent</h6>
         </div>
 
-        <div className='col-md-10 col-md-push-1'>
+        <div className='col-md-10 push-md-1'>
            <ChartCard {...cardChartProps} />
         </div>
       </div>

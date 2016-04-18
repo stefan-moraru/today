@@ -18,6 +18,7 @@ body {
   font-weight: 400;
 }
 
+//TODO MOVE TO BASE/UTILS
 /* VARIOUS BOOTSTRAP RESETS */
 a {
   color: white;
@@ -58,6 +59,29 @@ a {
 
   &fr {
     float: right !important;
+  }
+
+  &ctr- {
+    &flex {
+      display: flex;
+
+      &-w {
+        flex-wrap: wrap;
+      }
+
+      &-v {
+        align-items: center;
+      }
+
+      &-h {
+        justify-content: center;
+      }
+
+      &-vh {
+        align-items: center;
+        justify-content: center;
+      }
+    }
   }
 
   &hz-ctr {
