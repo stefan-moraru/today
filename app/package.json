@@ -49,6 +49,7 @@
     "react-chartjs": "^0.7.3",
     "react-dom": "",
     "react-router": "",
+    "superagent": "^1.8.3",
     "url-loader": "^0.5.7"
   }
 }

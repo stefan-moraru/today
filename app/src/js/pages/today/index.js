@@ -14,7 +14,8 @@ import {
   EventCancelCard,
   ChartCard,
   DirectionsCard,
-  SuggestionCard
+  SuggestionCard,
+  WeatherCard
 } from 'common/components/cards';
 import Utils from 'common/utils';
 import EventService from 'common/services/eventservice';
@@ -168,9 +169,13 @@ class Today extends React.Component {
 
     const cardSuggestionProps = {
       title: 'Sugestions',
-      introContent: 'Vei primi o sugestie',
+      introContent: 'You will receive suggestion based on your breaks.',
       events: this.state.events,
       goals: this.state.goals
+    };
+
+    const cardWeatherProps = {
+      city: 'Iasi'
     };
 
     const cardsProps = {
@@ -180,6 +185,7 @@ class Today extends React.Component {
         (<SuggestionCard {...cardSuggestionProps} />),
         (<GoalsCard {...cardGoalsProps} />),
         (<DirectionsCard {...cardDirectionsProps} />),
+        (<WeatherCard {...cardWeatherProps} />),
         (<FriendsCard {...cardFriendsProps} />),
         (<TimeTrackerCard {...cardTimeTrackerProps} />),
         (<MapCard {...cardMapProps} />),

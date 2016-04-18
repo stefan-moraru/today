@@ -63,14 +63,14 @@ class Login extends React.Component {
         <div className='login__form'>
           <div className='col-xl-6'>
             <div className='row'>
-              <div className='col-xl-7'>
+              <div className='col-sm-7'>
                 <h4 className='u-mb-half'>Logheaza-te</h4>
                 <div className='input-group'>
-                  <span className='input-group-addon'><i className='fa fa-envelope'></i></span>
+                  <span className='input-group-addon'><i className='fa fa-envelope fa-fw'></i></span>
                   <input type='text' className='form-control' placeholder='Email' value={this.state.loginEmail} onChange={this.onChange.bind(this, 'loginEmail')} />
                 </div>
                 <div className='input-group'>
-                  <span className='input-group-addon'><i className='fa fa-asterisk'></i></span>
+                  <span className='input-group-addon'><i className='fa fa-asterisk fa-fw'></i></span>
                   <input type='password' className='form-control' placeholder='Parola' value={this.state.loginPassword} onChange={this.onChange.bind(this, 'loginPassword')} />
                 </div>
                 <button className='btn btn-info u-fr'>Log in</button>
@@ -87,22 +87,21 @@ class Login extends React.Component {
             </div>
 
             <div className='row'>
-              <div className='col-xl-7'>
+              <div className='col-sm-7'>
                 <div className='input-group'>
-                  <span className='input-group-addon'><i className='fa fa-envelope'></i></span>
+                  <span className='input-group-addon'><i className='fa fa-envelope fa-fw'></i></span>
                   <input type='email' className='form-control' placeholder='Email' value={this.state.registerEmail} onChange={this.onChange.bind(this, 'registerEmail')} />
                 </div>
                 <div className='input-group'>
-                  <span className='input-group-addon'><i className='fa fa-asterisk'></i></span>
+                  <span className='input-group-addon'><i className='fa fa-asterisk fa-fw'></i></span>
                   <input type='password' className='form-control' placeholder='Parola' value={this.state.registerPassword} onChange={this.onChange.bind(this, 'registerPassword')} />
                 </div>
                 <div className='input-group'>
-                  <span className="input-group-addon"><i className='fa fa-asterisk'></i></span>
+                  <span className="input-group-addon"><i className='fa fa-asterisk fa-fw'></i></span>
                   <input type='password' className='form-control' placeholder='Repeta parola' value={this.state.registerPasswordRepeat} onChange={this.onChange.bind(this, 'registerPasswordRepeat')}/>
                 </div>
                 <button className='btn btn-info u-fr' disabled={registerProgress !== 3}>Inregistreaza-te !</button>
                 <div className='clearfix'></div>
-                <progress className='progress u-mt-half' value={registerProgress} max='3'></progress>
               </div>
             </div>
           </div>

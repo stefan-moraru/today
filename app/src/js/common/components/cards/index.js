@@ -10,6 +10,7 @@ import EventCancelCard from './components/eventcancelcard';
 import ChartCard from './components/chartcard';
 import DirectionsCard from './components/directionscard';
 import SuggestionCard from './components/suggestioncard';
+import WeatherCard from './components/weathercard';
 require('./index.scss');
 
 export {
@@ -24,5 +25,6 @@ export {
   EventCancelCard,
   ChartCard,
   DirectionsCard,
-  SuggestionCard
+  SuggestionCard,
+  WeatherCard
 };

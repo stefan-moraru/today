@@ -92,17 +92,17 @@ class PanelUser extends React.Component {
             <div className='row'>
               <div className='col-md-6'>
                 <div className='input-group'>
-                  <span className='input-group-addon'><i className='fa fa-envelope'></i></span>
+                  <span className='input-group-addon'><i className='fa fa-envelope fa-fw'></i></span>
                   <input type='text' className='form-control' placeholder='Email' disabled value={this.state.email} />
                 </div>
 
                 <div className='input-group'>
-                  <span className='input-group-addon'><i className='fa fa-user'></i></span>
+                  <span className='input-group-addon'><i className='fa fa-user fa-fw'></i></span>
                   <input type='text' className='form-control' placeholder='Username' value={this.state.username} onChange={this.onChange.bind(this, 'username')} />
                 </div>
 
                 <div className='input-group'>
-                  <span className='input-group-addon'><i className='fa fa-asterisk'></i></span>
+                  <span className='input-group-addon'><i className='fa fa-asterisk fa-fw'></i></span>
                   <input type='password' className='form-control' placeholder='Parola' value={this.state.password} onChange={this.onChange.bind(this, 'password')} />
                 </div>
 

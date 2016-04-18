@@ -53,11 +53,14 @@ class EventModal extends Modal {
     const fields = [
       { title: 'Title', field: 'title', type: 'text' },
       { title: 'Description', field: 'description', type: 'text' },
-      { title: 'Location', field: 'location', type: 'text' },
-      { title: 'Category', field: 'category', type: 'text' },
+      { title: 'Location', field: 'location', type: 'text', medium: true },
+      { title: 'Category', field: 'category', type: 'text', medium: true },
       { title: 'Hours', field: 'hours', type: 'number', small: true },
       { title: 'Minutes', field: 'minutes', type: 'number', small: true },
-      { title: 'Duration', field: 'duration', type: 'number', small: true }
+      { title: 'Duration', field: 'duration', type: 'number', small: true },
+      { title: 'Public', field: 'public', type: 'checkbox' },
+      { title: 'Indoor', field: 'location_type', type: 'checkbox' },
+      { title: 'Outdoor', field: 'location_type', type: 'checkbox' }
     ];
 
     return this.getInputFields(this.state.event, fields, this.updateEventField);
