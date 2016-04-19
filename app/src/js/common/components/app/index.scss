@@ -138,8 +138,14 @@ a {
     margin-left: 5px;
   }
 
-  &w-full {
-    width: 100%;
+  &w {
+    &-full {
+      width: 100%;
+    }
+
+    &-100 {
+      width: 100px;
+    }
   }
 
   &h-full {

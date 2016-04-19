@@ -36,10 +36,8 @@ class SuggestionCard extends Card {
     this.setState({
       event: {
         title: goal.title,
-        time: {
-          h: breakItem.start.h,
-          m: breakItem.start.m
-        },
+        timeH: breakItem.start.h,
+        timeM: breakItem.start.m,
         duration: goal.duration || 0,
         description: goal.description,
         location: breakItem.location,

@@ -32,12 +32,31 @@ class Modal extends React.Component {
 
       colClass = item.medium ? 'col-md-6': colClass;
 
-      return (
-        <div className={`form-group ${colClass}`} key={`modal-inputfields-${event.id}-${index}`}>
-          <h6>{ item.title }</h6>
-          <input type={ item.type } className='form-control' value={event[item.field]} onMouseEnter={cb.bind(this, event, item.field)} />
-        </div>
-      );
+      let rendered = null;
+
+      if (item.type !== 'radio' && item.type !== 'checkbox') {
+
+        rendered = (
+          <div className={`form-group ${colClass}`} key={`modal-inputfields-${event.id}-${index}`}>
+            <h6>{ item.title }</h6>
+            <input type={ item.type } className='form-control' value={event[item.field]} onMouseEnter={cb.bind(this, event, item.field)} />
+          </div>
+        );
+
+      } else {
+
+        rendered = (
+          <div className={`form-group ${colClass}`} key={`modal-inputfields-${event.id}-${index}`}>
+            <div className='u-w-100'>
+              { item.title }
+              <input className='u-fr' type={item.type} />
+            </div>
+          </div>
+        );
+
+      }
+
+      return rendered;
 
     });
 
@@ -57,6 +76,12 @@ class Modal extends React.Component {
 
   }
 
+  getModalLarge() {
+
+    return '';
+
+  }
+
   render() {
 
     const body = this.getModalBody();
@@ -64,7 +89,7 @@ class Modal extends React.Component {
 
     return (
       <div className='modal fade' id={ this.props.id }>
-        <div className='modal-dialog' role='document'>
+        <div className={`modal-dialog ${this.getModalLarge()}`} role='document'>
           <div className='modal-content'>
             { header }
             <div className='modal-body'>

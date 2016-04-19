@@ -48,19 +48,25 @@ class EventModal extends Modal {
 
   }
 
+  getModalLarge() {
+
+    return 'modal-lg';
+
+  }
+
   getFields() {
 
     const fields = [
       { title: 'Title', field: 'title', type: 'text' },
       { title: 'Description', field: 'description', type: 'text' },
-      { title: 'Location', field: 'location', type: 'text', medium: true },
-      { title: 'Category', field: 'category', type: 'text', medium: true },
-      { title: 'Hour', field: 'hours', type: 'number', small: true },
-      { title: 'Minute', field: 'minutes', type: 'number', small: true },
+      { title: 'Location', field: 'location', type: 'text' },
+      { title: 'Category', field: 'category', type: 'text' },
+      { title: 'Hour start', field: 'timeH', type: 'number', small: true },
+      { title: 'Minute', field: 'timeM', type: 'number', small: true },
       { title: 'Duration', field: 'duration', type: 'number', small: true },
       { title: 'Public', field: 'public', type: 'checkbox' },
-      { title: 'Indoor', field: 'locationType', type: 'checkbox' },
-      { title: 'Outdoor', field: 'locationType', type: 'checkbox' }
+      { title: 'Indoor', field: 'locationType', type: 'radio' },
+      { title: 'Outdoor', field: 'locationType', type: 'radio' }
     ];
 
     return this.getInputFields(this.state.event, fields, this.updateEventField);
@@ -75,10 +81,14 @@ class EventModal extends Modal {
     return (
       <div className='create-event'>
         <form>
-          { fields }
+          <div className='col-md-6'>
+            { fields }
+          </div>
 
-          <div className='col-xs-12 col-md-8 col-md-push-2'>
-            <DatePicker />
+          <div className='col-md-6'>
+            <div className='col-xs-12 u-ctr-flex u-ctr-flex-h'>
+              <DatePicker />
+            </div>
           </div>
 
           <div className='col-xs-12'>
