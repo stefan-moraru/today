@@ -8,7 +8,8 @@ let events = [
     category: { id: 0, title: 'food' },
     title: 'Lunch',
     description: 'Buna ziua sunt un dinozaur',
-    priority: 1
+    priority: 1,
+    locationType: 'indoor'
   },
   {
     id: 0,
@@ -19,7 +20,8 @@ let events = [
     category: { id: 0, title: 'food' },
     title: 'Meeting with Anca',
     description: 'Buna ziua sunt un dinozaur',
-    priority: 2
+    priority: 2,
+    locationType: 'outdoor'
   },
   {
     id: 1,
@@ -44,7 +46,8 @@ let events = [
       { name: 'Stefan', image: 'https://pbs.twimg.com/profile_images/670304972370669568/hm3GGbF1.jpg' },
       { name: 'Dragos', image: 'http://ichef.bbci.co.uk/images/ic/256x256/p01bqmbw.jpg' }
     ],
-    priority: 3
+    priority: 3,
+    locationType: 'outdoor'
   },
   {
     id: 3,
@@ -55,7 +58,8 @@ let events = [
     category: { id: 0, title: 'education' },
     title: 'Curs Sisteme de Operare',
     description: 'Buna ziua sunt un dinozaur',
-    priority: 1
+    priority: 1,
+    locationType: 'outdoor'
   },
   {
     id: 4,
@@ -69,7 +73,8 @@ let events = [
       { name: 'Gabriel', image: 'http://b-i.forbesimg.com/faraigundan/files/2014/01/Aliko-Dangote-2.jpeg' },
       { name: 'Stefan', image: 'https://pbs.twimg.com/profile_images/670304972370669568/hm3GGbF1.jpg' }
     ],
-    priority: 1
+    priority: 1,
+    locationType: 'outdoor'
   },
   {
     id: 5,
@@ -80,7 +85,8 @@ let events = [
     category: { id: 0, title: 'sports' },
     title: 'Running',
     description: 'Run, Forest, run !',
-    priority: 3
+    priority: 3,
+    locationType: 'outdoor'
   },
   {
     id: 6,
@@ -90,7 +96,8 @@ let events = [
     location: 'Palas Mall Iasi',
     category: { id: 0, title: 'meditation' },
     title: 'Meditating',
-    priority: 1
+    priority: 1,
+    locationType: 'indoor'
   }
 ];
 

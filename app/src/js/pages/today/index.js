@@ -175,7 +175,9 @@ class Today extends React.Component {
     };
 
     const cardWeatherProps = {
-      city: 'Iasi'
+      title: 'Weather',
+      city: 'Iasi',
+      events: this.state.events
     };
 
     const cardsProps = {

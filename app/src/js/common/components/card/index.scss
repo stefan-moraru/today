@@ -8,6 +8,27 @@ $color_notdone: rgba(0, 0, 0, 0.1);
   padding: 15px;
 }
 
+.c-card-weather {
+  .suggestions {
+    .suggestion {
+      margin-top: 10px;
+      margin-bottom: 10px;
+
+      .icon {
+        width: 50px;
+      }
+
+      i {
+        font-size: 30px;
+      }
+
+      img {
+        width: 40px;
+      }
+    }
+  }
+}
+
 .c-card-suggestion {
   .suggestion {
     .goals {

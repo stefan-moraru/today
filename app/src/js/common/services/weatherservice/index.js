@@ -4,7 +4,7 @@ const parseWeatherResponse = (res) => {
 
   let parsed = {};
 
-  parsed.sky = (res.weather[0] || '').id;
+  parsed.sky = (res.weather[0] || {}).id;
   parsed.temperature = (res.main || {}).temp;
   parsed.wind = (res.wind || {}).speed;
 
@@ -34,6 +34,54 @@ const sUmbrella = (weather) => {
 
 };
 
+const sSunGlasses = (weather) => {
+
+  let suggestion = false;
+
+  if (sUmbrella(weather)) {
+
+    suggestion = false;
+
+  } else if (weather && weather.temperature) {
+
+    suggestion = weather.temperature > 22;
+
+  }
+
+  return suggestion;
+
+};
+
+const sClothes = (weather) => {
+
+  let suggestion = -1;
+
+  if (weather && weather.temperature) {
+
+    if (weather.temperature < 18) {
+
+      suggestion = 0;
+
+    } else if (weather.temperature > 18 && weather.temperature < 22) {
+
+      suggestion = 1;
+
+    } else {
+
+      suggestion = 2;
+
+    }
+
+  }
+
+  // 0 - Warm clothes
+  // 1 - Moderate clothes
+  // 2 - Thin clothes
+
+  return suggestion;
+
+}
+
 const s = (weather) => { // Short for 'suggestion'
 
   let suggestions;
@@ -41,7 +89,9 @@ const s = (weather) => { // Short for 'suggestion'
   if (weather) {
 
     suggestions = {
-      umbrella: sUmbrella(weather)
+      umbrella: sUmbrella(weather),
+      sunGlasses: sSunGlasses(weather),
+      clothes: sClothes(weather)
     };
 
   }

@@ -59,8 +59,8 @@ class EventModal extends Modal {
       { title: 'Minutes', field: 'minutes', type: 'number', small: true },
       { title: 'Duration', field: 'duration', type: 'number', small: true },
       { title: 'Public', field: 'public', type: 'checkbox' },
-      { title: 'Indoor', field: 'location_type', type: 'checkbox' },
-      { title: 'Outdoor', field: 'location_type', type: 'checkbox' }
+      { title: 'Indoor', field: 'locationType', type: 'checkbox' },
+      { title: 'Outdoor', field: 'locationType', type: 'checkbox' }
     ];
 
     return this.getInputFields(this.state.event, fields, this.updateEventField);
