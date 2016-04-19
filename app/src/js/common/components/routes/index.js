@@ -31,10 +31,13 @@ const authenticate = (nextState, replace) => {
 
 const routes = (
   <Router history={browserHistory}>
+    <Redirect from='/' to='home' />
+
     <Route path='/' component={App}>
+      <Route path='home' component={Home} />
+      <Route path='login' component={Login} />
+
       <Route component={Header}>
-        <Route path='home' component={Home} />
-        <Route path='login' component={Login} />
         <Route path='today' component={Today} onEnter={authenticate} />
         <Route path='calendar' component={Calendar} onEnter={authenticate} />
         <Route path='goals' component={Goals} onEnter={authenticate} />
@@ -45,7 +48,6 @@ const routes = (
       </Route>
     </Route>
 
-    <Redirect from='/' to='home' />
     <Route path='*' component={NotFound} />
   </Router>
 );
