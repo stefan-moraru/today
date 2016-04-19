@@ -20,6 +20,12 @@ const eventStartMinutes = (event) => {
   return event.time.h * 60 + event.time.m;
 };
 
+const eventEnd = (event) => {
+  const value = eventValue(event);
+
+  return { h: value / 60, m: value % 60 };
+};
+
 const breakIntervals = (vec) => {
 
   // There are no events, so no breaks.
@@ -79,6 +85,27 @@ const breakIntervals = (vec) => {
       start = null;
     }
   }
+
+  intervals = intervals.map(brk => {
+
+    let location = '';
+
+    let locations = vec.filter(event => {
+      const evEnd = eventEnd(event);
+
+      return brk.start.h === evEnd.h && brk.start.m === evEnd.m;
+    })
+    .sort((a, b) => {
+      return a.priority > b.priority;
+    });
+
+    location = ((locations || [{}])[0] || {location: ''}).location;
+
+    brk.location = location;
+
+    return brk;
+
+  });
 
   return intervals;
 
@@ -194,7 +221,27 @@ const isNow = (date, time) => {
 
 };
 
+const durationAsShortSentence = (duration) => {
+
+  const h = Math.floor(duration / 60);
+  const m = Math.floor(duration % 60);
+  let sen = '';
+
+  if (h > 0) {
+    sen = `${h}h `
+  }
+
+  if (m > 0) {
+    sen = `${sen}${m}m`;
+  }
+
+  return sen;
+
+};
+
 const durationAsSentence = (duration) => {
+
+  //TODO
 
   const h = Math.floor(duration / 60);
   const m = Math.floor(duration % 60);
@@ -237,5 +284,6 @@ export default {
   colorForCategory,
   isToday,
   isNow,
-  durationAsSentence
+  durationAsSentence,
+  durationAsShortSentence
 };

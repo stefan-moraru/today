@@ -40,8 +40,9 @@ class SuggestionCard extends Card {
           h: breakItem.start.h,
           m: breakItem.start.m
         },
-        duration: breakItem.duration,
+        duration: goal.duration || 0,
         description: goal.description,
+        location: breakItem.location,
         category: 'Goal'
       }
     });
@@ -69,16 +70,18 @@ class SuggestionCard extends Card {
     const goalsRendered = goals.map((item, index) => {
 
       const goalProps = {
-        className: 'goal goal--not-done u-c-pointer',
+        className: 'goal goal--not-done u-c-pointer u-ctr-flex u-ctr-flex-v',
         onClick: this.createEvent.bind(this, item, breakItem),
         'data-toggle': 'modal',
         'data-target': `#${CONST_MODAL_ID}`,
         key: `suggestion-card-goal-item-${index}`
       };
 
+      const duration = item.duration ? `(${Utils.durationAsShortSentence(item.duration)})` : '';
+
       return (
         <div {...goalProps}>
-          { item.title }
+          <h6 className='u-m-0'>{ item.title } <span className='small'>{ duration }</span></h6>
         </div>
       );
 
@@ -95,11 +98,12 @@ class SuggestionCard extends Card {
       const startTime = Utils.padTime(item.start);
       const endTime = Utils.padTime(item.end);
       const goals = this.goalsForBreak(item);
+      const location = item.location ? `@ ${item.location}` : null;
 
       return (
         <div className='suggestion row u-mt-half' key={`suggestion-card-breaks-${index}`}>
           <div className='col-xs-12'>
-            <h6>{ `${startTime} - ${endTime}` }</h6>
+            <h6>{ `${startTime} - ${endTime}` } { location }</h6>
 
             <div className='goals'>
               { goals }
