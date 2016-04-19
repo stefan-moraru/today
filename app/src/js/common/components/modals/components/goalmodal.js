@@ -49,7 +49,7 @@ class GoalModal extends Modal {
 
   getDays(goal) {
 
-    const days = [ 'L', 'M', 'Mi', 'J', 'V', 'S', 'D' ];
+    const days = [ 'M', 'T', 'W', 'T', 'F', 'S', 'S' ];
 
     return days.map((item, index) => {
 

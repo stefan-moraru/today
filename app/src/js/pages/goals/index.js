@@ -66,6 +66,25 @@ class Goals extends React.Component {
 
   }
 
+  countDoneDays(startDate, endDate, goal) {
+
+    let count = 0;
+
+    moment().range(startDate, endDate)
+    .by('days', item => {
+      const date = moment(item).format('YYYY-MM-DD');
+      const day = moment(item).isoWeekday();
+      const done = goal.doneOn.indexOf(date) !== -1;
+
+      if (done) {
+        count++;
+      }
+    });
+
+    return count;
+
+  }
+
   getCells(startDate, endDate, goal) {
 
     let cellsRendered = [];
@@ -73,7 +92,7 @@ class Goals extends React.Component {
     moment().range(startDate, endDate)
     .by('days', item => {
       const date = moment(item).format('YYYY-MM-DD');
-      const day = moment(item).day();
+      const day = moment(item).isoWeekday();
       const done = goal.doneOn.indexOf(date) !== -1;
 
       if (goal.days.indexOf(day) !== -1) {
@@ -98,6 +117,7 @@ class Goals extends React.Component {
   daysAsSentence(days) {
 
     const dayNames = [
+      '',
       'Monday',
       'Tuesday',
       'Wednesday',
@@ -125,7 +145,7 @@ class Goals extends React.Component {
 
     //TODO
     const profile = {
-      createdAt: new Date('2015-01-01')
+      createdAt: new Date('2016-01-01')
     };
 
     const startDate = moment(profile.createdAt);
@@ -137,6 +157,7 @@ class Goals extends React.Component {
       const cellsRendered = this.getCells(startDate, endDate, item);
 
       let duration = null;
+      let minDays = null;
 
       if (item.duration) {
         duration = (
@@ -147,20 +168,37 @@ class Goals extends React.Component {
         );
       }
 
+      if (item.minDays) {
+        let count = this.countDoneDays(startDate, endDate, item);
+        const done = count >= item.minDays;
+
+        if (done) {
+          count = item.minDays;
+        }
+
+        minDays = (
+          <h6 className='f-light'>
+            <i className={`fa fa-${done ? 'check' : 'times'}`}></i>
+            { count } out of { item.minDays } days
+          </h6>
+        );
+      }
+
       return (
         <div className='col-xs-12' key={`page-goals-chains-chain-${index}`}>
           <div className='col-md-12 u-mb-full-2 chain'>
-            <h2 className='f-light'>{ item.title }</h2>
-            <h6 className='f-light'>
+            <h2 className='f-light u-mb-half'>{ item.title }</h2>
+            <h6 className='f-light u-mb-quarter'>
               <i className='fa fa-check-square-o'></i>
               { item.description }
             </h6>
 
-            <h6 className='f-light'>
+            <h6 className='f-light u-mb-quarter'>
               <i className='fa fa-calendar'></i>
               { this.daysAsSentence(item.days) }
             </h6>
 
+            { minDays }
             { duration }
 
             <div className='row'>

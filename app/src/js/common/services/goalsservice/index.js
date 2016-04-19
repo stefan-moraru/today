@@ -8,7 +8,8 @@ const getGoals = () => {
         days: [ 3, 6 ],
         doneOn: [ '2016-03-02', '2016-03-05' ],
         title: 'Mancat sanatos',
-        description: 'Fara fast-food sau dulciuri. Cel mult 2000 de calorii.'
+        description: 'Fara fast-food sau dulciuri. Cel mult 2000 de calorii.',
+        minDays: 100
       },
       {
         id: 2,
@@ -16,7 +17,8 @@ const getGoals = () => {
         doneOn: [ '2016-03-02', '2016-03-05', '2016-04-01' ],
         title: 'Exercitii fizice',
         description: 'Alergat cel putin 2km sau mers la sala timp de o ora.',
-        duration: 30
+        duration: 30,
+        minDays: 5
       },
       {
         id: 3,
@@ -28,12 +30,13 @@ const getGoals = () => {
       },
       {
         id: 4,
-        days: [ 1 ],
-        doneOn: [ '2016-03-14', '2016-03-15', '2016-04-01' ],
+        days: [ 2 ],
+        doneOn: [ '2016-01-05', '2016-03-15', '2016-04-01' ],
         title: 'Dansat',
         description: 'Mers la sala de dans',
         location: 'Quasar Dance Iasi',
-        duration: 250
+        duration: 250,
+        minDays: 2
       }
     ];
 
