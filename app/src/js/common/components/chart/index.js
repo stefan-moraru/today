@@ -1,13 +1,7 @@
 import React from 'react';
-import { Pie } from 'react-chartjs';
+import { Pie, Bar, Radar } from 'react-chartjs';
 
 class PieChart extends React.Component {
-
-  constructor(props) {
-
-    super(props);
-
-  }
 
   render() {
 
@@ -33,6 +27,60 @@ class PieChart extends React.Component {
 
 }
 
+class BarChart extends React.Component {
+
+  render() {
+
+    const chartDefaultOptions = {
+      responsive: true
+    };
+
+    const data = this.props.data;
+    const options = Object.assign({}, this.props.options, chartDefaultOptions)
+
+    const chartProps = {
+      data: data,
+      options: options
+    };
+
+    return (
+      <div className='c-chart'>
+        <Bar {...chartProps} />
+      </div>
+    );
+
+  }
+
+}
+
+class RadarChart extends React.Component {
+
+  render() {
+
+    const chartDefaultOptions = {
+      responsive: true
+    };
+
+    const data = this.props.data;
+    const options = Object.assign({}, this.props.options, chartDefaultOptions)
+
+    const chartProps = {
+      data: data,
+      options: options
+    };
+
+    return (
+      <div className='c-chart'>
+        <Radar {...chartProps} />
+      </div>
+    );
+
+  }
+
+}
+
 export {
-  PieChart
+  PieChart,
+  BarChart,
+  RadarChart
 };

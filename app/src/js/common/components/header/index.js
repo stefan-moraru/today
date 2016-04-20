@@ -47,9 +47,9 @@ class Header extends React.Component {
         icon: 'fa fa-calendar-check-o'
       },
       {
-        href: '/hikes',
-        title: 'Hikes',
-        icon: 'fa fa-road'
+        href: '/activities',
+        title: 'Activities',
+        icon: 'fa fa-th'
       },
       {
         href: '/login',
