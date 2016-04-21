@@ -143,7 +143,7 @@ class DirectionsCard extends Card {
 
     return (
       <div>
-        <button className='btn btn-info' onClick={ this.showMap.bind(this) }>Arata</button>
+        <button className='btn btn-info' onClick={ this.showMap.bind(this) }>Show</button>
 
         { map }
       </div>

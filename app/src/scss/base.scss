@@ -1,5 +1,5 @@
-//Include variables & all
 @import 'variables';
+@import 'utils';
 
 @font-face {
   font-family: 'Debby';
@@ -14,6 +14,16 @@
 @font-face {
   font-family: 'GrandHotel';
   src: url('./fonts/GrandHotel-Regular.otf');
+}
+
+/* VARIOUS BOOTSTRAP RESETS */
+a {
+  color: white;
+
+  &:hover {
+    color: $colors_flat_2;
+    text-decoration: none;
+  }
 }
 
 .event {

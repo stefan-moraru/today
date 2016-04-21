@@ -196,6 +196,7 @@ class Today extends React.Component {
   getCardsForEvent(event) {
 
     const cardMapProps = {
+      title: 'Event location',
       locations: [event.location]
     };
 

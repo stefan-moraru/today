@@ -96,12 +96,21 @@ class SuggestionCard extends Card {
       const startTime = Utils.padTime(item.start);
       const endTime = Utils.padTime(item.end);
       const goals = this.goalsForBreak(item);
-      const location = item.location ? `@ ${item.location}` : null;
+      const location = !item.location ? null : (
+        <span>
+          <i className='fa fa-map-marker fa-fw u-pl-quarter'></i>
+          { item.location }
+        </span>
+      );
 
       return (
         <div className='suggestion row u-mt-half' key={`suggestion-card-breaks-${index}`}>
           <div className='col-xs-12'>
-            <h6>{ `${startTime} - ${endTime}` } { location }</h6>
+            <h6>
+              <i className='fa fa-clock-o u-pr-quarter fa-fw'></i>
+              { `${startTime} - ${endTime}` }
+              { location }
+            </h6>
 
             <div className='goals'>
               { goals }
