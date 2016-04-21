@@ -56,7 +56,7 @@ class Login extends React.Component {
         <div className='jumbotron jumbotron-fluid'>
           <div className='col-xs-12'>
             <h1 className='f-bold display-4'>Be the boss of your own time</h1>
-            <h3 className='f-light'>We provide you with the tools to be great</h3>
+            <h3 className='f-light'>We provide you the tools to be great</h3>
           </div>
         </div>
 
@@ -73,16 +73,15 @@ class Login extends React.Component {
                   <span className='input-group-addon'><i className='fa fa-asterisk fa-fw'></i></span>
                   <input type='password' className='form-control' placeholder='Password' value={this.state.loginPassword} onChange={this.onChange.bind(this, 'loginPassword')} />
                 </div>
-                <button className='btn btn-info u-fr'>Log in</button>
-                <div className='social u-fr'>
-                  <i className='fa fa-facebook-square'></i>
-                  <i className='fa fa-twitter-square'></i>
-                </div>
+                <button className='btn btn-info u-fr u-ml-quarter'>Log in</button>
+                <button className='btn btn-info u-fr u-ml-quarter'><i className='fa fa-facebook-square'></i></button>
+                <button className='btn btn-info u-fr'><i className='fa fa-twitter-square'></i></button>
               </div>
             </div>
             <div className='row u-mt-full'>
               <div className='col-xl-7'>
                 <h4>Not registered?</h4>
+                <p>By registering, you will gain access to a variety of tools that will boost your productivity.</p>
               </div>
             </div>
 

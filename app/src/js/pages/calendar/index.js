@@ -24,6 +24,8 @@ class Calendar extends React.Component {
       selectedEvent: {}
     };
 
+    this.headerTop = 55;
+
   }
 
   componentDidMount() {
@@ -32,6 +34,15 @@ class Calendar extends React.Component {
 
     document.addEventListener('keydown', this.keyDown.bind(this), false);
     document.addEventListener('scroll', this.onScroll.bind(this));
+
+    const header = document.querySelector('.table-header');
+
+    if (header) {
+
+      this.headerTop = header.getBoundingClientRect().top;
+
+    }
+
 
   }
 
@@ -61,10 +72,11 @@ class Calendar extends React.Component {
     const className = element.className;
     const stickyIndex = className.indexOf(sticky);
     let classes = className.split(' ');
+    let top = this.headerTop;
 
-    if (scrollY > 55 && stickyIndex === -1) {
+    if (scrollY > top && stickyIndex === -1) {
       classes.push(sticky);
-    } else if (scrollY <= 55 && stickyIndex !== -1) {
+    } else if (scrollY <= top && stickyIndex !== -1) {
       classes.splice(classes.indexOf(sticky), 1);
     }
 
@@ -184,7 +196,7 @@ class Calendar extends React.Component {
       };
 
       return (
-        <th {...thProps}>{ item }{ date }</th>
+        <th {...thProps}>{ item }<span className='header-date'>{ date }</span></th>
       );
 
     });

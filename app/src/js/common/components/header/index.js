@@ -100,7 +100,7 @@ class Header extends React.Component {
       }
 
       const containerProps = {
-        className: `u-c-pointer item ${extraClasses}`,
+        className: `u-c-pointer u-ctr-flex u-ctr-flex-v u-w-full item ${extraClasses}`,
         key: `c-header-item-${index}`,
         onClick: item.onClick
       };
@@ -117,8 +117,8 @@ class Header extends React.Component {
     return (
       <div className='container-fluid'>
         <div className='menu-container'>
-          <div className='menu'>
-            <h3 className='title'>Today</h3>
+          <div className='menu u-hz-ctr'>
+            <h3 className='title u-pb-quarter'>Today</h3>
 
             { routesRendered }
           </div>

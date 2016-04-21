@@ -1,37 +1,18 @@
 $c_theme_1: #2eec71;
-
-.table-header.sticky {
-  background-color: white;
-  z-index: 10;
-  width: calc(100% - 200px);
-}
+$c_theme_2: #03A9F4;
+$menu-width: 250px;
 
 .content-container {
-  width: calc(100% - 200px);
-  margin-left: 200px;
-  float: left;
   overflow-x: hidden;
-  //padding: 30px 50px;
 }
 
 .menu-container {
-  position: fixed;
-  top: 0px;
-  left: 0px;
-  width: 200px;
-  height: 100vh;
-  float: left;
   box-shadow: 0px 0px 1px 1px rgba(0, 0, 0, 0.4);
 }
 
 .menu {
   z-index: 99;
-  background-color: rgb(30, 30, 30);
-  width: 100%;
-  height: 100vh;
-  position: absolute;
-  top: 0px;
-  left: 0px;
+  background-color: #212121;
   padding-top: 30px;
   color: white;
 
@@ -46,55 +27,66 @@ $c_theme_1: #2eec71;
   }
 
   .title {
-    text-align: center;
     font-family: 'CaviarDreams';
-    padding-bottom: 20px;
   }
 
   .item {
-    width: 100%;
-    display: flex;
-    align-items: center;
     padding: 10px 30px;
 
-  &:hover {
-    background-color: rgb(20, 20, 20);
-  }
+    &:hover {
+      background-color: rgb(20, 20, 20);
+    }
 
     i {
       padding-right: 12px;
     }
 
     &.active {
-      border-left: 3px solid $c_theme_1;
+      border-left: 3px solid $c_theme_2;
+      background-color: $c_theme_2;
       padding-left: 27px;
     }
   }
 }
 
-/*
-.navbar {
-  border-radius: 0px;
-  padding: 0px;
-
-  .navbar-brand {
-    padding: 10px 20px;
-  }
-
-  li {
-    padding: 5px 0px;
-    &.active {
-      border-bottom: 4px solid $c_theme_1;
-    }
-  }
-
-  a {
-    color: white;
-  }
-
-  i {
-    padding-top: 5px;
-  }
-
+.content-container {
+  width: calc(100% - #{$menu-width});
+  margin-left: $menu-width;
+  float: left;
 }
-*/
+
+.menu-container {
+  position: fixed;
+  top: 0px;
+  left: 0px;
+  width: $menu-width;
+  height: 100vh;
+  float: left;
+}
+
+.menu {
+  width: 100%;
+  height: 100vh;
+  position: absolute;
+  top: 0px;
+  left: 0px;
+}
+
+@media (max-width: 48em) {
+  .content-container {
+    width: 100%;
+    margin: 0px;
+  }
+
+  .menu-container {
+    width: 100%;
+    height: auto;
+    position: relative;
+  }
+
+  .menu {
+    height: auto;
+    position: relative;
+    padding-bottom: 15px;
+  }
+}

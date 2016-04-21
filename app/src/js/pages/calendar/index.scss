@@ -1,6 +1,8 @@
-$color_today: rgba(46, 204, 113, 0.1);
-$color_today_indicator: rgba(46, 204, 113, 1);
+$color_today: #E1F5FE;
+$color_today_indicator: #0288D1;
 $cell_height: 25px;
+$c_theme_2: #03A9F4;
+$menu-width: 250px;
 
 .sticky {
   position: fixed;
@@ -13,15 +15,19 @@ $cell_height: 25px;
 
 .calendar {
   .table-header {
-    background-color: white;
+    background-color: $c_theme_2;
+    color: white;
     z-index: 10;
-  }
 
-  .table-body {
-    //margin-top: 60px;
+    &.sticky {
+      background-color: $c_theme_2;
+      z-index: 10;
+      width: calc(100% - #{$menu-width});
+    }
   }
 
   .table-events {
+    table-layout: fixed;
     margin-bottom: 0px;
 
     .event {
@@ -55,12 +61,14 @@ $cell_height: 25px;
     thead {
       tr {
         th:first-child {
+          width: 50px;
           padding-bottom: 0.9rem;
         }
 
         th {
           text-align: center;
           border-top: 0px;
+          box-shadow: 0px 0px 1px 1px rgba(150, 150, 150 ,0.1);
 
           &.today {
             font-weight: bold;
@@ -90,7 +98,7 @@ $cell_height: 25px;
       }
 
       td:first-child {
-        width: 30px;
+        width: 50px;
       }
 
       tr:nth-child(odd) {
@@ -118,5 +126,20 @@ $cell_height: 25px;
 .create-event {
   input, textarea {
     margin-top: 5px;
+  }
+}
+
+@media (max-width: 48em) {
+  .calendar {
+    .table-header {
+      &.sticky {
+        background-color: $c_theme_2;
+        width: 100%;
+      }
+    }
+  }
+
+  .header-date {
+    display: none;
   }
 }

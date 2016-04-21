@@ -80,6 +80,12 @@ $quarter: 10px;
         padding-right: 15px;
       }
     }
+
+    &b- {
+      &quarter {
+        padding-bottom: $quarter;
+      }
+    }
   }
 
   &m-0 {
