@@ -36,7 +36,7 @@ const routes = (
     <Route path='/' component={App}>
       <Route path='home' component={Home} />
       <Route path='login' component={Login} />
-      <Route path='logout' component={Logout} onEnter={authenticate} />
+      <Route path='logout' component={Logout} />
 
       <Route component={Header}>
         <Route path='today' component={Today} onEnter={authenticate} />

@@ -7,7 +7,7 @@ class Social extends React.Component {
 
     const networks = [
       { title: 'Facebook', icon: 'fa fa-facebook', href: '#' },
-      { title: 'Instagram', icon: 'fa fa-instagram', href: '#' },
+      { title: 'Google', icon: 'fa fa-google', href: '#' },
       { title: 'Twitter', icon: 'fa fa-twitter', href: '#' }
     ];
 

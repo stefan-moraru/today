@@ -5,36 +5,11 @@ require('./index.scss');
 
 class App extends React.Component {
 
-  constructor(props) {
-
-    super(props);
-
-    this.state = {
-      logged: Auth.logged()
-    }
-
-  }
-
-  updateAuth(logged) {
-
-    this.setState({
-      logged: logged
-    });
-
-  }
-
-  componentWillMount() {
-
-    Auth.onChange = this.updateAuth;
-    Auth.login();
-
-  }
-
   render() {
 
     return (
       <div>
-       { this.props.children }
+        { this.props.children }
       </div>
     );
 

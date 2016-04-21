@@ -35,6 +35,12 @@ class Login extends React.Component {
 
   }
 
+  loginWithProvider(provider) {
+
+    Auth.loginWithProvider(provider);
+
+  }
+
   render() {
 
     let registerProgress = 0;
@@ -74,14 +80,14 @@ class Login extends React.Component {
                   <input type='password' className='form-control' placeholder='Password' value={this.state.loginPassword} onChange={this.onChange.bind(this, 'loginPassword')} />
                 </div>
                 <button className='btn btn-info u-fr u-ml-quarter'>Log in</button>
-                <button className='btn btn-info u-fr u-ml-quarter'><i className='fa fa-facebook-square'></i></button>
-                <button className='btn btn-info u-fr'><i className='fa fa-twitter-square'></i></button>
+                <button className='btn btn-info u-fr u-ml-quarter' onClick={this.loginWithProvider.bind(this, 'facebook')}><i className='fa fa-facebook-square'></i></button>
+                <button className='btn btn-info u-fr u-ml-quarter' onClick={this.loginWithProvider.bind(this, 'google')}><i className='fa fa-google'></i></button>
               </div>
             </div>
             <div className='row u-mt-full'>
               <div className='col-sm-7 col-xs-10 push-xs-1'>
                 <h4>Not registered?</h4>
-                <p>By registering, you will gain access to a variety of tools that will boost your productivity.</p>
+                <p>By registering, you will gain access to a variety of tools that will boost your productivity. If you want to use a social network to connect, you do not have to register.</p>
               </div>
             </div>
 
