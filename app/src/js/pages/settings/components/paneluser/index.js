@@ -47,9 +47,9 @@ class PanelUser extends React.Component {
   }
 
   render() {
+
     const cardProfileProps = {
-      ...this.state.profile,
-      introContent: 'Statistici despre profilul tau. Sfat: Foloseste cat mai mult aplicatia pentru a iti mari nivelul.'
+      ...this.state.profile
     };
 
     const friends = [

@@ -6,7 +6,7 @@ class PanelSettings extends React.Component {
 
     return (
       <div className='panel'>
-        <h1>Setari generale</h1>
+        <h1>General settings</h1>
       </div>
     );
 

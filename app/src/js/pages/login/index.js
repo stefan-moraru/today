@@ -55,8 +55,8 @@ class Login extends React.Component {
       <div className='login'>
         <div className='jumbotron jumbotron-fluid'>
           <div className='col-xs-12'>
-            <h1 className='f-bold display-4'>Fii seful timpului tau</h1>
-            <h3 className='f-light'>Lorem ipsum sundasondoa oindasoinda</h3>
+            <h1 className='f-bold display-4'>Be the boss of your own time</h1>
+            <h3 className='f-light'>We provide you with the tools to be great</h3>
           </div>
         </div>
 
@@ -64,14 +64,14 @@ class Login extends React.Component {
           <div className='col-xl-6'>
             <div className='row'>
               <div className='col-sm-7'>
-                <h4 className='u-mb-half'>Logheaza-te</h4>
+                <h4 className='u-mb-half'>Log in</h4>
                 <div className='input-group'>
                   <span className='input-group-addon'><i className='fa fa-envelope fa-fw'></i></span>
                   <input type='text' className='form-control' placeholder='Email' value={this.state.loginEmail} onChange={this.onChange.bind(this, 'loginEmail')} />
                 </div>
                 <div className='input-group'>
                   <span className='input-group-addon'><i className='fa fa-asterisk fa-fw'></i></span>
-                  <input type='password' className='form-control' placeholder='Parola' value={this.state.loginPassword} onChange={this.onChange.bind(this, 'loginPassword')} />
+                  <input type='password' className='form-control' placeholder='Password' value={this.state.loginPassword} onChange={this.onChange.bind(this, 'loginPassword')} />
                 </div>
                 <button className='btn btn-info u-fr'>Log in</button>
                 <div className='social u-fr'>
@@ -82,7 +82,7 @@ class Login extends React.Component {
             </div>
             <div className='row u-mt-full'>
               <div className='col-xl-7'>
-                <h4>Nu ai cont ?</h4>
+                <h4>Not registered?</h4>
               </div>
             </div>
 
@@ -94,13 +94,13 @@ class Login extends React.Component {
                 </div>
                 <div className='input-group'>
                   <span className='input-group-addon'><i className='fa fa-asterisk fa-fw'></i></span>
-                  <input type='password' className='form-control' placeholder='Parola' value={this.state.registerPassword} onChange={this.onChange.bind(this, 'registerPassword')} />
+                  <input type='password' className='form-control' placeholder='Password' value={this.state.registerPassword} onChange={this.onChange.bind(this, 'registerPassword')} />
                 </div>
                 <div className='input-group'>
                   <span className="input-group-addon"><i className='fa fa-asterisk fa-fw'></i></span>
-                  <input type='password' className='form-control' placeholder='Repeta parola' value={this.state.registerPasswordRepeat} onChange={this.onChange.bind(this, 'registerPasswordRepeat')}/>
+                  <input type='password' className='form-control' placeholder='Repeat password' value={this.state.registerPasswordRepeat} onChange={this.onChange.bind(this, 'registerPasswordRepeat')}/>
                 </div>
-                <button className='btn btn-info u-fr' disabled={registerProgress !== 3}>Inregistreaza-te !</button>
+                <button className='btn btn-info u-fr' disabled={registerProgress !== 3}>Register</button>
                 <div className='clearfix'></div>
               </div>
             </div>

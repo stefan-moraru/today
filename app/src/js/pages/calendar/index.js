@@ -173,7 +173,7 @@ class Calendar extends React.Component {
 
   getTableHeader(dates) {
 
-    const headers = [ <i className='fa fa-clock-o' />, 'Lun', 'Mar', 'Mie', 'Joi', 'Vin', 'Sam', 'Dum' ];
+    const headers = [ <i className='fa fa-clock-o' />, 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun' ];
     const headerRendered = headers.map((item, index) => {
 
       const date = index > 0 ? ` (${moment(dates[index - 1], 'YYYY-MM-DD').format('DD/MM')})` : '';
@@ -394,7 +394,7 @@ class Calendar extends React.Component {
           icon: 'calendar',
           extra: (
             <div>
-              <h5>Alege o data</h5>
+              <h5>Navigate to date</h5>
 
               <DatePicker onClick={this.switchToDate.bind(this)} selected={this.state.startOfWeek} />
             </div>

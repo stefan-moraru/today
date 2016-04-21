@@ -7,9 +7,9 @@ class NotFound extends React.Component {
 
     return (
       <div className='col-xs-12 u-hz-ctr u-mt-full'>
-       <h1>Pagina nu a fost gasita</h1>
+       <h1>The page was not found</h1>
        <Link to='/home'>
-         <h4>Intoarce-te pe prima pagina</h4>
+         <button className='btn btn-default u-mt-half'>Return to home</button>
        </Link>
      </div>
    );

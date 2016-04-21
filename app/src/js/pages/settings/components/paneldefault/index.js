@@ -6,8 +6,8 @@ class PanelDefault extends React.Component {
 
     return (
       <div>
-        <h1>Setari</h1>
-        <h4>Aici poti schimba mai multe setari</h4>
+        <h1>Settings</h1>
+        <h4>Access to various settings</h4>
       </div>
     );
 
