@@ -52,9 +52,9 @@ class Login extends React.Component {
     }
 
     return (
-      <div className='login'>
-        <div className='jumbotron jumbotron-fluid'>
-          <div className='col-xs-12'>
+      <div className='login col-xs-12'>
+        <div className='jumbotron jumbotron-fluid u-hz-ctr'>
+          <div className='col-xs-10 push-xs-1'>
             <h1 className='f-bold display-4'>Be the boss of your own time</h1>
             <h3 className='f-light'>We provide you the tools to be great</h3>
           </div>
@@ -63,7 +63,7 @@ class Login extends React.Component {
         <div className='login__form'>
           <div className='col-xl-6'>
             <div className='row'>
-              <div className='col-sm-7'>
+              <div className='col-sm-7 col-xs-10 push-xs-1'>
                 <h4 className='u-mb-half'>Log in</h4>
                 <div className='input-group'>
                   <span className='input-group-addon'><i className='fa fa-envelope fa-fw'></i></span>
@@ -79,14 +79,14 @@ class Login extends React.Component {
               </div>
             </div>
             <div className='row u-mt-full'>
-              <div className='col-xl-7'>
+              <div className='col-sm-7 col-xs-10 push-xs-1'>
                 <h4>Not registered?</h4>
                 <p>By registering, you will gain access to a variety of tools that will boost your productivity.</p>
               </div>
             </div>
 
             <div className='row'>
-              <div className='col-sm-7'>
+              <div className='col-sm-7 col-xs-10 push-xs-1'>
                 <div className='input-group'>
                   <span className='input-group-addon'><i className='fa fa-envelope fa-fw'></i></span>
                   <input type='email' className='form-control' placeholder='Email' value={this.state.registerEmail} onChange={this.onChange.bind(this, 'registerEmail')} />

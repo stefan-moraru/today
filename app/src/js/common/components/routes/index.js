@@ -36,6 +36,7 @@ const routes = (
     <Route path='/' component={App}>
       <Route path='home' component={Home} />
       <Route path='login' component={Login} />
+      <Route path='logout' component={Logout} onEnter={authenticate} />
 
       <Route component={Header}>
         <Route path='today' component={Today} onEnter={authenticate} />
@@ -44,7 +45,6 @@ const routes = (
         <Route path='settings' component={Settings} onEnter={authenticate} />
         <Route path='activities' component={Activities} onEnter={authenticate} />
         <Route path='profile/:username' component={Profile} />
-        <Route path='logout' component={Logout} onEnter={authenticate} />
       </Route>
     </Route>
 

@@ -33,7 +33,7 @@ class Home extends React.Component {
     };
 
     return (
-      <div className='home'>
+      <div className='p-home'>
         <Jumbotron title='Organize your time' description='Easier then ever' more='Find out more' image='/src/assets/images/background.jpg' />
 
           <Section>
