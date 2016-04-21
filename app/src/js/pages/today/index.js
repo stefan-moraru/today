@@ -21,6 +21,7 @@ import Utils from 'common/utils';
 import EventService from 'common/services/eventservice';
 import UserService from 'common/services/userservice';
 import GoalsService from 'common/services/goalsservice';
+import WeatherService from 'common/services/weatherservice';
 import './index.scss';
 
 class Today extends React.Component {
@@ -31,42 +32,31 @@ class Today extends React.Component {
 
     this.state = {
       events: [],
-      goals: []
+      goals: [],
+      weather: {}
     };
 
   }
 
   componentDidMount() {
 
-    EventService.getTodayEvents().then(this.saveEvents.bind(this));
+    EventService.getTodayEvents().then(this.saveInState.bind(this, 'events'));
 
-    UserService.profile().then(this.saveProfile.bind(this));
+    UserService.profile().then(this.saveInState.bind(this, 'profile'));
 
-    GoalsService.getGoals().then(this.saveGoals.bind(this));
+    GoalsService.getGoals().then(this.saveInState.bind(this, 'goals'));
 
-  }
-
-  saveEvents(response) {
-
-    this.setState({
-      events: response
-    });
+    WeatherService.weatherForCity('Iasi').then(this.saveInState.bind(this, 'weather'));
 
   }
 
-  saveProfile(profile) {
+  saveInState(field, response) {
 
-    this.setState({
-      profile: profile
-    });
+    let state = this.state;
 
-  }
+    state[field] = response;
 
-  saveGoals(goals) {
-
-    this.setState({
-      goals: goals
-    });
+    this.setState(state);
 
   }
 
@@ -179,7 +169,8 @@ class Today extends React.Component {
     const cardWeatherProps = {
       title: 'Weather',
       city: 'Iasi',
-      events: this.state.events
+      events: this.state.events,
+      weather: this.state.weather
     };
 
     const cardsProps = {
@@ -261,16 +252,19 @@ class Today extends React.Component {
       );
       cards = this.getCardsForEvent(this.state.event);
     } else {
-      resume = Utils.dayResume(this.state.events);
-      cards = this.getCardsForEvents(this.state.events);
-      title += ` - ${resume}`;
+      const events = [this.state.events[0]];
+      const weather = {sky: 804, temperature: 0, temperature: 0 } || this.state.weather;
+
+      resume = Utils.dayResume(events, weather);
+      cards = this.getCardsForEvents(events);
     }
 
     return (
       <div className='p-today col-xs-12'>
         <div className='row'>
           <div className='col-xs-12'>
-            <h1 className='display-4 p-today__title'>{ title }</h1>
+            <h1 className='display-4 p-today__title u-mb-full'>{ title }</h1>
+            <h4 className='today__title__resume'>{ resume }</h4>
           </div>
         </div>
 

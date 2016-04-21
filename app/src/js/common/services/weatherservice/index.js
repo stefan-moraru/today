@@ -56,7 +56,7 @@ const sClothes = (weather) => {
 
   let suggestion = -1;
 
-  if (weather && weather.temperature) {
+  if (weather && typeof weather.temperature !== 'undefined') {
 
     if (weather.temperature < 18) {
 

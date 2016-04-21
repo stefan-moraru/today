@@ -1,3 +1,12 @@
 .p-today {
   //padding-top: 40px;
+  padding: 40px;
+
+  .today {
+    &__title {
+      &__resume {
+        line-height: 1.6;
+      }
+    }
+  }
 }

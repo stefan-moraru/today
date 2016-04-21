@@ -1,9 +1,9 @@
 let events = [
   {
     id: 10,
-    time: { h: 7, m: 0 },
+    time: { h: 6, m: 0 },
     date: '2016-04-11',
-    duration: 90,
+    duration: 10,
     location: 'CUG Iasi',
     category: { id: 0, title: 'food' },
     title: 'Lunch',

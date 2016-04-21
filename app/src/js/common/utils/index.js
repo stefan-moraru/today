@@ -1,15 +1,18 @@
 import moment from 'moment';
+import WeatherService from 'common/services/weatherservice';
 
 const eventsDuration = (vec) => {
-  return vec.reduce((prev, current) => prev + current.duration, 0);
-};
 
-const activityMinutes = (vec) => {
-  return activityHours(vec) * 60;
-};
+  let duration;
 
-const activityHours = (vec) => {
-  return vec[vec.length - 1].time.h - vec[0].time.h;
+  if (vec.length === 1) {
+    duration = vec.duration;
+  } else {
+    duration = vec.reduce((prev, current) => prev + current.duration, 0);
+  }
+
+  return duration;
+
 };
 
 const eventValue = (event) => {
@@ -119,7 +122,7 @@ const breakCount = (vec) => {
 
 const breakMinutes = (vec) => {
 
-  return vec.reduce((prev, current) => prev + current.duration, 0);
+  return breakIntervals(vec).reduce((prev, current) => prev + current.duration, 0);
 
 };
 
@@ -132,22 +135,93 @@ const sortEvents = (vec) => {
 
 };
 
-const dayResume = (vec) => {
-  if (vec.length < 1) {
-    return "Zi libera!";
-  } else if (vec.length === 1) {
-    return "Astazi va fi o zi placuta, vei avea un eveniment de la ora " + vec[0].time.h;
+const empty = (vec) => {
+
+  let _empty = true;
+
+  vec.forEach(item => {
+    if (item) {
+      _empty = false;
+    }
+  });
+
+  return _empty;
+
+};
+
+const dayResume = (vec, weather) => {
+
+  const events = sortEvents(vec);
+
+  if (events.length < 1) {
+    return 'Free day.';
   }
 
-  vec = sortEvents(vec);
+  if (empty(events)) {
+    return 'Free day.';
+  }
 
-  const totalDuration = eventsDuration(vec);
-  const hours = activityHours(vec);
-  const breakDuration = breakMinutes(vec);
-  const countBreaks = breakCount(vec);
+  const totalDuration = eventsDuration(events);
+  const breakDuration = breakMinutes(events);
+  const countBreaks = breakCount(events) || 'no';
 
-	//TODO: Group messages
-  return 'Easy day';
+  //First part = First event
+  let firstPart = '';
+
+  const title = events[0].title;
+  const location = events[0].location;
+
+  if (title) {
+    firstPart = `Your day will start with ${title}`;
+
+    if (location) {
+      firstPart = firstPart.concat(`, at ${location}`);
+    }
+  }
+
+  //Second part = break / event raport
+  let secondPart = '';
+
+  let difficulty = '';
+
+  if (totalDuration / breakDuration > 1) {
+    difficulty = 'easy';
+  }
+
+  if (totalDuration / breakDuration < 1) {
+    difficulty = 'medium';
+  }
+
+  if (totalDuration > 480) {
+    difficulty = 'hard';
+  }
+
+  secondPart = `With a total of ${events.length} events, and ${countBreaks} breaks, it will be a relatively ${difficulty} day`;
+
+  //Third part = weather
+  let thirdPart = '';
+
+  const suggestions = WeatherService.s(weather);
+
+  let clothesType = '';
+
+  console.log(suggestions);
+
+  if (suggestions.clothes > -1) {
+    const types = [ 'warm', 'moderate', 'thin' ];
+
+    thirdPart += `To feel comfortable, wear ${types[suggestions.clothes]} clothes. `;
+  }
+
+  if (suggestions.umbrella) {
+    thirdPart += `It will rain, so you might want to take an umbrella. `;
+  }
+
+  if (suggestions.sunGlasses) {
+    thirdPart += `It will be sunny, so better wear sunglasses. `;
+  }
+
+  return `${firstPart}. ${secondPart}. ${thirdPart}`;
 
 }
 
@@ -279,7 +353,6 @@ export default {
   eventsDuration,
   eventValue,
   eventStartMinutes,
-  activityMinutes,
   padTime,
   colorForCategory,
   isToday,

@@ -4,16 +4,6 @@ import WeatherService from 'common/services/weatherservice';
 
 class WeatherCard extends Card {
 
-  constructor(props) {
-
-    super(props);
-
-    this.state = {
-      weather: {}
-    };
-
-  }
-
   getType() {
 
     return `weather`;
@@ -29,20 +19,6 @@ class WeatherCard extends Card {
   getDescription() {
 
     return this.props.description;
-
-  }
-
-  componentDidMount() {
-
-    WeatherService.weatherForCity(this.props.city).then(this.saveWeather.bind(this));
-
-  }
-
-  saveWeather(weather) {
-
-    this.setState({
-      weather: weather
-    });
 
   }
 
@@ -74,8 +50,7 @@ class WeatherCard extends Card {
 
   getContent() {
 
-    const city = this.props.city;
-    const weather = this.state.weather;
+    const weather = this.props.weather;
     const events = this.props.events;
     const outdoorEventsCount = this.outdoorEventsCount(events);
     const outdoorEventsMessage = this.outdoorEventsMessage(outdoorEventsCount);
@@ -134,8 +109,8 @@ class WeatherCard extends Card {
 }
 
 WeatherCard.defaultProps = {
-  city: '',
-  events: []
+  events: [],
+  weather: {}
 };
 
 export default WeatherCard;
