@@ -58,7 +58,7 @@ class Card extends React.Component {
     }
 
     const titleProps = {
-      className: 'title u-mb-half ' + ((this.getTitle() || '').length < 2 ? 'u-hidden' : '')
+      className: 'c-card__title ' + ((this.getTitle() || '').length < 2 ? 'u-hidden' : '')
     };
 
     return (

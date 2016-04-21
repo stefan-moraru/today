@@ -15,6 +15,12 @@ class MapCard extends Card {
 
   }
 
+  getTitle() {
+
+    return this.props.title;
+
+  }
+
   getContent() {
 
     const locations = this.props.locations

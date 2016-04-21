@@ -73,7 +73,9 @@ class WeatherCard extends Card {
 
     return (
       <div>
-        <span>{ outdoorEventsMessage }</span>
+        <div className='u-hz-ctr u-mb-half u-mt-quarter'>
+          <h6 className='f-light u-m-0'>{ outdoorEventsMessage }</h6>
+        </div>
 
         <div className='suggestions'>
           <div className='suggestion u-ctr-flex u-ctr-flex-v'>

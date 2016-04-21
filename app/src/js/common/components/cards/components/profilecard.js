@@ -4,6 +4,12 @@ import CircleImage from 'common/components/circleimage';
 
 class ProfileCard extends Card {
 
+  getTitle() {
+
+    return this.props.title;
+
+  }
+
   getType() {
 
     return 'profile';
@@ -27,7 +33,7 @@ class ProfileCard extends Card {
     };
 
     return (
-      <div>
+      <div className='u-ctr-flex u-ctr-flex-vh'>
         <CircleImage {...circleImageProps} />
         <div className='name'>
           <h4 className='f-light'>{ name }</h4>

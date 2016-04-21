@@ -117,6 +117,7 @@ class Today extends React.Component {
 
     const cardProfileProps = {
       ...this.state.profile,
+      title: 'Profile',
       introContent: `This is you. Don't forget to make the most out of today.`
     };
 
@@ -130,14 +131,14 @@ class Today extends React.Component {
 
     const cardMapProps = {
       locations: this.state.events.map(ev => ev.location),
+      title: 'Route',
       introContent: `The path you are going to follow today`
     };
 
     const cardChartProps = {
       type: 'pie',
       data: this.getPieChartCategoriesData(this.state.events),
-      title: 'Categorii',
-      description: `How much time is invested in each category`
+      title: 'Categories'
     };
 
     const cardFriendsProps = {

@@ -52,7 +52,7 @@ class FriendsCard extends Card {
     });
 
     return (
-      <div>
+      <div className='u-pt-half'>
         { friendsRendered }
 
         <div className='u-clearfix'></div>
