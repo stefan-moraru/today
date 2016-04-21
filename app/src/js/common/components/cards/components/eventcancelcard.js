@@ -29,7 +29,7 @@ class EventCancelCard extends Card {
 
   getIntroContent() {
 
-    return 'Daca nu mai vrei sa participi la acest eveniment, confirma apasand butonul';
+    return `If you don't want to participate at this anymore, press this button`;
 
   }
 
@@ -67,7 +67,7 @@ class EventCancelCard extends Card {
       onMouseLeave: this.onMouseLeave.bind(this)
     };
 
-    const btnCancelText = 'Anuleaza';
+    const btnCancelText = 'Cancel';
 
     return (
       <div>

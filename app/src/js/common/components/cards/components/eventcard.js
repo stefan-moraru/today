@@ -61,7 +61,7 @@ class EventCard extends Card {
 
     ev.stopPropagation();
 
-    if (confirm('Are you sure you want to delete event ?')) { // eslint-disable-line
+    if (confirm('Are you sure you want to delete the event ?')) { // eslint-disable-line
 
       EventService.deleteEvent(event);
 

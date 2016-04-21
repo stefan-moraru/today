@@ -75,6 +75,7 @@ class DatePicker extends React.Component {
 
     let index = 1;
 
+    //TODO
     const rowsRendered = rows.map((columns, ind) => {
 
       const columnsRendered = columns.map((column, index2) => {
@@ -147,7 +148,7 @@ class DatePicker extends React.Component {
 
     const tbody = this.getTbody();
     const months = [
-      'Ianuarie', 'Februarie', 'Martie', 'Aprilie', 'Mai', 'Iunie', 'Iulie', 'August', 'Septembrie', 'Octombrie', 'Noiembrie', 'Decembrie'
+      'January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'
     ];
 
     const month = months[this.state.startOfMonth.month()];
@@ -163,13 +164,13 @@ class DatePicker extends React.Component {
         <table className='table table-responsive'>
           <thead>
             <tr>
-              <th>L</th>
-              <th>M</th>
-              <th>M</th>
-              <th>J</th>
-              <th>V</th>
-              <th>S</th>
-              <th>D</th>
+              <th>Mo</th>
+              <th>Tu</th>
+              <th>We</th>
+              <th>Th</th>
+              <th>Fr</th>
+              <th>Sa</th>
+              <th>Su</th>
             </tr>
           </thead>
           { tbody }

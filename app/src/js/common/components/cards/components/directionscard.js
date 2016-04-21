@@ -93,6 +93,7 @@ class DirectionsCard extends Card {
 
   getMap(lat, long) {
 
+    //TODO
     const first = `${lat}, ${long}`;
     const last = 'Universitatea Alexandru Ioan Cuza Iasi';
 

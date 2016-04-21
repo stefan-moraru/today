@@ -24,12 +24,13 @@ class FriendsCard extends Card {
 
   getIntroContent() {
 
-    return this.props.introContent || 'O lista cu prietenii tai pe care-i vei intalni. Acestia participa la cel putin unul din evenimentele la care participi si tu.';
+    return this.props.introContent || 'People you will meet, as they will participate at the same events as you';
 
   }
 
   getContent() {
 
+    //TODO
     const friends = [
       { name: 'Carmen', 'image': 'http://static.tumblr.com/402de64fa71db5f91f427d18092129bb/b4ieo2z/0fHn58aid/tumblr_static_63q57z78gpcss40sg4g0wc004.png' },
       { name: 'Gabriel', 'image': 'http://b-i.forbesimg.com/faraigundan/files/2014/01/Aliko-Dangote-2.jpeg' },

@@ -127,7 +127,7 @@ class Today extends React.Component {
 
     const cardProfileProps = {
       ...this.state.profile,
-      introContent: 'Statistici despre profilul tau. Sfat: Foloseste cat mai mult aplicatia pentru a iti mari nivelul.'
+      introContent: `This is you. Don't forget to make the most out of today.`
     };
 
     const cardEventsProps = {
@@ -135,27 +135,28 @@ class Today extends React.Component {
       description: 'Your events for today are:',
       events: this.state.events,
       onClick: this.selectEvent.bind(this),
-      introContent: 'Evenimentele la care participi astazi. Click pe oricare din ele pentru a vedea mai multe detalii.'
+      introContent: `Events you are going to. Click on them to see more details.`
     };
 
     const cardMapProps = {
       locations: this.state.events.map(ev => ev.location),
-      introContent: 'Drumul pe care il vei parcurge astazi. Locatiile evenimentelor sunt adaugate ca waypoints.'
+      introContent: `The path you are going to follow today`
     };
 
     const cardChartProps = {
       type: 'pie',
       data: this.getPieChartCategoriesData(this.state.events),
       title: 'Categorii',
-      description: 'Cat iti vor ocupa diferite categorii'
+      description: `How much time is invested in each category`
     };
 
     const cardFriendsProps = {
-      title: 'Astazi te vei intalni cu'
+      title: 'Today you will meet with'
     };
 
+    //TODO
     const cardTimeTrackerProps = {
-      title: 'Timer activitate'
+      title: 'Activity timer'
     };
 
     const cardGoalsProps = {
@@ -164,7 +165,7 @@ class Today extends React.Component {
 
     const cardDirectionsProps = {
       title: 'Guide to next event',
-      introContent: 'Apasand butonul vei primi o harta pentru urmatorul eveniment'
+      introContent: 'Guidance to the next event'
     };
 
     const cardSuggestionProps = {
@@ -174,6 +175,7 @@ class Today extends React.Component {
       goals: this.state.goals
     };
 
+    //Todo - city = users city
     const cardWeatherProps = {
       title: 'Weather',
       city: 'Iasi',
@@ -210,11 +212,11 @@ class Today extends React.Component {
     };
 
     const cardEventCancelProps = {
-      title: 'Anuleaza eveniment'
+      title: 'Cancel event'
     };
 
     const cardFriendsProps = {
-      title: 'Cine mai participa'
+      title: 'Who takes part'
     };
 
     const cards = [

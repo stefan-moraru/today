@@ -123,9 +123,19 @@ class SuggestionCard extends Card {
 
     if (breaksRendered.length === 0) {
 
-      rendered = (
-        <span>Poti face unul sau mai multe din goaluri la inceputul sau sfarsitul zilei.</span>
-      );
+      if (events.length < 1) {
+
+        rendered = (
+          <span>Try achieveing as much as you can today, as you seem to be free</span>
+        )
+
+      } else {
+
+        rendered = (
+          <span>Looks like you can do your goals at the beginning or at the end of the day</span>
+        );
+
+      }
 
     } else {
 
@@ -145,7 +155,7 @@ class SuggestionCard extends Card {
 }
 
 SuggestionCard.defaultProps = {
-  title: 'Sugestii',
+  title: 'Sugestions',
   events: [],
   goals: []
 }

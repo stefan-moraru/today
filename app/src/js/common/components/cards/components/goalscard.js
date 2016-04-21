@@ -17,12 +17,13 @@ class GoalsCard extends Card {
 
   getIntroContent() {
 
-    return 'O lista cu telurile pe care vrei sa le atingi. Poti adauga / bifa elemente mergand pe pagina \'Goals\'';
+    return 'A list of goals you want to achieve. You can complete them by going to the Goals page';
 
   }
 
   getContent() {
 
+    //TODO
     const goals = [
       {
         title: 'Alergat',
