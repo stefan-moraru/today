@@ -67,7 +67,7 @@ class Home extends React.Component {
 
               <div className='row'>
                 <div className='col-xs-12 u-hz-ctr'>
-                  <img src='http://placehold.it/600x400' />
+                  <img className='u-w-full' src='http://placehold.it/600x400' />
                 </div>
               </div>
             </div>

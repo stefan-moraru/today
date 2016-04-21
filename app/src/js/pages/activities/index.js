@@ -4,6 +4,8 @@ import ActivityService from 'common/services/activityservice';
 import Utils from 'common/utils';
 import { EventModal } from 'common/components/modals';
 import { PieChart, BarChart, RadarChart } from 'common/components/chart';
+import Activity from './components/activity';
+import SpentBarChart from './components/spentbarchart';
 import './index.scss';
 
 const PAGE_ACTIVITIES_MODAL_ID = 'page-activities-modal';
@@ -62,38 +64,7 @@ class Activities extends React.Component {
 
     const activitiesRendered = activities.map((activity, index) => {
 
-      const props = {
-        key: `p-activities-activity-${index}`,
-        className: 'activity col-xs-12'
-      };
-
-      var data = {
-    labels: ["January", "February", "March", "April", "May", "June", "July"],
-    datasets: [
-        {
-            label: "My First dataset",
-            fillColor: "rgba(220,220,220,0.5)",
-            strokeColor: "rgba(220,220,220,0.8)",
-            highlightFill: "rgba(220,220,220,0.75)",
-            highlightStroke: "rgba(220,220,220,1)",
-            data: [65, 59, 80, 81, 56, 55, 40]
-        }
-      ]
-    };
-
-      return (
-        <div {...props}>
-          <div className='col-xs-12'>
-            <h2 className='f-light'>{ activity.title }</h2>
-          </div>
-
-          <div className='col-md-6'>
-            <BarChart data={data} />
-          </div>
-          <div className='col-md-6'>
-          </div>
-        </div>
-      );
+      return <Activity {...activity} />;
 
     });
 
@@ -103,37 +74,55 @@ class Activities extends React.Component {
       </div>
     );
 
-    return null;
-
   }
 
   generateChartRadar() {
-    var data = {
+
+    const data = {
       labels: ["Eating", "Drinking", "Sleeping", "Designing", "Coding", "Cycling", "Running"],
       datasets: [
-          {
-              label: "My First dataset",
-              fillColor: "rgba(220,220,220,0.2)",
-              strokeColor: "rgba(220,220,220,1)",
-              pointColor: "rgba(220,220,220,1)",
-              pointStrokeColor: "#fff",
-              pointHighlightFill: "#fff",
-              pointHighlightStroke: "rgba(220,220,220,1)",
-              data: [65, 59, 90, 81, 56, 55, 40]
-          },
-          {
-              label: "My Second dataset",
-              fillColor: "rgba(151,187,205,0.2)",
-              strokeColor: "rgba(151,187,205,1)",
-              pointColor: "rgba(151,187,205,1)",
-              pointStrokeColor: "#fff",
-              pointHighlightFill: "#fff",
-              pointHighlightStroke: "rgba(151,187,205,1)",
-              data: [28, 48, 40, 19, 96, 27, 100]
-          }
+        {
+          label: "My First dataset",
+          fillColor: "rgba(220,220,220,0.2)",
+          strokeColor: "rgba(220,220,220,1)",
+          pointColor: "rgba(220,220,220,1)",
+          pointStrokeColor: "#fff",
+          pointHighlightFill: "#fff",
+          pointHighlightStroke: "rgba(220,220,220,1)",
+          data: [65, 59, 90, 81, 56, 55, 40]
+        },
+        {
+          label: "My Second dataset",
+          fillColor: "rgba(151,187,205,0.2)",
+          strokeColor: "rgba(151,187,205,1)",
+          pointColor: "rgba(151,187,205,1)",
+          pointStrokeColor: "#fff",
+          pointHighlightFill: "#fff",
+          pointHighlightStroke: "rgba(151,187,205,1)",
+          data: [28, 48, 40, 19, 96, 27, 100]
+        }
       ]
-  };
-      return <RadarChart data={data} />;
+    };
+
+    return <RadarChart data={data} />;
+
+  }
+
+  generateActivitiesBarChart() {
+
+    let spentListGood = [], spentListBad = [];
+
+      //TODO if (start.isoWeek() === moment().isoWeek()) {
+    this.state.activities.forEach(item => {
+      if (item.good) {
+        spentListGood = spentListGood.concat(item.spent || []);
+      } else {
+        spentListBad = spentListBad.concat(item.spent || []);
+      }
+    });
+
+    return <SpentBarChart spentList={spentListGood} spentList2={spentListBad} />;
+
   }
 
   render() {
@@ -141,6 +130,7 @@ class Activities extends React.Component {
     const secondHeader = this.generateSecondHeader();
     const activities = this.generateActivities(this.state.activities);
     const activitiesChartRadar = this.generateChartRadar();
+    const activitiesBarChart = this.generateActivitiesBarChart();
 
     return (
       <div className='p-activities'>
@@ -154,6 +144,10 @@ class Activities extends React.Component {
 
         <div className='col-xs-12'>
           { activitiesChartRadar }
+        </div>
+
+        <div className='col-xs-12'>
+          { activitiesBarChart }
         </div>
       </div>
     );

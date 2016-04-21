@@ -35,8 +35,14 @@ $c_theme_1: #2eec71;
   padding-top: 30px;
   color: white;
 
-  a:hover {
+  span {
     color: white;
+    text-decoration: none;
+  }
+
+  a, a:hover, span {
+    color: white;
+    text-decoration: none;
   }
 
   .title {

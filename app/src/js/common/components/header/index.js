@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router';
 import UserService from 'common/services/userservice';
 import introJs from 'intro.js';
 import CircleImage from 'common/components/circleimage';
@@ -105,10 +106,11 @@ class Header extends React.Component {
       };
 
       return (
-        <div {...containerProps}>
-          { icon }
-          <a href={item.href}>{ item.title }</a>
-        </div>
+        <Link to={item.href || ''}>
+          <div {...containerProps}>
+            { icon } { item.title }
+          </div>
+        </Link>
       );
     });
 

@@ -71,7 +71,7 @@ class RadarChart extends React.Component {
 
     return (
       <div className='c-chart'>
-        <Radar {...chartProps} />
+        <Radar redraw {...chartProps} />
       </div>
     );
 
