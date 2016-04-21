@@ -182,13 +182,13 @@ const dayResume = (vec, weather) => {
   //Second part = break / event raport
   let secondPart = '';
 
-  let difficulty = '';
+  let difficulty = 'easy';
 
-  if (totalDuration / breakDuration > 1) {
+  if (breakDuration && totalDuration / (breakDuration || 1) >= 1) {
     difficulty = 'easy';
   }
 
-  if (totalDuration / breakDuration < 1) {
+  if (breakDuration && totalDuration / breakDuration < 1) {
     difficulty = 'medium';
   }
 
@@ -205,8 +205,6 @@ const dayResume = (vec, weather) => {
 
   let clothesType = '';
 
-  console.log(suggestions);
-
   if (suggestions.clothes > -1) {
     const types = [ 'warm', 'moderate', 'thin' ];
 
@@ -218,7 +216,7 @@ const dayResume = (vec, weather) => {
   }
 
   if (suggestions.sunGlasses) {
-    thirdPart += `It will be sunny, so better wear sunglasses. `;
+    thirdPart += `Sunny, so better wear sunglasses. `;
   }
 
   return `${firstPart}. ${secondPart}. ${thirdPart}`;

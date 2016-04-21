@@ -1,49 +1,57 @@
 import Firebase from 'firebase';
-import Utils from 'common/utils';
 
-class FbUtils {
+const ref = new Firebase('https://today-app.firebaseio.com');
 
-  constructor() {
+const getUsers = () => {
 
-    this.ref = new Firebase('https://today-app.firebaseio.com');
+  return new Promise((resolve, reject) => {
 
-  }
-
-  getUsers() {
-
-    return new Promise((resolve, reject) => {
-
-      ref
-      .child('users')
-      .once('value', function(snapshot) {
-        resolve(snapshot.val());
-      });
-
+    ref
+    .child('users')
+    .once('value', function(snapshot) {
+      resolve(snapshot.val());
     });
 
-  }
+  });
 
-  getUserWithEmail(email) {
+};
 
-    return this.getUsers()
-    .then(users => {
+const getUserWithEmail = (email) => {
 
-      let found = null;
+  return getUsers()
+  .then(users => {
+
+    let found = null;
+
+    if (users) {
 
       Object.keys(users).forEach(userEmail => {
         const parsed = userEmail.toLowerCase().replace(/\,/g, '.');
 
         if (parsed === email) {
-          found = true;
+          found = users[userEmail];
         }
       });
 
-      return found;
+    }
 
-    });
+    return found;
 
-  }
+  });
 
-}
+};
+
+const getRef = () => {
+
+  return ref;
+
+};
+
+const FbUtils = {
+  ref: new Firebase('https://today-app.firebaseio.com'),
+  getRef: getRef,
+  getUsers: getUsers,
+  getUserWithEmail: getUserWithEmail
+};
 
 export default FbUtils;

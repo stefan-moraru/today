@@ -1,14 +1,22 @@
+import FbUtils from 'common/utils/firebase';
+
 const profile = () => {
 
   return new Promise((resolve, reject) => {
 
-    const profileCardProps = {
-      image: 'https://media.licdn.com/mpr/mpr/shrinknp_400_400/AAEAAQAAAAAAAAatAAAAJDI5NDdiMTUyLTJjODUtNDg1ZC05YmNmLTcxMWIwZDkzYzgyMg.jpg',
-      name: 'Stefan Moraru',
-      xp: 1020
-    };
+    const authData = FbUtils.ref.getAuth();
 
-    resolve(profileCardProps);
+    FbUtils.getUserWithEmail(authData[authData.provider].email)
+    .then(user => {
+
+      const profileCardProps = {
+        image: user.image,
+        name: user.name
+      };
+
+      resolve(profileCardProps);
+
+    });
 
   });
 

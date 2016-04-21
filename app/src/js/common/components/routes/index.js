@@ -29,13 +29,28 @@ const authenticate = (nextState, replace) => {
 
 }
 
+const authToToday = (nextState, replace) => {
+
+  if (Auth.logged()) {
+
+    replace({
+      pathname: '/today',
+      state: {
+        nextPathname: nextState.location.pathname
+      }
+    });
+
+  }
+
+};
+
 const routes = (
   <Router history={browserHistory}>
     <Redirect from='/' to='home' />
 
     <Route path='/' component={App}>
-      <Route path='home' component={Home} />
-      <Route path='login' component={Login} />
+      <Route path='home' component={Home} onEnter={authToToday} />
+      <Route path='login' component={Login} onEnter={authToToday} />
       <Route path='logout' component={Logout} />
 
       <Route component={Header}>

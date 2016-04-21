@@ -19,9 +19,12 @@ const AuthenticationService = {
             facebookData: { }
           }
         */
-        const id = authData[provider].id;
-        const email = authData[provider].email;
-        const displayName = authData[provider].displayName;
+
+        const providerData = authData[provider];
+        const id = providerData.id;
+        const email = providerData.email;
+        const displayName = providerData.displayName;
+        const image = providerData.profileImageURL;
 
         FbUtils.getUserWithEmail(email)
         .then(found => {
@@ -33,7 +36,8 @@ const AuthenticationService = {
 
             let user = {
               email: email,
-              name: displayName
+              name: displayName,
+              image: image
             };
 
             user[`${provider}Data`] = authData[provider];
@@ -44,6 +48,8 @@ const AuthenticationService = {
             .set(user);
 
           }
+
+          window.location = '/today';
 
         });
 
