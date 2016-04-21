@@ -36,6 +36,10 @@ function loadEvents() {
               email: event.creator.email
             },
             date: moment(event.start.dateTime, 'YYYY-MM-DD').format('YYYY-MM-DD'),
+            time: {
+              h: start.hour(),
+              m: start.minute()
+            },
             duration: duration || 0
           };
 
@@ -79,9 +83,9 @@ const AuthenticationService = {
 
           if (found) {
             // Log in
+            console.log('found');
           } else {
             // Create
-
             let user = {
               email: email,
               name: displayName,
@@ -92,7 +96,7 @@ const AuthenticationService = {
 
             FbUtils.ref
             .child('users')
-            .child(email.toLowerCase().replace(/\./g, ','))
+            .child(emailFormatted)
             .set(user);
 
           }

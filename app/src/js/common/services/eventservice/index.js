@@ -1,3 +1,5 @@
+import FbUtils from 'common/utils/firebase';
+
 let events = [
   {
     id: 10,
@@ -141,12 +143,6 @@ const getEvents = () => {
   });
 };
 
-const getEventsForCurrentUser = () => {
-  return new Promise((resolve, reject) => {
-    resolve(events);
-  });
-};
-
 const getTodayEvents = () => {
   return new Promise((resolve, reject) => {
     resolve(events);
@@ -186,6 +182,5 @@ export default {
   getEvents: getEvents,
   createEvent: createEvent,
   deleteEvent: deleteEvent,
-  getEventsForCurrentUser: getEventsForCurrentUser,
   getHikes: getHikes
 };

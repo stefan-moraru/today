@@ -16,6 +16,20 @@ const getUsers = () => {
 
 };
 
+const getEventsForCurrentUser = () => {
+  const authData = FbUtils.ref.getAuth();
+
+  return new Promise((resolve, reject) => {
+
+    FbUtils.getUserWithEmail(authData[authData.provider].email)
+    .then(user => {
+      resolve(user.events);
+    });
+
+  });
+
+};
+
 const getUserWithEmail = (email) => {
 
   return getUsers()
@@ -51,7 +65,8 @@ const FbUtils = {
   ref: new Firebase('https://today-app.firebaseio.com'),
   getRef: getRef,
   getUsers: getUsers,
-  getUserWithEmail: getUserWithEmail
+  getUserWithEmail: getUserWithEmail,
+  getEventsForCurrentUser: getEventsForCurrentUser
 };
 
 export default FbUtils;

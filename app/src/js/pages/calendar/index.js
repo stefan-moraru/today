@@ -2,10 +2,10 @@ import React from 'react';
 import moment from 'moment';
 import momentRange from 'moment-range';
 import SecondHeader from 'common/components/secondheader';
-import EventService from 'common/services/eventservice';
 import DatePicker from 'common/components/datepicker';
 import { EventModal } from 'common/components/modals';
 import Utils from 'common/utils';
+import FbUtils from 'common/utils/firebase';
 import _ from 'lodash';
 require('./index.scss');
 
@@ -30,7 +30,7 @@ class Calendar extends React.Component {
 
   componentDidMount() {
 
-    this.getEvents();
+    FbUtils.getEventsForCurrentUser().then(this.saveEvents.bind(this));
 
     document.addEventListener('keydown', this.keyDown.bind(this), false);
     document.addEventListener('scroll', this.onScroll.bind(this));
@@ -43,10 +43,11 @@ class Calendar extends React.Component {
 
     }
 
-
   }
 
   componentWillUnmount() {
+
+    console.log('componentWillUnmount');
 
     document.removeEventListener('keydown', this.keyDown.bind(this), false);
     document.removeEventListener('scroll', this.onScroll.bind(this));
@@ -101,12 +102,6 @@ class Calendar extends React.Component {
     this.setState({
       selectedEvent: event
     });
-
-  }
-
-  getEvents() {
-
-    EventService.getEvents(this.state.startOfWeek.format('YYYY-MM-DD'), this.state.endOfWeek.format('YYYY-MM-DD')).then(this.saveEvents.bind(this));
 
   }
 
@@ -221,8 +216,8 @@ class Calendar extends React.Component {
     let showFriends = null;
 
     if (ev.duration > 30) {
-      showTime = <span>{ Utils.padTime(ev.time) } @</span>;
-      showLocation = <span>{ev.location}</span>;
+      showTime = <span>{ Utils.padTime(ev.time) }</span>;
+      showLocation = <span>@ {ev.location}</span>;
     } else if (ev.duration > 90) {
       showDescription = <div><span>{ ev.description }</span></div>;
       showFriends = this.attendeesPictures(ev);
