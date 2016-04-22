@@ -47,8 +47,6 @@ class Calendar extends React.Component {
 
   componentWillUnmount() {
 
-    console.log('componentWillUnmount');
-
     document.removeEventListener('keydown', this.keyDown.bind(this), false);
     document.removeEventListener('scroll', this.onScroll.bind(this));
 
@@ -70,18 +68,22 @@ class Calendar extends React.Component {
 
   getClassWithSticky(scrollY, element, sticky = 'sticky') {
 
-    const className = element.className;
-    const stickyIndex = className.indexOf(sticky);
-    let classes = className.split(' ');
-    let top = this.headerTop;
+    if (element) {
 
-    if (scrollY > top && stickyIndex === -1) {
-      classes.push(sticky);
-    } else if (scrollY <= top && stickyIndex !== -1) {
-      classes.splice(classes.indexOf(sticky), 1);
+      const className = element.className;
+      const stickyIndex = className.indexOf(sticky);
+      let classes = className.split(' ');
+      let top = this.headerTop;
+
+      if (scrollY > top && stickyIndex === -1) {
+        classes.push(sticky);
+      } else if (scrollY <= top && stickyIndex !== -1) {
+        classes.splice(classes.indexOf(sticky), 1);
+      }
+
+      return classes.join(' ');
+
     }
-
-    return classes.join(' ');
 
   }
 

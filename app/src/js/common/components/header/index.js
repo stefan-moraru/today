@@ -6,22 +6,29 @@ import CircleImage from 'common/components/circleimage';
 import './index.scss';
 
 class Header extends React.Component {
+
   constructor(props) {
+
     super(props);
 
     this.state = {
       profile: {}
     };
+
   }
 
   componentDidMount() {
+
     UserService.profile().then(this.saveProfile.bind(this));
+
   }
 
   saveProfile(profile) {
+
     this.setState({
       profile: profile
     });
+
   }
 
   render() {

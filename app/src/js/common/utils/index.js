@@ -15,6 +15,37 @@ const eventsDuration = (vec) => {
 
 };
 
+const sortEvents = (vec) => {
+
+  return vec
+  .sort(function(a, b) {
+    return eventStartMinutes(a) > eventStartMinutes(b);
+  });
+
+};
+
+
+const nextEvent = (events) => {
+
+  let nextEv = {};
+  let min = 1440;
+  const current = moment().hour() * 60 + moment().minute();
+
+  sortEvents(events)
+  .forEach(event => {
+    const val = eventValue(event);
+    const diff = current - val;
+
+    if (diff > 0 && diff < min) {
+      min = diff;
+      nextEv = event;
+    }
+  });
+
+  return nextEv;
+
+};
+
 const eventValue = (event) => {
   return event.time.h * 60 + event.time.m + event.duration;
 };
@@ -123,15 +154,6 @@ const breakCount = (vec) => {
 const breakMinutes = (vec) => {
 
   return breakIntervals(vec).reduce((prev, current) => prev + current.duration, 0);
-
-};
-
-const sortEvents = (vec) => {
-
-  return vec
-  .sort(function(a, b) {
-    return eventStartMinutes(a) > eventStartMinutes(b);
-  });
 
 };
 
@@ -313,29 +335,27 @@ const durationAsShortSentence = (duration) => {
 
 const durationAsSentence = (duration) => {
 
-  //TODO
-
   const h = Math.floor(duration / 60);
   const m = Math.floor(duration % 60);
   let sen = '';
 
   if (h) {
     if (h === 1) {
-      sen += 'O ora';
+      sen += 'One hour';
     } else {
-      sen += `${h} ore`;
+      sen += `${h} hours`;
     }
   }
 
   if (m) {
     if (h) {
-      sen += ' si ';
+      sen += ' and ';
     }
 
     if (m < 20) {
-      sen += `${m} minute`;
+      sen += `${m} minutes`;
     } else {
-      sen += `${m} de minute`;
+      sen += `${m} minutes`;
     }
   }
 
@@ -356,5 +376,6 @@ export default {
   isToday,
   isNow,
   durationAsSentence,
-  durationAsShortSentence
+  durationAsShortSentence,
+  nextEvent
 };

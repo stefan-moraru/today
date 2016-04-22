@@ -93,9 +93,8 @@ class DirectionsCard extends Card {
 
   getMap(lat, long) {
 
-    //TODO
     const first = `${lat}, ${long}`;
-    const last = 'Universitatea Alexandru Ioan Cuza Iasi';
+    const last = this.props.end;
 
     const urlParams = [
       `mode=walking`,
@@ -141,10 +140,20 @@ class DirectionsCard extends Card {
       }
     }
 
+    let text = '';
+    let button = null;
+
+    if (this.props.end) {
+      text = `Show guide to ${this.props.end}`;
+      button = <button className='btn btn-info' onClick={ this.showMap.bind(this) }>{ text }</button>;
+    } else {
+      text = `Next event doesn't have a location`;
+      button = <h6 className='u-pt-half u-hz-ctr'>{ text }</h6>;
+    }
+
     return (
       <div>
-        <button className='btn btn-info' onClick={ this.showMap.bind(this) }>Show</button>
-
+        { button }
         { map }
       </div>
     );
@@ -152,5 +161,9 @@ class DirectionsCard extends Card {
   }
 
 }
+
+DirectionsCard.defaultProps = {
+  end: null
+};
 
 export default DirectionsCard;
