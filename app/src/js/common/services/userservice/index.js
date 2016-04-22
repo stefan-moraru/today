@@ -6,12 +6,19 @@ const profile = () => {
 
     const authData = FbUtils.ref.getAuth();
 
-    FbUtils.getUserWithEmail(authData[authData.provider].email)
+    const email = authData[authData.provider].email;
+    const formattedEmail = email.toLowerCase().replace(/\./g, ',');
+
+    FbUtils.getUserWithEmail(formattedEmail)
     .then(user => {
 
       const profileCardProps = {
         image: user.image,
-        name: user.name
+        name: user.name,
+        email: user.email,
+        googleData: typeof user.googleData !== 'undefined',
+        facebookData: typeof user.facebookData !== 'undefined',
+        twitterData: typeof user.twitterData !== 'undefined'
       };
 
       resolve(profileCardProps);

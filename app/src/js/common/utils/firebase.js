@@ -58,6 +58,8 @@ const getUserWithAuthData = (provider, id) => {
 
 const getUserWithEmail = (email) => {
 
+  email = email.toLowerCase().replace(/\./g, ',');
+
   return getUsers()
   .then(users => {
 

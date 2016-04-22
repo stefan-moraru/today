@@ -78,9 +78,6 @@ class Header extends React.Component {
       },
       {
         href: '/profile',
-        /* icon: (
-          <CircleImage image={this.state.profile.image} />
-        ), */
         icon: 'fa fa-user',
         title: 'Profile'
       }
@@ -101,12 +98,11 @@ class Header extends React.Component {
 
       const containerProps = {
         className: `u-c-pointer u-ctr-flex u-ctr-flex-v u-w-full item ${extraClasses}`,
-        key: `c-header-item-${index}`,
         onClick: item.onClick
       };
 
       return (
-        <Link to={item.href || ''}>
+        <Link to={item.href || ''} key={`c-header-item-${index}`}>
           <div {...containerProps}>
             { icon } { item.title }
           </div>

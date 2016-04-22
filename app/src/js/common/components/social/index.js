@@ -21,18 +21,23 @@ class Social extends React.Component {
     const networksRendered = networks.map((item, key) => {
 
       let itemRendered = null;
+      let extra = '';
+
+      if (this.props[`${item.provider}Data`] === true) {
+        extra = 'activated';
+      }
 
       if (item.href && !this.props.authenticate) {
         itemRendered = (
           <a href={ item.href } target='_new' key={`Social-item-${key}`}>
-            <div className='circle'>
+            <div className={`circle ${extra}`}>
               <i className={ item.icon }></i>
             </div>
           </a>
         );
       } else if (this.props.authenticate) {
         itemRendered = (
-          <div className='circle' onClick={this.authenticateProvider.bind(this, item.provider)}>
+          <div className={`circle ${extra}`} onClick={this.authenticateProvider.bind(this, item.provider)}>
             <i className={ item.icon }></i>
           </div>
         );

@@ -95,29 +95,20 @@ class PanelUser extends React.Component {
               <div className='col-md-6'>
                 <div className='input-group'>
                   <span className='input-group-addon'><i className='fa fa-envelope fa-fw'></i></span>
-                  <input type='text' className='form-control' placeholder='Email' disabled value={this.state.email} />
+                  <input type='text' className='form-control' placeholder='Email' disabled value={this.state.profile.email} />
                 </div>
 
                 <div className='input-group'>
                   <span className='input-group-addon'><i className='fa fa-user fa-fw'></i></span>
-                  <input type='text' className='form-control' placeholder='Username' value={this.state.username} onChange={this.onChange.bind(this, 'username')} />
+                  <input type='text' className='form-control' placeholder='Username' disabled value={this.state.profile.name} onChange={this.onChange.bind(this, 'username')} />
                 </div>
-
-                <div className='input-group'>
-                  <span className='input-group-addon'><i className='fa fa-asterisk fa-fw'></i></span>
-                  <input type='password' className='form-control' placeholder='Parola' value={this.state.password} onChange={this.onChange.bind(this, 'password')} />
-                </div>
-
-                <button className='btn btn-success u-fr'>
-                  Update
-                </button>
               </div>
             </div>
           </div>
 
           <div className='col-xs-12 u-mb-full'>
             <h4>Connect with apps</h4>
-            <Social authenticate={true} />
+            <Social authenticate={true} {...this.state.profile} />
           </div>
 
           <div className='col-xs-12 u-mb-full'>

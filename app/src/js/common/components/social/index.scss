@@ -14,5 +14,9 @@
     justify-content: center;
     align-items: center;
     margin-right: 10px;
+
+    &.activated {
+      color: #03A9F4;
+    }
   }
 }
