@@ -1,7 +1,48 @@
 import React from 'react';
+import moment from 'moment';
 import Card from 'common/components/card';
+import GoalsService from 'common/services/goalsservice';
 
 class GoalsCard extends Card {
+
+  constructor(props) {
+
+    super(props);
+
+    this.state = {
+      goals: [],
+      selectedGoal: {}
+    };
+
+  }
+
+  componentDidMount() {
+
+    this.getGoals();
+
+  }
+
+  selectGoal(goal) {
+
+    this.setState({
+      selectedGoal: goal
+    });
+
+  }
+
+  getGoals() {
+
+    GoalsService.getGoals().then(this.saveGoals.bind(this));
+
+  }
+
+  saveGoals(goals) {
+
+    this.setState({
+      goals: goals
+    });
+
+  }
 
   getType() {
 
@@ -23,29 +64,17 @@ class GoalsCard extends Card {
 
   getContent() {
 
-    //TODO
-    const goals = [
-      {
-        title: 'Alergat',
-        date: '2016-01-01',
-        done: true
-      },
-      {
-        title: 'Mancat\ sanatos',
-        date: '2016-01-01',
-        done: false
-      },
-      {
-        title: 'Teme',
-        date: '2016-01-01',
-        done: true
-      },
-      {
-        title: 'Programat',
-        date: '2016-01-01',
-        done: false
+    const goals = this.state.goals.map(item => {
+
+      item.dome = false;
+
+      if ((item.doneOn || []).indexOf(moment().format('YYYY-MM-DD')) !== -1) {
+        item.done = true;
       }
-    ];
+
+      return item;
+
+    });
 
     const goalsRendered = goals.sort((a, b) => a.done > b.done).map((item, index) => {
 

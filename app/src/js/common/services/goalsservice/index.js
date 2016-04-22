@@ -6,7 +6,7 @@ const getGoals = () => {
       {
         id: 1,
         days: [ 3, 6 ],
-        doneOn: [ '2016-03-02', '2016-03-05' ],
+        doneOn: [ '2016-03-02', '2016-03-05', '2016-04-22' ],
         title: 'Mancat sanatos',
         description: 'Fara fast-food sau dulciuri. Cel mult 2000 de calorii.',
         minDays: 100
