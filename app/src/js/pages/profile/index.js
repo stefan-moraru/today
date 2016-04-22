@@ -3,6 +3,7 @@ import CircleImage from 'common/components/circleimage';
 import AchievementsService from 'common/services/achievementsservice';
 import EventsService from 'common/services/eventservice';
 import { EventCard, ChartCard } from 'common/components/cards';
+import FbUtils from 'common/utils/firebase';
 import './index.scss';
 
 class Profile extends React.Component {
@@ -13,7 +14,8 @@ class Profile extends React.Component {
 
     this.state = {
       achievements: [],
-      events: []
+      events: [],
+      user: {}
     };
 
   }
@@ -21,9 +23,19 @@ class Profile extends React.Component {
   componentDidMount() {
 
     AchievementsService.getAchievements().then(this.saveAchievements.bind(this));
-    EventsService.getEventsForCurrentUser().then(this.saveEvents.bind(this));
+    FbUtils.getEventsForUser(this.props.params.email).then(this.saveEvents.bind(this));
+    FbUtils.getUserWithEmail(this.props.params.email).then(this.saveUser.bind(this));
 
   }
+
+  saveUser(user) {
+
+    this.setState({
+      user: user
+    });
+
+  }
+
 
   saveAchievements(achievements) {
 
@@ -45,9 +57,7 @@ class Profile extends React.Component {
 
     const achievementsRendered = achievements.map((item, index) => {
 
-      const user = {}; //TODO
-
-      const done = item.done(user);
+      const done = item.done(this.state.user);
 
       let doneClassName = 'goal--not-done';
 
@@ -153,11 +163,11 @@ class Profile extends React.Component {
 
       const cat = ev.category;
 
-      if (!_categoriesValues[cat.title]) {
-        _categoriesValues[cat.title] = 0;
+      if (!_categoriesValues[cat]) {
+        _categoriesValues[cat] = 0;
       }
 
-      _categoriesValues[cat.title] += 1;
+      _categoriesValues[cat] += 1;
       _total += 1;
 
     });
@@ -233,7 +243,7 @@ class Profile extends React.Component {
 
         <div className='row u-mb-full u-hz-ctr'>
           <div className='col-xs-12'>
-            <h1 className='display-4 f-light'>Stefan Moraru</h1>
+            <h1 className='display-4 f-light'>{ this.state.user.name }</h1>
           </div>
         </div>
 

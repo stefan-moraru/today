@@ -41,7 +41,8 @@ function loadEvents() {
                 h: start.hour(),
                 m: start.minute()
               },
-              duration: duration || 0
+              duration: duration || 0,
+              category: 'No category'
             };
 
             _events.push(eventConstructed)

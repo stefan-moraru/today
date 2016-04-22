@@ -16,6 +16,19 @@ const getUsers = () => {
 
 };
 
+const getEventsForUser = (email) => {
+
+  return new Promise((resolve, reject) => {
+
+    FbUtils.getUserWithEmail(email)
+    .then(user => {
+      resolve(user.events);
+    });
+
+  });
+
+};
+
 const getEventsForCurrentUser = () => {
   const authData = FbUtils.ref.getAuth();
 
@@ -94,6 +107,7 @@ const FbUtils = {
   getUsers: getUsers,
   getUserWithEmail: getUserWithEmail,
   getEventsForCurrentUser: getEventsForCurrentUser,
+  getEventsForUser: getEventsForUser,
   getUserWithAuthData: getUserWithAuthData
 };
 

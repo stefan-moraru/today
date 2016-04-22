@@ -28,11 +28,6 @@ class Header extends React.Component {
 
     const routes = [
       {
-        href: '/home',
-        icon: 'fa fa-home',
-        title: 'Home'
-      },
-      {
         href: '/today',
         title: 'Today',
         icon: 'fa fa-home'
@@ -53,33 +48,19 @@ class Header extends React.Component {
         icon: 'fa fa-th'
       },
       {
-        href: '/login',
-        title: 'Log in',
-        icon: 'fa fa-sign-in'
-      },
-      {
-        href: '/logout',
-        title: 'Log out',
-        icon: 'fa fa-sign-out'
-      },
-      {
         href: '/settings',
         title: 'Settings',
         icon: 'fa fa-cog'
       },
       {
-        title: 'Help',
-        icon: 'fa fa-question-circle',
-        onClick: () => {
-
-          introJs.introJs().setOption('showProgress', true).setOption('showStepNumbers', false).start();
-
-        }
-      },
-      {
-        href: '/profile',
+        href: `/profile/${(this.state.profile.email || '').replace(/\./g, ',')}`,
         icon: 'fa fa-user',
         title: 'Profile'
+      },
+      {
+        href: '/logout',
+        title: 'Log out',
+        icon: 'fa fa-sign-out'
       }
     ];
 
@@ -110,6 +91,15 @@ class Header extends React.Component {
       );
     });
 
+    const helpRendered = (
+      <div className='u-c-pointer u-ctr-flex u-ctr-flex-v u-w-full item'
+      onClick={ () => {
+        introJs.introJs().setOption('showProgress', true).setOption('showStepNumbers', false).start()
+      }}>
+          <i className='fa fa-question-circle'></i> Help
+      </div>
+    );
+
     return (
       <div className='container-fluid'>
         <div className='menu-container'>
@@ -117,6 +107,7 @@ class Header extends React.Component {
             <h3 className='title u-pb-quarter'>Today</h3>
 
             { routesRendered }
+            { helpRendered }
           </div>
         </div>
 

@@ -141,6 +141,14 @@ class Goals extends React.Component {
 
   }
 
+  goalSuccess(goal) {
+
+  }
+
+  goalFail(goal) {
+
+  }
+
   generateChains() {
 
     //TODO
@@ -213,11 +221,18 @@ class Goals extends React.Component {
                   <i className='fa fa-edit'></i>
                 </button>
 
-                <button className='btn btn-success u-ml-quarter'>
+                <button className='btn btn-success u-ml-quarter' onClick={this.goalSuccess.bind(this, item)}>
                   <i className='fa fa-check'></i>
                 </button>
 
-                <button className='btn btn-danger u-ml-quarter'>
+                <a href={`https://twitter.com/intent/tweet?text=I just acomplished ${item.title} on Today.`}>
+                  <button className='btn btn-success u-ml-quarter' onClick={this.goalSuccess.bind(this, item)}>
+                    <i className='fa fa-check'></i>
+                    <i className='fa fa-twitter u-ml-quarter'></i>
+                  </button>
+                </a>
+
+                <button className='btn btn-danger u-ml-quarter' onClick={this.goalFail.bind(this, item)}>
                   <i className='fa fa-times'></i>
                 </button>
               </div>

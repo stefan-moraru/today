@@ -59,7 +59,7 @@ const routes = (
         <Route path='goals' component={Goals} onEnter={authenticate} />
         <Route path='settings' component={Settings} onEnter={authenticate} />
         <Route path='activities' component={Activities} onEnter={authenticate} />
-        <Route path='profile/:username' component={Profile} />
+        <Route path='profile/:email' component={Profile} />
       </Route>
     </Route>
 

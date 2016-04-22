@@ -1,24 +1,40 @@
-let ach = {
-  title: 'Creator',
-  description: 'Halllooooo',
+const ach0 = {
+  title: 'Attender',
+  description: 'Attend at least 5 events',
+  done: (user) => {
+    return ((user || {}).events || []).length > 5;
+  }
+};
+
+const ach1 = {
+  title: 'Connect with Twitter',
+  description: 'Connect account to Twitter, so you can tweet goals.',
+  done: (user) => {
+    return typeof (user || {}).twitterData !== 'undefined';
+  }
+};
+
+const ach2 = {
+  title: 'Visit the Profile page',
+  description: 'You just did it',
   done: (user) => {
     return true;
   }
 };
 
-let ach1 = {
-  title: 'Creator',
-  description: 'Halllooooo',
+const ach3 = {
+  title: 'Connect with Google',
+  description: 'Connecting to Google enables getting Calendar events.',
   done: (user) => {
-    return false;
+    return typeof (user || {}).googleData !== 'undefined';
   }
 };
 
 let achievements = [
-  ach,
-  ach,
+  ach0,
   ach1,
-  ach
+  ach2,
+  ach3
 ];
 
 const getAchievements = () => {
