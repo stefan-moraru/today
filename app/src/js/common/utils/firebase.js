@@ -30,6 +30,32 @@ const getEventsForCurrentUser = () => {
 
 };
 
+const getUserWithAuthData = (provider, id) => {
+
+  return getUsers()
+  .then(users => {
+
+    let found = null;
+
+    if (users) {
+
+      Object.keys(users).forEach(userEmail => {
+        const usr = users[userEmail];
+        const parsed = (usr[provider] || {}).id;
+
+        if (parsed === id) {
+          found = users[userEmail];
+        }
+      });
+
+    }
+
+    return found;
+
+  });
+
+};
+
 const getUserWithEmail = (email) => {
 
   return getUsers()
@@ -66,7 +92,8 @@ const FbUtils = {
   getRef: getRef,
   getUsers: getUsers,
   getUserWithEmail: getUserWithEmail,
-  getEventsForCurrentUser: getEventsForCurrentUser
+  getEventsForCurrentUser: getEventsForCurrentUser,
+  getUserWithAuthData: getUserWithAuthData
 };
 
 export default FbUtils;

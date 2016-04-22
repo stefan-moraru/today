@@ -85,7 +85,9 @@ class PanelUser extends React.Component {
         <h1>Account</h1>
 
         <div className='row'>
-          <ProfileCard {...cardProfileProps} />
+          <div className='col-xs-12'>
+            <ProfileCard {...cardProfileProps} />
+          </div>
 
           <div className='col-xs-12 u-mb-half u-mt-half'>
             <h4>Details</h4>
@@ -115,7 +117,7 @@ class PanelUser extends React.Component {
 
           <div className='col-xs-12 u-mb-full'>
             <h4>Connect with apps</h4>
-            <Social />
+            <Social authenticate={true} />
           </div>
 
           <div className='col-xs-12 u-mb-full'>

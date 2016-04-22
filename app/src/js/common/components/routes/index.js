@@ -1,6 +1,6 @@
 import React from 'react';
 import { browserHistory, Router, Route, Link, Redirect } from 'react-router';
-import Auth from 'common/services/authenticationService';
+import Auth from 'common/services/authenticationservice';
 import App from 'common/components/app';
 import Header from 'common/components/header';
 import Login from 'pages/login';

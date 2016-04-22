@@ -1,23 +1,51 @@
 import React from 'react';
+import AuthenticationService from 'common/services/authenticationservice';
 import './index.scss';
 
 class Social extends React.Component {
 
+  authenticateProvider(provider) {
+
+    AuthenticationService.loginWithProvider(provider, false, true);
+
+  }
+
   render() {
 
     const networks = [
-      { title: 'Facebook', icon: 'fa fa-facebook', href: '#' },
-      { title: 'Google', icon: 'fa fa-google', href: '#' },
-      { title: 'Twitter', icon: 'fa fa-twitter', href: '#' }
+      { title: 'Facebook', provider: 'facebook', icon: 'fa fa-facebook', href: 'https://www.facebook.com/TodayApplication' },
+      { title: 'Google', provider: 'google', icon: 'fa fa-google' },
+      { title: 'Twitter', provider: 'twitter', icon: 'fa fa-twitter' }
     ];
 
-    const networksRendered = networks.map((item, key) => (
-      <a href={ item.href } target='_new' key={`Social-item-${key}`}>
-        <div className='circle'>
-          <i className={ item.icon }></i>
-        </div>
-      </a>
-    ));
+    const networksRendered = networks.map((item, key) => {
+
+      let itemRendered = null;
+
+      if (item.href && !this.props.authenticate) {
+        itemRendered = (
+          <a href={ item.href } target='_new' key={`Social-item-${key}`}>
+            <div className='circle'>
+              <i className={ item.icon }></i>
+            </div>
+          </a>
+        );
+      } else if (this.props.authenticate) {
+        itemRendered = (
+          <div className='circle' onClick={this.authenticateProvider.bind(this, item.provider)}>
+            <i className={ item.icon }></i>
+          </div>
+        );
+      }
+
+
+      if (this.props.showOnlyHref && !item.href) {
+        itemRendered = null;
+      }
+
+      return itemRendered;
+
+    });
 
     return (
       <div className='c-social'>
@@ -31,6 +59,14 @@ class Social extends React.Component {
 
   }
 
+}
+
+Social.defaultProps = {
+  showOnlyHref: false,
+  authenticate: false,
+  onClick: (icon) => {
+    //
+  }
 }
 
 export default Social;

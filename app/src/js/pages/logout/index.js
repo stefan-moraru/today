@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router';
-import Auth from 'common/services/authenticationService';
+import Auth from 'common/services/authenticationservice';
 import Jumbotron from 'common/components/jumbotron';
 import './index.scss';
 

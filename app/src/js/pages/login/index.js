@@ -1,5 +1,5 @@
 import React from 'react';
-import Auth from 'common/services/authenticationService';
+import Auth from 'common/services/authenticationservice';
 require('./index.scss');
 
 class Login extends React.Component {
@@ -71,42 +71,18 @@ class Login extends React.Component {
             <div className='row'>
               <div className='col-sm-7 col-xs-10 push-xs-1'>
                 <h4 className='u-mb-half'>Log in</h4>
-                <div className='input-group'>
-                  <span className='input-group-addon'><i className='fa fa-envelope fa-fw'></i></span>
-                  <input type='text' className='form-control' placeholder='Email' value={this.state.loginEmail} onChange={this.onChange.bind(this, 'loginEmail')} />
-                </div>
-                <div className='input-group'>
-                  <span className='input-group-addon'><i className='fa fa-asterisk fa-fw'></i></span>
-                  <input type='password' className='form-control' placeholder='Password' value={this.state.loginPassword} onChange={this.onChange.bind(this, 'loginPassword')} />
-                </div>
-                <button className='btn btn-info u-fr u-ml-quarter'>Log in</button>
-                <button className='btn btn-info u-fr u-ml-quarter' onClick={this.loginWithProvider.bind(this, 'facebook')}><i className='fa fa-facebook-square'></i></button>
-                <button className='btn btn-info u-fr u-ml-quarter' onClick={this.loginWithProvider.bind(this, 'google')}><i className='fa fa-google'></i></button>
+              </div>
+              <div className='col-sm-7 col-xs-10 push-xs-1'>
+                <button className='btn btn-info u-ml-quarter' onClick={this.loginWithProvider.bind(this, 'facebook')}><i className='fa fa-facebook-square u-pr-quarter'></i>Login with Facebook</button>
+              </div>
+              <div className='col-sm-7 col-xs-10 push-xs-1 u-mt-quarter'>
+                <button className='btn btn-info u-ml-quarter' onClick={this.loginWithProvider.bind(this, 'google')}><i className='fa fa-google u-pr-quarter'></i>Login with Google</button>
               </div>
             </div>
             <div className='row u-mt-full'>
               <div className='col-sm-7 col-xs-10 push-xs-1'>
                 <h4>Not registered?</h4>
-                <p>By registering, you will gain access to a variety of tools that will boost your productivity. If you want to use a social network to connect, you do not have to register.</p>
-              </div>
-            </div>
-
-            <div className='row'>
-              <div className='col-sm-7 col-xs-10 push-xs-1'>
-                <div className='input-group'>
-                  <span className='input-group-addon'><i className='fa fa-envelope fa-fw'></i></span>
-                  <input type='email' className='form-control' placeholder='Email' value={this.state.registerEmail} onChange={this.onChange.bind(this, 'registerEmail')} />
-                </div>
-                <div className='input-group'>
-                  <span className='input-group-addon'><i className='fa fa-asterisk fa-fw'></i></span>
-                  <input type='password' className='form-control' placeholder='Password' value={this.state.registerPassword} onChange={this.onChange.bind(this, 'registerPassword')} />
-                </div>
-                <div className='input-group'>
-                  <span className="input-group-addon"><i className='fa fa-asterisk fa-fw'></i></span>
-                  <input type='password' className='form-control' placeholder='Repeat password' value={this.state.registerPasswordRepeat} onChange={this.onChange.bind(this, 'registerPasswordRepeat')}/>
-                </div>
-                <button className='btn btn-info u-fr' disabled={registerProgress !== 3}>Register</button>
-                <div className='clearfix'></div>
+                <p>By registering, you will gain access to a variety of tools that will boost your productivity. As you will be using a social network account to connect, you won't need to register.</p>
               </div>
             </div>
           </div>
