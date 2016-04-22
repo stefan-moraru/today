@@ -75,8 +75,7 @@ class DatePicker extends React.Component {
 
     let index = 1;
 
-    //TODO
-    const rowsRendered = rows.map((columns, ind) => {
+    const rowsRendered = rows.map((columns, ind3) => {
 
       const columnsRendered = columns.map((column, index2) => {
 
@@ -111,7 +110,7 @@ class DatePicker extends React.Component {
       });
 
       return (
-        <tr key={`datepicker-row-${ind}`}>
+        <tr key={`datepicker-row-${ind3}`}>
           { columnsRendered }
         </tr>
       );

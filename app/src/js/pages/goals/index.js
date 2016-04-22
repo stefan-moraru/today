@@ -5,6 +5,7 @@ import momentRange from 'moment-range';
 import { GoalModal } from 'common/components/modals';
 import Utils from 'common/utils';
 import GoalsService from 'common/services/goalsservice';
+import UserService from 'common/services/userservice';
 require('./index.scss');
 
 const CONST_CREATE_GOAL_MODAL_ID = 'goals-page-modal-goal';
@@ -17,7 +18,8 @@ class Goals extends React.Component {
 
     this.state = {
       goals: [],
-      selectedGoal: {}
+      selectedGoal: {},
+      user: {}
     };
 
   }
@@ -25,6 +27,15 @@ class Goals extends React.Component {
   componentDidMount() {
 
     this.getGoals();
+    UserService.profile().then(this.saveUser.bind(this));
+
+  }
+
+  saveUser(user) {
+
+    this.setState({
+      user: user
+    });
 
   }
 
@@ -142,22 +153,21 @@ class Goals extends React.Component {
   }
 
   goalSuccess(goal) {
-
+    //TODO
   }
 
   goalFail(goal) {
-
+    //TODO
   }
 
   generateChains() {
 
-    //TODO
     const profile = {
-      createdAt: new Date('2016-01-01')
+      createdAt: this.state.user.createdAt
     };
 
     const startDate = moment(profile.createdAt);
-    const endDate = moment(new Date());
+    const endDate = moment(new Date()).add('10', 'days');
 
     const goalsRendered = this.state.goals
     .map((item, index) => {
@@ -249,23 +259,38 @@ class Goals extends React.Component {
 
   render() {
 
-    const secondHeader = this.generateSecondHeader();
-    const chains = this.generateChains();
+    let secondHeader = null;
+    let chains = null;
+    let rendered = null;
 
-    return (
-      <div className='p-goals'>
-        <GoalModal id={CONST_CREATE_GOAL_MODAL_ID} goal={this.state.selectedGoal} />
-        { secondHeader }
+    if (this.state.user.email) {
+      secondHeader = this.generateSecondHeader();
+      chains = this.generateChains();
 
-        <div className='col-xs-12'>
-          <div className='row u-mt-full chains'>
-            <div className='col-md-10 push-md-1'>
-              { chains }
+      rendered = (
+        <div className='p-goals'>
+          <GoalModal id={CONST_CREATE_GOAL_MODAL_ID} goal={this.state.selectedGoal} />
+          { secondHeader }
+
+          <div className='col-xs-12'>
+            <div className='row u-mt-full chains'>
+              <div className='col-md-10 push-md-1'>
+                { chains }
+              </div>
             </div>
           </div>
         </div>
-      </div>
-    );
+      );
+    } else {
+      rendered = (
+        <div className='full-loader u-ctr-flex u-ctr-flex-vh u-mt-full'>
+          <img src='http://i.imgur.com/2CIo4so.gif' />
+        </div>
+      );
+    }
+
+    return rendered;
+
 
   }
 

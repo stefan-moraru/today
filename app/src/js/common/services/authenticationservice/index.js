@@ -42,7 +42,8 @@ function loadEvents() {
                 m: start.minute()
               },
               duration: duration || 0,
-              category: 'No category'
+              category: 'No category',
+              type: 'google'
             };
 
             _events.push(eventConstructed)
@@ -104,7 +105,8 @@ const loginOrRegisterUser = (providerData, authData, found) => {
     let user = {
       email: email,
       name: displayName,
-      image: image
+      image: image,
+      createdAt: moment().format('YYYY-MM-DD')
     };
 
     user[`${provider}Data`] = authData[provider];
