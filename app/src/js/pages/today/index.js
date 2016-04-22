@@ -33,7 +33,8 @@ class Today extends React.Component {
     this.state = {
       events: [],
       goals: [],
-      weather: {}
+      weather: {},
+      profile: {}
     };
 
   }
@@ -145,7 +146,6 @@ class Today extends React.Component {
       title: 'Today you will meet with'
     };
 
-    //TODO
     const cardTimeTrackerProps = {
       title: 'Activity timer'
     };
@@ -153,8 +153,6 @@ class Today extends React.Component {
     const cardGoalsProps = {
       title: 'Goals'
     };
-
-    console.log(Utils.nextEvent(this.state.events));
 
     const cardDirectionsProps = {
       title: 'Guide to next event',
@@ -169,10 +167,9 @@ class Today extends React.Component {
       goals: this.state.goals
     };
 
-    //Todo - city = users city
     const cardWeatherProps = {
       title: 'Weather',
-      city: 'Iasi',
+      city: this.state.profile.city,
       events: this.state.events,
       weather: this.state.weather
     };
@@ -269,7 +266,7 @@ class Today extends React.Component {
         <div className='row'>
           <div className='col-xs-12'>
             <h1 className='display-4 p-today__title u-mb-full'>{ title }</h1>
-            <h4 className='today__title__resume'>{ resume }</h4>
+            <h4 className='today__title__resume f-light'>{ resume }</h4>
           </div>
         </div>
 

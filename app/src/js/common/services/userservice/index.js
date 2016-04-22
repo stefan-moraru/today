@@ -17,6 +17,7 @@ const profile = () => {
         name: user.name,
         email: user.email,
         createdAt: user.createdAt,
+        city: user.city,
         googleData: typeof user.googleData !== 'undefined',
         facebookData: typeof user.facebookData !== 'undefined',
         twitterData: typeof user.twitterData !== 'undefined'

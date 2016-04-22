@@ -106,6 +106,7 @@ const loginOrRegisterUser = (providerData, authData, found) => {
       email: email,
       name: displayName,
       image: image,
+      city: 'Iasi',
       createdAt: moment().format('YYYY-MM-DD')
     };
 

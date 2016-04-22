@@ -149,7 +149,7 @@ class SuggestionCard extends Card {
     } else {
 
       rendered = (
-        <div>
+        <div className='col-xs-12'>
           { breaksRendered }
           <EventModal id='suggestion-card-event-modal' event={this.state.event} />
         </div>
