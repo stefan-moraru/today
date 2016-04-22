@@ -81,6 +81,8 @@ const getGoogleCalendarEvents = (accessToken, email, redirect) => {
 
 const loginOrRegisterUser = (providerData, authData, found) => {
 
+  console.log('[Auth] loginOrRegisterUser', found);
+
   const id = providerData.id;
   const email = providerData.email;
   const displayName = providerData.displayName;
@@ -95,7 +97,7 @@ const loginOrRegisterUser = (providerData, authData, found) => {
 
     FbUtils.ref
     .child('users')
-    .child(found.email)
+    .child(emailFormatted)
     .update(updated);
   } else {
     let user = {

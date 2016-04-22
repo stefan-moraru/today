@@ -64,9 +64,8 @@ const getUserWithEmail = (email) => {
     let found = null;
 
     if (users) {
-
       Object.keys(users).forEach(userEmail => {
-        const parsed = userEmail.toLowerCase().replace(/\,/g, '.');
+        const parsed = userEmail.toLowerCase().replace(/\./g, ',');
 
         if (parsed === email) {
           found = users[userEmail];
