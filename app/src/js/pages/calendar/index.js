@@ -310,7 +310,12 @@ class Calendar extends React.Component {
 
     let time = [];
 
-    for (let i = 0; i < 24; i++) {
+    for (let i = 6; i < 24; i++) {
+      time.push({ h: i, m: 0 });
+      time.push({ h: i, m: 30 });
+    }
+
+    for (let i = 0; i < 6; i++) {
       time.push({ h: i, m: 0 });
       time.push({ h: i, m: 30 });
     }
