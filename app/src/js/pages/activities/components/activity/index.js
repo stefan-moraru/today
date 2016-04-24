@@ -8,10 +8,6 @@ class Activity extends React.Component {
 
     return (
       <div>
-          <button className='btn u-mb-quarter'>
-            <i className='fa fa-edit'></i>
-          </button>
-
           <div className='input-group u-mb-quarter'>
             <span className='input-group-addon'><i className='fa fa-calendar fa-fw'></i></span>
             <input type='date' className='form-control' placeholder='Date' />
@@ -22,7 +18,11 @@ class Activity extends React.Component {
             <input type='text' className='form-control' placeholder='Time' />
           </div>
 
-          <button className='btn btn-success'>
+          <button className='btn'>
+            <i className='fa fa-edit'></i>
+          </button>
+
+          <button className='btn btn-success u-ml-quarter'>
             <i className='fa fa-plus'></i>
           </button>
 
@@ -46,7 +46,7 @@ class Activity extends React.Component {
           <div className='u-fl'>
             <i className='fa fa-clock-o'></i>{item.duration}
           </div>
-          <div className='u-fl'>
+          <div className='u-fr'>
             <i className='fa fa-times'></i>
           </div>
 
@@ -109,19 +109,19 @@ class Activity extends React.Component {
 
     return (
       <div>
-        <div className='col-xs-12'>
+        <div className='col-xl-12 u-mb-quarter'>
           <h2 className='f-light'>{ this.props.title }</h2>
         </div>
 
-        <div className='col-md-3'>
+        <div className='col-xl-3'>
           { this.generateMenu() }
         </div>
 
-        <div className='col-md-3'>
+        <div className='col-xl-3'>
           { this.generateSpentList(this.props.spent) }
         </div>
 
-        <div className='col-md-6'>
+        <div className='col-xl-6'>
           { this.generateChart(this.props.spent, this.props.good) }
         </div>
       </div>

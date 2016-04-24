@@ -82,7 +82,7 @@ class Activities extends React.Component {
       labels: ["Eating", "Drinking", "Sleeping", "Designing", "Coding", "Cycling", "Running"],
       datasets: [
         {
-          label: "My First dataset",
+          label: "Last week",
           fillColor: "rgba(220,220,220,0.2)",
           strokeColor: "rgba(220,220,220,1)",
           pointColor: "rgba(220,220,220,1)",
@@ -92,7 +92,7 @@ class Activities extends React.Component {
           data: [65, 59, 90, 81, 56, 55, 40]
         },
         {
-          label: "My Second dataset",
+          label: "Next week",
           fillColor: "rgba(151,187,205,0.2)",
           strokeColor: "rgba(151,187,205,1)",
           pointColor: "rgba(151,187,205,1)",
@@ -138,15 +138,17 @@ class Activities extends React.Component {
 
         { secondHeader }
 
-        <div className='col-xs-12'>
+        <div className='col-xs-12 u-mt-full'>
           { activities }
         </div>
 
-        <div className='col-xs-12'>
+        <div className='col-md-8 push-md-2 u-mb-full'>
+          <h3 className='f-light u-mb-half'>Last week and this week</h3>
           { activitiesChartRadar }
         </div>
 
-        <div className='col-xs-12'>
+        <div className='col-md-8 push-md-2'>
+          <h3 className='f-light u-mb-half'>This weeks' wasted / useful balance</h3>
           { activitiesBarChart }
         </div>
       </div>
