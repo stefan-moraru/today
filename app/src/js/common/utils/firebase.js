@@ -142,10 +142,11 @@ const createEvent = (event) => {
 
     getCurrentUser()
     .then(user => {
-      event.id = uuid.v1();
-
       user.events = user.events || [];
+      user.events = user.events.filter(ev => ev.id !== event.id);
       user.events.push(event);
+
+      event.id = uuid.v1();
 
       user.image = EventsService.backgroundImageFromCategories(event);
 

@@ -114,8 +114,13 @@ class Calendar extends React.Component {
 
   selectEvent(event) {
 
+    let ev = event;
+
+    ev.timeH = event.time.h;
+    ev.timeM = event.time.m;
+
     this.setState({
-      selectedEvent: event
+      selectedEvent: ev
     });
 
   }
@@ -237,6 +242,8 @@ class Calendar extends React.Component {
       showDescription = <div><span>{ ev.description }</span></div>;
       showFriends = this.attendeesPictures(ev);
     }
+
+    console.log(ev.priority);
 
     const eventProps = {
       className: `u-c-pointer event event--priority-${ev.priority}`,

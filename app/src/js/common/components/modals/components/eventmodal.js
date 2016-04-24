@@ -69,7 +69,7 @@ class EventModal extends Modal {
       { title: 'Hour start', field: 'timeH', type: 'number', small: true },
       { title: 'Minute', field: 'timeM', type: 'number', small: true },
       { title: 'Duration', field: 'duration', type: 'number', small: true },
-      { title: 'Priority', field: 'prority', type: 'number' }
+      { title: 'Priority', field: 'priority', type: 'number' }
     ];
 
     return this.getInputFields(this.state.event, fields, this.updateEventField);
@@ -92,13 +92,25 @@ class EventModal extends Modal {
 
   }
 
+  deleteEvent(event, ev) {
+
+    FbUtils.deleteEvent(event);
+
+  }
+
   getModalBody() {
 
     const event = this.state.event;
     const fields = this.getFields();
 
+    const deleteButton = this.state.event.id ? (
+      <div className='btn btn-danger col-xs-12 u-mt-half' onClick={this.deleteEvent.bind(this, this.state.event)}>
+        Delete
+      </div>
+    ) : null;
+
     return (
-      <div className='create-event'>
+      <div className='create-event u-mt-half'>
         <form>
           <div className='col-md-6'>
             { fields }
@@ -111,6 +123,8 @@ class EventModal extends Modal {
           </div>
 
           <div className='col-xs-12'>
+            { deleteButton }
+
             <button className='btn btn-success col-xs-12 u-mt-half' onClick={this.createEvent.bind(this)}>
               Save
             </button>

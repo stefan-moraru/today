@@ -43,7 +43,8 @@ function loadEvents() {
               },
               duration: duration || 0,
               category: 'No category',
-              type: 'google'
+              type: 'google',
+              priority: 1
             };
 
             _events.push(eventConstructed)
