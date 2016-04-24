@@ -81,7 +81,14 @@ class EventModal extends Modal {
 
     ev.preventDefault();
 
-    const event = this.state.event;
+    let event = this.state.event;
+
+    if (event.timeH || event.timeM) {
+      event.time = {
+        h: event.timeH,
+        m: event.timeM
+      };
+    }
 
     FbUtils.createEvent(event)
     .then(() => {

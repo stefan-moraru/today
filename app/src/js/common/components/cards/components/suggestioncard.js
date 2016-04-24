@@ -41,7 +41,7 @@ class SuggestionCard extends Card {
         duration: goal.duration || 0,
         description: goal.description,
         location: breakItem.location,
-        category: 'Goal'
+        category: 'goal'
       }
     });
 
