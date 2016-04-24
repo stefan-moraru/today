@@ -25,7 +25,16 @@ class Calendar extends React.Component {
     };
 
     this.mounted = false;
+    this.modalOpen = false;
     this.headerTop = 55;
+
+  }
+
+  refresh() {
+
+    FbUtils.getEventsForCurrentUser().then(this.saveEvents.bind(this));
+
+    this.modalOpen = false;
 
   }
 
@@ -59,7 +68,7 @@ class Calendar extends React.Component {
 
   keyDown(e) {
 
-    if (this.mounted) {
+    if (this.mounted && this.modalOpen === false) {
 
       if (e.keyCode === 37) {
 
@@ -122,6 +131,8 @@ class Calendar extends React.Component {
     this.setState({
       selectedEvent: ev
     });
+
+    this.modalOpen = true;
 
   }
 
@@ -242,8 +253,6 @@ class Calendar extends React.Component {
       showDescription = <div><span>{ ev.description }</span></div>;
       showFriends = this.attendeesPictures(ev);
     }
-
-    console.log(ev.priority);
 
     const eventProps = {
       className: `u-c-pointer event event--priority-${ev.priority}`,
@@ -445,6 +454,8 @@ class Calendar extends React.Component {
             this.setState({
               selectedEvent: {}
             });
+
+            this.modalOpen = true;
           }
         }
       ],
@@ -469,7 +480,7 @@ class Calendar extends React.Component {
 
     return (
       <div className='calendar'>
-        <EventModal id={CONST_EVENT_MODAL_ID} event={this.state.selectedEvent}/>
+        <EventModal id={CONST_EVENT_MODAL_ID} event={this.state.selectedEvent} refresh={this.refresh.bind(this)} />
         <SecondHeader {...secondHeaderProps} />
 
         <div>

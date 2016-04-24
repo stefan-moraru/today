@@ -147,13 +147,14 @@ const createEvent = (event) => {
       user.events.push(event);
 
       event.id = uuid.v1();
-
-      user.image = EventsService.backgroundImageFromCategories(event);
+      event.image = EventsService.backgroundImageFromCategories(event);
 
       FbUtils.ref
       .child('users')
       .child(user.email.toLowerCase().replace(/\./g, ','))
       .update(user);
+
+      resolve(user);
     });
 
   });
@@ -173,6 +174,8 @@ const deleteEvent = (event) => {
       .child('users')
       .child(user.email.toLowerCase().replace(/\./g, ','))
       .update(user);
+
+      resolve(user);
     });
 
   });

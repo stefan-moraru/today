@@ -2,6 +2,7 @@ import React from 'react';
 import Modal from 'common/components/modal';
 import DatePicker from 'common/components/datepicker';
 import FbUtils from 'common/utils/firebase';
+import moment from 'moment';
 
 class EventModal extends Modal {
 
@@ -82,7 +83,10 @@ class EventModal extends Modal {
 
     const event = this.state.event;
 
-    FbUtils.createEvent(event);
+    FbUtils.createEvent(event)
+    .then(() => {
+      this.props.refresh();
+    });
 
   }
 
@@ -94,7 +98,10 @@ class EventModal extends Modal {
 
   deleteEvent(event, ev) {
 
-    FbUtils.deleteEvent(event);
+    FbUtils.deleteEvent(event)
+    .then(() => {
+      this.props.refresh();
+    });
 
   }
 
@@ -104,7 +111,7 @@ class EventModal extends Modal {
     const fields = this.getFields();
 
     const deleteButton = this.state.event.id ? (
-      <div className='btn btn-danger col-xs-12 u-mt-half' onClick={this.deleteEvent.bind(this, this.state.event)}>
+      <div className='btn btn-danger col-xs-12 u-mt-half' onClick={this.deleteEvent.bind(this, this.state.event)} data-dismiss='modal'>
         Delete
       </div>
     ) : null;
@@ -118,14 +125,14 @@ class EventModal extends Modal {
 
           <div className='col-md-6'>
             <div className='col-xs-12 u-ctr-flex u-ctr-flex-h'>
-              <DatePicker onClick={this.saveDate.bind(this)} />
+              <DatePicker onClick={this.saveDate.bind(this)} selected={moment(event.date)} />
             </div>
           </div>
 
           <div className='col-xs-12'>
             { deleteButton }
 
-            <button className='btn btn-success col-xs-12 u-mt-half' onClick={this.createEvent.bind(this)}>
+            <button className='btn btn-success col-xs-12 u-mt-half' onClick={this.createEvent.bind(this)} data-dismiss='modal'>
               Save
             </button>
           </div>
@@ -138,7 +145,10 @@ class EventModal extends Modal {
 }
 
 EventModal.defaultProps = {
-  title: 'Eveniment'
+  title: 'Eveniment',
+  refresh: () => {
+    //
+  }
 };
 
 export default EventModal;

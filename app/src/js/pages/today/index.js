@@ -184,7 +184,7 @@ class Today extends React.Component {
         (<DirectionsCard {...cardDirectionsProps} />),
         (<WeatherCard {...cardWeatherProps} />),
         (<FriendsCard {...cardFriendsProps} />),
-        (<TimeTrackerCard {...cardTimeTrackerProps} />),
+        //(<TimeTrackerCard {...cardTimeTrackerProps} />),
         (<MapCard {...cardMapProps} />),
         (<ChartCard {...cardChartProps} />)
       ]

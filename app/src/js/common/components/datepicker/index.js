@@ -13,8 +13,16 @@ class DatePicker extends React.Component {
     this.state = {
       startOfMonth: moment().startOf('month'),
       endOfMonth: moment().endOf('month'),
-      selected: this.props.selected
+      selected: null
     };
+
+  }
+
+  componentWillReceiveProps(nextProps) {
+
+    this.setState({
+      selected: nextProps.selected
+    });
 
   }
 
