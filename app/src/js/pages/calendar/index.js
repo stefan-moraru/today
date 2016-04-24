@@ -24,6 +24,7 @@ class Calendar extends React.Component {
       selectedEvent: {}
     };
 
+    this.mounted = false;
     this.headerTop = 55;
 
   }
@@ -34,6 +35,8 @@ class Calendar extends React.Component {
 
     document.addEventListener('keydown', this.keyDown.bind(this), false);
     document.addEventListener('scroll', this.onScroll.bind(this));
+
+    this.mounted = true;
 
     const header = document.querySelector('.table-header');
 
@@ -50,17 +53,23 @@ class Calendar extends React.Component {
     document.removeEventListener('keydown', this.keyDown.bind(this), false);
     document.removeEventListener('scroll', this.onScroll.bind(this));
 
+    this.mounted = false;
+
   }
 
   keyDown(e) {
 
-    if (e.keyCode === 37) {
+    if (this.mounted) {
 
-      this.switchToLastWeek();
+      if (e.keyCode === 37) {
 
-    } else if (e.keyCode === 39) {
+        this.switchToLastWeek();
 
-      this.switchToNextWeek();
+      } else if (e.keyCode === 39) {
+
+        this.switchToNextWeek();
+
+      }
 
     }
 
