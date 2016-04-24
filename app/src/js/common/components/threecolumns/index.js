@@ -10,12 +10,24 @@ class ThreeColumns extends React.Component {
 
     if (items) {
 
-      renderedItems = items.splice(0, 4).map((item, index) => (
-        <div className='col-md-3' key={`item-${index}`}>
-          <img src={ item.image } />
-          <p>{ item.description }</p>
-        </div>
-      ));
+      renderedItems = items.splice(0, 4).map((item, index) => {
+
+        const style = {
+          backgroundImage: `url(${item.image})`
+        };
+
+        return (
+          <div className='col-md-3 column' key={`item-${index}`}>
+            <div className='u-ctr-flex u-ctr-flex-h'>
+              <div className='image' style={style}></div>
+            </div>
+    
+            <p>{ item.description }</p>
+          </div>
+        );
+
+      }
+    );
 
     }
 

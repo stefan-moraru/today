@@ -17,10 +17,10 @@ class Home extends React.Component {
 
     const threeColumnsProps = {
       items: [
-        { 'image': 'http://placehold.it/200x200', 'description': 'Lorem ipsum asoindasio oni asdnioasn oiasndioasndoas asiondaiosdnasiod' },
-        { 'image': 'http://placehold.it/200x200', 'description': 'Lorem ipsum asoindasio oni asdnioasn oiasndioasndoas asiondaiosdnasiod' },
-        { 'image': 'http://placehold.it/200x200', 'description': 'Lorem ipsum asoindasio oni asdnioasn oiasndioasndoas asiondaiosdnasiod' },
-        { 'image': 'http://placehold.it/200x200', 'description': 'Lorem ipsum asoindasio oni asdnioasn oiasndioasndoas asiondaiosdnasiod' }
+        { 'image': 'http://i.imgur.com/BR4UO7O.png', 'description': 'Goals are an important part of our time, so we provide full support for managing them.' },
+        { 'image': 'http://i.imgur.com/jSZrqY8.png', 'description': 'All the application is fully responsive. You can manage your time on your phone, tablet or PC.' },
+        { 'image': 'http://i.imgur.com/OrKlZWZ.png', 'description': 'We use data to suggest ways in which you can improve your time.' },
+        { 'image': 'http://i.imgur.com/xtM5AnM.png', 'description': 'All the research we did is fully documented, so you can see that our ideas will work.' }
       ]
     };
 
@@ -76,8 +76,8 @@ class Home extends React.Component {
               <HomeTitle title='Demo' extraClasses='u-hz-ctr u-mb-half' extraClassesTitle='display-4' />
 
               <div className='row'>
-                <div className='col-xs-12 u-hz-ctr'>
-                  <img className='u-w-full' src='http://placehold.it/600x400' />
+                <div className='col-xs-12 col-md-6 push-md-3 u-hz-ctr'>
+                  <img className='u-w-full' src='http://i.imgur.com/rSDSqRg.png' />
                 </div>
               </div>
             </div>
