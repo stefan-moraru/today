@@ -1,5 +1,7 @@
 import Firebase from 'firebase';
+import EventsService from 'common/services/eventservice';
 import moment from 'moment';
+import uuid from 'node-uuid';
 
 const ref = new Firebase('https://today-app.firebaseio.com');
 
@@ -83,6 +85,21 @@ const getEventsForUser = (email) => {
 
 };
 
+const getCurrentUser = () => {
+
+  const authData = FbUtils.ref.getAuth();
+
+  return new Promise((resolve, reject) => {
+
+    FbUtils.getUserWithEmail(authData[authData.provider].email)
+    .then(user => {
+      resolve(user);
+    });
+
+  });
+
+};
+
 const getEventsForCurrentUser = () => {
 
   const authData = FbUtils.ref.getAuth();
@@ -119,6 +136,48 @@ const getRef = () => {
 
 };
 
+const createEvent = (event) => {
+
+  return new Promise((resolve, reject) => {
+
+    getCurrentUser()
+    .then(user => {
+      event.id = uuid.v1();
+
+      user.events = user.events || [];
+      user.events.push(event);
+
+      user.image = EventsService.backgroundImageFromCategories(event);
+
+      FbUtils.ref
+      .child('users')
+      .child(user.email.toLowerCase().replace(/\./g, ','))
+      .update(user);
+    });
+
+  });
+
+};
+
+const deleteEvent = (event) => {
+
+  return new Promise((resolve, reject) => {
+
+    getCurrentUser()
+    .then(user => {
+      user.events = user.events || [];
+      user.events = user.events.filter(ev => ev.id !== event.id);
+
+      FbUtils.ref
+      .child('users')
+      .child(user.email.toLowerCase().replace(/\./g, ','))
+      .update(user);
+    });
+
+  });
+
+};
+
 const FbUtils = {
   ref: new Firebase('https://today-app.firebaseio.com'),
   getRef: getRef,
@@ -127,7 +186,9 @@ const FbUtils = {
   getEventsForCurrentUser: getEventsForCurrentUser,
   getEventsForUser: getEventsForUser,
   getEventsToday: getEventsToday,
-  getUserWithAuthData: getUserWithAuthData
+  getUserWithAuthData: getUserWithAuthData,
+  createEvent: createEvent,
+  deleteEvent: deleteEvent
 };
 
 export default FbUtils;

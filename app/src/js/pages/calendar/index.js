@@ -98,13 +98,17 @@ class Calendar extends React.Component {
 
   onScroll(ev) {
 
-    const header = document.querySelector('.table-header');
-    const body = document.querySelector('.table-body');
+    if (this.mounted) {
 
-    const scrollY = window.scrollY;
+      const header = document.querySelector('.table-header');
+      const body = document.querySelector('.table-body');
 
-    header.className = this.getClassWithSticky(scrollY, header);
-    body.className = this.getClassWithSticky(scrollY, body, 'sticky-body');
+      const scrollY = window.scrollY;
+
+      header.className = this.getClassWithSticky(scrollY, header);
+      body.className = this.getClassWithSticky(scrollY, body, 'sticky-body');
+
+    }
 
   }
 

@@ -2,7 +2,6 @@ import React from 'react';
 import SecondHeader from 'common/components/secondheader';
 import PanelDefault from './components/paneldefault';
 import PanelInfo from './components/panelinfo';
-import PanelSettings from './components/panelsettings';
 import PanelUser from './components/paneluser';
 import './index.scss';
 
@@ -13,10 +12,6 @@ class Settings extends React.Component {
     super(props);
 
     this.panels = {
-      'settings': {
-        icon: 'cog',
-        content: <PanelSettings />
-      },
       'user': {
         icon: 'user',
         content: <PanelUser />
@@ -28,7 +23,7 @@ class Settings extends React.Component {
     };
 
     this.state = {
-      panel: this.panels['settings'].content
+      panel: this.panels['user'].content
     };
 
   }

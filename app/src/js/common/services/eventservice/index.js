@@ -1,49 +1,39 @@
 import FbUtils from 'common/utils/firebase';
 
-const getEvents = () => {
-  return new Promise((resolve, reject) => {
-    resolve(events);
-  });
-};
+const backgroundImageFromCategories = (event) => {
 
-const getTodayEvents = () => {
-  return new Promise((resolve, reject) => {
-    resolve(events);
-  });
-};
+  const path = '/src/assets/images/';
+  const prefix = `category_`;
+  const imagePath = name => `${path}${prefix}${name}`;
+  const imagePaths = paths => paths.map(item => imagePath(item));
 
-const getHikes = () => {
-  return new Promise((resolve, reject) => {
-    resolve(hikes);
-  });
-};
+  const images = {
+    'sports': imagePaths(['sports1.jpg', 'sports0.jpg']),
+    'food': imagePaths(['food0.jpg', 'food1.jpg', 'food2.jpg']),
+    'noimage': imagePaths(['noimage.jpg', 'noimage1.jpg', 'noimage2.jpg', 'noimage3.jpg'])
+  };
 
-const createEvent = (event) => {
-  return new Promise((resolve, reject) => {
+  const getRandomImageFromCategory = (imagesList, category) => {
+    const rand = Math.floor(Math.random() * imagesList[category].length);
 
-    resolve('ok');
-/*
-id: 6,
-time: { h: 20, m: 0 },
-date: '2016-03-30',
-duration: 90,
-location: 'Palas Mall Iasi',
-category: { id: 0, title: 'meditation' },
-title: 'Meditating'
-*/
-  });
-};
+    return imagesList[category][rand];
+  };
 
-const deleteEvent = (event) => {
-  return new Promise((resolve, reject) => {
-    resolve('ok');
-  });
+  let image = getRandomImageFromCategory(images, 'noimage');
+  let category = null;
+
+  if (event.category) {
+    category = event.category;
+  }
+
+  if (images[category]) {
+    image = getRandomImageFromCategory(images, category);
+  }
+
+  return image;
+
 };
 
 export default {
-  getTodayEvents: getTodayEvents,
-  getEvents: getEvents,
-  createEvent: createEvent,
-  deleteEvent: deleteEvent,
-  getHikes: getHikes
+  backgroundImageFromCategories: backgroundImageFromCategories
 };

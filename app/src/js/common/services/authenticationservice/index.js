@@ -58,7 +58,7 @@ function loadEvents() {
 
 }
 
-const getGoogleCalendarEvents = (accessToken, email, redirect) => {
+const getGoogleCalendarEvents = (accessToken, email, redirect, evts = []) => {
 
   const token = {
     access_token: accessToken //eslint-disable-line
@@ -67,11 +67,16 @@ const getGoogleCalendarEvents = (accessToken, email, redirect) => {
   gapi.auth.setToken(token); //eslint-disable-line
 
   gapi.client.load('calendar', 'v3', () => {
-    loadEvents().then(events => {
+    loadEvents().then(googleEvents => {
+
+      //googleEvents, evts
+      evts = evts.filter(ev => ev.type !== 'google');
+      evts = evts.concat(googleEvents);
+
       FbUtils.ref
       .child('users')
       .child(email)
-      .update({ events: events });
+      .update({ events: evts });
 
       if (redirect) {
         window.location = '/today';
@@ -119,7 +124,7 @@ const loginOrRegisterUser = (providerData, authData, found) => {
   }
 
   if (authData.google && emailFormatted) {
-    getGoogleCalendarEvents(authData.google.accessToken, emailFormatted, true);
+    getGoogleCalendarEvents(authData.google.accessToken, emailFormatted, true, (found || {}).events);
   } else {
     window.location = '/today';
   }

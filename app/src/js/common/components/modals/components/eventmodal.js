@@ -1,6 +1,7 @@
 import React from 'react';
 import Modal from 'common/components/modal';
 import DatePicker from 'common/components/datepicker';
+import FbUtils from 'common/utils/firebase';
 
 class EventModal extends Modal {
 
@@ -30,7 +31,11 @@ class EventModal extends Modal {
 
   updateEventField(event, field, ev) {
 
-    const value = ev.target.value;
+    let value = ev.target.value;
+
+    if (field === 'timeH' || field === 'timeM' || field === 'duration' || field === 'priority') {
+      value = parseInt(value);
+    }
 
     if (field === 'timeH') {
       event.time = event.time || {};
@@ -64,12 +69,26 @@ class EventModal extends Modal {
       { title: 'Hour start', field: 'timeH', type: 'number', small: true },
       { title: 'Minute', field: 'timeM', type: 'number', small: true },
       { title: 'Duration', field: 'duration', type: 'number', small: true },
-      { title: 'Public', field: 'public', type: 'checkbox' },
-      { title: 'Indoor', field: 'locationType', type: 'radio' },
-      { title: 'Outdoor', field: 'locationType', type: 'radio' }
+      { title: 'Priority', field: 'prority', type: 'number' }
     ];
 
     return this.getInputFields(this.state.event, fields, this.updateEventField);
+
+  }
+
+  createEvent(ev) {
+
+    ev.preventDefault();
+
+    const event = this.state.event;
+
+    FbUtils.createEvent(event);
+
+  }
+
+  saveDate(date) {
+
+    this.updateEventField(this.state.event, 'date', { target: { value: date.format('YYYY-MM-DD') } } );
 
   }
 
@@ -87,12 +106,12 @@ class EventModal extends Modal {
 
           <div className='col-md-6'>
             <div className='col-xs-12 u-ctr-flex u-ctr-flex-h'>
-              <DatePicker />
+              <DatePicker onClick={this.saveDate.bind(this)} />
             </div>
           </div>
 
           <div className='col-xs-12'>
-            <button className='btn btn-success col-xs-12 u-mt-half'>
+            <button className='btn btn-success col-xs-12 u-mt-half' onClick={this.createEvent.bind(this)}>
               Save
             </button>
           </div>
