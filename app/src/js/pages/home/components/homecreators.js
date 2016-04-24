@@ -9,7 +9,7 @@ class HomeCreators extends React.Component {
       <div className='c-home-creators'>
         <div className='row'>
           <div className='col-xs-12'>
-            <HomeDescription description='Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla quam velit, vulputate eu pharetra nec, mattis ac neque. Duis vulputate commodo lectus, ac blandit elit tincidunt id. Sed rhoncus, tortor sed eleifend tristique, tortor mauris molestie elit, et lacinia ipsum quam nec dui.' />
+            <HomeDescription description='Working as a team since the beginning, we managed to create a steady application that uses advanced time management techniques.' />
           </div>
         </div>
 

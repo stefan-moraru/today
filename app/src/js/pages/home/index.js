@@ -26,9 +26,9 @@ class Home extends React.Component {
 
     const reviewsProps = {
       items: [
-        { 'image': 'http://placehold.it/200x200', 'description': 'Lorem ipsum asoindasio oni asdnioasn oiasndioasndoas asiondaiosdnasiod', title: 'User 1' },
-        { 'image': 'http://placehold.it/200x200', 'description': 'Lorem ipsum asoindasio oni asdnioasn oiasndioasndoas asiondaiosdnasiod', title: 'User 1' },
-        { 'image': 'http://placehold.it/200x200', 'description': 'Lorem ipsum asoindasio oni asdnioasn oiasndioasndoas asiondaiosdnasiod', title: 'User 1' }
+        { 'image': 'https://scontent.fotp3-2.fna.fbcdn.net/hphotos-xat1/v/t1.0-9/12038565_10206151363535652_4557385123251221862_n.jpg?oh=36a4f4a398b6750846b9bcb2c3dacce6&oe=57B6388D', 'description': 'Good to see products based on well researched ideas.', title: 'Anca Bejinariu' },
+        { 'image': 'https://scontent.fotp3-2.fna.fbcdn.net/hphotos-xta1/t31.0-8/s960x960/1404967_532449473499478_1589656545_o.jpg', 'description': 'This application has the potential to replace applications such as Google Calendar.', title: 'Cosmin Chiriac' },
+        { 'image': 'https://scontent.fotp3-2.fna.fbcdn.net/hphotos-xtf1/v/t1.0-9/10403422_1186978097995428_4308213827455414242_n.jpg?oh=c46e16815e8493b576995072e71eadc2&oe=57A29583', 'description': 'To me it looks like the best way to manage my time.', title: 'Adina Georgeta' }
       ]
     };
 
@@ -58,8 +58,11 @@ class Home extends React.Component {
                 <HomeTitle title='Calendar' extraClassesTitle='display-4' />
                 <HomeDescription description='Even better than our competitor products, the calendar shows you events in a very visual manner. Coloured by priority, you can easily tell how to shape your day. You can add, or remove events, you can sync it with Google Calendar, and the best part: it works just as fine on mobile as it does on tablets and desktops.' />
 
-                <h4 className='f-light'>Fresh design</h4>
+                <h4 className='f-light u-mt-half'>Fresh design</h4>
                 <HomeDescription description='Tired of all the calendars that look old and boring? Our is designed with current standards in mind and it will sure be a refreshment for your eyes.' />
+
+                <h4 className='f-light u-mt-half'>History of events</h4>
+                <HomeDescription description='Nothing is lost, you can see the full history of your events.' />
               </div>
             </div>
           </Section>
@@ -81,18 +84,18 @@ class Home extends React.Component {
           </Section>
 
           <Section>
-            <HomeTitle title='Vezi ce spune lumea despre noi' />
+            <HomeTitle title='Opinions about the application' />
             <HomeReviews {...reviewsProps} />
           </Section>
 
           <Section>
             <div className='c-home-register'>
-              <HomeTitle title='Te-am convins ?' extraClasses='u-hz-ctr' extraClassesTitle='display-4' />
+              <HomeTitle title='Did we convince you?' extraClasses='u-hz-ctr' extraClassesTitle='display-4' />
 
               <div className='row'>
                 <div className='col-xs-12 u-hz-ctr u-mt-full u-mb-full'>
                   <Link to='/login'>
-                    <button className='btn btn-success btn-lg'>Inregistreaza-te !</button>
+                    <button className='btn btn-success btn-lg'>Register</button>
                   </Link>
                 </div>
               </div>
@@ -102,18 +105,18 @@ class Home extends React.Component {
           <Section>
             <div className='row'>
               <div className='col-md-4'>
-                <HomeTitle title='Pentru mai multe detalii ne gasesti pe' />
+                <HomeTitle title='For more details you can find us on' />
                 <HomeSocial />
               </div>
 
               <div className='col-md-4'>
-                <HomeTitle title='Creatori' />
+                <HomeTitle title='Creators' />
                 <HomeCreators />
               </div>
 
               <div className='col-md-4'>
                 <HomeTitle title='FIICode' />
-                <HomeDescription description='Aplicatie realizata pentru concursul FIICode. FIICode dorește ca participanții să valorifice abilitățile (și să dezvolte competențe), prin intermediul competiției: gândirea algoritmică și analitică, modelarea și implementarea, dezvoltarea de noi tehnologii, creativitatea, adaptabilitatea, precum  și capacitatea de a susține în public a unei lucrări proprii.' />
+                <HomeDescription description='Application created for the FIICode contest.' />
               </div>
             </div>
           </Section>

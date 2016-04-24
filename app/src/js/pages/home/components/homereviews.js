@@ -9,20 +9,25 @@ class HomeReviews extends React.Component {
 
     if (items) {
 
-      renderedItems = items.map((item, index) => (
-        <div className='row' key={`HomeReviews-item-${index}`}>
-          <div className='col-xs-12'>
-            <div className='u-fl u-hz-ctr'>
-              <img src={ item.image } />
-            </div>
+      renderedItems = items.map((item, index) => {
+        const style = {
+          backgroundImage: `url(${item.image})`
+        }
 
-            <div className='u-fl'>
-              <h5>{ item.title }</h5>
-              <p>{ item.description }</p>
+        return (
+          <div className='row' key={`HomeReviews-item-${index}`}>
+            <div className='col-xs-12'>
+              <div className='u-fl u-hz-ctr image' style={style}>
+              </div>
+
+              <div className='u-fl'>
+                <h5>{ item.title }</h5>
+                <p>{ item.description }</p>
+              </div>
             </div>
           </div>
-        </div>
-      ));
+        );
+      });
 
     }
 
