@@ -88,20 +88,20 @@ class PanelUser extends React.Component {
           <div className='col-xs-12'>
             <ProfileCard {...cardProfileProps} />
           </div>
+        </div>
 
+        <div className='row'>
           <div className='col-xs-12 u-mb-half u-mt-half'>
             <h4>Details</h4>
-            <div className='row'>
-              <div className='col-md-6'>
-                <div className='input-group'>
-                  <span className='input-group-addon'><i className='fa fa-envelope fa-fw'></i></span>
-                  <input type='text' className='form-control' placeholder='Email' disabled value={this.state.profile.email} />
-                </div>
+            <div className='col-md-6'>
+              <div className='input-group'>
+                <span className='input-group-addon'><i className='fa fa-envelope fa-fw'></i></span>
+                <input type='text' className='form-control' placeholder='Email' disabled value={this.state.profile.email} />
+              </div>
 
-                <div className='input-group'>
-                  <span className='input-group-addon'><i className='fa fa-user fa-fw'></i></span>
-                  <input type='text' className='form-control' placeholder='Username' disabled value={this.state.profile.name} onChange={this.onChange.bind(this, 'username')} />
-                </div>
+              <div className='input-group'>
+                <span className='input-group-addon'><i className='fa fa-user fa-fw'></i></span>
+                <input type='text' className='form-control' placeholder='Username' disabled value={this.state.profile.name} onChange={this.onChange.bind(this, 'username')} />
               </div>
             </div>
           </div>
