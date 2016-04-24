@@ -48,7 +48,13 @@ class ChartCard extends Card {
 
     const chart = this.getChart(type, data, options);
 
-    return chart;
+    let rendered = chart;
+
+    if (data.length < 1) {
+      rendered = <h6 className='u-hz-ctr u-mt-half u-mb-half'>No data for chart</h6>;
+    }
+
+    return rendered;
 
   }
 

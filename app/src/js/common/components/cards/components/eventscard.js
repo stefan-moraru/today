@@ -51,9 +51,15 @@ class EventsCard extends Card {
 
     const eventsRendered = this.generateEvents(this.props.events);
 
+    let rendered = <h6 className='u-f-light u-mt-quarter u-hz-ctr'>No events today</h6>;
+
+    if (eventsRendered.length > 0) {
+      rendered = eventsRendered;
+    }
+
     return (
       <div>
-        { eventsRendered }
+        { rendered }
       </div>
     );
 

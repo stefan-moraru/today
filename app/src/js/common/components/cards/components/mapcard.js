@@ -65,6 +65,10 @@ class MapCard extends Card {
 
       rendered = <iframe {...iframeProps} />;
 
+    } else if (locations.length < 1) {
+
+      rendered = <h6 className='u-hz-ctr u-mt-half u-mb-half'>Add events so a route can be generated for you</h6>;
+
     }
 
     return rendered;
@@ -73,5 +77,8 @@ class MapCard extends Card {
 
 }
 
+MapCard.defaultProps = {
+  locations: []
+};
 
 export default MapCard;

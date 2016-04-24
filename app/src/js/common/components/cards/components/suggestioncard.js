@@ -135,13 +135,13 @@ class SuggestionCard extends Card {
       if (events.length < 1) {
 
         rendered = (
-          <span>Try achieveing as much as you can today, as you seem to be free</span>
+          <h6 className='u-mt-half u-mb-half u-hz-ctr'>Try achieveing as much as you can today, as you seem to be free</h6>
         )
 
       } else {
 
         rendered = (
-          <span>Looks like you can do your goals at the beginning or at the end of the day</span>
+          <h6 className='u-mt-half u-mb-half u-hz-ctr'>Looks like you can do your goals at the beginning or at the end of the day</h6>
         );
 
       }

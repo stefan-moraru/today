@@ -1,4 +1,13 @@
 .p-home {
+  .btn-login {
+    position: fixed;
+    top: 10px;
+    right: 10px;
+    z-index: 10;
+    background-color: #03A9F4;
+    color: white;
+  }
+
   .section, footer {
     padding: 0px 100px;
     margin: 120px 0px;

@@ -34,6 +34,10 @@ class Home extends React.Component {
 
     return (
       <div className='p-home'>
+        <Link to='/login'>
+          <button className='btn btn-login'>Sign up</button>
+        </Link>
+
         <Jumbotron title='Organize your time' description='Easier then ever' more='Find out more' image='/src/assets/images/background.jpg' />
 
           <Section>
