@@ -2,6 +2,7 @@ import React from 'react';
 import Card from 'common/components/card';
 import Utils from 'common/utils';
 import EventService from 'common/services/eventservice';
+import moment from 'moment';
 
 class EventCard extends Card {
 
@@ -107,11 +108,19 @@ class EventCard extends Card {
       className: `event-inner-content event--priority-${event.priority}`
     };
 
+    let date = null;
+
+    if (event.date) {
+
+      date = `${moment(event.date).format('DD MMM')} /`;
+
+    }
+
     return (
       <div {...containerProps}>
         <div className='description'>
           <h5>{ event.title }</h5>
-          <h6>{ time }</h6>
+          <h6>{ date } { time }</h6>
           <h6>{ event.location }</h6>
 
           { remove }
