@@ -43,8 +43,8 @@ class Home extends React.Component {
           <Section>
             <div className='row'>
             <div className='col-md-8 push-md-2'>
-              <HomeTitle title='Trece timpul prea repede ?' />
-              <HomeDescription description='Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla quam velit, vulputate eu pharetra nec, mattis ac neque. Duis vulputate commodo lectus, ac blandit elit tincidunt id. Sed rhoncus, tortor sed eleifend tristique, tortor mauris molestie elit, et lacinia ipsum quam nec dui.' />
+              <HomeTitle title='Does time fly by?' />
+              <HomeDescription description='Our platform is designed around ideas found by Google, Facebook and many more time management pros, and using it should help you quantify time in a efficient manner.' />
             </div>
             </div>
           </Section>
@@ -52,11 +52,14 @@ class Home extends React.Component {
           <Section>
             <div className='row c-home-semifull'>
               <div className='col-md-3 hidden-sm-down'>
-                <img src='/src/assets/images/responsive.png' />
+                <img src='http://i.imgur.com/1lJLuod.png' />
               </div>
               <div className='col-md-9'>
-                <HomeTitle title='Responsive' extraClassesTitle='display-4' />
-                <HomeDescription description='Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla quam velit, vulputate eu pharetra nec, mattis ac neque. Duis vulputate commodo lectus, ac blandit elit tincidunt id. Sed rhoncus, tortor sed eleifend tristique, tortor mauris molestie elit, et lacinia ipsum quam nec dui.' />
+                <HomeTitle title='Calendar' extraClassesTitle='display-4' />
+                <HomeDescription description='Even better than our competitor products, the calendar shows you events in a very visual manner. Coloured by priority, you can easily tell how to shape your day. You can add, or remove events, you can sync it with Google Calendar, and the best part: it works just as fine on mobile as it does on tablets and desktops.' />
+
+                <h4 className='f-light'>Fresh design</h4>
+                <HomeDescription description='Tired of all the calendars that look old and boring? Our is designed with current standards in mind and it will sure be a refreshment for your eyes.' />
               </div>
             </div>
           </Section>
