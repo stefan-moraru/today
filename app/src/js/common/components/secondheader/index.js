@@ -11,17 +11,23 @@ class SecondHeader extends React.Component {
       extraVisible: {}
     };
 
+    this.mounted = false;
+
   }
 
   componentDidMount() {
 
     document.addEventListener('click', this.closeExtra.bind(this));
 
+    this.mounted = true;
+
   }
 
   componentWillUnmount() {
 
     document.removeEventListener('click', this.closeExtra.bind(this));
+
+    this.mounted = false;
 
   }
 
@@ -47,9 +53,13 @@ class SecondHeader extends React.Component {
 
     if (!this.hasParent(ev.target, this.refs.extra) && ev.target.className.indexOf('secondheader') == -1) {
 
-      this.setState({
-        extraVisible: {}
-      });
+      if (this.mounted) {
+
+        this.setState({
+          extraVisible: {}
+        });
+
+      }
 
     }
 

@@ -12,7 +12,6 @@ $c_theme_2: #03A9F4;
   transition-duration: 0.3s;
   border-radius: 2px;
 
-  //WHOA, make it pretteh
   &__title {
     text-align: center;
     padding: 15px 0px;
@@ -90,6 +89,20 @@ $c_theme_2: #03A9F4;
         border-radius: 0px 0px 0px 5px;
       }
     }
+  }
+}
+
+@media (max-width: 48em) {
+  .c-card-event {
+    margin-bottom: 15px;
+  }
+}
+
+@media (min-width: 75em) {
+  .card-columns {
+    -webkit-column-count: 3;
+    -moz-column-count: 3;
+    column-count: 3;
   }
 }
 

@@ -4,6 +4,7 @@ import AchievementsService from 'common/services/achievementsservice';
 import EventsService from 'common/services/eventservice';
 import { EventCard, ChartCard } from 'common/components/cards';
 import FbUtils from 'common/utils/firebase';
+import moment from 'moment';
 import './index.scss';
 
 class Profile extends React.Component {
@@ -15,6 +16,7 @@ class Profile extends React.Component {
     this.state = {
       achievements: [],
       events: [],
+      originalEvents: [],
       user: {}
     };
 
@@ -48,7 +50,8 @@ class Profile extends React.Component {
   saveEvents(events) {
 
     this.setState({
-      events: events
+      events: events,
+      originalEvents: events
     });
 
   }
@@ -91,6 +94,58 @@ class Profile extends React.Component {
 
   }
 
+  searchEvents(ev) {
+
+    let events = this.state.originalEvents;
+
+    let query = ev.target.value;
+
+    query = (query.toString() || '').toLowerCase();
+
+    if (query.match(/^\d{4}$/g)) {
+      // YYYY
+      events = events.filter(event => (event.date || '').indexOf(query) !== -1);
+    } else if (query === 'today') {
+      // today
+      const today = moment().format('YYYY-MM-DD');
+      events = events.filter(event => (event.date || '') === today);
+    } else if (query.match(/^\d{4}-\d{2}-\d{2}$/)) {
+      // YYYY-MM-DD
+      events = events.filter(event => (event.date || '') === query);
+    } else {
+      // Category / title / description / location
+      events = events.filter(event => {
+        let match = false;
+
+        if ((event.title || '').toLowerCase().indexOf(query) !== -1) {
+          match = true;
+        }
+
+        if ((event.description || '').toLowerCase().indexOf(query) !== -1) {
+          match = true;
+        }
+
+        if ((event.category || '').toLowerCase().indexOf(query) !== -1) {
+          match = true;
+        }
+
+        if ((event.location || '').toLowerCase().indexOf(query) !== -1) {
+          match = true;
+        }
+
+        return match;
+      })
+    }
+
+    this.setState({
+      events: events
+    });
+
+    /*
+            <input type='text' className='form-control' placeholder='Search (ex: 2016, Practice, 2016-01-03, Education, today)' onChange={this.searchEvents.bind(this)} />
+    */
+  }
+
   getTimeline(events) {
 
     const timelineRendered = events.map((item, index) => {
@@ -122,13 +177,15 @@ class Profile extends React.Component {
 
       }
 
+      let lineClass = events.length === 1 ? 'u-hidden' : '';
+
       return (
         <div className='row event-row' key={`page-profile-event-${index}`}>
           <div className='col-md-5 left u-p-0'>
             { left }
           </div>
           <div className='col-md-2 hidden-sm-down mid'>
-            <div className={`line ${lineType}`}></div>
+            <div className={`line ${lineType} ${lineClass}`}></div>
             <div className='dot'></div>
           </div>
           <div className='col-md-5 right u-p-0'>
@@ -139,6 +196,8 @@ class Profile extends React.Component {
 
     });
 
+    const noEvents = timelineRendered.length === 0 ? <h4 className='f-light'>No events</h4> : null;
+
     return (
       <div className='c-verticaltimeline'>
         <div className='col-xs-12 u-mb-full u-hz-ctr'>
@@ -146,7 +205,19 @@ class Profile extends React.Component {
           <h6>History of events</h6>
         </div>
 
+        <div className='row'>
+        <div className='col-xs-12 col-md-6 push-md-3 u-mb-full u-p-0'>
+          <div className='input-group u-mb-quarter'>
+            <span className='input-group-addon'><i className='fa fa-search'></i></span>
+            <input type='text' className='form-control' placeholder='Search (ex: 2016, Practice, 2016-01-03, today, Palas mall)' onChange={this.searchEvents.bind(this)} />
+          </div>
+        </div>
+      </div>
+
         <div className='col-md-10 push-md-1'>
+          <div className='u-hz-ctr'>
+            { noEvents }
+          </div>
           { timelineRendered }
         </div>
       </div>
@@ -232,6 +303,17 @@ class Profile extends React.Component {
     const achievements = this.getAchievements(this.state.achievements);
     const timeline = this.getTimeline(this.state.events);
     const chart = this.getChart(this.state.events);
+    let timelineRendered = null;
+
+    if (this.state.originalEvents.length > 0) {
+      timelineRendered = timeline;
+    } else {
+      timelineRendered = (
+        <div className='full-loader u-ctr-flex u-ctr-flex-vh u-mt-full'>
+          <img src='http://i.imgur.com/2CIo4so.gif' />
+        </div>
+      );
+    }
 
     return (
       <div className='p-profile col-xs-12'>
@@ -248,7 +330,7 @@ class Profile extends React.Component {
         </div>
 
         <div className='row u-mb-full'>
-          { timeline }
+          { timelineRendered }
         </div>
 
         <div className='clearfix'></div>
