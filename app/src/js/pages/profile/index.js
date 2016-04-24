@@ -262,7 +262,7 @@ class Profile extends React.Component {
         value: Math.round(_categoriesValues[cat] / _total * 100),
         color: colors[colorInd],
         highlight: "#5AD3D1",
-        label: cat[0].toUpperCase().concat(cat.slice(1))
+        label: cat || 'Not categorised'
       });
     });
 

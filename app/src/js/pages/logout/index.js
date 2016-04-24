@@ -15,7 +15,7 @@ class Logout extends React.Component {
   render() {
 
     const jumbotronProps = {
-      title: 'Thank you for using the application',
+      title: 'Thank you for using Today',
       description: 'Hope that your plans are in place now. You can always come back later.',
       className: 'jumbotron--center-text u-m-0',
       image: '/src/assets/images/background_logout.jpg'

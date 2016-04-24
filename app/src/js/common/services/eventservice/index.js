@@ -8,8 +8,9 @@ const backgroundImageFromCategories = (event) => {
   const imagePaths = paths => paths.map(item => imagePath(item));
 
   const images = {
-    'sports': imagePaths(['sports1.jpg', 'sports0.jpg']),
+    'sports': imagePaths(['sports1.jpg', 'sports1.jpg']),
     'food': imagePaths(['food0.jpg', 'food1.jpg', 'food2.jpg']),
+    'learning': imagePaths(['learning0.jpg', 'learning1.jpg', 'learning2.jpg']),
     'noimage': imagePaths(['noimage.jpg', 'noimage1.jpg', 'noimage2.jpg', 'noimage3.jpg'])
   };
 

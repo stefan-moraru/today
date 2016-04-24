@@ -46,7 +46,7 @@ class Today extends React.Component {
 
     UserService.profile().then(this.saveInState.bind(this, 'profile'));
 
-    GoalsService.getGoals().then(this.saveInState.bind(this, 'goals'));
+    FbUtils.getGoalsForCurrentUser().then(this.saveInState.bind(this, 'goals'));
 
     WeatherService.weatherForCity('Iasi').then(this.saveInState.bind(this, 'weather'));
 
@@ -79,11 +79,11 @@ class Today extends React.Component {
 
       const cat = ev.category;
 
-      if (!_categoriesValues[cat.title]) {
-        _categoriesValues[cat.title] = 0;
+      if (!_categoriesValues[cat]) {
+        _categoriesValues[cat] = 0;
       }
 
-      _categoriesValues[cat.title] += 1;
+      _categoriesValues[cat] += 1;
       _total += 1;
 
     });
@@ -107,7 +107,7 @@ class Today extends React.Component {
         value: Math.round(_categoriesValues[cat] / _total * 100),
         color: colors[colorInd],
         highlight: "#5AD3D1",
-        label: cat[0].toUpperCase().concat(cat.slice(1))
+        label: cat || 'Not categorised'
       });
     });
 
@@ -167,6 +167,8 @@ class Today extends React.Component {
       events: this.state.events,
       goals: this.state.goals
     };
+
+    console.log(this.state.goals);
 
     const cardWeatherProps = {
       title: 'Weather',

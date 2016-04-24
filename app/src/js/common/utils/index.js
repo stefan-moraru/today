@@ -322,10 +322,14 @@ const durationAsShortSentence = (duration) => {
   let sen = '';
 
   if (h > 0) {
-    sen = `${h}h `
+    sen = `${h}h`
   }
 
   if (m > 0) {
+    if (h > 0) {
+      sen += ' ';
+    }
+
     sen = `${sen}${m}m`;
   }
 

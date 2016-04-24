@@ -85,15 +85,15 @@ class PanelUser extends React.Component {
         <h1>Account</h1>
 
         <div className='row'>
-          <div className='col-xs-12'>
+          <div className='col-md-5'>
             <ProfileCard {...cardProfileProps} />
           </div>
         </div>
 
         <div className='row'>
           <div className='col-xs-12 u-mb-half u-mt-half'>
-            <h4>Details</h4>
-            <div className='col-md-6'>
+            <h3 className='f-light'>Details</h3>
+            <div className='col-md-5 u-p-0'>
               <div className='input-group'>
                 <span className='input-group-addon'><i className='fa fa-envelope fa-fw'></i></span>
                 <input type='text' className='form-control' placeholder='Email' disabled value={this.state.profile.email} />
@@ -107,12 +107,12 @@ class PanelUser extends React.Component {
           </div>
 
           <div className='col-xs-12 u-mb-full'>
-            <h4>Connect with apps</h4>
+            <h3 className='f-light'>Connect with apps</h3>
             <Social authenticate={true} {...this.state.profile} />
           </div>
 
           <div className='col-xs-12 u-mb-full'>
-            <h4>Friends that use the application</h4>
+            <h3 className='f-light'>Friends that use the application</h3>
             <div className='c-card-friends'>
               { friendsRendered }
             </div>

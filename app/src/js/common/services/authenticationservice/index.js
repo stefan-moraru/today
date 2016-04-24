@@ -30,7 +30,7 @@ function loadEvents() {
             const eventConstructed = {
               id: event.id || '',
               location: event.location || '',
-              description: event.description || '',
+              description: '',
               title: event.summary || '',
               creator: {
                 name: event.creator.displayName || '',
@@ -42,7 +42,7 @@ function loadEvents() {
                 m: parseInt(start.minute())
               },
               duration: duration || 0,
-              category: 'No category',
+              category: event.description || '',
               type: 'google',
               priority: 1
             };

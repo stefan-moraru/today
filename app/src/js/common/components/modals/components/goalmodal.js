@@ -100,7 +100,11 @@ class GoalModal extends Modal {
 
   createGoal() {
 
-    const goal = this.state.goal;
+    let goal = this.state.goal;
+
+    goal.doneOn = [ '2016-04-24' ];
+
+    goal.duration = parseInt(goal.duration || '');
 
     FbUtils.createGoal(goal)
     .then(() => {

@@ -40,6 +40,8 @@ class MapCard extends Card {
       locationsForWaypoints.shift();
       locationsForWaypoints.pop();
 
+      waypoints = '';
+
       if (locationsForWaypoints.length > 2) {
         locationsForWaypoints.forEach(location => {
           if (location) {
@@ -49,6 +51,8 @@ class MapCard extends Card {
       } else {
         waypoints = locationsForWaypoints[0];
       }
+
+      waypoints = waypoints.substr(1, waypoints.length);
 
       urlParams = [
         `mode=walking`,

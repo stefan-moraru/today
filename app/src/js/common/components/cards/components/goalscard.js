@@ -2,6 +2,7 @@ import React from 'react';
 import moment from 'moment';
 import Card from 'common/components/card';
 import GoalsService from 'common/services/goalsservice';
+import FbUtils from 'common/utils/firebase';
 
 class GoalsCard extends Card {
 
@@ -32,7 +33,7 @@ class GoalsCard extends Card {
 
   getGoals() {
 
-    GoalsService.getGoals().then(this.saveGoals.bind(this));
+    FbUtils.getGoalsForCurrentUser().then(this.saveGoals.bind(this));
 
   }
 
