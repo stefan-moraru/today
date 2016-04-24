@@ -108,7 +108,7 @@ class Activity extends React.Component {
     };
 
     return (
-      <div>
+      <div key={`p-activities-activity-${this.props.title}-${this.props.spent}`}>
         <div className='col-xl-12 u-mb-quarter'>
           <h2 className='f-light'>{ this.props.title }</h2>
         </div>

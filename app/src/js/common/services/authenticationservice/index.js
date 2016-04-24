@@ -38,8 +38,8 @@ function loadEvents() {
               },
               date: moment(event.start.dateTime, 'YYYY-MM-DD').format('YYYY-MM-DD'),
               time: {
-                h: start.hour(),
-                m: start.minute()
+                h: parseInt(start.hour()),
+                m: parseInt(start.minute())
               },
               duration: duration || 0,
               category: 'No category',

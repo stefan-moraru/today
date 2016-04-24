@@ -23,34 +23,13 @@ class Header extends React.Component {
 
     UserService.profile().then(this.saveProfile.bind(this));
 
-    document.addEventListener('keydown', this.keyDown.bind(this), false);
-
     this.mounted = true;
 
   }
 
   componentWillUnmount() {
 
-    document.removeEventListener('keydown', this.keyDown.bind(this), false);
-
     this.mounted = false;
-
-  }
-
-  getActiveRouteIndex() {
-
-    let index = 0;
-
-    this.getRoutes()
-    .forEach((item, ind) => {
-
-      if (window.location.pathname == item.href) {
-        index = ind;
-      }
-
-    });
-
-    return index;
 
   }
 
@@ -93,52 +72,6 @@ class Header extends React.Component {
         icon: 'fa fa-sign-out'
       }
     ];
-
-  }
-
-  switchToPrevRoute() {
-
-    const index = this.getActiveRouteIndex();
-
-    const prev = this.getRoutes()[index - 1];
-
-    if (prev && prev.href) {
-
-      window.location = prev.href;
-
-    }
-
-  }
-
-  switchToNextRoute() {
-
-    const index = this.getActiveRouteIndex();
-
-    const next = this.getRoutes()[index + 1];
-
-    if (next && next.href) {
-
-      window.location = next.href;
-
-    }
-
-  }
-
-  keyDown(e) {
-
-    if (this.mounted) {
-
-      if (e.keyCode === 38) {
-
-        this.switchToPrevRoute();
-
-      } else if (e.keyCode === 40) {
-
-        this.switchToNextRoute();
-
-      }
-
-    }
 
   }
 

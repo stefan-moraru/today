@@ -57,7 +57,7 @@ const eventStartMinutes = (event) => {
 const eventEnd = (event) => {
   const value = eventValue(event);
 
-  return { h: value / 60, m: value % 60 };
+  return { h: parseInt(value / 60), m: parseInt(value % 60) };
 };
 
 const breakIntervals = (vec) => {
