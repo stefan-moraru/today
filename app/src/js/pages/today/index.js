@@ -18,6 +18,7 @@ import {
   WeatherCard
 } from 'common/components/cards';
 import Utils from 'common/utils';
+import FbUtils from 'common/utils/firebase';
 import EventService from 'common/services/eventservice';
 import UserService from 'common/services/userservice';
 import GoalsService from 'common/services/goalsservice';
@@ -41,7 +42,7 @@ class Today extends React.Component {
 
   componentDidMount() {
 
-    EventService.getTodayEvents().then(this.saveInState.bind(this, 'events'));
+    FbUtils.getEventsToday().then(this.saveInState.bind(this, 'events'));
 
     UserService.profile().then(this.saveInState.bind(this, 'profile'));
 

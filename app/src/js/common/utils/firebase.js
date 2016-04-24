@@ -1,4 +1,5 @@
 import Firebase from 'firebase';
+import moment from 'moment';
 
 const ref = new Firebase('https://today-app.firebaseio.com');
 
@@ -10,33 +11,6 @@ const getUsers = () => {
     .child('users')
     .once('value', function(snapshot) {
       resolve(snapshot.val());
-    });
-
-  });
-
-};
-
-const getEventsForUser = (email) => {
-
-  return new Promise((resolve, reject) => {
-
-    FbUtils.getUserWithEmail(email)
-    .then(user => {
-      resolve(user.events);
-    });
-
-  });
-
-};
-
-const getEventsForCurrentUser = () => {
-  const authData = FbUtils.ref.getAuth();
-
-  return new Promise((resolve, reject) => {
-
-    FbUtils.getUserWithEmail(authData[authData.provider].email)
-    .then(user => {
-      resolve(user.events);
     });
 
   });
@@ -95,6 +69,50 @@ const getUserWithEmail = (email) => {
 
 };
 
+
+const getEventsForUser = (email) => {
+
+  return new Promise((resolve, reject) => {
+
+    FbUtils.getUserWithEmail(email)
+    .then(user => {
+      resolve(user.events);
+    });
+
+  });
+
+};
+
+const getEventsForCurrentUser = () => {
+
+  const authData = FbUtils.ref.getAuth();
+
+  return new Promise((resolve, reject) => {
+
+    FbUtils.getUserWithEmail(authData[authData.provider].email)
+    .then(user => {
+      resolve(user.events);
+    });
+
+  });
+
+};
+
+const getEventsToday = () => {
+
+  const today = moment().format('YYYY-MM-DD');
+
+  return new Promise((resolve, reject) => {
+    return getEventsForCurrentUser()
+    .then(events => {
+      resolve(events.filter(event => {
+        return event.date === today;
+      }));
+    });
+  });
+
+};
+
 const getRef = () => {
 
   return ref;
@@ -108,6 +126,7 @@ const FbUtils = {
   getUserWithEmail: getUserWithEmail,
   getEventsForCurrentUser: getEventsForCurrentUser,
   getEventsForUser: getEventsForUser,
+  getEventsToday: getEventsToday,
   getUserWithAuthData: getUserWithAuthData
 };
 

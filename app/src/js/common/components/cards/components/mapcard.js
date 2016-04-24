@@ -35,12 +35,20 @@ class MapCard extends Card {
     let urlParams = [];
 
     if (locations.length > 2) {
-      waypoints = locations;
+      const locationsForWaypoints = locations;
 
-      waypoints.shift();
-      waypoints.pop();
+      locationsForWaypoints.shift();
+      locationsForWaypoints.pop();
 
-      waypoints = waypoints.join('|');
+      if (locationsForWaypoints.length > 2) {
+        locationsForWaypoints.forEach(location => {
+          if (location) {
+            waypoints += `|${location}`;
+          }
+        });
+      } else {
+        waypoints = locationsForWaypoints[0];
+      }
 
       urlParams = [
         `mode=walking`,
