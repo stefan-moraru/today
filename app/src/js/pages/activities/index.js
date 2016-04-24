@@ -78,6 +78,8 @@ class Activities extends React.Component {
 
   generateChartRadar() {
 
+    return null;
+
     const data = {
       labels: ["Eating", "Drinking", "Sleeping", "Designing", "Coding", "Cycling", "Running"],
       datasets: [
@@ -140,11 +142,6 @@ class Activities extends React.Component {
 
         <div className='col-xs-12 u-mt-full'>
           { activities }
-        </div>
-
-        <div className='col-md-8 push-md-2 u-mb-full'>
-          <h3 className='f-light u-mb-half'>Last week and this week</h3>
-          { activitiesChartRadar }
         </div>
 
         <div className='col-md-8 push-md-2'>

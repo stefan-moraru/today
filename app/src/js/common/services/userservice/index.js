@@ -6,10 +6,7 @@ const profile = () => {
 
     const authData = FbUtils.ref.getAuth();
 
-    const email = authData[authData.provider].email;
-    const formattedEmail = email.toLowerCase().replace(/\./g, ',');
-
-    FbUtils.getUserWithEmail(formattedEmail)
+    FbUtils.getUserWithAuthData(authData.provider, authData.uid.substr(authData.uid.indexOf(':') + 1, authData.length))
     .then(user => {
 
       const profileCardProps = {

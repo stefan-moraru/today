@@ -202,6 +202,15 @@ class Goals extends React.Component {
         );
       }
 
+      const twitterLink = `https://twitter.com/intent/tweet?text=I just acomplished '${item.title}' today.`;
+
+      const twitterButtonProps = {
+        className: 'btn btn-success u-ml-quarter',
+        onClick: this.goalSuccess.bind(this, item),
+        disabled: !this.state.user.twitterData,
+        'data-intro': index === 0 ? 'To share this on twitter, go to the Settings page and enable twitter' : null
+      };
+
       return (
         <div className='col-xs-12' key={`page-goals-chains-chain-${index}`}>
           <div className='col-md-12 u-mb-full-2 chain'>
@@ -235,8 +244,8 @@ class Goals extends React.Component {
                   <i className='fa fa-check'></i>
                 </button>
 
-                <a href={`https://twitter.com/intent/tweet?text=I just acomplished ${item.title} on Today.`}>
-                  <button className='btn btn-success u-ml-quarter' onClick={this.goalSuccess.bind(this, item)}>
+                <a href={this.state.user.twitterData ? twitterLink : '#'}>
+                  <button {...twitterButtonProps}>
                     <i className='fa fa-check'></i>
                     <i className='fa fa-twitter u-ml-quarter'></i>
                   </button>

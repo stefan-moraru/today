@@ -30,7 +30,7 @@ const getUserWithAuthData = (provider, id) => {
 
       Object.keys(users).forEach(userEmail => {
         const usr = users[userEmail];
-        const parsed = (usr[provider] || {}).id;
+        const parsed = (usr[`${provider}Data`] || {}).id;
 
         if (parsed === id) {
           found = users[userEmail];
