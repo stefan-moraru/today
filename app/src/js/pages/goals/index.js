@@ -6,7 +6,8 @@ import { GoalModal } from 'common/components/modals';
 import Utils from 'common/utils';
 import GoalsService from 'common/services/goalsservice';
 import UserService from 'common/services/userservice';
-require('./index.scss');
+import FbUtils from 'common/utils/firebase';
+import './index.scss';
 
 const CONST_CREATE_GOAL_MODAL_ID = 'goals-page-modal-goal';
 
@@ -21,6 +22,12 @@ class Goals extends React.Component {
       selectedGoal: {},
       user: {}
     };
+
+  }
+
+  refresh() {
+
+    this.getGoals();
 
   }
 
@@ -49,14 +56,14 @@ class Goals extends React.Component {
 
   getGoals() {
 
-    GoalsService.getGoals().then(this.saveGoals.bind(this));
+    FbUtils.getGoalsForCurrentUser().then(this.saveGoals.bind(this));
 
   }
 
   saveGoals(goals) {
 
     this.setState({
-      goals: goals
+      goals: goals || []
     });
 
   }
@@ -68,13 +75,26 @@ class Goals extends React.Component {
         {
           'icon': 'plus',
           'toggle': 'modal',
-          'target': `#${CONST_CREATE_GOAL_MODAL_ID}`
+          'target': `#${CONST_CREATE_GOAL_MODAL_ID}`,
+          'onClick': () => {
+            this.setState({
+              selectedGoal: {}
+            });
+          }
         }
       ]
     };
 
     return <SecondHeader {...secondHeaderProps} />;
 
+  }
+
+  goalDoneOnDate(goal, date) {
+    const done = (goal.doneOn || []).indexOf(date) !== -1;
+
+    console.log(goal.doneOn, date, done);
+
+    return done;
   }
 
   countDoneDays(startDate, endDate, goal) {
@@ -85,7 +105,7 @@ class Goals extends React.Component {
     .by('days', item => {
       const date = moment(item).format('YYYY-MM-DD');
       const day = moment(item).isoWeekday();
-      const done = goal.doneOn.indexOf(date) !== -1;
+      const done = this.goalDoneOnDate(goal, date);
 
       if (done) {
         count++;
@@ -104,9 +124,13 @@ class Goals extends React.Component {
     .by('days', item => {
       const date = moment(item).format('YYYY-MM-DD');
       const day = moment(item).isoWeekday();
-      const done = goal.doneOn.indexOf(date) !== -1;
+      const done = this.goalDoneOnDate(goal, date);
+
+      console.log(date, day, goal.days);
 
       if (goal.days.indexOf(day) !== -1) {
+
+        console.log(done);
 
         const cellProps = {
           className: 'cell ' + (done ? 'done' : ''),
@@ -128,7 +152,6 @@ class Goals extends React.Component {
   daysAsSentence(days) {
 
     const dayNames = [
-      '',
       'Monday',
       'Tuesday',
       'Wednesday',
@@ -153,11 +176,26 @@ class Goals extends React.Component {
   }
 
   goalSuccess(goal) {
-    //TODO
+
+    let gl = goal;
+    const today = moment().format('YYYY-MM-DD');
+
+    gl.doneOn = (gl.doneOn || []).filter(day => day !== today);
+    gl.doneOn = [ ...gl.doneOn, today ];
+
+    FbUtils.createGoal(gl).then(this.refresh.bind(this));
+
   }
 
   goalFail(goal) {
-    //TODO
+
+    let gl = goal;
+    const today = moment().format('YYYY-MM-DD');
+
+    gl.doneOn = (gl.doneOn || []).filter(day => day !== today);
+
+    FbUtils.createGoal(gl).then(this.refresh.bind(this));
+
   }
 
   generateChains() {
@@ -278,7 +316,7 @@ class Goals extends React.Component {
 
       rendered = (
         <div className='p-goals'>
-          <GoalModal id={CONST_CREATE_GOAL_MODAL_ID} goal={this.state.selectedGoal} />
+          <GoalModal id={CONST_CREATE_GOAL_MODAL_ID} goal={this.state.selectedGoal} refresh={this.refresh.bind(this)} />
           { secondHeader }
 
           <div className='col-xs-12'>

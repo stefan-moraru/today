@@ -1,5 +1,6 @@
 import React from 'react';
 import Modal from 'common/components/modal';
+import FbUtils from 'common/utils/firebase';
 
 class GoalModal extends Modal {
 
@@ -31,13 +32,15 @@ class GoalModal extends Modal {
 
     goal.days = goal.days || [];
 
-    if (goal.days.indexOf(day) !== -1) {
+    const d = day + 1;
 
-      goal.days.splice(goal.days.indexOf(day), 1);
+    if (goal.days.indexOf(d) !== -1) {
+
+      goal.days.splice(goal.days.indexOf(d), 1);
 
     } else {
 
-      goal.days.push(day);
+      goal.days.push(d);
 
     }
 
@@ -55,7 +58,7 @@ class GoalModal extends Modal {
 
       let classNames = 'day u-fl u-c-pointer';
 
-      if ((goal.days || []).indexOf(index) !== -1) {
+      if ((goal.days || []).indexOf(index + 1) !== -1) {
 
         classNames += ' day--selected';
 
@@ -87,10 +90,31 @@ class GoalModal extends Modal {
     const fields = [
       { title: 'Title', field: 'title', type: 'text' },
       { title: 'Description', field: 'description', type: 'text' },
-      { title: 'Duration', field: 'duration', type: 'number' }
+      { title: 'Duration', field: 'duration', type: 'number' },
+      { title: 'How many days you want to do this?', field: 'minDays', type: 'number' }
     ];
 
     return this.getInputFields(this.state.goal, fields, this.updateGoalField);
+
+  }
+
+  createGoal() {
+
+    const goal = this.state.goal;
+
+    FbUtils.createGoal(goal)
+    .then(() => {
+      this.props.refresh();
+    });
+
+  }
+
+  deleteGoal(goal, ev) {
+
+    FbUtils.deleteGoal(goal)
+    .then(() => {
+      this.props.refresh();
+    });
 
   }
 
@@ -99,9 +123,14 @@ class GoalModal extends Modal {
     const goal = this.state.goal;
     const fields = this.getFields();
 
+    const deleteButton = this.state.goal.id ? (
+      <div className='btn btn-danger col-xs-12 u-mt-half' onClick={this.deleteGoal.bind(this, this.state.goal)} data-dismiss='modal'>
+        Delete
+      </div>
+    ) : null;
+
     return (
       <div className='create-goal'>
-        <form>
           { fields }
           <div className='days col-xs-12'>
             <h6>Days</h6>
@@ -109,11 +138,12 @@ class GoalModal extends Modal {
           </div>
 
           <div className='col-xs-12 u-mt-half'>
-            <button className='btn btn-success col-xs-12 u-mt-half'>
+            { deleteButton }
+
+            <button className='btn btn-success col-xs-12 u-mt-half' onClick={this.createGoal.bind(this)} data-dismiss='modal'>
               Save
             </button>
           </div>
-        </form>
       </div>
     );
 
@@ -122,7 +152,10 @@ class GoalModal extends Modal {
 }
 
 GoalModal.defaultProps = {
-  title: 'Goal'
+  title: 'Goal',
+  refresh: () => {
+    //
+  }
 };
 
 export default GoalModal;

@@ -115,6 +115,21 @@ const getEventsForCurrentUser = () => {
 
 };
 
+const getGoalsForCurrentUser = () => {
+
+  const authData = FbUtils.ref.getAuth();
+
+  return new Promise((resolve, reject) => {
+
+    FbUtils.getUserWithEmail(authData[authData.provider].email)
+    .then(user => {
+      resolve(user.goals);
+    });
+
+  });
+
+};
+
 const getEventsToday = () => {
 
   const today = moment().format('YYYY-MM-DD');
@@ -136,6 +151,15 @@ const getRef = () => {
 
 };
 
+const updateUserWithEmail = (email, updated) => {
+
+  FbUtils.ref
+  .child('users')
+  .child(email.toLowerCase().replace(/\./g, ','))
+  .update(updated);
+
+};
+
 const createEvent = (event) => {
 
   return new Promise((resolve, reject) => {
@@ -144,15 +168,13 @@ const createEvent = (event) => {
     .then(user => {
       user.events = user.events || [];
       user.events = user.events.filter(ev => ev.id !== event.id);
-      user.events.push(event);
 
       event.id = uuid.v1();
       event.image = EventsService.backgroundImageFromCategories(event);
 
-      FbUtils.ref
-      .child('users')
-      .child(user.email.toLowerCase().replace(/\./g, ','))
-      .update(user);
+      user.events.push(event);
+
+      updateUserWithEmail(user.email, user);
 
       resolve(user);
     });
@@ -170,10 +192,47 @@ const deleteEvent = (event) => {
       user.events = user.events || [];
       user.events = user.events.filter(ev => ev.id !== event.id);
 
-      FbUtils.ref
-      .child('users')
-      .child(user.email.toLowerCase().replace(/\./g, ','))
-      .update(user);
+      updateUserWithEmail(user.email, user);
+
+      resolve(user);
+    });
+
+  });
+
+};
+
+const createGoal = (goal) => {
+
+  return new Promise((resolve, reject) => {
+
+    getCurrentUser()
+    .then(user => {
+      user.goals = user.goals || [];
+      user.goals = user.goals.filter(gl => gl.id !== goal.id);
+
+      goal.id = uuid.v1();
+
+      user.goals.push(goal);
+
+      updateUserWithEmail(user.email, user);
+
+      resolve(user);
+    });
+
+  });
+
+};
+
+const deleteGoal = (goal) => {
+
+  return new Promise((resolve, reject) => {
+
+    getCurrentUser()
+    .then(user => {
+      user.goals = user.goals || [];
+      user.goals = user.goals.filter(gl => gl.id !== goal.id);
+
+      updateUserWithEmail(user.email, user);
 
       resolve(user);
     });
@@ -192,7 +251,10 @@ const FbUtils = {
   getEventsToday: getEventsToday,
   getUserWithAuthData: getUserWithAuthData,
   createEvent: createEvent,
-  deleteEvent: deleteEvent
+  deleteEvent: deleteEvent,
+  getGoalsForCurrentUser: getGoalsForCurrentUser,
+  createGoal: createGoal,
+  deleteGoal: deleteGoal
 };
 
 export default FbUtils;
