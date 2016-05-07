@@ -21,7 +21,8 @@ class Calendar extends React.Component {
       events: [],
       startOfWeek: moment().startOf('isoweek'),
       endOfWeek: moment().endOf('isoweek'),
-      selectedEvent: {}
+      selectedEvent: {},
+      communities: [],
     };
 
     this.mounted = false;
@@ -41,6 +42,8 @@ class Calendar extends React.Component {
   componentDidMount() {
 
     FbUtils.getEventsForCurrentUser().then(this.saveEvents.bind(this));
+    FbUtils.getCommunities().then(this.saveCommunities.bind(this));
+    FbUtils.getEvents().then(this.saveCommunityEvents.bind(this));
 
     document.addEventListener('keydown', this.keyDown.bind(this), false);
     document.addEventListener('scroll', this.onScroll.bind(this));
@@ -54,6 +57,22 @@ class Calendar extends React.Component {
       this.headerTop = header.getBoundingClientRect().top;
 
     }
+
+  }
+
+  saveCommunityEvents(events) {
+
+    this.setState({
+      communityEvents: events
+    });
+
+  }
+
+  saveCommunities(communities) {
+
+    this.setState({
+      communities: communities
+    });
 
   }
 
@@ -424,12 +443,53 @@ class Calendar extends React.Component {
 
   }
 
+  selectedCalendar(communityId, ev) {
+
+    let events = this.state.events;
+
+    events = events.filter(event => {
+      return (event || {}).community !== communityId
+    });
+
+    if (ev.target.checked === true) {
+
+      this.state.communityEvents.forEach(cmEv => {
+        if (cmEv.community === communityId) {
+          events.push(cmEv);
+        }
+      });
+
+    }
+
+    this.setState({
+      events: events
+    });
+
+  }
+
   render() {
 
     const events = this.state.events;
     const start = this.state.startOfWeek;
     const end = this.state.endOfWeek;
     const table = this.getTable(events, start, end);
+
+    const listOfCalendars = (this.state.communities || []).map((community, index) => {
+
+      const key = `p-calendar-cal-${index}`;
+
+      return (
+        <div className='col-xs-12 u-p-0'>
+          <label key={ key }>
+            <input className='u-mr-quarter' type='checkbox' onChange={this.selectedCalendar.bind(this, community.id)} />
+            <span className='u-ml-half'>
+              { community.title }
+            </span>
+          </label>
+        </div>
+      );
+
+    });
 
     const secondHeaderProps = {
       items: [
@@ -444,7 +504,14 @@ class Calendar extends React.Component {
           )
         },
         {
-          icon: 'list'
+          icon: 'list',
+          extra: (
+            <div>
+              <h5>List of calendars</h5>
+
+              { listOfCalendars }
+            </div>
+          )
         },
         {
           icon: 'plus',

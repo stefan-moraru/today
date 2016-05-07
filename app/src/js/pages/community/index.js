@@ -196,7 +196,7 @@ class Community extends React.Component {
 
         <div className='col-xs-12 col-md-6 push-md-3 u-mb-full'>
           <h1 className='f-light u-hz-ctr'>Most recent event</h1>
-          <h6 className='u-hz-ctr'>The last event organised by { community.title }</h6>
+          <h6 className='u-hz-ctr u-mb-full'>The last event organised by { community.title }</h6>
           { lastEvent }
         </div>
 
