@@ -2,7 +2,7 @@ import React from 'react';
 import SecondHeader from 'common/components/secondheader';
 import moment from 'moment';
 import momentRange from 'moment-range';
-import { GoalModal } from 'common/components/modals';
+import { CommunityEventModal } from 'common/components/modals';
 import Utils from 'common/utils';
 import FbUtils from 'common/utils/firebase';
 import Jumbotron from 'common/components/jumbotron';
@@ -11,6 +11,7 @@ import VerticalTimeline from 'common/components/verticaltimeline';
 import './index.scss';
 
 const CONST_CREATE_COMMUNITY_MODAL_ID = 'community-page-modal-goal';
+const CONST_CREATE_COMMUNITY_EVENT_MODAL_ID = 'community-page-event-modal-goal';
 
 class Community extends React.Component {
 
@@ -132,6 +133,16 @@ class Community extends React.Component {
               selectedGoal: {}
             });
           }
+        },
+        {
+          'icon': 'plus',
+          'toggle': 'modal',
+          'target': `#${CONST_CREATE_COMMUNITY_EVENT_MODAL_ID}`,
+          'onClick': () => {
+            this.setState({
+              selectedGoal: {}
+            });
+          }
         }
       ]
     };
@@ -167,6 +178,10 @@ class Community extends React.Component {
 
   }
 
+  refresh() {
+
+  }
+
   render() {
 
     const secondHeader = this.generateSecondHeader();
@@ -191,6 +206,7 @@ class Community extends React.Component {
 
     return (
       <div className='p-communities'>
+        <CommunityEventModal id={CONST_CREATE_COMMUNITY_EVENT_MODAL_ID} community={community} refresh={this.refresh.bind(this)} />
         { secondHeader }
         <Jumbotron image={ community.image } className='jumbotron--small f-light' title={ community.title } description={ community.description } />
 

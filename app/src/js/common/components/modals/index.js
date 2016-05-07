@@ -1,9 +1,11 @@
 import EventModal from './components/eventmodal';
 import GoalModal from './components/goalmodal';
+import CommunityEventModal from './components/communityeventModal';
 
-require('./index.scss');
+import './index.scss';
 
 export {
   EventModal,
-  GoalModal
+  GoalModal,
+  CommunityEventModal
 };
