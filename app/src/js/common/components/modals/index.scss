@@ -1,0 +1,42 @@
+$color: #eee;
+
+.chat {
+  .message {
+    background-color: $color;
+    padding: 12px;
+    position: relative;
+    margin-top: 10px;
+    margin-left: 10px;
+    margin-right: 10px;
+
+    .f-small {
+      font-size: 12px;
+    }
+  }
+
+  .message:nth-child(even)::after {
+      content: '';
+      display: block;
+      width: 20px;
+      height: 20px;
+      transform: rotate(45deg);
+      position: absolute;
+      top: 50%;
+      left: -10px;
+      margin-top: -10px;
+      background-color: $color;
+    }
+
+  .message:nth-child(odd)::after {
+      content: '';
+      display: block;
+      width: 20px;
+      height: 20px;
+      transform: rotate(45deg);
+      position: absolute;
+      top: 50%;
+      right: -10px;
+      margin-top: -10px;
+      background-color: $color;
+    }
+}

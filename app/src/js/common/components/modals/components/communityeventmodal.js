@@ -3,6 +3,8 @@ import Modal from 'common/components/modal';
 import FbUtils from 'common/utils/firebase';
 import CircleImage from 'common/components/circleimage';
 import { MapCard } from 'common/components/cards';
+import _ from 'lodash';
+import moment from 'moment';
 
 class CommunityEventModal extends Modal {
 
@@ -18,6 +20,8 @@ class CommunityEventModal extends Modal {
     this.realtimeTitle = '';
     this.realtimeDescription = '';
     this.realtimeUsers = [];
+    this.realtimeLocation = '';
+    this.realtimeChat = [];
 
   }
 
@@ -64,7 +68,9 @@ class CommunityEventModal extends Modal {
         const updated = {
           users: [],
           title: '',
-          description: ''
+          description: '',
+          location: '',
+          chat: []
         };
 
         FbUtils.ref
@@ -96,12 +102,11 @@ class CommunityEventModal extends Modal {
     this.realtimeDescription = data.description;
     this.realtimeUsers = data.users;
     this.realtimeLocation = data.location;
+    this.realtimeChat = data.chat;
 
     if (this.mounted) {
       this.forceUpdate();
     }
-
-    console.log('refresh');
 
   }
 
@@ -133,57 +138,91 @@ class CommunityEventModal extends Modal {
 
   addUser(user) {
 
-    console.log('addUser');
-    console.log(user);
-
     const communityId = 0; //TODO
 
-    FbUtils.ref
+    this.storedRef = FbUtils.ref
     .child('realtime')
     .child(communityId)
     .child('users')
     .push(user);
-    /* .once('value', function(snapshot) {
-      let data = snapshot.val();
 
-      data.users = (data.users || []).filter(item => {
+  }
 
-        if (item.email === user.email) {
-          return false;
-        }
+  saveMessage(event) {
 
-        return true;
+    this.message = event.target.value;
 
-      });
+  }
 
-      data.users.push(user);
+  sendMessage() {
 
-      FbUtils.ref
-      .child('realtime')
-      .child(communityId) //TODO
-      .update(data);
-    }); */
+    const communityId = 0;
+
+    const message = {
+      content: this.message,
+      date: new Date().getTime(),
+      userName: this.state.profile.name
+    };
+
+    FbUtils.ref
+    .child('realtime')
+    .child(communityId)
+    .child('chat')
+    .push(message);
 
   }
 
   getModalBody() {
 
-    // Get data from Firebase
-    const profile = this.state.profile || {};
-
     const users = this.realtimeUsers;
+    const chat = this.realtimeChat;
 
-    const usersRendered = (Object.keys(users) || []).map((key, index) => {
+    let images = [];
+
+    (Object.keys(users) || []).map((key, index) => {
 
       const user = users[key];
 
-      return (
-        <div className='u-fl u-ml-half'>
-          <CircleImage image={user.image} />
-        </div>
-      )
+      images.push(user.image);
 
     });
+
+    images = _.uniq(images);
+
+    const usersRendered = images.map(image => {
+
+      return (
+        <div className='u-fl u-ml-half'>
+          <CircleImage image={image} />
+        </div>
+      );
+
+    });
+
+    let chatRendered = null;
+
+    if (chat) {
+
+      chatRendered = (Object.keys(chat) || []).map((key) => {
+
+        const message = chat[key];
+
+        return (
+          <div className='message'>
+            <h5 className='f-light'>
+              { message.userName } <span className='f-small'>{ moment(message.date).format('MMMM mm:HH:ss')}</span>
+            </h5>
+            <h5 className='f-light'>
+            </h5>
+            <h6 className='f-light'>
+              { message.content }
+            </h6>
+          </div>
+        );
+
+      });
+
+    }
 
     return (
       <div className='col-xs-12'>
@@ -214,6 +253,18 @@ class CommunityEventModal extends Modal {
         <div className='col-xs-12 u-mb-half'>
           <button type='button' className='btn btn-success pull-right'>
             Save
+          </button>
+        </div>
+
+        <div className='col-xs-12 chat'>
+          <h6 className='f-light'>Chat</h6>
+
+          { chatRendered }
+
+          <input type='input' className='form-control u-mt-half' onChange={this.saveMessage.bind(this)} />
+
+          <button type='button' className='btn btn-success pull-right u-mt-half' onClick={this.sendMessage.bind(this)}>
+            Send message
           </button>
         </div>
       </div>
