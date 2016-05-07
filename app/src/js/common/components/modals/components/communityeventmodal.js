@@ -299,6 +299,18 @@ class CommunityEventModal extends Modal {
 
     } else {
 
+      let map = null;
+
+      if (this.realtimeLocation && this.realtimeLocation.length > 2) {
+
+        map = (
+          <div className='col-xs-12 u-mb-half'>
+            <MapCard locations={[this.realtimeLocation]} />
+          </div>
+        );
+
+      }
+
       rendered = (
         <div className='col-xs-12'>
           <div className='col-xs-12 u-mb-half'>
@@ -336,9 +348,7 @@ class CommunityEventModal extends Modal {
             <input className='u-fr form-control' type='number' value={this.realtimeDuration} onChange={this.updateRealtimeData.bind(this, 'duration') } />
           </div>
 
-          <div className='col-xs-12 u-mb-half'>
-            <MapCard locations={[this.realtimeLocation]} />
-          </div>
+          { map }
 
           <div className='col-xs-12 u-mb-half'>
             <h6 className='f-light'>Users editing this</h6>
@@ -356,7 +366,7 @@ class CommunityEventModal extends Modal {
 
             { chatRendered }
 
-            <input type='input' id='input-message' className='form-control u-mt-half' onChange={this.saveMessage.bind(this)} />
+            <input type='input' id='input-message' className='form-control u-mt-half' placeholder='Message' onChange={this.saveMessage.bind(this)} />
 
             <button type='button' className='btn btn-success pull-right u-mt-half' onClick={this.sendMessage.bind(this)}>
               Send message

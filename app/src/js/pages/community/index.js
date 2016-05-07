@@ -125,16 +125,6 @@ class Community extends React.Component {
     const secondHeaderProps = {
       items: [
         {
-          'icon': 'edit',
-          'toggle': 'modal',
-          'target': `#${CONST_CREATE_COMMUNITY_MODAL_ID}`,
-          'onClick': () => {
-            this.setState({
-              selectedGoal: {}
-            });
-          }
-        },
-        {
           'icon': 'plus',
           'toggle': 'modal',
           'target': `#${CONST_CREATE_COMMUNITY_EVENT_MODAL_ID}`,
