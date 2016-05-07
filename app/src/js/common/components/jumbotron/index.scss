@@ -10,6 +10,10 @@
   color: white;
   position: relative;
 
+  &--small {
+    height: 400px;
+  }
+
   .arrow {
     position: absolute;
     left: 50%;

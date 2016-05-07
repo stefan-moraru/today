@@ -156,6 +156,10 @@ $quarter: 10px;
   }
 
   &light {
+    h1 {
+      font-weight: 300 !important;
+    }
+
     font-weight: 300;
   }
 }

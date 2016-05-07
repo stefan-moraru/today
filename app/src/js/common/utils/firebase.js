@@ -19,6 +19,20 @@ const getCommunities = () => {
 
 };
 
+const getEvents = () => {
+
+  return new Promise((resolve, reject) => {
+
+    ref
+    .child('events')
+    .once('value', function(snapshot) {
+      resolve(snapshot.val());
+    });
+
+  });
+
+};
+
 const getUsers = () => {
 
   return new Promise((resolve, reject) => {
@@ -270,7 +284,8 @@ const FbUtils = {
   getGoalsForCurrentUser: getGoalsForCurrentUser,
   createGoal: createGoal,
   deleteGoal: deleteGoal,
-  getCommunities: getCommunities
+  getCommunities: getCommunities,
+  getEvents: getEvents
 };
 
 export default FbUtils;
