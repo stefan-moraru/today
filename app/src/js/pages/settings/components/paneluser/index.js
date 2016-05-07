@@ -5,6 +5,7 @@ import {
 } from 'common/components/cards';
 import UserService from 'common/services/userservice';
 import CircleImage from 'common/components/circleimage';
+import FbUtils from 'common/utils/firebase';
 
 import 'common/components/card/index.scss';
 
@@ -17,7 +18,8 @@ class PanelUser extends React.Component {
     this.state = {
       email: '',
       password: '',
-      profile: {}
+      profile: {},
+      categories: ''
     };
 
   }
@@ -31,7 +33,8 @@ class PanelUser extends React.Component {
   saveProfile(profile) {
 
     this.setState({
-      profile: profile
+      profile: profile,
+      categories: (profile || {}).categories
     });
 
   }
@@ -43,6 +46,19 @@ class PanelUser extends React.Component {
     newState[field] = ev.target.value;
 
     this.setState(newState);
+
+  }
+
+  saveCategories() {
+
+    FbUtils.getCurrentUser()
+    .then(user => {
+      user.categories = (this.state.categories || []).split(',');
+
+      FbUtils.updateUserWithEmail(user.email, user);
+
+        UserService.profile().then(this.saveProfile.bind(this));
+    });
 
   }
 
@@ -103,6 +119,15 @@ class PanelUser extends React.Component {
                 <span className='input-group-addon'><i className='fa fa-user fa-fw'></i></span>
                 <input type='text' className='form-control' placeholder='Username' disabled value={this.state.profile.name} onChange={this.onChange.bind(this, 'username')} />
               </div>
+
+              <div className='input-group'>
+                <span className='input-group-addon'><i className='fa fa-tags fa-fw'></i></span>
+                <input type='text' className='form-control' placeholder="Categories I'm interested in" value={this.state.categories} onChange={this.onChange.bind(this, 'categories')} />
+              </div>
+
+              <button className='btn btn-success pull-right' onClick={this.saveCategories.bind(this)}>
+                Save
+              </button>
             </div>
           </div>
 

@@ -387,7 +387,7 @@ const userCommunityMatchPercentage = (user, community) => {
     // Community has categories
     // Max = how many categories does the user have
     // P
-    const max = user.categories.length;
+    const max = community.categories.length;
 
     let matched = 0;
 

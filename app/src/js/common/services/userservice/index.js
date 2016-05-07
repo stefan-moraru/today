@@ -17,7 +17,8 @@ const profile = () => {
         city: user.city,
         googleData: typeof user.googleData !== 'undefined',
         facebookData: typeof user.facebookData !== 'undefined',
-        twitterData: typeof user.twitterData !== 'undefined'
+        twitterData: typeof user.twitterData !== 'undefined',
+        categories: user.categories
       };
 
       resolve(profileCardProps);

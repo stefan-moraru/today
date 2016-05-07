@@ -285,7 +285,8 @@ const FbUtils = {
   createGoal: createGoal,
   deleteGoal: deleteGoal,
   getCommunities: getCommunities,
-  getEvents: getEvents
+  getEvents: getEvents,
+  updateUserWithEmail: updateUserWithEmail
 };
 
 export default FbUtils;
