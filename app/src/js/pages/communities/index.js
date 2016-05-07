@@ -3,12 +3,13 @@ import { Link } from 'react-router';
 import SecondHeader from 'common/components/secondheader';
 import moment from 'moment';
 import momentRange from 'moment-range';
-import { GoalModal } from 'common/components/modals';
+import { CommunityModal } from 'common/components/modals';
 import Utils from 'common/utils';
 import FbUtils from 'common/utils/firebase';
 import './index.scss';
 
 const CONST_CREATE_COMMUNITY_MODAL_ID = 'community-page-modal-goal';
+const CONST_MODAL_ID = 'community-page-modal-modal-id';
 
 class Communities extends React.Component {
 
@@ -65,7 +66,7 @@ class Communities extends React.Component {
         {
           'icon': 'plus',
           'toggle': 'modal',
-          'target': `#${CONST_CREATE_COMMUNITY_MODAL_ID}`,
+          'target': `#${CONST_MODAL_ID}`,
           'onClick': () => {
             this.setState({
               selectedGoal: {}
@@ -138,6 +139,7 @@ class Communities extends React.Component {
     return (
       <div className='p-communities'>
         { secondHeader }
+        <CommunityModal id={CONST_MODAL_ID} refresh={this.refresh.bind(this)} />
         <div className='row u-mb-full u-hz-ctr u-mt-half'>
           <div className='col-xs-12'>
             <h1 className='display-4 f-light'>Communities</h1>
