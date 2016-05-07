@@ -144,7 +144,7 @@ class DirectionsCard extends Card {
     let button = null;
 
     if (this.props.end) {
-      text = `Show guide to ${this.props.end}`;
+      text = `Show guide`;
       button = <button className='btn btn-info' onClick={ this.showMap.bind(this) }>{ text }</button>;
     } else {
       text = `Next event doesn't have a location`;

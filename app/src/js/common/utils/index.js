@@ -34,7 +34,7 @@ const nextEvent = (events) => {
   sortEvents(events)
   .forEach(event => {
     const val = eventValue(event);
-    const diff = current - val;
+    const diff = val - current;
 
     if (diff > 0 && diff < min) {
       min = diff;

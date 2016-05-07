@@ -155,6 +155,10 @@ class Today extends React.Component {
       title: 'Goals'
     };
 
+    console.log(this.state.events);
+    console.log(Utils.nextEvent(this.state.events));
+    console.log(Utils.nextEvent(this.state.events).location);
+
     const cardDirectionsProps = {
       title: 'Guide to next event',
       introContent: 'Guidance to the next event',
