@@ -168,8 +168,6 @@ class Today extends React.Component {
       goals: this.state.goals
     };
 
-    console.log(this.state.goals);
-
     const cardWeatherProps = {
       title: 'Weather',
       city: this.state.profile.city,

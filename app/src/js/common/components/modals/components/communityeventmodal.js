@@ -2,6 +2,7 @@ import React from 'react';
 import Modal from 'common/components/modal';
 import FbUtils from 'common/utils/firebase';
 import CircleImage from 'common/components/circleimage';
+import { MapCard } from 'common/components/cards';
 
 class CommunityEventModal extends Modal {
 
@@ -14,9 +15,39 @@ class CommunityEventModal extends Modal {
       realtimeUsers: []
     };
 
+    this.realtimeTitle = '';
+    this.realtimeDescription = '';
+    this.realtimeUsers = [];
+
+  }
+
+  updateRealtimeData(field, ev) {
+
+    const communityId = 0;
+    const value = ev.target.value;
+
+    FbUtils.ref
+    .child('realtime')
+    .child(communityId)
+    .once('value', function(snapshot) {
+
+      let data = snapshot.val();
+
+      data[field] = value;
+
+      FbUtils.ref
+      .child('realtime')
+      .child(communityId)
+      .update(data);
+
+    });
+
+
   }
 
   componentDidMount() {
+
+    this.mounted = true;
 
     FbUtils.getCurrentUser().then(this.saveProfile.bind(this));
 
@@ -53,13 +84,24 @@ class CommunityEventModal extends Modal {
 
   }
 
+  componentWillUmount() {
+
+    this.mounted = false;
+
+  }
+
   refresh(data) {
 
-    this.setState({
-      realtimeTitle: data.title,
-      realtimeDescription: data.description,
-      realtimeUsers: data.users
-    });
+    this.realtimeTitle = data.title;
+    this.realtimeDescription = data.description;
+    this.realtimeUsers = data.users;
+    this.realtimeLocation = data.location;
+
+    if (this.mounted) {
+      this.forceUpdate();
+    }
+
+    console.log('refresh');
 
   }
 
@@ -77,6 +119,12 @@ class CommunityEventModal extends Modal {
 
   saveProfile(profile) {
 
+    if (profile.email) {
+
+      this.addUser(profile);
+
+    }
+
     this.setState({
       profile: profile
     });
@@ -85,15 +133,28 @@ class CommunityEventModal extends Modal {
 
   addUser(user) {
 
+    console.log('addUser');
+    console.log(user);
+
     const communityId = 0; //TODO
 
     FbUtils.ref
     .child('realtime')
     .child(communityId)
-    .once('value', function(snapshot) {
+    .child('users')
+    .push(user);
+    /* .once('value', function(snapshot) {
       let data = snapshot.val();
 
-      data.users = (data.users || []).filter(item => item.email !== user.email);
+      data.users = (data.users || []).filter(item => {
+
+        if (item.email === user.email) {
+          return false;
+        }
+
+        return true;
+
+      });
 
       data.users.push(user);
 
@@ -101,7 +162,7 @@ class CommunityEventModal extends Modal {
       .child('realtime')
       .child(communityId) //TODO
       .update(data);
-    });
+    }); */
 
   }
 
@@ -110,18 +171,14 @@ class CommunityEventModal extends Modal {
     // Get data from Firebase
     const profile = this.state.profile || {};
 
-    if (profile.email) {
+    const users = this.realtimeUsers;
 
-      this.addUser(this.state.profile);
+    const usersRendered = (Object.keys(users) || []).map((key, index) => {
 
-    }
-
-    const users = [ profile ];
-
-    const usersRendered = users.map((user, index) => {
+      const user = users[key];
 
       return (
-        <div>
+        <div className='u-fl u-ml-half'>
           <CircleImage image={user.image} />
         </div>
       )
@@ -129,9 +186,36 @@ class CommunityEventModal extends Modal {
     });
 
     return (
-      <div>
-        <input type='text' value={this.state.realtimeTitle} />
-        { usersRendered }
+      <div className='col-xs-12'>
+        <div className='col-xs-12 u-mb-half'>
+          <h6 className='f-light'>Title</h6>
+          <input className='u-fr form-control' type='text' value={this.realtimeTitle} onChange={this.updateRealtimeData.bind(this, 'title') }/>
+        </div>
+
+        <div className='col-xs-12 u-mb-half'>
+          <h6 className='f-light'>Description</h6>
+          <input className='u-fr form-control' type='text' value={this.realtimeDescription} onChange={this.updateRealtimeData.bind(this, 'description') } />
+        </div>
+
+        <div className='col-xs-12 u-mb-half'>
+          <h6 className='f-light'>Location</h6>
+          <input className='u-fr form-control' type='text' value={this.realtimeLocation} onChange={this.updateRealtimeData.bind(this, 'location') } />
+        </div>
+
+        <div className='col-xs-12 u-mb-half'>
+          <MapCard locations={[this.realtimeLocation]} />
+        </div>
+
+        <div className='col-xs-12 u-mb-half'>
+          <h6 className='f-light'>Users editing this</h6>
+          { usersRendered }
+        </div>
+
+        <div className='col-xs-12 u-mb-half'>
+          <button type='button' className='btn btn-success pull-right'>
+            Save
+          </button>
+        </div>
       </div>
     );
 

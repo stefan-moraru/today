@@ -374,10 +374,6 @@ const userCommunityMatchPercentage = (user, community) => {
   user.categories = user.categories || [];
   community.categories = community.categories || [];
 
-  console.log('HALLO');
-  console.log(user.categories);
-  console.log(community.categories);
-
   if (user.categories.length === 0 || community.categories.length === 0) {
 
     percentage = 0;

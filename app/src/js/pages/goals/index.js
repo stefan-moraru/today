@@ -92,8 +92,6 @@ class Goals extends React.Component {
   goalDoneOnDate(goal, date) {
     const done = (goal.doneOn || []).indexOf(date) !== -1;
 
-    console.log(goal.doneOn, date, done);
-
     return done;
   }
 
@@ -126,11 +124,7 @@ class Goals extends React.Component {
       const day = moment(item).isoWeekday();
       const done = this.goalDoneOnDate(goal, date);
 
-      console.log(date, day, goal.days);
-
       if (goal.days.indexOf(day) !== -1) {
-
-        console.log(done);
 
         const cellProps = {
           className: 'cell ' + (done ? 'done' : ''),
