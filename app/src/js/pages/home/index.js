@@ -38,7 +38,7 @@ class Home extends React.Component {
           <button className='btn btn-login'>Sign up</button>
         </Link>
 
-        <Jumbotron title='Organize your time' description='Easier then ever' more='Find out more' image='/src/assets/images/background.jpg' />
+        <Jumbotron title='Organize your time' description='Easier than ever' more='Find out more' image='/src/assets/images/background.jpg' />
 
           <Section>
             <div className='row'>
