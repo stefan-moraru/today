@@ -22,6 +22,10 @@ class CommunityEventModal extends Modal {
     this.realtimeUsers = [];
     this.realtimeLocation = '';
     this.realtimeChat = [];
+    this.realtimeTimeH = 0;
+    this.realtimeTimeM = 0;
+    this.realtimeDuration = 0;
+    this.realtimeDate = '';
 
   }
 
@@ -103,6 +107,10 @@ class CommunityEventModal extends Modal {
     this.realtimeUsers = data.users;
     this.realtimeLocation = data.location;
     this.realtimeChat = data.chat;
+    this.realtimeTimeH = data.timeH;
+    this.realtimeTimeM = data.timeM;
+    this.realtimeDuration = data.duration;
+    this.realtimeDate = data.date;
 
     if (this.mounted) {
       this.forceUpdate();
@@ -113,6 +121,14 @@ class CommunityEventModal extends Modal {
   componentWillReceiveProps(nextProps) {
 
     if (nextProps.community) {
+
+      const communityId = 0;
+
+      FbUtils.ref
+      .child('realtime')
+      .child(communityId)
+      .child('title')
+      .set('');
 
       this.setState({
         community: nextProps.community
@@ -170,6 +186,53 @@ class CommunityEventModal extends Modal {
     .child('chat')
     .push(message);
 
+    document.getElementById('input-message').value = '';
+
+  }
+
+  createEvent() {
+
+    const communityId = 0;
+
+    const event = {
+      title: this.realtimeTitle,
+      description: this.realtimeDescription,
+      location: this.realtimeLocation,
+      time: {
+        h: parseInt(this.realtimeTimeH || ''),
+        m: parseInt(this.realtimeTimeM || '')
+      },
+      duration: parseInt(this.realtimeDuration || ''),
+      community: communityId,
+      date: this.realtimeDate
+    };
+
+    FbUtils.ref
+    .child('events')
+    .once('value', function(snapshot) {
+
+      let data = snapshot.val();
+
+      if (data) {
+
+        data = data || [];
+
+        data[Object.keys(data).length] = event;
+
+      }
+
+      FbUtils.ref
+      .child('events')
+      .update(data);
+
+    });
+
+    FbUtils.ref
+    .child('realtime')
+    .child(communityId)
+    .child('title')
+    .set('CLOSE');
+
   }
 
   getModalBody() {
@@ -224,51 +287,86 @@ class CommunityEventModal extends Modal {
 
     }
 
-    return (
-      <div className='col-xs-12'>
-        <div className='col-xs-12 u-mb-half'>
-          <h6 className='f-light'>Title</h6>
-          <input className='u-fr form-control' type='text' value={this.realtimeTitle} onChange={this.updateRealtimeData.bind(this, 'title') }/>
+    let rendered = null;
+
+    if (this.realtimeTitle === 'CLOSE') {
+
+      rendered = (
+        <div>
+          <h4 className='f-light'>Event was created</h4>
         </div>
+      );
 
-        <div className='col-xs-12 u-mb-half'>
-          <h6 className='f-light'>Description</h6>
-          <input className='u-fr form-control' type='text' value={this.realtimeDescription} onChange={this.updateRealtimeData.bind(this, 'description') } />
+    } else {
+
+      rendered = (
+        <div className='col-xs-12'>
+          <div className='col-xs-12 u-mb-half'>
+            <h6 className='f-light'>Title</h6>
+            <input className='u-fr form-control' type='text' value={this.realtimeTitle} onChange={this.updateRealtimeData.bind(this, 'title') }/>
+          </div>
+
+          <div className='col-xs-12 u-mb-half'>
+            <h6 className='f-light'>Description</h6>
+            <input className='u-fr form-control' type='text' value={this.realtimeDescription} onChange={this.updateRealtimeData.bind(this, 'description') } />
+          </div>
+
+          <div className='col-xs-12 u-mb-half'>
+            <h6 className='f-light'>Location</h6>
+            <input className='u-fr form-control' type='text' value={this.realtimeLocation} onChange={this.updateRealtimeData.bind(this, 'location') } />
+          </div>
+
+          <div className='col-xs-12 u-mb-half'>
+            <h6 className='f-light'>Date</h6>
+            <input className='u-fr form-control' type='text' value={this.realtimeDate} onChange={this.updateRealtimeData.bind(this, 'date') } />
+          </div>
+
+          <div className='col-md-6 u-mb-half'>
+            <h6 className='f-light'>Time H</h6>
+            <input className='u-fr form-control' type='number' value={this.realtimeTimeH} onChange={this.updateRealtimeData.bind(this, 'timeH') } />
+          </div>
+
+          <div className='col-md-6 u-mb-half'>
+            <h6 className='f-light'>Time M</h6>
+            <input className='u-fr form-control' type='number' value={this.realtimeTimeM} onChange={this.updateRealtimeData.bind(this, 'timeM') } />
+          </div>
+
+          <div className='col-xs-12 u-mb-half'>
+            <h6 className='f-light'>Duration</h6>
+            <input className='u-fr form-control' type='number' value={this.realtimeDuration} onChange={this.updateRealtimeData.bind(this, 'duration') } />
+          </div>
+
+          <div className='col-xs-12 u-mb-half'>
+            <MapCard locations={[this.realtimeLocation]} />
+          </div>
+
+          <div className='col-xs-12 u-mb-half'>
+            <h6 className='f-light'>Users editing this</h6>
+            { usersRendered }
+          </div>
+
+          <div className='col-xs-12 u-mb-half'>
+            <button type='button' className='btn btn-success pull-right' onClick={this.createEvent.bind(this)}>
+              Save
+            </button>
+          </div>
+
+          <div className='col-xs-12 chat'>
+            <h6 className='f-light'>Chat</h6>
+
+            { chatRendered }
+
+            <input type='input' id='input-message' className='form-control u-mt-half' onChange={this.saveMessage.bind(this)} />
+
+            <button type='button' className='btn btn-success pull-right u-mt-half' onClick={this.sendMessage.bind(this)}>
+              Send message
+            </button>
+          </div>
         </div>
+      );
+    }
 
-        <div className='col-xs-12 u-mb-half'>
-          <h6 className='f-light'>Location</h6>
-          <input className='u-fr form-control' type='text' value={this.realtimeLocation} onChange={this.updateRealtimeData.bind(this, 'location') } />
-        </div>
-
-        <div className='col-xs-12 u-mb-half'>
-          <MapCard locations={[this.realtimeLocation]} />
-        </div>
-
-        <div className='col-xs-12 u-mb-half'>
-          <h6 className='f-light'>Users editing this</h6>
-          { usersRendered }
-        </div>
-
-        <div className='col-xs-12 u-mb-half'>
-          <button type='button' className='btn btn-success pull-right'>
-            Save
-          </button>
-        </div>
-
-        <div className='col-xs-12 chat'>
-          <h6 className='f-light'>Chat</h6>
-
-          { chatRendered }
-
-          <input type='input' className='form-control u-mt-half' onChange={this.saveMessage.bind(this)} />
-
-          <button type='button' className='btn btn-success pull-right u-mt-half' onClick={this.sendMessage.bind(this)}>
-            Send message
-          </button>
-        </div>
-      </div>
-    );
+    return rendered;
 
   }
 

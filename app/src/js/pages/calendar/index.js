@@ -159,7 +159,7 @@ class Calendar extends React.Component {
 
     let newEvents = [];
 
-    response.forEach((event, index) => {
+    (response || []).forEach((event, index) => {
 
       let value = Utils.eventValue(event);
 

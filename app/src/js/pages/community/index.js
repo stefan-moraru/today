@@ -151,53 +151,27 @@ class Community extends React.Component {
 
   }
 
-  generateCommunities(communities) {
-
-    return (communities || []).map((community, index) => {
-
-      const backgroundColor = {
-        backgroundColor: 'pink'
-      };
-
-      return (
-        <div className='community col-xs-12 u-mb-half' style={ backgroundColor }>
-          <h3 className='f-light'>Sportivi extremi</h3>
-          <h6 className='f-light'>
-            <i className='fa fa-fw fa-users'></i> 5 membri
-          </h6>
-          <h6 className='f-light'>
-            <i className='fa fa-fw fa-tags'></i> Sport, Extrem, Parapanta, Fun
-          </h6>
-          <h6 className='f-light'>
-            <i className='fa fa-fw fa-comment'></i> Cea mai faina comunitate de sport din ROmani
-          </h6>
-        </div>
-      );
-
-    });
-
-  }
-
-  refresh() {
-
-  }
-
   render() {
 
     const secondHeader = this.generateSecondHeader();
 
     const community = this.state.community || {};
 
-    const timeline = <VerticalTimeline events={this.state.events} searchEvents={this.searchEvents.bind(this)} />;
+    const events = this.state.events.filter(item => item.community == this.props.routeParams.id);
+
+    const timeline = <VerticalTimeline events={events} searchEvents={this.searchEvents.bind(this)} />;
 
     let lastEvent = null;
 
-    if (this.state.events && this.state.events.length > 0) {
+    if (events && events.length > 0) {
 
-      const item = this.state.events[0];
+      const item = events[0];
 
       lastEvent = (
-        <div>
+        <div className='col-xs-12 col-md-6 push-md-3 u-mb-full'>
+          <h1 className='f-light u-hz-ctr'>Most recent event</h1>
+          <h6 className='u-hz-ctr u-mb-full'>The last event organised by { community.title }</h6>
+
           <EventCard event={item} />
         </div>
       );
@@ -206,15 +180,9 @@ class Community extends React.Component {
 
     return (
       <div className='p-communities'>
-        <CommunityEventModal id={CONST_CREATE_COMMUNITY_EVENT_MODAL_ID} community={community} refresh={this.refresh.bind(this)} />
+        <CommunityEventModal id={CONST_CREATE_COMMUNITY_EVENT_MODAL_ID} community={community} />
         { secondHeader }
         <Jumbotron image={ community.image } className='jumbotron--small f-light' title={ community.title } description={ community.description } />
-
-        <div className='col-xs-12 col-md-6 push-md-3 u-mb-full'>
-          <h1 className='f-light u-hz-ctr'>Most recent event</h1>
-          <h6 className='u-hz-ctr u-mb-full'>The last event organised by { community.title }</h6>
-          { lastEvent }
-        </div>
 
         <div className='col-xs-12'>
           { timeline }

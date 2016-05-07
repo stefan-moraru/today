@@ -55,6 +55,23 @@ class VerticalTimeline extends React.Component {
 
     const noEvents = timelineRendered.length === 0 ? <h4 className='f-light'>No events</h4> : null;
 
+    let input = null;
+
+    if (timelineRendered.length > 0) {
+
+      input = (
+        <div className='row'>
+          <div className='col-xs-12 col-md-6 push-md-3 u-mb-full u-p-0'>
+            <div className='input-group u-mb-quarter'>
+              <span className='input-group-addon'><i className='fa fa-search'></i></span>
+              <input type='text' className='form-control' placeholder='Search (ex: 2016, Practice, 2016-01-03, today, Palas mall)' onChange={this.props.searchEvents.bind(this)} />
+            </div>
+          </div>
+        </div>
+      );
+  
+    }
+
     return (
       <div className='c-verticaltimeline'>
         <div className='col-xs-12 u-mb-full u-hz-ctr'>
@@ -62,14 +79,7 @@ class VerticalTimeline extends React.Component {
           <h6>History of events</h6>
         </div>
 
-        <div className='row'>
-        <div className='col-xs-12 col-md-6 push-md-3 u-mb-full u-p-0'>
-          <div className='input-group u-mb-quarter'>
-            <span className='input-group-addon'><i className='fa fa-search'></i></span>
-            <input type='text' className='form-control' placeholder='Search (ex: 2016, Practice, 2016-01-03, today, Palas mall)' onChange={this.props.searchEvents.bind(this)} />
-          </div>
-        </div>
-      </div>
+        { input }
 
         <div className='col-md-10 push-md-1'>
           <div className='u-hz-ctr'>
