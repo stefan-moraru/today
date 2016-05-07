@@ -13,6 +13,8 @@ import Profile from 'pages/profile';
 import Settings from 'pages/settings';
 import Activities from 'pages/activities';
 import NotFound from 'pages/notfound';
+import Communities from 'pages/communities';
+import Community from 'pages/community';
 
 const authenticate = (nextState, replace) => {
 
@@ -60,6 +62,8 @@ const routes = (
         <Route path='settings' component={Settings} onEnter={authenticate} />
         <Route path='activities' component={Activities} onEnter={authenticate} />
         <Route path='profile/:email' component={Profile} />
+        <Route path='communities' component={Communities} />
+        <Route path='communities/:id' component={Community} />
       </Route>
     </Route>
 

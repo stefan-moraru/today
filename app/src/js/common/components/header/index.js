@@ -57,6 +57,11 @@ class Header extends React.Component {
         icon: 'fa fa-th'
       },
       {
+        href: '/communities',
+        title: 'Communities',
+        icon: 'fa fa-users'
+      },
+      {
         href: '/settings',
         title: 'Settings',
         icon: 'fa fa-cog'

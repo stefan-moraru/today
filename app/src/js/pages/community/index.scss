@@ -1,0 +1,10 @@
+$color_green: rgba(38, 166, 91, 1);
+$color_green_faded: rgba(38, 166, 91, 0.2);
+$color_done: $color_green;
+$color_notdone: rgba(0, 0, 0, 0.1);
+
+.p-communities {
+  .community {
+    padding: 20px;
+  }
+}

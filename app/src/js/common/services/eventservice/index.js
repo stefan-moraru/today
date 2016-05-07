@@ -15,7 +15,9 @@ const backgroundImageFromCategories = (event) => {
   };
 
   const getRandomImageFromCategory = (imagesList, category) => {
-    const rand = Math.floor(Math.random() * imagesList[category].length);
+    let rand = Math.floor(Math.random() * imagesList[category].length);
+
+    rand = 0;
 
     return imagesList[category][rand];
   };

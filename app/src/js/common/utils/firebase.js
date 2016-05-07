@@ -5,6 +5,20 @@ import uuid from 'node-uuid';
 
 const ref = new Firebase('https://today-app.firebaseio.com');
 
+const getCommunities = () => {
+
+  return new Promise((resolve, reject) => {
+
+    ref
+    .child('communities')
+    .once('value', function(snapshot) {
+      resolve(snapshot.val());
+    });
+
+  });
+
+};
+
 const getUsers = () => {
 
   return new Promise((resolve, reject) => {
@@ -254,7 +268,8 @@ const FbUtils = {
   deleteEvent: deleteEvent,
   getGoalsForCurrentUser: getGoalsForCurrentUser,
   createGoal: createGoal,
-  deleteGoal: deleteGoal
+  deleteGoal: deleteGoal,
+  getCommunities: getCommunities
 };
 
 export default FbUtils;
