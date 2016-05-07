@@ -1,11 +1,11 @@
 import React from 'react';
+import { Link } from 'react-router';
 import SecondHeader from 'common/components/secondheader';
 import moment from 'moment';
 import momentRange from 'moment-range';
 import { GoalModal } from 'common/components/modals';
 import Utils from 'common/utils';
 import FbUtils from 'common/utils/firebase';
-import UserService from 'common/services/userservice';
 import './index.scss';
 
 const CONST_CREATE_COMMUNITY_MODAL_ID = 'community-page-modal-goal';
@@ -31,7 +31,7 @@ class Communities extends React.Component {
 
   componentDidMount() {
 
-    UserService.profile().then(this.saveProfile.bind(this));
+    FbUtils.getCurrentUser().then(this.saveProfile.bind(this));
     this.getCommunities();
 
   }
@@ -79,12 +79,11 @@ class Communities extends React.Component {
 
   }
 
-  generateCommunities(communities) {
+  generateCommunities(communities, user) {
 
     return (communities || []).map((community, index) => {
 
       const backgroundColor = {
-        backgroundColor: 'pink'
       };
 
       const title = community.title;
@@ -92,20 +91,36 @@ class Communities extends React.Component {
       const memberCount = members.length;
       const categories = community.categories;
       const categoriesRendered = (categories || []).join(', ');
+      const description = community.description;
+      const percentage = Utils.userCommunityMatchPercentage(user, community);
       const key = `p-communities-community-${index}`;
+
+      const prHidden = percentage === 0 ? 'u-hidden' : '';
 
       return (
         <div className='community col-xs-12 u-mb-half' style={ backgroundColor } key={ key }>
-          <h3 className='f-light u-mb-half'>{ community.title }</h3>
-          <h6 className='f-light'>
-            <i className='fa fa-fw fa-users'></i> { memberCount } { memberCount === 1 ? 'member' : 'members' }
-          </h6>
-          <h6 className='f-light'>
-            <i className='fa fa-fw fa-tags'></i> { categoriesRendered }
-          </h6>
-          <h6 className='f-light'>
-            <i className='fa fa-fw fa-comment'></i> Cea mai faina comunitate de sport din ROmani
-          </h6>
+          <Link to={`community/${community.id}`}>
+            <div className='community__content'>
+              <h3 className='f-light u-mb-half'>{ community.title }</h3>
+              <h6 className='f-light'>
+                <i className='fa fa-fw fa-users'></i> { memberCount } { memberCount === 1 ? 'member' : 'members' }
+              </h6>
+              <h6 className='f-light'>
+                <i className='fa fa-fw fa-tags'></i> { categoriesRendered }
+              </h6>
+              <h6 className='f-light'>
+                <i className='fa fa-fw fa-comment'></i> { description }
+              </h6>
+              <h6 className='f-light'>
+                <i className='fa fa-fw fa-percent'></i> You would fit { percentage }%
+              </h6>
+              <h6 className='f-light pull-right'>
+                <i className='fa fa-fw fa-chevron-right'></i>
+              </h6>
+            </div>
+          </Link>
+
+          <progress className={`progress ${prHidden} progress-success`} value={ percentage } max='100'></progress>
         </div>
       );
 
@@ -116,10 +131,9 @@ class Communities extends React.Component {
   render() {
 
     const secondHeader = this.generateSecondHeader();
-    const communities = this.generateCommunities(this.state.communities);
     const profile = this.state.profile || {};
 
-    console.log(profile);
+    const communities = this.generateCommunities(this.state.communities, profile);
 
     return (
       <div className='p-communities'>

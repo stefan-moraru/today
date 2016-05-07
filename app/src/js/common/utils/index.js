@@ -367,6 +367,52 @@ const durationAsSentence = (duration) => {
 
 };
 
+const userCommunityMatchPercentage = (user, community) => {
+
+  let percentage = '';
+
+  user.categories = user.categories || [];
+  community.categories = community.categories || [];
+
+  console.log('HALLO');
+  console.log(user.categories);
+  console.log(community.categories);
+
+  if (user.categories.length === 0 || community.categories.length === 0) {
+
+    percentage = 0;
+
+  } else {
+    // User has categories
+    // Community has categories
+    // Max = how many categories does the user have
+    // P
+    const max = user.categories.length;
+
+    let matched = 0;
+
+    user.categories.forEach(category => {
+
+      community.categories.forEach(communityCategory => {
+
+        if (communityCategory.toLowerCase() === category.toLowerCase()) {
+
+          matched = matched + 1;
+
+        }
+
+      });
+
+    });
+
+    percentage = Math.floor(matched / max * 100);
+
+  }
+
+  return percentage;
+
+};
+
 export default {
   dayResume,
   todayEvents,
@@ -381,5 +427,6 @@ export default {
   isNow,
   durationAsSentence,
   durationAsShortSentence,
-  nextEvent
+  nextEvent,
+  userCommunityMatchPercentage
 };

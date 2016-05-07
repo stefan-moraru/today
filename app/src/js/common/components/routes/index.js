@@ -63,7 +63,7 @@ const routes = (
         <Route path='activities' component={Activities} onEnter={authenticate} />
         <Route path='profile/:email' component={Profile} />
         <Route path='communities' component={Communities} />
-        <Route path='communities/:id' component={Community} />
+        <Route path='community/:id' component={Community} />
       </Route>
     </Route>
 

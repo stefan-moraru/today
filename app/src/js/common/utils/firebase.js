@@ -258,6 +258,7 @@ const deleteGoal = (goal) => {
 const FbUtils = {
   ref: new Firebase('https://today-app.firebaseio.com'),
   getRef: getRef,
+  getCurrentUser: getCurrentUser,
   getUsers: getUsers,
   getUserWithEmail: getUserWithEmail,
   getEventsForCurrentUser: getEventsForCurrentUser,
